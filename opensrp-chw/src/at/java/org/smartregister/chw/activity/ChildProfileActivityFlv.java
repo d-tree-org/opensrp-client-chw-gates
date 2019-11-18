@@ -8,9 +8,6 @@ import org.smartregister.chw.core.fragment.FamilyCallDialogFragment;
 import org.smartregister.chw.core.listener.OnClickFloatingMenu;
 import org.smartregister.chw.presenter.ChildProfilePresenter;
 
-/**
- * Author : Isaya Mollel on 2019-11-12.
- */
 public class ChildProfileActivityFlv implements ChildProfileActivity.Flavor{
 
     @Override

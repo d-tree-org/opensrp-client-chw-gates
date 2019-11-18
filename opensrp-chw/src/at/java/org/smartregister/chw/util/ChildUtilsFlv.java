@@ -2,9 +2,6 @@ package org.smartregister.chw.util;
 
 import java.util.ArrayList;
 
-/**
- * Author : Isaya Mollel on 2019-11-12.
- */
 public class ChildUtilsFlv implements ChildUtils.Flavor{
 
     @Override

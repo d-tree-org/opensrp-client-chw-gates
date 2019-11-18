@@ -1,8 +1,5 @@
 package org.smartregister.chw.util;
 
-/**
- * Author : Isaya Mollel on 2019-11-12.
- */
 public class RepositoryUtilsFlv {
 
     public static String[] UPGRADE_V6 = {

@@ -11,9 +11,6 @@ import java.text.MessageFormat;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Author : Isaya Mollel on 2019-11-12.
- */
 public class AncMedicalHistoryActivityFlv extends DefaultAncMedicalHistoryActivityFlv {
 
     @Override

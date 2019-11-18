@@ -9,9 +9,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-/**
- * Author : Isaya Mollel on 2019-11-12.
- */
 public class NavigationModelFlv implements NavigationModel.Flavor {
 
     private static List<NavigationOption> navigationOptions = new ArrayList<>();

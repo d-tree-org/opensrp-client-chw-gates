@@ -31,9 +31,6 @@ import java.util.Map;
 
 import timber.log.Timber;
 
-/**
- * Author : Isaya Mollel on 2019-11-12.
- */
 public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor {
 
     @Override

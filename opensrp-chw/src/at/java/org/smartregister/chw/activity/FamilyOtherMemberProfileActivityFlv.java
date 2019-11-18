@@ -12,9 +12,6 @@ import org.smartregister.commonregistry.CommonPersonObjectClient;
 
 import static org.smartregister.chw.core.utils.Utils.isWomanOfReproductiveAge;
 
-/**
- * Author : Isaya Mollel on 2019-11-12.
- */
 public class FamilyOtherMemberProfileActivityFlv implements FamilyOtherMemberProfileActivity.Flavor{
 
     @Override

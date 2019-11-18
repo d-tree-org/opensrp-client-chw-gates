@@ -11,9 +11,6 @@ import org.smartregister.clientandeventmodel.Client;
 import org.smartregister.clientandeventmodel.Event;
 import org.smartregister.commonregistry.CommonPersonObjectClient;
 
-/**
- * Author : Isaya Mollel on 2019-11-12.
- */
 public class JsonFormUtilsFlv extends BAJsonFormUtils implements JsonFormUtils.Flavor {
 
     public JsonFormUtilsFlv() {

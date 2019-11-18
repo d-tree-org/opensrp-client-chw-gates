@@ -24,9 +24,6 @@ import java.util.List;
 
 import timber.log.Timber;
 
-/**
- * Author : Isaya Mollel on 2019-11-12.
- */
 public class ChwRepositoryFlv {
 
     public static void onUpgrade(Context context, SQLiteDatabase db, int oldVersion, int newVersion) {

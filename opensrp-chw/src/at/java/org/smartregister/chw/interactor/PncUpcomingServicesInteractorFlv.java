@@ -17,9 +17,6 @@ import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Author : Isaya Mollel on 2019-11-12.
- */
 public class PncUpcomingServicesInteractorFlv extends DefaultPncUpcomingServiceInteractorFlv {
 
     protected MemberObject memberObject;
