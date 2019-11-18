@@ -6,9 +6,6 @@ import org.smartregister.chw.R;
 
 import static org.smartregister.chw.core.utils.Utils.redrawWithOption;
 
-/**
- * Author : Isaya Mollel on 2019-11-12.
- */
 public class FamilyMemberFloatingMenuFlv implements FamilyMemberFloatingMenu.Flavor {
 
     @Override
