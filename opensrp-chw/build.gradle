@@ -121,6 +121,22 @@ android {
 
     flavorDimensions 'baseDimension'
     productFlavors {
+        at {
+            dimension = 'baseDimension'
+            applicationIdSuffix ".at"
+            versionCode 1
+            versionName "0.0.1"
+            buildConfigField "String", 'opensrp_url', '"https://opensrp-dev.d-tree.org/opensrp/"'
+            buildConfigField "String", 'opensrp_url_debug', '"https://opensrp-dev.d-tree.org/opensrp/"'
+            buildConfigField "String[]", "LOCATION_HIERACHY", '{"Country","Region","District","Ward" , "Health Facility", "Village", "Village Sublocations"}'
+            buildConfigField "String[]", "ALLOWED_LOCATION_LEVELS", '{"Facility Name", "Village"}'
+            buildConfigField "String[]", "ALLOWED_LOCATION_LEVELS_DEBUG", '{"Facility Name", "Village"}'
+            buildConfigField "String", 'DEFAULT_LOCATION', '"Village Sublocations"'
+            buildConfigField "String", 'DEFAULT_LOCATION_DEBUG', '"Village"'
+            buildConfigField "boolean", 'SUPPORT_QR', 'true'
+            buildConfigField "boolean", 'SUPPORT_REPORT', 'false'
+            buildConfigField "int", "DATABASE_VERSION", '12'
+        }
         ba {
             dimension = 'baseDimension'
             applicationIdSuffix ".ba"
