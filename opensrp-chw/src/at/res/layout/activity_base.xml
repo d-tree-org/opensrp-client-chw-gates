@@ -23,8 +23,8 @@
         android:background="#fff"
         android:fitsSystemWindows="true"
         app:itemBackground="@drawable/drawer_item_background"
-        app:itemIconTint="#8A1A51"
-        app:itemTextColor="#8A1A51"
+        app:itemIconTint="@color/chw_primary"
+        app:itemTextColor="@color/chw_primary"
         app:theme="@style/ChwTheme.AppBarOverlay.NavigationDrawerStyle">
 
         <RelativeLayout
