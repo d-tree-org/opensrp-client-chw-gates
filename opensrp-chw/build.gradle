@@ -49,6 +49,15 @@ android {
         buildConfigField "int", "MAX_SYNC_RETRIES", '3'
         buildConfigField "long", "BUILD_TIMESTAMP", System.currentTimeMillis() + "L"
         buildConfigField "boolean", "IS_SYNC_SETTINGS", "false"
+
+        buildConfigField "String[]", "ALLOWED_LOCATION_LEVELS", '{"Facility Name", "Village"}'
+        buildConfigField "String", 'DEFAULT_LOCATION', '"Village"'
+        buildConfigField "boolean", 'SUPPORT_QR', 'true'
+        buildConfigField "int", "DATABASE_VERSION", '12'
+
+        buildConfigField "String", 'opensrp_url', '"https://opensrp-dev.d-tree.org/opensrp/"'
+        buildConfigField "String", 'opensrp_url_debug', '"https://opensrp-dev.d-tree.org/opensrp/"'
+
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
@@ -129,7 +138,7 @@ android {
             buildConfigField "String", 'opensrp_url', '"https://opensrp-dev.d-tree.org/opensrp/"'
             buildConfigField "String", 'guidebooks_url', '"https://opensrp.s3.amazonaws.com/media/ba/"'
             buildConfigField "String", 'opensrp_url_debug', '"https://opensrp-dev.d-tree.org/opensrp/"'
-            buildConfigField "String[]", "LOCATION_HIERACHY", '{"Country","Region","District","Ward" , "Health Facility", "Village", "Village Sublocations"}'
+            buildConfigField "String[]", "LOCATION_HIERACHY", '{"Country", "Region", "District", "Ward" ,"Village", "Facility Name"}'
             buildConfigField "String[]", "ALLOWED_LOCATION_LEVELS", '{"Facility Name", "Village"}'
             buildConfigField "String[]", "ALLOWED_LOCATION_LEVELS_DEBUG", '{"Facility Name", "Village"}'
             buildConfigField "String", 'DEFAULT_LOCATION', '"Village Sublocations"'
@@ -253,7 +262,18 @@ dependencies {
 
     implementation('org.smartregister:opensrp-client-chw-core:1.0.30-SNAPSHOT@aar') {
         transitive = true
+        exclude group: 'org.smartregister', module: 'opensrp-client-family'
     }
+
+    implementation('org.smartregister:opensrp-client-family:1.2.26-DEMO-2-SNAPSHOT@aar') {
+        transitive = true
+        exclude group: 'org.smartregister', module: 'opensrp-client-core'
+        exclude group: 'org.smartregister', module: 'opensrp-client-native-form'
+        exclude group: 'org.smartregister', module: 'opensrp-client-configurable-views'
+        exclude group: 'com.android.support', module: 'appcompat-v7'
+        exclude group: 'org.smartregister', module: 'opensrp-client-materialedittext'
+    }
+
     implementation 'com.android.support:appcompat-v7:28.0.0'
     implementation 'com.android.support:support-v4:28.0.0'
     implementation 'com.android.support:recyclerview-v7:28.0.0'
