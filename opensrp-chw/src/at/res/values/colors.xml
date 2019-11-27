@@ -9,6 +9,9 @@
     <color name="primary">#8A1A51</color>
     <color name="customAppThemeBlue">#8A1A51</color>
 
+    <color name="navigation_item_selected">#8A1A51</color>
+    <color name="navigation_item_unselected">#727272</color>
+
     <color name="primaryAccent">#3797ca</color>
     <color name="primaryBackground">#a6d1e7</color>
     <color name="purple">#512DA8</color>
