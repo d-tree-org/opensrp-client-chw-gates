@@ -8,4 +8,5 @@ public class NavigationMenuFlv implements NavigationMenu.Flavour {
     public String[] getSupportedLanguages() {
         return new String[] { "English", "Kiswahili" };
     }
+
 }
