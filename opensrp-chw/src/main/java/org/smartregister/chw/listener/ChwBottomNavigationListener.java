@@ -12,7 +12,9 @@ import org.smartregister.family.R;
 import org.smartregister.view.activity.BaseRegisterActivity;
 
 public class ChwBottomNavigationListener extends CoreBottomNavigationListener {
+
     private Activity context;
+    private Flavor flavor = new ChwBottomNavigationListenerFlv();
 
     public ChwBottomNavigationListener(Activity context) {
         super(context);
@@ -22,36 +24,11 @@ public class ChwBottomNavigationListener extends CoreBottomNavigationListener {
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 //        super.onNavigationItemSelected(item);
-
-        BaseRegisterActivity baseRegisterActivity = (BaseRegisterActivity) context;
-
-        if (item.getItemId() == R.id.action_family) {
-            if (context instanceof FamilyRegisterActivity) {
-                baseRegisterActivity.switchToBaseFragment();
-            } else {
-                Intent intent = new Intent(context, FamilyRegisterActivity.class);
-                context.startActivity(intent);
-                context.finish();
-            }
-        } else if (item.getItemId() == R.id.action_scan_qr) {
-            baseRegisterActivity.startQrCodeScanner();
-            return false;
-        } else if (item.getItemId() == R.id.action_register) {
-
-            if (context instanceof FamilyRegisterActivity) {
-                baseRegisterActivity.startRegistration();
-            } else {
-                FamilyRegisterActivity.startFamilyRegisterForm(context);
-            }
-
-            return false;
-        } else if (item.getItemId() == R.id.action_job_aids) {
-            //view.setSelectedItemId(R.id.action_family);
-            Intent intent = new Intent(context, JobAidsActivity.class);
-            context.startActivity(intent);
-            return false;
-        }
-
-        return true;
+        return flavor.navigationItemSelected(item, context);
     }
+
+    public interface Flavor {
+        boolean navigationItemSelected(MenuItem item, Activity context);
+    }
+
 }
