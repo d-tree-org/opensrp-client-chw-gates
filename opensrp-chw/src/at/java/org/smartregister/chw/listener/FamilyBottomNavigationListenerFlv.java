@@ -3,7 +3,6 @@ package org.smartregister.chw.listener;
 import android.app.Activity;
 import android.content.Intent;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import org.smartregister.chw.R;
 import org.smartregister.chw.activity.FamilyRegisterActivity;
@@ -13,7 +12,7 @@ import org.smartregister.view.activity.BaseRegisterActivity;
 /**
  * Author : Isaya Mollel on 2019-11-28.
  */
-public class ChwBottomNavigationListenerFlv extends DefaultChwBottomNavigationListenerFlv {
+public class BottomNavigationListenerFlv extends DefaultBottomNavigationListenerFlv {
 
     @Override
     public boolean navigationItemSelected(MenuItem item, Activity context) {
@@ -29,8 +28,12 @@ public class ChwBottomNavigationListenerFlv extends DefaultChwBottomNavigationLi
             }
         }
         else if (item.getItemId() == R.id.action_scan_fingerprint) {
-            Toast.makeText(context, "Scanning Fingerprints", Toast.LENGTH_LONG).show();
-            return true;
+
+            if (context instanceof FamilyRegisterActivity){
+                FamilyRegisterActivity activity = (FamilyRegisterActivity)context;
+                activity.startFingerprintScan(activity);
+                return true;
+            }
         }
         else if (item.getItemId() == org.smartregister.family.R.id.action_register) {
 
