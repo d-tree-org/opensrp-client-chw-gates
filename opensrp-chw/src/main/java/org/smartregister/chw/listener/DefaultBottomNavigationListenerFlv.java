@@ -5,15 +5,13 @@ import android.content.Intent;
 import android.support.design.widget.BottomNavigationView;
 import android.view.MenuItem;
 
-import org.smartregister.chw.R;
-import org.smartregister.chw.activity.FamilyRegisterActivity;
 import org.smartregister.chw.activity.JobAidsActivity;
 import org.smartregister.view.activity.BaseRegisterActivity;
 
 /**
  * Author : Isaya Mollel on 2019-11-27.
  */
-public abstract class DefaultBottomNavigationListenerFlv implements BottomNavigationFavor {
+public abstract class DefaultBottomNavigationListenerFlv implements BottomNavigationFlavor {
 
     @Override
     public boolean navigationItemSelected(MenuItem item, Activity context, BottomNavigationView view) {

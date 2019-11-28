@@ -7,6 +7,6 @@ import android.view.MenuItem;
 /**
  * Author : Isaya Mollel on 2019-11-28.
  */
-public interface BottomNavigationFavor {
+public interface BottomNavigationFlavor {
     boolean navigationItemSelected(MenuItem item, Activity context, BottomNavigationView view);
 }
