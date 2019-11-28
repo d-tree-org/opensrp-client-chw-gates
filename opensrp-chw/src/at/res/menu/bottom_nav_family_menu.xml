@@ -7,6 +7,7 @@
         android:icon="@mipmap/ic_home"
         android:title="@string/home"
         app:showAsAction="ifRoom" />
+
     <item
         android:id="@+id/action_scan_fingerprint"
         android:enabled="true"
