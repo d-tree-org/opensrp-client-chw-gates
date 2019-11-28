@@ -15,7 +15,7 @@ public class FamilyBottomNavigationListener extends org.smartregister.family.lis
         super(context);
         this.context = context;
         this.view = view;
-        this.flavor = new FamilyBottomNavigationListenerFlv(context);
+        this.flavor = new BottomNavigationListenerFlv(context);
     }
 
     @Override

@@ -10,9 +10,9 @@ import org.smartregister.chw.activity.FamilyRegisterActivity;
 /**
  * Author : Isaya Mollel on 2019-11-28.
  */
-public class FamilyBottomNavigationListenerFlv extends DefaultBottomNavigationListenerFlv {
+public class BottomNavigationListenerFlv extends DefaultBottomNavigationListenerFlv {
 
-    FamilyBottomNavigationListenerFlv(Activity context){
+    BottomNavigationListenerFlv(Activity context){
         super(context);
     }
 
