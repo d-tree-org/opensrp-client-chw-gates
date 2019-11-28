@@ -6,6 +6,8 @@
     <string name="not_done">Not done</string>
     <string name="not_provided">Not provided</string>
 
+    <string name="scan_fingerprint"> Scan </string>
+
     <string name="child_under_five">Child under 5 years</string>
     <string name="go_to_family_s_profile">Go to family\'s profile</string>
     <string name="family_has_nothing_due">Family has nothing due</string>

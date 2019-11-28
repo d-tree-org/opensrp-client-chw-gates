@@ -6,6 +6,8 @@
     <string name="not_done">N\'a pas été fait</string>
     <string name="not_provided">N\'a pas été donné</string>
 
+    <string name="scan_fingerprint"> Scan </string>
+
     <string name="child_under_five">Enfant de moins de 5 ans</string>
     <string name="go_to_family_s_profile">Aller au profil du ménage</string>
     <string name="family_has_nothing_due">Le ménage n\'a pas de service attendu</string>
