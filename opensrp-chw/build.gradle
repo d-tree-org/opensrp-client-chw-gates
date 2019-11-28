@@ -262,6 +262,17 @@ dependencies {
 
     implementation('org.smartregister:opensrp-client-chw-core:1.0.39-SNAPSHOT@aar') {
         transitive = true
+        exclude group: 'org.smartregister', module: 'opensrp-client-native-form'
+    }
+
+    implementation('org.smartregister:opensrp-client-native-form:1.6.49-DEMO-9-SNAPSHOT@aar') {
+        transitive = true
+        exclude group: 'com.android.support', module: 'appcompat-v7'
+        exclude group: 'com.android.support', module: 'cardview-v7'
+        exclude group: 'com.android.support', module: 'support-media-compat'
+        exclude group: 'com.android.support', module: 'support-v4'
+        exclude group: 'com.android.support', module: 'design'
+        exclude group: 'io.ona.rdt-capture', module: 'lib'
     }
 
     implementation 'com.android.support:appcompat-v7:28.0.0'
