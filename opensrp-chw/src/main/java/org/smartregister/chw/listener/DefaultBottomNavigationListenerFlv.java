@@ -8,10 +8,12 @@ import android.view.MenuItem;
 import org.smartregister.chw.activity.JobAidsActivity;
 import org.smartregister.view.activity.BaseRegisterActivity;
 
-/**
- * Author : Isaya Mollel on 2019-11-27.
- */
-public abstract class DefaultBottomNavigationListenerFlv implements BottomNavigationFlavor {
+public abstract class DefaultBottomNavigationListenerFlv extends
+        org.smartregister.family.listener.FamilyBottomNavigationListener implements BottomNavigationFlavor {
+
+    DefaultBottomNavigationListenerFlv(Activity context){
+        super(context);
+    }
 
     @Override
     public boolean navigationItemSelected(MenuItem item, Activity context, BottomNavigationView view) {
@@ -27,6 +29,8 @@ public abstract class DefaultBottomNavigationListenerFlv implements BottomNaviga
             Intent intent = new Intent(context, JobAidsActivity.class);
             context.startActivity(intent);
             return false;
+        } else {
+            super.onNavigationItemSelected(item);
         }
 
         return true;

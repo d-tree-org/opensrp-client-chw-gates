@@ -9,12 +9,13 @@ public class FamilyBottomNavigationListener extends org.smartregister.family.lis
 
     private Activity context;
     private BottomNavigationView view;
-    private BottomNavigationFlavor flavor = new FamilyBottomNavigationListenerFlv();
+    private BottomNavigationFlavor flavor;
 
     public FamilyBottomNavigationListener(Activity context, BottomNavigationView view){
         super(context);
         this.context = context;
         this.view = view;
+        this.flavor = new FamilyBottomNavigationListenerFlv(context);
     }
 
     @Override

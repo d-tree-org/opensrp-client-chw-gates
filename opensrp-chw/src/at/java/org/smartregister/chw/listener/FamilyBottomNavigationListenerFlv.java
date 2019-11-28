@@ -12,6 +12,10 @@ import org.smartregister.chw.activity.FamilyRegisterActivity;
  */
 public class FamilyBottomNavigationListenerFlv extends DefaultBottomNavigationListenerFlv {
 
+    FamilyBottomNavigationListenerFlv(Activity context){
+        super(context);
+    }
+
     @Override
     public boolean navigationItemSelected(MenuItem item, Activity context, BottomNavigationView view) {
 
