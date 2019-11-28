@@ -6,14 +6,19 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.view.MenuItem;
 
+import org.smartregister.chw.R;
+import org.smartregister.chw.activity.FamilyRegisterActivity;
 import org.smartregister.chw.activity.JobAidsActivity;
+import org.smartregister.chw.model.FamilyProfileModel;
 import org.smartregister.view.activity.BaseRegisterActivity;
 
 public class FamilyBottomNavigationListener extends org.smartregister.family.listener.FamilyBottomNavigationListener {
+
     private Activity context;
     private BottomNavigationView view;
+    private BottomNavigationFavor flavor = new FamilyBottomNavigationListenerFlv();
 
-    public FamilyBottomNavigationListener(Activity context, BottomNavigationView view) {
+    public FamilyBottomNavigationListener(Activity context, BottomNavigationView view){
         super(context);
         this.context = context;
         this.view = view;
@@ -21,21 +26,6 @@ public class FamilyBottomNavigationListener extends org.smartregister.family.lis
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        BaseRegisterActivity baseRegisterActivity = (BaseRegisterActivity) this.context;
-
-        if (item.getItemId() == org.smartregister.family.R.id.action_register) {
-            view.setSelectedItemId(org.smartregister.family.R.id.action_family);
-            baseRegisterActivity.startRegistration();
-            return false;
-        } else if (item.getItemId() == org.smartregister.family.R.id.action_job_aids) {
-            view.setSelectedItemId(org.smartregister.family.R.id.action_family);
-            Intent intent = new Intent(context, JobAidsActivity.class);
-            context.startActivity(intent);
-            return false;
-        } else {
-            super.onNavigationItemSelected(item);
-        }
-
-        return true;
+        return flavor.navigationItemSelected(item, context, view);
     }
 }
