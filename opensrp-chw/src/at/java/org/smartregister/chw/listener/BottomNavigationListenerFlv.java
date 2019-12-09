@@ -25,6 +25,12 @@ public class BottomNavigationListenerFlv extends DefaultBottomNavigationListener
                 activity.startFingerprintScan(activity);
             }
         }
+        if (item.getItemId() == R.id.action_register){
+            if (context instanceof FamilyRegisterActivity){
+                FamilyRegisterActivity activity = (FamilyRegisterActivity) context;
+                activity.startFamilyRegisterForm(activity);
+            }
+        }
 
         return true;
     }
