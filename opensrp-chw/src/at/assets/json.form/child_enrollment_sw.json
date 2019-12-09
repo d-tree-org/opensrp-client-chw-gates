@@ -55,12 +55,17 @@
     "title": "Ongeza mtoto chini ya miaki 5",
     "fields": [
       {
-        "key": "photo",
+        "key": "finger_print",
         "openmrs_entity_parent": "",
         "openmrs_entity": "",
         "openmrs_entity_id": "",
-        "type": "choose_image",
-        "uploadButtonText": "Chukua picha ya muhusika"
+        "type": "finger_print",
+        "project_id":"fUBnpzDdbsCsMp0egCHB",
+        "user_id":"global_user",
+        "module_id":"global_module",
+        "finger_print_option":"register",
+        "uploadButtonText": "Chukua alama za vidole",
+        "image_file": ""
       },
       {
         "key": "unique_id",
@@ -69,7 +74,7 @@
         "openmrs_entity_id": "opensrp_id",
         "type": "barcode",
         "barcode_type": "qrcode",
-        "hint": "Boresha Afya ID",
+        "hint": "Afya-Tek ID",
         "scanButtonText": "Chukua QR code",
         "v_numeric": {
           "value": "true",

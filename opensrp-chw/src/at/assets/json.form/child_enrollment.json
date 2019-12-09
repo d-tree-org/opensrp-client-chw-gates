@@ -55,12 +55,17 @@
     "title": "Add Child Under 5",
     "fields": [
       {
-        "key": "photo",
+        "key": "finger_print",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
+        "openmrs_entity": "",
         "openmrs_entity_id": "",
-        "type": "choose_image",
-        "uploadButtonText": "Take a picture of the person"
+        "type": "finger_print",
+        "project_id":"fUBnpzDdbsCsMp0egCHB",
+        "user_id":"global_user",
+        "module_id":"global_module",
+        "finger_print_option":"register",
+        "uploadButtonText": "Take finger print",
+        "image_file": ""
       },
       {
         "key": "unique_id",
@@ -69,7 +74,7 @@
         "openmrs_entity_id": "opensrp_id",
         "type": "barcode",
         "barcode_type": "qrcode",
-        "hint": "Boresha Afya ID",
+        "hint": "Afya-Tek ID",
         "scanButtonText": "Scan QR Code",
         "v_numeric": {
           "value": "true",
