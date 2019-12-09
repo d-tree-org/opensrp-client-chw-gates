@@ -155,12 +155,17 @@
     "title": "Mkuu wa kaya",
     "fields": [
       {
-        "key": "photo",
+        "key": "finger_print",
         "openmrs_entity_parent": "",
         "openmrs_entity": "",
         "openmrs_entity_id": "",
-        "type": "choose_image",
-        "uploadButtonText": "Chukua picha ya muhusika / kiongozi wa familia"
+        "type": "finger_print",
+        "project_id":"fUBnpzDdbsCsMp0egCHB",
+        "user_id":"global_user",
+        "module_id":"global_module",
+        "finger_print_option":"register",
+        "uploadButtonText": "Chukua alama za vidole",
+        "image_file": ""
       },
       {
         "key": "unique_id",
