@@ -30,7 +30,7 @@ public class FamilyRegisterActivity extends CoreFamilyRegisterActivity {
     }
 
     public static void startFingerprintScan(Activity activity){
-        SimPrintsIdentifyActivity.StartSimprintsIdentifyActivity(activity,
+        SimPrintsIdentifyActivity.startSimprintsIdentifyActivity(activity,
                 BuildConfig.SIMPRINT_MODULE_ID, IDENTIFY_RESULT_CODE);
     }
 
