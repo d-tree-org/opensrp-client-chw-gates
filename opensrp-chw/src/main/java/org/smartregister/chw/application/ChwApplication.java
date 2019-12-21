@@ -103,7 +103,7 @@ public class ChwApplication extends CoreChwApplication {
         AncLibrary.init(context, getRepository(), BuildConfig.VERSION_CODE, BuildConfig.DATABASE_VERSION);
         PncLibrary.init(context, getRepository(), BuildConfig.VERSION_CODE, BuildConfig.DATABASE_VERSION);
         MalariaLibrary.init(context, getRepository(), BuildConfig.VERSION_CODE, BuildConfig.DATABASE_VERSION);
-        SimPrintsLibrary.init(mInstance, BuildConfig.SIMPRINT_PROJECT_ID,BuildConfig.SIMPRINT_MODULE_ID);
+        SimPrintsLibrary.init(mInstance, BuildConfig.SIMPRINT_PROJECT_ID,BuildConfig.SIMPRINT_MODULE_ID, getRepository());
 
         SyncStatusBroadcastReceiver.init(this);
 
