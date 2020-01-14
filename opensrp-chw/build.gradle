@@ -264,6 +264,28 @@ android {
     }
 }
 
+def githubProperties = new Properties()
+githubProperties.load(new FileInputStream(rootProject.file("github.properties")))
+
+repositories {
+    maven {
+        name = "GitHubPackages"
+        /*  Configure path to the library hosted on GitHub Packages Registry
+         *  Replace UserID with package owner userID and REPOSITORY with the repository name
+         *  e.g. "https://maven.pkg.github.com/enefce/AndroidLibraryForGitHubPackagesDemo"*/
+
+        url = uri("https://maven.pkg.github.com/d-tree-org/opensrp-client-simprints")
+        credentials {
+            /** Create github.properties in root project folder file with
+             ** gpr.usr=GITHUB_USER_ID & gpr.key=PERSONAL_ACCESS_TOKEN
+             ** Or set env variable GPR_USER & GPR_API_KEY if not adding a properties file**/
+
+            username = githubProperties['gpr.usr'] ?: System.getenv("GPR_USER")
+            password = githubProperties['gpr.key'] ?: System.getenv("GPR_API_KEY")
+        }
+    }
+}
+
 dependencies {
 
     implementation('org.smartregister:opensrp-client-chw-core:1.0.39-SNAPSHOT@aar') {
@@ -279,7 +301,10 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-v4'
         exclude group: 'com.android.support', module: 'design'
         exclude group: 'io.ona.rdt-capture', module: 'lib'
+        exclude group: 'org.smartregister', module: 'opensrp-client-simprints'
     }
+
+    implementation 'org.smartregister:opensrp-simprints:1.1.2-SNAPSHOT'
 
     implementation 'com.android.support:appcompat-v7:28.0.0'
     implementation 'com.android.support:support-v4:28.0.0'
