@@ -1,5 +1,6 @@
 package org.smartregister.chw.application;
 
+import org.smartregister.CoreLibrary;
 import org.smartregister.SyncConfiguration;
 import org.smartregister.SyncFilter;
 import org.smartregister.chw.BuildConfig;
@@ -53,5 +54,12 @@ public class ChwSyncConfiguration extends SyncConfiguration {
     @Override
     public boolean updateClientDetailsTable() {
         return false;
+    }
+
+    @Override
+    public String getSettingsSyncFilterValue() {
+        String providerId = CoreLibrary.getInstance().context().allSharedPreferences().fetchRegisteredANM();
+        String locationId = CoreLibrary.getInstance().context().allSharedPreferences().fetchUserLocalityId(providerId);
+        return locationId;
     }
 }

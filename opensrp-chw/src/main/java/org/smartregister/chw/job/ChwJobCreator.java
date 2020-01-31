@@ -15,6 +15,7 @@ import org.smartregister.job.ImageUploadServiceJob;
 import org.smartregister.job.P2pServiceJob;
 import org.smartregister.job.PullUniqueIdsServiceJob;
 import org.smartregister.job.SyncServiceJob;
+import org.smartregister.job.SyncSettingsServiceJob;
 import org.smartregister.job.SyncTaskServiceJob;
 import org.smartregister.job.ValidateSyncDataServiceJob;
 import org.smartregister.sync.intent.SyncTaskIntentService;
@@ -53,6 +54,8 @@ public class ChwJobCreator implements JobCreator {
                 return new SyncTaskServiceJob(SyncTaskIntentService.class);
             case ScheduleJob.TAG:
                 return new ScheduleJob();
+            case SyncSettingsServiceJob.TAG:
+                return new SyncSettingsServiceJob();
             //TODO uncomment to enable plans
             /*case PlanIntentServiceJob.TAG:
                 return new PlanIntentServiceJob();*/
