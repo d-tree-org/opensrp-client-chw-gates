@@ -44,9 +44,6 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
 
     private void evaluateDangerSigns() throws Exception {
 
-        DangerSignsHelper dangerSignsHelper = new DangerSignsHelper();
-
-
         HomeVisitActionHelper dangerSignHelper = new HomeVisitActionHelper() {
 
             private String child_danger_signs;
