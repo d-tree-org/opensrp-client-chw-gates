@@ -70,46 +70,18 @@
             "openmrs_entity_id": "140238AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           },
           {
-            "key": "chk_excessive_crying",
-            "text": "Excessive crying",
+            "key": "chk_bleeding_vaginally",
+            "text": "Bleeding vaginally",
             "value": false,
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "110540AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+            "openmrs_entity_id": "150802AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           },
           {
-            "key": "chk_fast_breathing",
-            "text": "Fast breathing",
+            "key": "chk_server_headache",
+            "text": "Severe headache",
             "value": false,
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "125061AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-          },
-          {
-            "key": "chk_difficult_breathing",
-            "text": "Difficulty breathing",
-            "value": false,
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "142373AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-          },
-          {
-            "key": "chk_unable_to_suck",
-            "text": "Unable to suck",
-            "value": false,
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "159861AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-          },
-          {
-            "key": "chk_umbilical_discharge",
-            "text": "Umbilical blood / pus discharge",
-            "value": false,
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "123843AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-          },
-          {
-            "key": "chk_no_movement",
-            "text": "No movement",
-            "value": false,
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "164455AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+            "openmrs_entity_id": "139081AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           },
           {
             "key": "chk_convulsions",
@@ -119,25 +91,11 @@
             "openmrs_entity_id": "164483AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           },
           {
-            "key": "chk_skin_rashes",
-            "text": "Skin rashes",
+            "key": "chk_difficulty_breathing",
+            "text": "Difficulty breathing",
             "value": false,
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "512AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-          },
-          {
-            "key": "chk_pale",
-            "text": "Pale or jaundiced",
-            "value": false,
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "136443AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-          },
-          {
-            "key": "chk_eye_discharge",
-            "text": "Eye discharge",
-            "value": false,
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "142246AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+            "openmrs_entity_id": "142373AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           },
           {
             "key": "chk_severe_abdominal_pain",
@@ -147,11 +105,25 @@
             "openmrs_entity_id": "165271AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           },
           {
-            "key": "chk_lethargy",
-            "text": "Lethargy",
+            "key": "chk_swelling",
+            "text": "Swelling of the face and/or hands",
             "value": false,
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "116334AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+            "openmrs_entity_id": "460AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          {
+            "key": "chk_vaginal_discharge",
+            "text": "Discoloured or watery, liquid vaginal discharge with a bad smell",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "123395AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          {
+            "key": "chk_unusual_movement",
+            "text": "No movement / unusual movement for a child in the womb",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "113377AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           },
           {
             "key": "chk_none",
