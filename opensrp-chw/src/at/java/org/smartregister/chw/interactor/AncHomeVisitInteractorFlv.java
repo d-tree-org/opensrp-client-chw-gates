@@ -73,6 +73,7 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
         dateMap.putAll(ContactUtil.getContactWeeks(isFirst, lastContact, lastMenstrualPeriod));
 
         evaluateDangerSigns(actionList, details, context);
+        evaluateMinorIllnesses(actionList, details, context);
         evaluateHealthFacilityVisit(actionList, details, memberObject, dateMap, context);
         evaluateFamilyPlanning(actionList, details, context);
         evaluateNutritionStatus(actionList, details, context);
@@ -85,6 +86,18 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
     }
 
     private void evaluateDangerSigns(LinkedHashMap<String, BaseAncHomeVisitAction> actionList,
+                                     Map<String, List<VisitDetail>> details,
+                                     final Context context) throws BaseAncHomeVisitAction.ValidationException {
+        BaseAncHomeVisitAction danger_signs = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.anc_home_visit_danger_signs))
+                .withOptional(false)
+                .withDetails(details)
+                .withFormName(Constants.JSON_FORM.ANC_HOME_VISIT.getDangerSigns())
+                .withHelper(new DangerSignsAction())
+                .build();
+        actionList.put(context.getString(R.string.anc_home_visit_danger_signs), danger_signs);
+    }
+
+    private void evaluateMinorIllnesses(LinkedHashMap<String, BaseAncHomeVisitAction> actionList,
                                      Map<String, List<VisitDetail>> details,
                                      final Context context) throws BaseAncHomeVisitAction.ValidationException {
         BaseAncHomeVisitAction danger_signs = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.anc_home_visit_danger_signs))
