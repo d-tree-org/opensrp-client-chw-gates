@@ -25,7 +25,7 @@
     <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application
-        tools:replace="android:appComponentFactory"
+        tools:replace="android:appComponentFactory, android:theme"
         android:appComponentFactory="android.support.v4.app.CoreComponentFactory"
         android:name=".application.ChwApplication"
         android:allowBackup="true"
