@@ -354,7 +354,7 @@ dependencies {
         exclude group: 'org.smartregister', module: 'opensrp-client-simprints'
     }
 
-    implementation ('org.smartregister:opensrp-client-simprints:1.1.33-SNAPSHOT'){
+    implementation ('org.smartregister:opensrp-client-simprints:1.1.34-SNAPSHOT'){
         transitive = true
         exclude group: 'org.smartregister', module: 'opensrp-client-family'
         exclude group: 'org.smartregister', module: 'opensrp-client-core'
