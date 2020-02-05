@@ -2,7 +2,7 @@ package org.smartregister.chw.listener;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.support.design.widget.BottomNavigationView;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import android.view.MenuItem;
 
 import org.smartregister.chw.activity.JobAidsActivity;
