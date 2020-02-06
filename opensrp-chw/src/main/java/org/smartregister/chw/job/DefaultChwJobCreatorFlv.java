@@ -1,10 +1,6 @@
 package org.smartregister.chw.job;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-
 import com.evernote.android.job.Job;
-import com.evernote.android.job.JobCreator;
 
 import org.smartregister.chw.core.job.ChwIndicatorGeneratingJob;
 import org.smartregister.chw.core.job.HomeVisitServiceJob;
@@ -15,20 +11,16 @@ import org.smartregister.job.ImageUploadServiceJob;
 import org.smartregister.job.P2pServiceJob;
 import org.smartregister.job.PullUniqueIdsServiceJob;
 import org.smartregister.job.SyncServiceJob;
-import org.smartregister.job.SyncSettingsServiceJob;
 import org.smartregister.job.SyncTaskServiceJob;
 import org.smartregister.job.ValidateSyncDataServiceJob;
 import org.smartregister.sync.intent.SyncTaskIntentService;
 
 import timber.log.Timber;
 
-/**
- * Created by keyman on 27/11/2018.
- */
-public class ChwJobCreator implements JobCreator {
-    @Nullable
+public class DefaultChwJobCreatorFlv implements ChwJobCreator.Flavor {
+
     @Override
-    public Job create(@NonNull String tag) {
+    public Job getJob(String tag) {
         switch (tag) {
             case SyncServiceJob.TAG:
                 return new SyncServiceJob(ChwSyncIntentService.class);
@@ -54,8 +46,6 @@ public class ChwJobCreator implements JobCreator {
                 return new SyncTaskServiceJob(SyncTaskIntentService.class);
             case ScheduleJob.TAG:
                 return new ScheduleJob();
-            case SyncSettingsServiceJob.TAG:
-                return new SyncSettingsServiceJob();
             //TODO uncomment to enable plans
             /*case PlanIntentServiceJob.TAG:
                 return new PlanIntentServiceJob();*/
