@@ -160,14 +160,85 @@
         }
       },
       {
-        "key": "danger_signs_present_toaster",
+        "key": "minor_illnesses",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "",
-        "type": "toaster_notes",
-        "text": "Danger sign! \nRefer immediately to health facility.",
-        "text_color": "#CF0800",
-        "toaster_type": "problem",
+        "openmrs_entity_id": "5219AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "type": "check_box",
+        "label": "Minor Illnesses",
+        "label_text_style": "bold",
+        "text_color": "#000000",
+        "exclusive": [
+          "none"
+        ],
+        "options": [
+          {
+            "key": "mild_pain",
+            "text": "Does the mother have mild pain anywhere in the body?",
+            "value": false,
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "123395AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          {
+            "key": "mild_fever",
+            "text": "Does the mother have mild fever?",
+            "value": false,
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "136443AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          {
+            "key": "refill_medicine",
+            "text": "Do the mother need a refill of medicines such as Ferrous Sulphate, folic acid, and SP for IPTp?",
+            "value": false,
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "155052AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          {
+            "key": "refill_commodities",
+            "text": "Does the mother need a refill of other commodities such as antiseptics/soaps, delivery kit?",
+            "value": false,
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "996AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          {
+            "key": "none",
+            "text": "None",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "1107AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Minor illness is required"
+        },
+        "relevance": {
+          "step1:danger_signs_present": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "chk_none"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "key": "save_n_refer",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "165310AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "type": "button",
+        "hint": "Save and Refer to Health Facility",
+        "btn_bg_color": "#CF0800",
+        "action": {
+          "behaviour": "refer"
+        },
         "relevance": {
           "step1:danger_signs_present": {
             "ex-checkbox": [
@@ -192,30 +263,29 @@
         }
       },
       {
-        "key": "danger_signs_counseling",
+        "key": "save_n_link",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "165310AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-        "openmrs_data_type": "select one",
-        "type": "spinner",
-        "label_info_title": "Did the mother receive counselling",
-        "label_info_text": "Did the mother receive counselling on danger signs at the health facility recently?",
-        "hint": "Did the mother receive counselling on danger signs at the health facility recently?",
-        "values": [
-          "Yes",
-          "No"
-        ],
-        "keys": [
-          "Yes",
-          "No"
-        ],
-        "openmrs_choice_ids": {
-          "Yes": "1267AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-          "No": "1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+        "type": "button",
+        "hint": "Save and Link to ADDO",
+        "btn_bg_color": "#CF0800",
+        "action": {
+          "behaviour": "link"
         },
-        "v_required": {
-          "value": "true",
-          "err": "Please select one option"
+        "relevance": {
+          "step1:minor_illnesses": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "mild_pain",
+                  "mild_fever",
+                  "refill_medicine",
+                  "refill_commodities"
+                ]
+              }
+            ]
+          }
         }
       }
     ]

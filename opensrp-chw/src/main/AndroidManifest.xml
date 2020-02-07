@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="org.smartregister.chw">
 
     <uses-feature
@@ -26,6 +27,7 @@
     <application
         android:name=".application.ChwApplication"
         android:allowBackup="true"
+        tools:replace="android:theme"
         android:supportsRtl="true"
         android:theme="@style/ChwTheme">
         <activity
@@ -163,6 +165,13 @@
         <activity
             android:name=".activity.MalariaUpcomingServicesActivity"
             android:theme="@style/ChwTheme.NoActionBar" />
+
+        <activity
+            android:name=".activity.ReferralWizardFormActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/FamilyTheme.NoActionBar"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
 
         <meta-data
             android:name="io.fabric.ApiKey"
