@@ -17,7 +17,7 @@ import org.smartregister.sync.intent.SyncTaskIntentService;
 
 import timber.log.Timber;
 
-public class ChwJobCreatorFlv implements ChwJobCreator.Flavor {
+public class ChwJobCreatorFlv extends DefaultChwJobCreatorFlv {
 
     @Override
     public Job getJob(String tag) {
