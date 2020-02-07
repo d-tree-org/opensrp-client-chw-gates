@@ -56,10 +56,8 @@ public class ChwSyncConfiguration extends SyncConfiguration {
         return false;
     }
 
-    @Override
-    public String getSettingsSyncFilterValue() {
-        String providerId = CoreLibrary.getInstance().context().allSharedPreferences().fetchRegisteredANM();
-        String locationId = CoreLibrary.getInstance().context().allSharedPreferences().fetchUserLocalityId(providerId);
-        return locationId;
+
+    public boolean isSyncUsingPost() {
+        return !BuildConfig.DEBUG;
     }
 }

@@ -1,7 +1,7 @@
 package org.smartregister.chw.listener;
 
 import android.app.Activity;
-import android.support.design.widget.BottomNavigationView;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import android.view.MenuItem;
 
 /**

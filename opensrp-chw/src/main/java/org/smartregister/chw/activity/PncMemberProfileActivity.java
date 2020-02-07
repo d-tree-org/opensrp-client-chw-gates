@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.util.Pair;
 import android.view.Gravity;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 
@@ -27,6 +28,7 @@ import org.smartregister.chw.core.utils.CoreConstants;
 import org.smartregister.chw.core.utils.CoreJsonFormUtils;
 import org.smartregister.chw.custom_view.AncFloatingMenu;
 import org.smartregister.chw.dao.MalariaDao;
+import org.smartregister.chw.fp.util.FamilyPlanningConstants;
 import org.smartregister.chw.interactor.ChildProfileInteractor;
 import org.smartregister.chw.interactor.FamilyProfileInteractor;
 import org.smartregister.chw.interactor.PncMemberProfileInteractor;
@@ -50,10 +52,12 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.annotations.Nullable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import timber.log.Timber;
@@ -115,7 +119,6 @@ public class PncMemberProfileActivity extends CorePncMemberProfileActivity imple
                 break;
             default:
                 break;
-
         }
     }
 
@@ -133,11 +136,9 @@ public class PncMemberProfileActivity extends CorePncMemberProfileActivity imple
         } else if (ChildProfileInteractor.VisitType.VISIT_DONE.name().equals(statusVisit)) {
             Visit lastVisit = getVisit(Constants.EVENT_TYPE.PNC_HOME_VISIT);
             if (lastVisit != null) {
-                boolean within24Hours;
                 if ((Days.daysBetween(new DateTime(lastVisit.getCreatedAt()), new DateTime()).getDays() < 1) &&
                         (Days.daysBetween(new DateTime(lastVisit.getDate()), new DateTime()).getDays() <= 1)) {
-                    within24Hours = true;
-                    setEditViews(true, within24Hours, lastVisit.getDate().getTime());
+                    setEditViews(true, true, lastVisit.getDate().getTime());
                 } else {
                     textview_record_visit.setVisibility(View.GONE);
                     layoutRecordView.setVisibility(View.GONE);
@@ -185,8 +186,6 @@ public class PncMemberProfileActivity extends CorePncMemberProfileActivity imple
                 disposable[0] = null;
             }
         });
-
-
     }
 
     @Override
@@ -245,7 +244,6 @@ public class PncMemberProfileActivity extends CorePncMemberProfileActivity imple
                     Timber.d("Unknown fab action");
                     break;
             }
-
         };
 
         ((AncFloatingMenu) baseAncFloatingMenu).setFloatMenuClickListener(onClickFloatingMenu);
@@ -267,7 +265,7 @@ public class PncMemberProfileActivity extends CorePncMemberProfileActivity imple
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
-        flavor.onCreateOptionsMenu(menu);
+        flavor.onCreateOptionsMenu(menu, memberObject.getBaseEntityId());
         return true;
     }
 
@@ -285,7 +283,6 @@ public class PncMemberProfileActivity extends CorePncMemberProfileActivity imple
                 break;
             default:
                 break;
-
         }
     }
 
@@ -327,7 +324,6 @@ public class PncMemberProfileActivity extends CorePncMemberProfileActivity imple
         } else {
             layoutNotRecordView.setVisibility(View.GONE);
         }
-
     }
 
     @Override
@@ -365,7 +361,35 @@ public class PncMemberProfileActivity extends CorePncMemberProfileActivity imple
         MalariaRegisterActivity.startMalariaRegistrationActivity(this, memberObject.getBaseEntityId());
     }
 
+    @Override
+    protected void startFpRegister() {
+        FpRegisterActivity.startFpRegistrationActivity(this, memberObject.getBaseEntityId(), memberObject.getDob(), CoreConstants.JSON_FORM.getFpRegistrationForm(), FamilyPlanningConstants.ActivityPayload.REGISTRATION_PAYLOAD_TYPE);
+    }
+
+    @Override
+    protected void startFpChangeMethod() {
+        FpRegisterActivity.startFpRegistrationActivity(this, memberObject.getBaseEntityId(), memberObject.getDob(), CoreConstants.JSON_FORM.getFpChengeMethodForm(), FamilyPlanningConstants.ActivityPayload.CHANGE_METHOD_PAYLOAD_TYPE);
+    }
+
+    @Override
+    protected void startMalariaFollowUpVisit() {
+        MalariaFollowUpVisitActivity.startMalariaFollowUpActivity(this, memberObject.getBaseEntityId());
+    }
+
+    @Override
+    protected void getRemoveBabyMenuItem(MenuItem item) {
+            for (CommonPersonObjectClient child : getChildren(memberObject)) {
+                for (Map.Entry<String, String> entry : menuItemRemoveNames.entrySet()) {
+                    if (entry.getKey().equalsIgnoreCase(item.getTitle().toString()) && entry.getValue().equalsIgnoreCase(child.entityId())) {
+                        IndividualProfileRemoveActivity.startIndividualProfileActivity(PncMemberProfileActivity.this, child,
+                                memberObject.getFamilyBaseEntityId()
+                                , memberObject.getFamilyHead(), memberObject.getPrimaryCareGiver(), ChildRegisterActivity.class.getCanonicalName());
+                    }
+                }
+        }
+    }
+
     public interface Flavor {
-        Boolean onCreateOptionsMenu(Menu menu);
+        Boolean onCreateOptionsMenu(@Nullable Menu menu, @Nullable String baseEntityId);
     }
 }

@@ -5,9 +5,9 @@ buildscript {
         maven { url 'https://maven.fabric.io/public' }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.1.4'
-        classpath 'org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.5.0-x'
-        classpath 'io.fabric.tools:gradle:1.25.4'
+        classpath 'com.android.tools.build:gradle:3.5.3'
+        classpath 'org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.8.2'
+        classpath 'io.fabric.tools:gradle:1.31.2'
     }
 }
 
@@ -18,13 +18,13 @@ apply plugin: 'io.fabric'
 apply from: "jacoco.gradle"
 
 jacoco {
-    toolVersion = "0.8.0"
+    toolVersion = "0.8.5"
 }
 
 android {
     useLibrary 'org.apache.http.legacy'
     compileSdkVersion androidCompileSdkVersion
-    buildToolsVersion androidBuildToolsVersion
+//    buildToolsVersion androidBuildToolsVersion
 
     lintOptions {
         checkReleaseBuilds false
@@ -48,7 +48,8 @@ android {
         buildConfigField "String", "SYNC_TYPE", '"teamId"'
         buildConfigField "int", "MAX_SYNC_RETRIES", '3'
         buildConfigField "long", "BUILD_TIMESTAMP", System.currentTimeMillis() + "L"
-        buildConfigField "boolean", "IS_SYNC_SETTINGS", "true"
+        buildConfigField "boolean", "IS_SYNC_SETTINGS", "false"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         buildConfigField "String[]", "ALLOWED_LOCATION_LEVELS", '{"Facility Name", "Village"}'
         buildConfigField "String", 'DEFAULT_LOCATION', '"Village"'
@@ -57,8 +58,6 @@ android {
 
         buildConfigField "String", 'opensrp_url', '"https://opensrp-dev.d-tree.org/opensrp/"'
         buildConfigField "String", 'opensrp_url_debug', '"https://opensrp-dev.d-tree.org/opensrp/"'
-
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
     dexOptions {
@@ -71,7 +70,7 @@ android {
             minifyEnabled false
             zipAlignEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            buildConfigField "int", "OPENMRS_UNIQUE_ID_INITIAL_BATCH_SIZE", '1000'
+            buildConfigField "int", "OPENMRS_UNIQUE_ID_INITIAL_BATCH_SIZE", '500'
             buildConfigField "int", "OPENMRS_UNIQUE_ID_BATCH_SIZE", '500'
             buildConfigField "int", "OPENMRS_UNIQUE_ID_SOURCE", '1'
             buildConfigField "boolean", "TIME_CHECK", "true"
@@ -80,7 +79,7 @@ android {
             buildConfigField "int", "IMAGE_UPLOAD_MINUTES", '180'
             buildConfigField "int", "PULL_UNIQUE_IDS_MINUTES", '180'
             buildConfigField "int", "HOME_VISIT_MINUTES", '60'
-            buildConfigField "int", "REPORT_INDICATOR_GENERATION_MINUTES", '15'
+            buildConfigField "int", "REPORT_INDICATOR_GENERATION_MINUTES", '120'
             buildConfigField "int", "BASE_PNC_CLOSE_MINUTES", '1440'
             buildConfigField "int", "SCHEDULE_SERVICE_MINUTES", '720'
             buildConfigField("String", "SIMPRINT_PROJECT_ID", ' "fUBnpzDdbsCsMp0egCHB" ')
@@ -89,16 +88,16 @@ android {
         }
 
         debug {
-            buildConfigField "int", "OPENMRS_UNIQUE_ID_INITIAL_BATCH_SIZE", '250'
+            buildConfigField "int", "OPENMRS_UNIQUE_ID_INITIAL_BATCH_SIZE", '30'
             buildConfigField "int", "OPENMRS_UNIQUE_ID_BATCH_SIZE", '15'
-            buildConfigField "int", "OPENMRS_UNIQUE_ID_SOURCE", '1'
+            buildConfigField "int", "OPENMRS_UNIQUE_ID_SOURCE", '2'
             buildConfigField "boolean", "TIME_CHECK", "false"
             buildConfigField "int", "DATA_SYNC_DURATION_MINUTES", '15'
             buildConfigField "int", "VACCINE_SYNC_PROCESSING_MINUTES", '30'
             buildConfigField "int", "IMAGE_UPLOAD_MINUTES", '15'
             buildConfigField "int", "PULL_UNIQUE_IDS_MINUTES", '15'
             buildConfigField "int", "HOME_VISIT_MINUTES", '60'
-            buildConfigField "int", "REPORT_INDICATOR_GENERATION_MINUTES", '15'
+            buildConfigField "int", "REPORT_INDICATOR_GENERATION_MINUTES", '120'
             buildConfigField "int", "BASE_PNC_CLOSE_MINUTES", '1440'
             buildConfigField "int", "SCHEDULE_SERVICE_MINUTES", '360'
             buildConfigField("String", "SIMPRINT_PROJECT_ID", ' "fUBnpzDdbsCsMp0egCHB" ')
@@ -131,6 +130,13 @@ android {
         unitTests.all {
             systemProperty 'robolectric.enabledSdks', '28'
             jvmArgs '-noverify'
+        }
+    }
+
+    configurations.all {
+        resolutionStrategy {
+            force 'androidx.appcompat:appcompat:1.0.2'
+            force 'com.google.android.material:material:1.0.0'
         }
     }
 
@@ -168,7 +174,7 @@ android {
             buildConfigField "String", 'DEFAULT_LOCATION_DEBUG', '"Village"'
             buildConfigField "boolean", 'SUPPORT_QR', 'true'
             buildConfigField "boolean", 'SUPPORT_REPORT', 'false'
-            buildConfigField "int", "DATABASE_VERSION", '12'
+            buildConfigField "int", "DATABASE_VERSION", '13'
         }
         chad {
             dimension = 'baseDimension'
@@ -207,8 +213,8 @@ android {
         guinea {
             dimension = 'baseDimension'
             applicationIdSuffix ".guinea"
-            versionCode 2
-            versionName "1.0.1"
+            versionCode 4
+            versionName "1.0.3"
             buildConfigField "int", "OPENMRS_UNIQUE_ID_INITIAL_BATCH_SIZE", '1000'
             buildConfigField "int", "OPENMRS_UNIQUE_ID_BATCH_SIZE", '500'
             buildConfigField "String", 'opensrp_url', '"https://wcaro-guinea.smartregister.org/opensrp/"'
@@ -224,13 +230,13 @@ android {
             buildConfigField "String", 'DEFAULT_LOCATION', '"Village"'
             buildConfigField "boolean", 'SUPPORT_QR', 'false'
             buildConfigField "boolean", 'SUPPORT_REPORT', 'true'
-            buildConfigField "int", "DATABASE_VERSION", '2'
+            buildConfigField "int", "DATABASE_VERSION", '4'
         }
         togo {
             dimension = 'baseDimension'
             applicationIdSuffix ".togo"
-            versionCode 10
-            versionName "1.0.10"
+            versionCode 13
+            versionName "1.0.13"
             buildConfigField "int", "OPENMRS_UNIQUE_ID_INITIAL_BATCH_SIZE", '1000'
             buildConfigField "int", "OPENMRS_UNIQUE_ID_BATCH_SIZE", '500'
             buildConfigField "String", 'opensrp_url', '"https://wcaro-togo.smartregister.org/opensrp/"'
@@ -243,24 +249,45 @@ android {
             buildConfigField "String", 'DEFAULT_LOCATION', '"Village"'
             buildConfigField "boolean", 'SUPPORT_QR', 'false'
             buildConfigField "boolean", 'SUPPORT_REPORT', 'true'
-            buildConfigField "int", "DATABASE_VERSION", '12'
+            buildConfigField "int", "DATABASE_VERSION", '15'
         }
-        wcaro {
+        liberia {
             dimension = 'baseDimension'
-            versionCode 1
-            versionName "0.1.7"
-            buildConfigField "String", 'opensrp_url', '"https://unicefwcaro.smartregister.org/opensrp/"'
+            versionCode 6
+            versionName "0.1.12"
+            buildConfigField "String", 'opensrp_url', '"https://wcaro-liberia.smartregister.org/opensrp/"'
             buildConfigField "String", 'guidebooks_url', '"https://opensrp.s3.amazonaws.com/media/liberia/"'
             buildConfigField "String", 'opensrp_url_debug', '"https://unicefwcaro-stage.smartregister.org/opensrp/"'
             buildConfigField "String[]", "LOCATION_HIERACHY", '{"Clinic" , "CHSS" , "CHA"}'
-            buildConfigField "String[]", "ALLOWED_LOCATION_LEVELS", '{"Clinic" , "CHSS" , "CHA"}'
+            buildConfigField "String[]", "ALLOWED_LOCATION_LEVELS", '{"Country" , "County" , "District", "Clinics", "CHSS", "Village"}'
             buildConfigField "String[]", "ALLOWED_LOCATION_LEVELS_DEBUG", '{"Clinic" , "CHSS" , "CHA"}'
-            buildConfigField "String", 'DEFAULT_LOCATION', '"CHA"'
+            buildConfigField "String", 'DEFAULT_LOCATION', '"Village"'
             buildConfigField "String", 'DEFAULT_LOCATION_DEBUG', '"CHA"'
             buildConfigField "boolean", 'SUPPORT_QR', 'false'
             buildConfigField "boolean", 'SUPPORT_REPORT', 'true'
-            buildConfigField "int", "DATABASE_VERSION", '6'
+            buildConfigField "int", "DATABASE_VERSION", '3'
         }
+        lmh {
+            dimension = 'baseDimension'
+            applicationIdSuffix ".lmh"
+            versionCode 1
+            versionName "0.0.1"
+            buildConfigField "String", 'opensrp_url', '"https://wcaro-lmh.smartregister.org/opensrp/"'
+            buildConfigField "String", 'guidebooks_url', '"https://opensrp.s3.amazonaws.com/media/lmh/"'
+            buildConfigField "String", 'opensrp_url_debug', '"https://unicefwcaro-stage.smartregister.org/opensrp/"'
+            buildConfigField "String[]", "LOCATION_HIERACHY", '{"Clinic" , "CHSS" , "CHA"}'
+            buildConfigField "String[]", "ALLOWED_LOCATION_LEVELS", '{"Country" , "County" , "District", "Clinics", "CHSS", "Village"}'
+            buildConfigField "String[]", "ALLOWED_LOCATION_LEVELS_DEBUG", '{"Clinic" , "CHSS" , "CHA"}'
+            buildConfigField "String", 'DEFAULT_LOCATION', '"Village"'
+            buildConfigField "String", 'DEFAULT_LOCATION_DEBUG', '"CHA"'
+            buildConfigField "boolean", 'SUPPORT_QR', 'false'
+            buildConfigField "boolean", 'SUPPORT_REPORT', 'true'
+            buildConfigField "int", "DATABASE_VERSION", '2'
+        }
+    }
+
+    dataBinding {
+        enabled = true
     }
 }
 
@@ -270,74 +297,53 @@ githubProperties.load(new FileInputStream(rootProject.file("github.properties"))
 repositories {
     maven {
         name = "GitHubPackages"
-        /*  Configure path to the library hosted on GitHub Packages Registry
-         *  Replace UserID with package owner userID and REPOSITORY with the repository name
-         *  e.g. "https://maven.pkg.github.com/enefce/AndroidLibraryForGitHubPackagesDemo"*/
-
-        url = uri("https://maven.pkg.github.com/d-tree-org/opensrp-client-simprints")
-        credentials {
-            /** Create github.properties in root project folder file with
-             ** gpr.usr=GITHUB_USER_ID & gpr.key=PERSONAL_ACCESS_TOKEN
-             ** Or set env variable GPR_USER & GPR_API_KEY if not adding a properties file**/
-
-            username = githubProperties['gpr.usr'] ?: System.getenv("GPR_USER")
-            password = githubProperties['gpr.key'] ?: System.getenv("GPR_API_KEY")
-        }
-    }
-    maven {
-        name = "GitHubPackages"
-        /*  Configure path to the library hosted on GitHub Packages Registry
-         *  Replace UserID with package owner userID and REPOSITORY with the repository name
-         *  e.g. "https://maven.pkg.github.com/enefce/AndroidLibraryForGitHubPackagesDemo"*/
-
-        url = uri("https://maven.pkg.github.com/d-tree-org/opensrp-client-chw-core")
-        credentials {
-            /** Create github.properties in root project folder file with
-             ** gpr.usr=GITHUB_USER_ID & gpr.key=PERSONAL_ACCESS_TOKEN
-             ** Or set env variable GPR_USER & GPR_API_KEY if not adding a properties file**/
-
-            username = githubProperties['gpr.usr'] ?: System.getenv("GPR_USER")
-            password = githubProperties['gpr.key'] ?: System.getenv("GPR_API_KEY")
-        }
-    }
-    maven {
-        name = "GitHubPackages"
-        /*  Configure path to the library hosted on GitHub Packages Registry
-         *  Replace UserID with package owner userID and REPOSITORY with the repository name
-         *  e.g. "https://maven.pkg.github.com/enefce/AndroidLibraryForGitHubPackagesDemo"*/
-
         url = uri("https://maven.pkg.github.com/issyzac/opensrp-client-core")
         credentials {
-            /** Create github.properties in root project folder file with
-             ** gpr.usr=GITHUB_USER_ID & gpr.key=PERSONAL_ACCESS_TOKEN
-             ** Or set env variable GPR_USER & GPR_API_KEY if not adding a properties file**/
-
             username = githubProperties['gpr.usr'] ?: System.getenv("GPR_USER")
             password = githubProperties['gpr.key'] ?: System.getenv("GPR_API_KEY")
         }
     }
-
+    maven {
+        name = "GitHubPackages"
+        url = uri("https://maven.pkg.github.com/d-tree-org/opensrp-client-simprints")
+        credentials {
+            username = githubProperties['gpr.usr'] ?: System.getenv("GPR_USER")
+            password = githubProperties['gpr.key'] ?: System.getenv("GPR_API_KEY")
+        }
+    }
+    maven {
+        name = "GitHubPackages"
+        url = uri("https://maven.pkg.github.com/d-tree-org/opensrp-client-native-form")
+        credentials {
+            username = githubProperties['gpr.usr'] ?: System.getenv("GPR_USER")
+            password = githubProperties['gpr.key'] ?: System.getenv("GPR_API_KEY")
+        }
+    }
 }
 
 dependencies {
-
-    implementation('org.smartregister:opensrp-client-chw-core:1.0.44-SNAPSHOT') {
+    implementation('org.smartregister:opensrp-client-chw-core:1.1.34-SNAPSHOT@aar') {
         transitive = true
-        exclude group: 'org.smartregister', module: 'opensrp-client-native-form'
-        exclude group: 'org.smartregister', module: 'opensrp-client-core'
-    }
-
-    implementation('org.smartregister:opensrp-client-core:1.7.43-SNAPSHOT') {
-        transitive = true
-        exclude group: 'com.github.bmelnychuk', module: 'atv'
-        exclude group: 'com.google.guava', module: 'guava'
         exclude group: 'com.android.support', module: 'appcompat-v7'
-        exclude group: 'com.android.support', module: 'design'
-        exclude group: 'com.android.support', module: 'recyclerview-v7'
+        exclude group: 'androidx.legacy', module: 'legacy-support-v4'
+        exclude group: 'androidx.appcompat', module: 'appcompat'
+        exclude group: 'androidx.constraintlayout', module: 'constraintlayout'
+        exclude group: 'com.google.guava', module: 'guava'
         exclude group: 'com.rengwuxian.materialedittext', module: 'library'
+        exclude group: 'org.smartregister', module: 'opensrp-client-chw-referral'
     }
+    implementation 'androidx.appcompat:appcompat:1.0.2' //Do not upgrade to 1.1.0 due to compatibility issues
+    implementation 'com.google.android.material:material:1.0.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.recyclerview:recyclerview:1.0.2' //Do not upgrade to 1.1.0 due to compatibility issues
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'androidx.multidex:multidex:2.0.0'
+    implementation 'com.google.guava:guava:20.0'  //Do not upgrade to 24.jre-1 due to compatibility issues
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    androidTestImplementation 'org.mockito:mockito-android:3.0.0'
 
-    implementation('org.smartregister:opensrp-client-native-form:1.6.49-SNAPSHOT@aar') {
+    implementation('org.smartregister:opensrp-client-native-form:1.6.49-SNAPSHOT') {
         transitive = true
         exclude group: 'com.android.support', module: 'appcompat-v7'
         exclude group: 'com.android.support', module: 'cardview-v7'
@@ -348,35 +354,41 @@ dependencies {
         exclude group: 'org.smartregister', module: 'opensrp-client-simprints'
     }
 
-    implementation ('org.smartregister:opensrp-client-simprints:1.1.16-SNAPSHOT'){
+    implementation ('org.smartregister:opensrp-client-simprints:1.1.33-SNAPSHOT'){
         transitive = true
         exclude group: 'org.smartregister', module: 'opensrp-client-family'
         exclude group: 'org.smartregister', module: 'opensrp-client-core'
     }
 
-    implementation 'com.android.support:appcompat-v7:28.0.0'
-    implementation 'com.android.support:support-v4:28.0.0'
-    implementation 'com.android.support:recyclerview-v7:28.0.0'
-    implementation 'com.android.support:design:28.0.0'
-    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
-
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-    androidTestImplementation 'org.mockito:mockito-android:2.7.22'
-
     testImplementation 'junit:junit:4.12'
-    testImplementation 'org.mockito:mockito-core:2.8.47'
-    testImplementation 'org.robolectric:robolectric:4.0.1'
-    testImplementation 'org.robolectric:shadows-multidex:3.8'
+    testImplementation 'org.mockito:mockito-core:3.1.0'
+    testImplementation 'org.robolectric:robolectric:4.3.1'
+    testImplementation 'org.robolectric:shadows-multidex:4.0.1'
     testImplementation 'org.robolectric:shadows-support-v4:3.4-rc2'
+    testImplementation 'androidx.test:core:1.0.0'
 
     implementation('com.crashlytics.sdk.android:crashlytics:2.9.5@aar') {
         transitive = true
     }
 
-    implementation "org.smartregister:android-p2p-sync:0.3.2-SNAPSHOT"
+    implementation ("org.smartregister:android-p2p-sync:0.3.3-SNAPSHOT"){
+        transitive = true
+        exclude group: 'org.smartregister', module: 'opensrp-client-core'
+        exclude group: 'com.android.support', module: 'appcompat-v7'
+        exclude group: 'org.smartregister', module: 'opensrp-client-native-form'
+        exclude group: 'org.smartregister', module: 'opensrp-client-configurable-views'
+        exclude group: 'com.rengwuxian.materialedittext', module: 'library'
+    }
+    implementation ("org.smartregister:opensrp-client-chw-referral:1.1.2-SNAPSHOT"){
+        transitive = true
+        exclude group: 'org.smartregister', module: 'opensrp-client-core'
+        exclude group: 'com.android.support', module: 'appcompat-v7'
+        exclude group: 'org.smartregister', module: 'opensrp-client-native-form'
+        exclude group: 'org.smartregister', module: 'opensrp-client-configurable-views'
+        exclude group: 'com.rengwuxian.materialedittext', module: 'library'
+    }
     // PowerMock
-    def powerMockVersion = '1.7.1'
+    def powerMockVersion = '2.0.4'
     testImplementation "org.powermock:powermock-module-junit4:$powerMockVersion"
     testImplementation "org.powermock:powermock-module-junit4-rule:$powerMockVersion"
     testImplementation "org.powermock:powermock-api-mockito2:$powerMockVersion"
@@ -392,23 +404,24 @@ flavors.each { productFlavorName ->
     testDependencies.add("create${productFlavorName.capitalize()}DebugCoverageReport")
 }
 
-task jacocoTestReport(type: JacocoReport, dependsOn: testDependencies.take(4)) {
+// task jacocoTestReport(type: JacocoReport, dependsOn: testDependencies.take(2)) {
+task jacocoTestReport(type: JacocoReport, dependsOn: [
+        'testTogoDebugUnitTest', 'createTogoDebugCoverageReport',
+        'testGuineaDebugUnitTest', 'createGuineaDebugCoverageReport',
+        'testLiberiaDebugUnitTest', 'createLiberiaDebugCoverageReport',
+        'testBaDebugUnitTest', 'createBaDebugCoverageReport'
+]) {
 
     reports {
-        html {
-            html.enabled = true
-            destination file("${buildDir}/reports/jacoco/jacocoRootReport/chw-coverage")
-        }
-
-        xml {
-            xml.enabled = true
-            destination file("${buildDir}/reports/jacoco/jacocoRootReport/chw-coverage.xml")
-        }
+        xml.enabled = true
+        html.enabled = true
     }
 
+    getReports().getXml().setDestination(file("${buildDir}/reports/jacoco/jacocoRootReport/merged.xml"))
+    getReports().getHtml().setDestination(file("${buildDir}/reports/jacoco/jacocoRootReport/html"))
 
     def fileFilter = ['**/R.class', '**/R$*.class', '**/BuildConfig.*', '**/Manifest*.*', '**/*Test*.*', 'android/**/*.*', '**/*$ViewBinder*.*']
-    def debugTree = fileTree(dir: "$project.buildDir/intermediates/classes/ba/debug", excludes: fileFilter)
+    def debugTree = fileTree(dir: "$project.buildDir/intermediates/javac/baDebug/classes/", excludes: fileFilter)
     def mainSrc = "$project.projectDir/src/main/java"
 
     sourceDirectories = files([mainSrc])
@@ -422,7 +435,6 @@ tasks.withType(Test) {
     jacoco.includeNoLocationClasses = true
 }
 
-
 coveralls {
-    jacocoReportPath = "${buildDir}/reports/jacoco/jacocoRootReport/chw-coverage.xml"
+    jacocoReportPath = "${buildDir}/reports/jacoco/jacocoRootReport/merged.xml"
 }

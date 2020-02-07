@@ -1,5 +1,6 @@
 package org.smartregister.chw.job;
 
+
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
@@ -30,5 +31,6 @@ public class ChwJobCreator implements JobCreator {
 
     public interface Flavor {
         Job getJob(String tag);
+
     }
 }

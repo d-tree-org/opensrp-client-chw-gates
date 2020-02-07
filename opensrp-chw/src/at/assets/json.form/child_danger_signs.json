@@ -63,25 +63,11 @@
         ],
         "options": [
           {
-            "key": "chk_fever",
-            "text": "Fever",
+            "key": "chk_difficult_drinking",
+            "text": "Has difficulties in suckling/drinking",
             "value": false,
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "140238AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-          },
-          {
-            "key": "chk_excessive_crying",
-            "text": "Excessive crying",
-            "value": false,
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "110540AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-          },
-          {
-            "key": "chk_fast_breathing",
-            "text": "Fast breathing",
-            "value": false,
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "125061AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+            "openmrs_entity": "",
+            "openmrs_entity_id": ""
           },
           {
             "key": "chk_difficult_breathing",
@@ -91,67 +77,95 @@
             "openmrs_entity_id": "142373AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           },
           {
-            "key": "chk_unable_to_suck",
-            "text": "Unable to suck",
+            "key": "chk_chest_indrawing",
+            "text": "Chest in-drawing",
             "value": false,
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "159861AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-          },
-          {
-            "key": "chk_umbilical_discharge",
-            "text": "Umbilical blood / pus discharge",
-            "value": false,
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "123843AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-          },
-          {
-            "key": "chk_no_movement",
-            "text": "No movement",
-            "value": false,
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "164455AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+            "openmrs_entity": "",
+            "openmrs_entity_id": ""
           },
           {
             "key": "chk_convulsions",
-            "text": "Convulsions",
+            "text": "Has convulsions/fits",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "164483AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           },
           {
-            "key": "chk_skin_rashes",
-            "text": "Skin rashes",
+            "key": "chk_extreme_cold_or_hot",
+            "text": "Extreme cold or hot body temperature",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_oversleeping",
+            "text": "Oversleeping/difficulty waking up",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_redness_around_umbilical",
+            "text": "Redness around/discharge from umbilical cord",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_body_rashes",
+            "text": "Body rashes discharging pus",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "512AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           },
           {
-            "key": "chk_pale",
-            "text": "Pale or jaundiced",
-            "value": false,
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "136443AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-          },
-          {
             "key": "chk_eye_discharge",
-            "text": "Eye discharge",
+            "text": "Pus discharge from eyes",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "142246AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           },
           {
-            "key": "chk_severe_abdominal_pain",
-            "text": "Severe abdominal pain",
+            "key": "chk_grunting_voice",
+            "text": "Grunting voice",
             "value": false,
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "165271AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+            "openmrs_entity": "",
+            "openmrs_entity_id":""
           },
           {
-            "key": "chk_lethargy",
-            "text": "Lethargy",
+            "key": "chk_not_getting_better",
+            "text": "Not getting better after treatment",
             "value": false,
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "116334AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+            "openmrs_entity": "",
+            "openmrs_entity_id":""
+          },
+          {
+            "key": "chk_severe_vomit",
+            "text": "Severe vomiting",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id":""
+          },
+          {
+            "key": "chk_weak",
+            "text": "Very weak/unconscious",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id":""
+          },
+          {
+            "key": "chk_diarrhea",
+            "text": "Diarrhea",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id":""
+          },
+          {
+            "key": "chk_sunk_eyes",
+            "text": "Sunk Eyes",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id":""
           },
           {
             "key": "chk_none",

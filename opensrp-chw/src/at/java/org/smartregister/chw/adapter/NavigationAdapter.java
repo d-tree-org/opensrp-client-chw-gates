@@ -1,7 +1,6 @@
 package org.smartregister.chw.adapter;
 
 import android.app.Activity;
-import android.support.annotation.NonNull;
 
 import org.smartregister.chw.core.model.NavigationOption;
 
