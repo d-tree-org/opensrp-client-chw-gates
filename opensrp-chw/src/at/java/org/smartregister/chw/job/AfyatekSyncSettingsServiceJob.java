@@ -1,7 +1,8 @@
 package org.smartregister.chw.job;
 
 import android.content.Intent;
-import android.support.annotation.NonNull;
+
+import androidx.annotation.NonNull;
 
 import org.smartregister.AllConstants;
 import org.smartregister.chw.sync.AfyatekSettingsSyncIntentService;
