@@ -179,9 +179,7 @@
         "openmrs_entity": "",
         "openmrs_entity_id": "",
         "type": "edit_text",
-        "label": "Description",
-        "label_text_style": "normal",
-        "text_color": "#C0C0C0",
+        "hint": "Describe the signs and symptoms of the illness",
         "v_required": {
           "value": "true",
           "err": "Describe the signs and symptoms of the illness"
@@ -230,12 +228,25 @@
             ]
           }
         }
-      }
-    ]
-  },
-  "step2": {
-    "title": "Minor Illnesses Mother",
-    "fields": [
+      },
+      {
+        "key": "minor_illnesses_title",
+        "type": "label",
+        "text": "Minor Illnesses Mother",
+        "label_text_size": "18sp",
+        "label_text_style": "bold",
+        "relevance": {
+          "step1:danger_signs_present_mama": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "chk_none"
+                ]
+              }
+            ]
+          }
+        }
+      },
       {
         "key": "mild_pain",
         "openmrs_entity_parent": "",
@@ -329,6 +340,7 @@
           }
         }
       }
+
     ]
   }
 }
