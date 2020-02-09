@@ -23,6 +23,7 @@ import org.smartregister.chw.activity.FamilyRegisterActivity;
 import org.smartregister.chw.activity.LoginActivity;
 import org.smartregister.chw.activity.MalariaRegisterActivity;
 import org.smartregister.chw.activity.PncRegisterActivity;
+import org.smartregister.chw.activity.ReferralRegisterActivity;
 import org.smartregister.chw.anc.AncLibrary;
 import org.smartregister.chw.core.application.CoreChwApplication;
 import org.smartregister.chw.core.custom_views.NavigationMenu;

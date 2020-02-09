@@ -173,6 +173,11 @@
             android:theme="@style/FamilyTheme.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
 
+        <activity
+            android:name=".activity.ReferralRegisterActivity"
+            android:label="@string/anc_register"
+            android:theme="@style/ChwTheme.NoActionBar" />
+
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="3f94f9c3caeff331b3a2bd8c2182b663ad6a955a" />
