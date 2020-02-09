@@ -47,7 +47,7 @@
     "encounter_location": ""
   },
   "step1": {
-    "title": "ANC Registration",
+    "title": "ANC Danger Signs Form",
     "fields": [
       {
         "key": "danger_signs_present",
