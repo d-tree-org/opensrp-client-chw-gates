@@ -1,11 +1,12 @@
 package org.smartregister.chw.listener;
 
 import android.app.Activity;
-import android.support.design.widget.BottomNavigationView;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import android.view.MenuItem;
 
 import org.smartregister.chw.R;
 import org.smartregister.chw.activity.FamilyRegisterActivity;
+import org.smartregister.view.activity.BaseRegisterActivity;
 
 /**
  * Author : Isaya Mollel on 2019-11-28.
@@ -19,6 +20,8 @@ public class BottomNavigationListenerFlv extends DefaultBottomNavigationListener
     @Override
     public boolean navigationItemSelected(MenuItem item, Activity context, BottomNavigationView view) {
 
+        BaseRegisterActivity baseRegisterActivity = (BaseRegisterActivity) context;
+
         if (item.getItemId() == R.id.action_scan_fingerprint){
             if (context instanceof FamilyRegisterActivity){
                 FamilyRegisterActivity activity = (FamilyRegisterActivity) context;
@@ -27,8 +30,9 @@ public class BottomNavigationListenerFlv extends DefaultBottomNavigationListener
         }
         if (item.getItemId() == R.id.action_register){
             if (context instanceof FamilyRegisterActivity){
-                FamilyRegisterActivity activity = (FamilyRegisterActivity) context;
-                activity.startFamilyRegisterForm(activity);
+                baseRegisterActivity.startRegistration();
+            }else {
+                FamilyRegisterActivity.startFamilyRegisterForm(context);
             }
         }
 

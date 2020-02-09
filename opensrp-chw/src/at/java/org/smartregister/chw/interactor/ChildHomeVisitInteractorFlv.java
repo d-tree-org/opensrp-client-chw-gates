@@ -6,6 +6,7 @@ import org.joda.time.format.DateTimeFormat;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.smartregister.chw.actionhelper.DangerSignsAction;
+import org.smartregister.chw.anc.actionhelper.DangerSignsHelper;
 import org.smartregister.chw.anc.actionhelper.HomeVisitActionHelper;
 import org.smartregister.chw.anc.model.BaseAncHomeVisitAction;
 import org.smartregister.chw.core.utils.CoreConstants;
@@ -33,7 +34,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
             evaluateDeworming(serviceWrapperMap);
             evaluateCounselling();
             evaluateNutritionStatus();
-            evaluateObsAndIllness();
+//            evaluateObsAndIllness();
         } catch (BaseAncHomeVisitAction.ValidationException e) {
             throw (e);
         } catch (Exception e) {
@@ -42,11 +43,41 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
     }
 
     private void evaluateDangerSigns() throws Exception {
+
+        HomeVisitActionHelper dangerSignHelper = new HomeVisitActionHelper() {
+
+            private String child_danger_signs;
+
+            @Override
+            public void onPayloadReceived(String jsonPayload) {
+                try {
+                    JSONObject jsonObject = new JSONObject(jsonPayload);
+                    child_danger_signs = org.smartregister.chw.util.JsonFormUtils.getCheckBoxValue(jsonObject, "danger_signs_present_child");
+                } catch (JSONException e) {
+                    Timber.e(e);
+                }
+            }
+
+            @Override
+            public String evaluateSubTitle() {
+                return MessageFormat.format("{0}: {1}", "Danger Signs", child_danger_signs);
+            }
+
+            @Override
+            public BaseAncHomeVisitAction.Status evaluateStatusOnPayload() {
+                if (StringUtils.isNotBlank(child_danger_signs)) {
+                    return BaseAncHomeVisitAction.Status.COMPLETED;
+                } else {
+                    return BaseAncHomeVisitAction.Status.PENDING;
+                }
+            }
+        };
+
         BaseAncHomeVisitAction danger_signs = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.anc_home_visit_danger_signs))
                 .withOptional(false)
                 .withDetails(details)
                 .withFormName(Utils.getLocalForm("child_danger_signs", CoreConstants.JSON_FORM.locale, CoreConstants.JSON_FORM.assetManager))
-                .withHelper(new DangerSignsAction())
+                .withHelper(dangerSignHelper)
                 .build();
         actionList.put(context.getString(R.string.anc_home_visit_danger_signs), danger_signs);
     }

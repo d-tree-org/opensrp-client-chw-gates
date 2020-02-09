@@ -25,13 +25,17 @@
     <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application
+        tools:replace="android:appComponentFactory, android:theme"
+        android:appComponentFactory="android.support.v4.app.CoreComponentFactory"
         android:name=".application.ChwApplication"
         android:allowBackup="true"
-        tools:replace="android:theme"
         android:supportsRtl="true"
         android:theme="@style/ChwTheme">
         <activity
             android:name=".activity.AncUpcomingServicesActivity"
+            android:theme="@style/ChwTheme.NoActionBar" />
+        <activity
+            android:name=".activity.FpUpcomingServicesActivity"
             android:theme="@style/ChwTheme.NoActionBar" />
         <activity
             android:name=".activity.AncMedicalHistoryActivity"
@@ -65,6 +69,9 @@
             android:theme="@style/ChwTheme.NoActionBar" />
         <activity
             android:name=".activity.MalariaRegisterActivity"
+            android:theme="@style/ChwTheme.NoActionBar" />
+        <activity
+            android:name=".activity.FpRegisterActivity"
             android:theme="@style/ChwTheme.NoActionBar" />
         <activity android:name=".core.activity.ChwP2pModeSelectActivity" />
         <activity
@@ -165,6 +172,25 @@
         <activity
             android:name=".activity.MalariaUpcomingServicesActivity"
             android:theme="@style/ChwTheme.NoActionBar" />
+        <activity
+            android:name=".activity.ReferralRegisterActivity"
+            android:label="@string/anc_register"
+            android:theme="@style/ChwTheme.NoActionBar" />
+        <activity
+            android:name=".activity.ReferralFollowupActivity"
+            android:label="@string/followup_referral"
+            android:theme="@style/ChwTheme.NoActionBar" />
+        <activity
+            android:name=".activity.ReferralRegistrationActivity"
+            android:label="@string/issue_referral"
+            android:theme="@style/ChwTheme.NoActionBar" />
+        <activity android:name=".activity.ReferralHistoryActivity"
+            android:theme="@style/ChwTheme.NoActionBar"/>
+        <activity android:name=".activity.FpFollowUpVisitActivity"
+            android:theme="@style/ChwTheme.NoActionBar" />
+        <activity
+            android:name=".activity.SickFormMedicalHistory"
+            android:theme="@style/ChwTheme.NoActionBar" />
 
         <activity
             android:name=".activity.ReferralWizardFormActivity"
@@ -183,7 +209,7 @@
             android:value="3f94f9c3caeff331b3a2bd8c2182b663ad6a955a" />
 
         <provider
-            android:name="android.support.v4.content.FileProvider"
+            android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
@@ -196,6 +222,7 @@
         <service android:name="org.smartregister.immunization.service.intent.RecurringIntentService" />
         <service android:name="org.smartregister.sync.intent.PullUniqueIdsIntentService" />
         <service android:name="org.smartregister.sync.intent.ExtendedSyncIntentService" />
+        <service android:name="org.smartregister.sync.intent.DistrictFacilitiesIntentService" />
         <service android:name="org.smartregister.sync.intent.ValidateIntentService" />
         <service android:name="org.smartregister.service.ImageUploadSyncService" />
         <service android:name=".anc.intent.HomeVisitIntentService" />
@@ -203,8 +230,8 @@
         <service android:name="org.smartregister.sync.intent.PlanIntentService" />
         <service android:name=".intent.ChwPncCloseDateIntent" />
         <service android:name="org.smartregister.reporting.service.IndicatorGeneratorIntentService" />
-        <service android:name="org.smartregister.chw.service.SchedulesIntentService" />
-        <service android:name="org.smartregister.chw.sync.ChwSyncIntentService" />
+        <service android:name=".service.SchedulesIntentService" />
+        <service android:name=".sync.ChwSyncIntentService" />
 
         <uses-library
             android:name="org.apache.http.legacy"
