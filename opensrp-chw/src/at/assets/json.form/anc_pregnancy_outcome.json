@@ -110,7 +110,7 @@
           },
           {
             "key": "mother_dead",
-            "text": "Mother Dead",
+            "text": "Mother dead",
             "value": false,
             "openmrs_entity": "",
             "openmrs_entity_id": "",
