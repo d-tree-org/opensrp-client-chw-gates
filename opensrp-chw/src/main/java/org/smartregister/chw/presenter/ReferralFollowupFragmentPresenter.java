@@ -6,6 +6,8 @@ import org.smartregister.chw.referral.presenter.BaseReferralRegisterFragmentPres
 import org.smartregister.chw.referral.util.DBConstants;
 import org.smartregister.chw.util.Constants;
 
+import static org.apache.commons.lang3.StringUtils.trim;
+
 public class ReferralFollowupFragmentPresenter extends BaseReferralRegisterFragmentPresenter {
 
     public ReferralFollowupFragmentPresenter(BaseReferralRegisterFragmentContract.View view, BaseReferralRegisterFragmentContract.Model model, String viewConfigurationIdentifier) {
@@ -14,9 +16,9 @@ public class ReferralFollowupFragmentPresenter extends BaseReferralRegisterFragm
 
     @Override
     public String getMainCondition() {
-        return " " + Constants.TABLE_NAME.FAMILY_MEMBER + "." + DBConstants.KEY.DATE_REMOVED + " is null " +
-                "AND " + org.smartregister.chw.referral.util.Constants.TABLES.REFERRAL + "." + DBConstants.KEY.REFERRAL_STATUS + " = '" + org.smartregister.chw.referral.util.Constants.REFERRAL_STATUS.PENDING + "' "+
-                "AND " + org.smartregister.chw.referral.util.Constants.TABLES.REFERRAL + "." + DBConstants.KEY.REFERRAL_TYPE + " = '" + org.smartregister.chw.referral.util.Constants.REFERRAL_TYPE.FACILITY_TO_COMMUNITY_REFERRAL + "' ";
+        return " " + Constants.TABLE_NAME.FAMILY_MEMBER + "." + DBConstants.KEY.DATE_REMOVED + " is null ";//+
+               // "AND " + org.smartregister.chw.referral.util.Constants.TABLES.REFERRAL + "." + DBConstants.KEY.REFERRAL_STATUS + " = '" + org.smartregister.chw.referral.util.Constants.REFERRAL_STATUS.PENDING + "' "+
+                //"AND " + org.smartregister.chw.referral.util.Constants.TABLES.REFERRAL + "." + DBConstants.KEY.REFERRAL_TYPE + " = '" + org.smartregister.chw.referral.util.Constants.REFERRAL_TYPE.FACILITY_TO_COMMUNITY_REFERRAL + "' ";
     }
 
     @Override
@@ -29,6 +31,31 @@ public class ReferralFollowupFragmentPresenter extends BaseReferralRegisterFragm
 
     @Override
     public String getMainTable() {
-        return org.smartregister.chw.referral.util.Constants.TABLES.REFERRAL;
+        return "task";
+    }
+
+    public String getDefaultSortQuery() {
+        return "";
+    }
+
+    public String getDueFilterCondition() {
+        return "";
+    }
+
+    @Override
+    public void initializeQueries(String mainCondition) {
+        String tableName = "task";
+        String condition = trim(getMainCondition()).equals("") ? mainCondition : getMainCondition();
+        String countSelect = model.countSelect(tableName, condition);
+        String mainSelect = model.mainSelect(tableName, condition);
+
+        if (getView() != null) {
+
+            getView().initializeQueryParams(tableName, countSelect, mainSelect);
+            getView().initializeAdapter(visibleColumns);
+
+            getView().countExecute();
+            getView().filterandSortInInitializeQueries();
+        }
     }
 }
