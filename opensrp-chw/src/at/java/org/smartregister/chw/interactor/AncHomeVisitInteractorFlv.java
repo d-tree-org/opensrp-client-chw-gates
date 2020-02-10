@@ -1,6 +1,7 @@
 package org.smartregister.chw.interactor;
 
 import android.content.Context;
+import android.text.TextUtils;
 
 import org.apache.commons.lang3.StringUtils;
 import org.joda.time.DateTime;
@@ -9,6 +10,7 @@ import org.joda.time.format.DateTimeFormat;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.smartregister.chw.R;
+import org.smartregister.chw.actionhelper.DangerSignsAction;
 import org.smartregister.chw.actionhelper.HealthFacilityVisitAction;
 import org.smartregister.chw.anc.AncLibrary;
 import org.smartregister.chw.anc.contract.BaseAncHomeVisitContract;
@@ -187,9 +189,10 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
         actionList.put(context.getString(R.string.anc_home_visit_remarks_and_comments), remark_ba);
     }
 
-    private class DangerSignsAction implements BaseAncHomeVisitAction.AncHomeVisitActionHelper {
+    private class DangerSignsAction extends org.smartregister.chw.actionhelper.DangerSignsAction {
         private String danger_signs_counseling;
         private String danger_signs_present;
+        private String minor_illnesses_present;
         private Context context;
 
         @Override
@@ -208,6 +211,7 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
                 JSONObject jsonObject = new JSONObject(jsonPayload);
                 danger_signs_counseling = JsonFormUtils.getValue(jsonObject, "danger_signs_counseling");
                 danger_signs_present = JsonFormUtils.getCheckBoxValue(jsonObject, "danger_signs_present");
+                minor_illnesses_present = JsonFormUtils.getValue(jsonObject, "mild_pain");
             } catch (JSONException e) {
                 Timber.e(e);
             }
@@ -231,6 +235,8 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
         @Override
         public String evaluateSubTitle() {
             return MessageFormat.format("Danger signs: {0}", danger_signs_present) +
+                    "\n" +
+                    MessageFormat.format("Minor illnesses: {0}", !TextUtils.isEmpty(minor_illnesses_present)) +
                     "\n" +
                     MessageFormat.format("Health facility counselling {0}",
                             (danger_signs_counseling.equalsIgnoreCase("Yes") ? context.getString(R.string.done).toLowerCase() : context.getString(R.string.not_done).toLowerCase())
