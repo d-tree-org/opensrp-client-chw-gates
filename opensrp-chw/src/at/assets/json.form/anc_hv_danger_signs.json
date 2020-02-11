@@ -450,6 +450,59 @@
             }
           }
         }
+      },
+      {
+        "key": "save_n_refer",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "165310AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "type": "button",
+        "hint": "Save and Refer to Health Facility",
+        "btn_bg_color": "#CF0800",
+        "action": {
+          "behaviour": "refer"
+        },
+        "relevance": {
+          "step1:danger_signs_present": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "chk_fever",
+                  "chk_bleeding_vaginally",
+                  "chk_server_headache",
+                  "chk_blurred_vision",
+                  "chk_convulsions",
+                  "chk_difficulty_breathing",
+                  "chk_severe_abdominal_pain",
+                  "chk_loss_consciousness",
+                  "chk_swelling",
+                  "chk_early_labour",
+                  "chk_vaginal_discharge",
+                  "chk_unusual_movement"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "key": "save_n_link",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "165310AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "type": "button",
+        "hint": "Save and Link to ADDO",
+        "btn_bg_color": "#CF0800",
+        "action": {
+          "behaviour": "link"
+        },
+        "relevance": {
+          "step1:minor_illnesses": {
+            "ex-rules": {
+              "rules-file": "anc_hv_danger_sign_relevance.yml"
+            }
+          }
+        }
       }
     ]
   }
