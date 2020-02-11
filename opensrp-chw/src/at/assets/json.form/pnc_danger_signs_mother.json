@@ -306,7 +306,7 @@
       {
         "key": "minor_illnesses_title",
         "type": "label",
-        "text": "Minor Illnesses Mother",
+        "text": "Minor Illnesses and Commodities",
         "label_text_size": "18sp",
         "label_text_style": "bold",
         "text_color": "#000000",
@@ -323,85 +323,50 @@
         }
       },
       {
-        "key": "mild_pain",
+        "key": "minor_illness_present_mama",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "123395AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-        "type": "spinner",
-        "hint": "Does the mother have mild pain anywhere in the body?",
-        "values": [
-          "Yes",
-          "No"
+        "openmrs_entity_id": "160939AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "type": "check_box",
+        "label": "Does the mother have any of the following minor illnesses or needs?",
+        "label_text_style": "normal",
+        "text_color": "#C0C0C0",
+        "exclusive": [
+          "chk_none"
         ],
-        "keys": [
-          "Yes",
-          "No"
-        ],
-        "v_required": {
-          "value": "true",
-          "err": "Please select one"
-        },
-        "relevance": {
-          "step1:danger_signs_present_mama": {
-            "ex-checkbox": [
-              {
-                "or": [
-                  "chk_none"
-                ]
-              }
-            ]
+        "options": [
+          {
+            "key": "chk_mild_pain",
+            "text": "Does the mother have mild pain anywhere in the body?",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "140238AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          {
+            "key": "chk_mild_fever",
+            "text": "Does the mother have mild fever?",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "150802AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          {
+            "key": "chk_refill_commodities",
+            "text": "Does the mother need a refill of other commodities such as maternity pads, antiseptics/soaps?",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "139081AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          {
+            "key": "chk_none",
+            "text": "None",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "1107AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           }
-        }
-      },
-      {
-        "key": "mild_fever",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "136443AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-        "type": "spinner",
-        "hint": "Does the mother have mild fever?",
-        "values": [
-          "Yes",
-          "No"
-        ],
-        "keys": [
-          "Yes",
-          "No"
         ],
         "v_required": {
           "value": "true",
-          "err": "Please select one"
-        },
-        "relevance": {
-          "step1:danger_signs_present_mama": {
-            "ex-checkbox": [
-              {
-                "or": [
-                  "chk_none"
-                ]
-              }
-            ]
-          }
-        }
-      },
-      {
-        "key": "refill_commodities",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "155052AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-        "type": "spinner",
-        "hint": "Does the mother need a refill of other commodities such as maternity pads, antiseptics/soaps?",
-        "values": [
-          "Yes",
-          "No"
-        ],
-        "keys": [
-          "Yes",
-          "No"
-        ],
-        "v_required": {
-          "value": "true",
-          "err": "Please select one"
+          "err": "Please pick at least one"
         },
         "relevance": {
           "step1:danger_signs_present_mama": {
@@ -425,10 +390,16 @@
         "text_color": "#CF0800",
         "toaster_type": "problem",
         "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "pnc_hv_minor_illness_relevance.yml"
-            }
+          "step1:minor_illness_present_mama": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "chk_mild_pain",
+                  "chk_mild_fever",
+                  "chk_refill_commodities"
+                ]
+              }
+            ]
           }
         }
       },
@@ -444,10 +415,16 @@
           "behaviour": "link"
         },
         "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "pnc_hv_minor_illness_relevance.yml"
-            }
+          "step1:minor_illness_present_mama":{
+            "ex-checkbox": [
+              {
+                "or": [
+                  "chk_mild_pain",
+                  "chk_mild_fever",
+                  "chk_refill_commodities"
+                ]
+              }
+            ]
           }
         }
       }
