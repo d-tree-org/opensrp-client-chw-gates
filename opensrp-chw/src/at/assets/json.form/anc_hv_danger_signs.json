@@ -497,11 +497,11 @@
           "behaviour": "link"
         },
         "relevance": {
-          "step1:minor_illnesses": {
-            "ex-rules": {
-              "rules-file": "anc_hv_danger_sign_relevance.yml"
-            }
-          }
+         "rules-engine": {
+           "ex-rules": {
+             "rules-file": "anc_hv_danger_sign_relevance.yml"
+           }
+         }
         }
       }
     ]
