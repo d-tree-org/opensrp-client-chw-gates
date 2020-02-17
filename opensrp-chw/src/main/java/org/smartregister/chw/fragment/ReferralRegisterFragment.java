@@ -49,7 +49,7 @@ public class ReferralRegisterFragment extends BaseReferralRegisterFragment {
     @Override
     public void initializeAdapter(Set<org.smartregister.configurableviews.model.View> visibleColumns) {
         ReferralRegisterProvider referralRegisterProvider = new ReferralRegisterProvider(getActivity(), paginationViewHandler, registerActionHandler, visibleColumns);
-        clientAdapter = new RecyclerViewPaginatedAdapter(null, referralRegisterProvider, context().commonrepository(this.tablename));
+        clientAdapter = new RecyclerViewPaginatedAdapter(null, referralRegisterProvider, context().commonrepository("ec_referral"));
         clientAdapter.setCurrentlimit(20);
         clientsView.setAdapter(clientAdapter);
     }
@@ -236,7 +236,7 @@ public class ReferralRegisterFragment extends BaseReferralRegisterFragment {
         try {
 
             String query = "select count(*) from " + presenter().getMainTable() + " inner join " + Constants.TABLE_NAME.FAMILY_MEMBER +
-                    " on " + presenter().getMainTable() + "." + DBConstants.KEY.BASE_ENTITY_ID + " = " +
+                    " on " + presenter().getMainTable() + "." + "for" + " = " +
                     Constants.TABLE_NAME.FAMILY_MEMBER + "." + DBConstants.KEY.BASE_ENTITY_ID +
                     " where " + presenter().getMainCondition();
 
@@ -263,6 +263,11 @@ public class ReferralRegisterFragment extends BaseReferralRegisterFragment {
                 c.close();
             }
         }
+    }
+
+    @Override
+    public CommonRepository commonRepository() {
+        return context().commonrepository("ec_referral");
     }
 
     @Override
