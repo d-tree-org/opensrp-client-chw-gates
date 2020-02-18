@@ -18,11 +18,13 @@ import org.smartregister.chw.R;
 import org.smartregister.chw.anc.domain.MemberObject;
 import org.smartregister.chw.core.activity.CoreFamilyPlanningMemberProfileActivity;
 import org.smartregister.chw.core.activity.CoreFamilyProfileActivity;
+import org.smartregister.chw.core.activity.CoreFpUpcomingServicesActivity;
 import org.smartregister.chw.core.contract.FamilyOtherMemberProfileExtendedContract;
 import org.smartregister.chw.core.contract.FamilyProfileExtendedContract;
 import org.smartregister.chw.core.dao.AncDao;
 import org.smartregister.chw.core.dao.ChildDao;
 import org.smartregister.chw.core.dao.PNCDao;
+import org.smartregister.chw.core.interactor.CoreFamilyPlanningProfileInteractor;
 import org.smartregister.chw.core.listener.OnClickFloatingMenu;
 import org.smartregister.chw.core.presenter.CoreFamilyOtherMemberActivityPresenter;
 import org.smartregister.chw.core.presenter.CoreFamilyPlanningProfilePresenter;
@@ -31,7 +33,6 @@ import org.smartregister.chw.custom_view.FamilyPlanningFloatingMenu;
 import org.smartregister.chw.fp.dao.FpDao;
 import org.smartregister.chw.fp.domain.FpMemberObject;
 import org.smartregister.chw.fp.util.FamilyPlanningConstants;
-import org.smartregister.chw.interactor.FamilyPlanningProfileInteractor;
 import org.smartregister.chw.model.ReferralTypeModel;
 import org.smartregister.chw.presenter.FamilyPlanningMemberProfilePresenter;
 import org.smartregister.commonregistry.CommonPersonObject;
@@ -51,7 +52,7 @@ import io.reactivex.schedulers.Schedulers;
 import timber.log.Timber;
 
 public class FamilyPlanningMemberProfileActivity extends CoreFamilyPlanningMemberProfileActivity
-        implements FamilyOtherMemberProfileExtendedContract.View, FamilyProfileExtendedContract.PresenterCallBack {
+        implements FamilyProfileExtendedContract.PresenterCallBack {
 
     private List<ReferralTypeModel> referralTypeModels = new ArrayList<>();
 
@@ -74,19 +75,17 @@ public class FamilyPlanningMemberProfileActivity extends CoreFamilyPlanningMembe
     }
 
     @Override
-    protected Class<? extends CoreFamilyProfileActivity> getFamilyProfileActivityClass() {
-        return FamilyProfileActivity.class;
-    }
-
-    @Override
     protected void removeMember() {
-        // TODO :: Implement
+        IndividualProfileRemoveActivity.startIndividualProfileActivity(FamilyPlanningMemberProfileActivity.this,
+                getClientDetailsByBaseEntityID(fpMemberObject.getBaseEntityId()),
+                fpMemberObject.getFamilyBaseEntityId(), fpMemberObject.getFamilyHead(),
+                fpMemberObject.getPrimaryCareGiver(), FpRegisterActivity.class.getCanonicalName());
     }
 
     @Override
     protected void initializePresenter() {
         showProgressBar(true);
-        fpProfilePresenter = new FamilyPlanningMemberProfilePresenter(this, new FamilyPlanningProfileInteractor(this), fpMemberObject);
+        fpProfilePresenter = new FamilyPlanningMemberProfilePresenter(this, new CoreFamilyPlanningProfileInteractor(this), fpMemberObject);
         fetchProfileData();
     }
 
@@ -165,21 +164,6 @@ public class FamilyPlanningMemberProfileActivity extends CoreFamilyPlanningMembe
     }
 
     @Override
-    public void refreshList() {
-        // Implement
-    }
-
-    @Override
-    public void updateHasPhone(boolean b) {
-        // Implement
-    }
-
-    @Override
-    public void setFamilyServiceStatus(String s) {
-        // Implement
-    }
-
-    @Override
     public Context getContext() {
         return null;
     }
@@ -192,61 +176,6 @@ public class FamilyPlanningMemberProfileActivity extends CoreFamilyPlanningMembe
     @Override
     public void notifyHasPhone(boolean b) {
         // Implement
-    }
-
-    @NonNull
-    @Override
-    public CoreFamilyOtherMemberActivityPresenter presenter() {
-        return ((CoreFamilyOtherMemberActivityPresenter) presenter);
-    }
-
-    @Override
-    public void setProfileImage(String s, String s1) {
-        // Implement
-    }
-
-    @Override
-    public void setProfileName(String s) {
-        TextView textView = findViewById(org.smartregister.fp.R.id.textview_name);
-        textView.setText(s);
-    }
-
-    @Override
-    public void setProfileDetailOne(String s) {
-        TextView textView = findViewById(org.smartregister.fp.R.id.textview_gender);
-        textView.setText(s);
-    }
-
-    @Override
-    public void setProfileDetailTwo(String s) {
-        TextView textView = findViewById(org.smartregister.fp.R.id.textview_address);
-        textView.setText(s);
-    }
-
-    @Override
-    public void setProfileDetailThree(String s) {
-        // Implement
-    }
-
-    @Override
-    public void toggleFamilyHead(boolean b) {
-        // Implement
-    }
-
-    @Override
-    public void togglePrimaryCaregiver(boolean b) {
-        // Implement
-    }
-
-    private static CommonPersonObjectClient getClientDetailsByBaseEntityID(@NonNull String baseEntityId) {
-        CommonRepository commonRepository = org.smartregister.chw.util.Utils.context().commonrepository(org.smartregister.chw.util.Utils.metadata().familyMemberRegister.tableName);
-
-        final CommonPersonObject commonPersonObject = commonRepository.findByBaseEntityId(baseEntityId);
-        final CommonPersonObjectClient client =
-                new CommonPersonObjectClient(commonPersonObject.getCaseId(), commonPersonObject.getDetails(), "");
-        client.setColumnmaps(commonPersonObject.getColumnmaps());
-        return client;
-
     }
 
     public void startFormForEdit(Integer title_resource, String formName) {
@@ -312,71 +241,23 @@ public class FamilyPlanningMemberProfileActivity extends CoreFamilyPlanningMembe
 
     @Override
     public void openMedicalHistory() {
-        onMemberTypeLoadedListener listener = memberType -> {
+        OnMemberTypeLoadedListener onMemberTypeLoadedListener = memberType -> {
 
-            switch (memberType.memberType) {
+            switch (memberType.getMemberType()) {
                 case CoreConstants.TABLE_NAME.ANC_MEMBER:
-                    AncMedicalHistoryActivity.startMe(FamilyPlanningMemberProfileActivity.this, memberType.memberObject);
+                    AncMedicalHistoryActivity.startMe(FamilyPlanningMemberProfileActivity.this, memberType.getMemberObject());
                     break;
                 case CoreConstants.TABLE_NAME.PNC_MEMBER:
-                    PncMedicalHistoryActivity.startMe(FamilyPlanningMemberProfileActivity.this, memberType.memberObject);
+                    PncMedicalHistoryActivity.startMe(FamilyPlanningMemberProfileActivity.this, memberType.getMemberObject());
                     break;
                 case CoreConstants.TABLE_NAME.CHILD:
-                    ChildMedicalHistoryActivity.startMe(FamilyPlanningMemberProfileActivity.this, memberType.memberObject);
+                    ChildMedicalHistoryActivity.startMe(FamilyPlanningMemberProfileActivity.this, memberType.getMemberObject());
                     break;
                 default:
                     Timber.v("Member info undefined");
                     break;
             }
         };
-        executeOnLoaded(listener);
-    }
-
-    private Observable<MemberType> getMemberType() {
-        return Observable.create(e -> {
-            org.smartregister.chw.anc.domain.MemberObject memberObject = PNCDao.getMember(fpMemberObject.getBaseEntityId());
-            String type = null;
-
-            if (AncDao.isANCMember(memberObject.getBaseEntityId())) {
-                type = CoreConstants.TABLE_NAME.ANC_MEMBER;
-            } else if (PNCDao.isPNCMember(memberObject.getBaseEntityId())) {
-                type = CoreConstants.TABLE_NAME.PNC_MEMBER;
-            } else if (ChildDao.isChild(memberObject.getBaseEntityId())) {
-                type = CoreConstants.TABLE_NAME.CHILD;
-            }
-
-            MemberType memberType = new MemberType(memberObject, type);
-            e.onNext(memberType);
-            e.onComplete();
-        });
-    }
-
-    private void executeOnLoaded(FamilyPlanningMemberProfileActivity.onMemberTypeLoadedListener listener) {
-        final Disposable[] disposable = new Disposable[1];
-        getMemberType().subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<FamilyPlanningMemberProfileActivity.MemberType>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
-                        disposable[0] = d;
-                    }
-
-                    @Override
-                    public void onNext(FamilyPlanningMemberProfileActivity.MemberType memberType) {
-                        listener.onMemberTypeLoaded(memberType);
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        Timber.e(e);
-                    }
-
-                    @Override
-                    public void onComplete() {
-                        disposable[0].dispose();
-                        disposable[0] = null;
-                    }
-                });
     }
 
     private static MemberObject toMember(FpMemberObject memberObject) {
@@ -397,7 +278,7 @@ public class FamilyPlanningMemberProfileActivity extends CoreFamilyPlanningMembe
 
     @Override
     public void openUpcomingServices() {
-        FpUpcomingServicesActivity.startMe(this, toMember(fpMemberObject));
+        CoreFpUpcomingServicesActivity.startMe(this, toMember(fpMemberObject));
 
     }
 
@@ -427,5 +308,13 @@ public class FamilyPlanningMemberProfileActivity extends CoreFamilyPlanningMembe
     public List<ReferralTypeModel> getReferralTypeModels() {
         return referralTypeModels;
     }
+
+    @Override
+    protected void startFamilyPlanningRegistrationActivity() {
+        FpRegisterActivity.startFpRegistrationActivity(this, fpMemberObject.getBaseEntityId(), fpMemberObject.getAge(), CoreConstants.JSON_FORM.getFpChengeMethodForm(), FamilyPlanningConstants.ActivityPayload.CHANGE_METHOD_PAYLOAD_TYPE);
+    }
+
+
+
 }
 
