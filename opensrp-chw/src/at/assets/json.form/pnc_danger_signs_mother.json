@@ -396,7 +396,8 @@
                 "or": [
                   "chk_mild_pain",
                   "chk_mild_fever",
-                  "chk_refill_commodities"
+                  "chk_refill_commodities",
+                  "chk_other_needs"
                 ]
               }
             ]
