@@ -194,7 +194,7 @@
         ],
         "options": [
           {
-            "key": "mild_pain",
+            "key": "chk_mild_pain",
             "text": "Does the mother have mild pain anywhere in the body?",
             "value": false,
             "openmrs_entity_parent": "",
@@ -202,7 +202,7 @@
             "openmrs_entity_id": "123395AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           },
           {
-            "key": "mild_fever",
+            "key": "chk_mild_fever",
             "text": "Does the mother have mild fever?",
             "value": false,
             "openmrs_entity_parent": "",
@@ -210,7 +210,7 @@
             "openmrs_entity_id": "136443AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           },
           {
-            "key": "refill_medicine",
+            "key": "chk_refill_medicine",
             "text": "Do the mother need a refill of medicines such as Ferrous Sulphate, folic acid, and SP for IPTp?",
             "value": false,
             "openmrs_entity_parent": "",
@@ -218,7 +218,7 @@
             "openmrs_entity_id": "155052AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           },
           {
-            "key": "refill_commodities",
+            "key": "chk_refill_commodities",
             "text": "Does the mother need a refill of other commodities such as antiseptics/soaps, delivery kit?",
             "value": false,
             "openmrs_entity_parent": "",
@@ -226,7 +226,14 @@
             "openmrs_entity_id": "996AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           },
           {
-            "key": "none",
+            "key": "chk_other_needs",
+            "text": "Other Needs",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_none",
             "text": "None",
             "value": false,
             "openmrs_entity": "concept",
@@ -243,6 +250,29 @@
               {
                 "or": [
                   "chk_none"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "key": "minorillness_description",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "type": "edit_text",
+        "hint": "Describe the other needs",
+        "v_required": {
+          "value": "true",
+          "err": "Describe the other needs"
+        },
+        "relevance": {
+          "step1:minor_illnesses": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "chk_other_needs"
                 ]
               }
             ]
@@ -302,10 +332,11 @@
             "ex-checkbox": [
               {
                 "or": [
-                  "mild_pain",
-                  "mild_fever",
-                  "refill_medicine",
-                  "refill_commodities"
+                  "chk_mild_pain",
+                  "chk_mild_fever",
+                  "chk_refill_medicine",
+                  "chk_refill_commodities",
+                  "chk_none"
                 ]
               }
             ]
