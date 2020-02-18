@@ -91,7 +91,7 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
     private void evaluateDangerSigns(LinkedHashMap<String, BaseAncHomeVisitAction> actionList,
                                      Map<String, List<VisitDetail>> details,
                                      final Context context) throws BaseAncHomeVisitAction.ValidationException {
-        BaseAncHomeVisitAction danger_signs = new BaseAncHomeVisitAction.Builder(context, "Danger signs and management of minor illnesses")
+        BaseAncHomeVisitAction danger_signs = new BaseAncHomeVisitAction.Builder(context, "Danger signs")
                 .withOptional(false)
                 .withDetails(details)
                 .withFormName(Constants.JSON_FORM.ANC_HOME_VISIT.getDangerSigns())
