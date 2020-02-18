@@ -376,6 +376,13 @@
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_none",
+            "text": "None",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
           }
         ],
         "relevance": {
@@ -414,23 +421,6 @@
         }
       },
       {
-        "key": "child_minor_illness_present_toaster",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "",
-        "type": "toaster_notes",
-        "text": "Child has minor Illnesses! \nRecommend that the client visits a nearby ADDO",
-        "text_color": "#CF0800",
-        "toaster_type": "problem",
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "child_danger_sign_relevance.yml"
-            }
-          }
-        }
-      },
-      {
         "key": "save_n_link",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
@@ -450,7 +440,8 @@
                   "chk_cough_cold",
                   "chk_mild_diarrhea",
                   "chk_skin_infections",
-                  "chk_minor_wound"
+                  "chk_minor_wound",
+                  "chk_other_needs"
                 ]
               }
             ]
