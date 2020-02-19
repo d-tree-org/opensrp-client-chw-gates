@@ -342,7 +342,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "toaster_notes",
-        "text": "Recommend that the client visits a nearby ADDO. Tell them that you'll follow up with them in 3 days",
+        "text": "Danger sign! \nI have identified an urgent danger sign: {danger_signs_present}. You need to go to the closest health facility immediately. It is important that you complete the referral. I will follow-up with you within 24 hours to check if you have completed your referral.",
         "text_color": "#CF0800",
         "toaster_type": "problem",
         "relevance": {
