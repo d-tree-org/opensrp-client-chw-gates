@@ -168,6 +168,13 @@
             "openmrs_entity_id": ""
           },
           {
+            "key": "chk_other",
+            "text": "Other",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
             "key": "chk_none",
             "text": "None",
             "value": false,
@@ -178,6 +185,29 @@
         "v_required": {
           "value": "true",
           "err": "Please pick at least one"
+        }
+      },
+      {
+        "key": "danger_sign_description",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "type": "edit_text",
+        "hint": "Describe the danger sign",
+        "v_required": {
+          "value": "true",
+          "err": "Describe the danger sign"
+        },
+        "relevance": {
+          "step1:danger_signs_present": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "chk_other"
+                ]
+              }
+            ]
+          }
         }
       },
       {
@@ -217,7 +247,7 @@
         "label_text_style": "bold",
         "text_color": "#000000",
         "exclusive": [
-          "none"
+          "chk_none"
         ],
         "options": [
           {
@@ -336,7 +366,8 @@
                   "chk_unusual_movement",
                   "chk_water_broke",
                   "chk_vomiting",
-                  "chk_anemia"
+                  "chk_anemia",
+                  "chk_other"
                 ]
               }
             ]
