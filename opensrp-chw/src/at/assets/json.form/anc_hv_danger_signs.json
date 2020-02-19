@@ -337,6 +337,42 @@
         }
       },
       {
+        "key": "danger_signs_present_toaster",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "Recommend that the client visits a nearby ADDO. Tell them that you'll follow up with them in 3 days",
+        "text_color": "#CF0800",
+        "toaster_type": "problem",
+        "relevance": {
+          "step1:danger_signs_present": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "chk_fever",
+                  "chk_bleeding_vaginally",
+                  "chk_server_headache",
+                  "chk_blurred_vision",
+                  "chk_convulsions",
+                  "chk_difficulty_breathing",
+                  "chk_severe_abdominal_pain",
+                  "chk_loss_consciousness",
+                  "chk_swelling",
+                  "chk_early_labour",
+                  "chk_vaginal_discharge",
+                  "chk_unusual_movement",
+                  "chk_water_broke",
+                  "chk_vomiting",
+                  "chk_anemia",
+                  "chk_other"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
         "key": "save_n_refer",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
@@ -368,6 +404,31 @@
                   "chk_vomiting",
                   "chk_anemia",
                   "chk_other"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "key": "minor_illness_present_toaster",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "Recommend that the client visits a nearby ADDO. Tell them that you'll follow up with them in 3 days",
+        "text_color": "#CF0800",
+        "toaster_type": "problem",
+        "relevance": {
+          "step1:minor_illnesses": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "chk_mild_pain",
+                  "chk_mild_fever",
+                  "chk_refill_medicine",
+                  "chk_refill_commodities",
+                  "chk_other_needs"
                 ]
               }
             ]
