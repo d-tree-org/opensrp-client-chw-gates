@@ -27,14 +27,8 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
     protected void bindEvents(Map<String, ServiceWrapper> serviceWrapperMap) throws BaseAncHomeVisitAction.ValidationException {
         try {
             evaluateDangerSigns();
-            evaluateImmunization();
-
             evaluateExclusiveBreastFeeding(serviceWrapperMap);
-            evaluateVitaminA(serviceWrapperMap);
-            evaluateDeworming(serviceWrapperMap);
             evaluateCounselling();
-            evaluateNutritionStatus();
-//            evaluateObsAndIllness();
         } catch (BaseAncHomeVisitAction.ValidationException e) {
             throw (e);
         } catch (Exception e) {
