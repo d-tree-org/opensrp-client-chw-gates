@@ -307,7 +307,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "165310AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
         "type": "button",
-        "hint": "Save and Refer to Health Facility",
+        "hint": "Hifadhi na Toa rufaa",
         "btn_bg_color": "#CF0800",
         "action": {
           "behaviour": "refer"
