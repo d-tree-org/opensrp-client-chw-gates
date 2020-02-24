@@ -236,6 +236,48 @@
         }
       },
       {
+        "key": "danger_signs_present_toaster",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "Danger sign! \nI have identified an urgent danger signs. You need to go to the closest health facility immediately. It is important that you complete the referral. I will follow-up with you within 24 hours to check if you have completed your referral.",
+        "text_color": "#CF0800",
+        "toaster_type": "problem",
+        "relevance": {
+          "step1:danger_signs_present": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "chk_fever",
+                  "chk_bleeding_vaginally",
+                  "chk_server_headache",
+                  "chk_convulsions",
+                  "chk_difficulty_breathing",
+                  "chk_severe_leg_pain",
+                  "chk_unusual_behaviour",
+                  "chk_swelling of breast",
+                  "chk_severe_abdominal_pain",
+                  "chk_vaginal_discharge",
+                  "chk_blurred_vision",
+                  "chk_loss_conscioueness",
+                  "chk_urination",
+                  "chk_other"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "key": "spacer",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "spacer",
+        "type": "spacer",
+        "spacer_height": "20dp"
+      },
+      {
         "key": "save_n_refer",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
@@ -377,6 +419,68 @@
             ]
           }
         }
+      },
+      {
+        "key": "date_of_minor_illness",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "1730AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "type": "date_picker",
+        "hint": "Date that the pregnant mother was first observed to be ill",
+        "label_info_text": "Date that the pregnant mother was first observed to be ill",
+        "expanded": false,
+        "min_date": "today-1y",
+        "max_date": "today",
+        "v_required": {
+          "value": "true",
+          "err": "Please enter the date of illness"
+        },
+        "relevance": {
+          "step1:minor_illness_present_mama": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "chk_mild_pain",
+                  "chk_mild_fever",
+                  "chk_refill_commodities",
+                  "chk_other_needs"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "key": "minor_illness_present_toaster",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "Recommend that the client visits a nearby ADDO. Tell them that you'll follow up with them in 3 days.",
+        "text_color": "#CF0800",
+        "toaster_type": "problem",
+        "relevance": {
+          "step1:minor_illness_present_mama": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "chk_mild_pain",
+                  "chk_mild_fever",
+                  "chk_refill_commodities",
+                  "chk_other_needs"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "key": "spacer",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "spacer",
+        "type": "spacer",
+        "spacer_height": "20dp"
       },
       {
         "key": "save_n_link",
