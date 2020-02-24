@@ -107,6 +107,14 @@
             "openmrs_entity": "concept",
             "openmrs_entity_id": "48AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
             "openmrs_entity_parent": ""
+          },
+          {
+            "key": "mother_dead",
+            "text": "Mama amefariki",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": "",
+            "openmrs_entity_parent": ""
           }
         ],
         "v_required": {
