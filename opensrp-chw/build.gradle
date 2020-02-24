@@ -356,7 +356,7 @@ dependencies {
         exclude group: 'com.rengwuxian.materialedittext', module: 'library'
     }
 
-    implementation ('org.smartregister:opensrp-client-simprints:1.0.3-DEMO-31-SNAPSHOT'){
+    implementation ('org.smartregister:opensrp-client-simprints:1.0.3-DEMO-37-SNAPSHOT'){
         transitive = true
         exclude group: 'org.smartregister', module: 'opensrp-client-family'
         exclude group: 'org.smartregister', module: 'opensrp-client-core'
