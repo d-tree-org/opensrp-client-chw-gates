@@ -337,12 +337,35 @@
         }
       },
       {
+        "key": "date_of_illness",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "1730AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "type": "date_picker",
+        "hint": "Date that the pregnant mother was first observed to be ill",
+        "label_info_text": "Date that the pregnant mother was first observed to be ill",
+        "expanded": false,
+        "min_date": "today-1y",
+        "max_date": "today",
+        "v_required": {
+          "value": "true",
+          "err": "Please enter the date of illness"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "anc_hv_danger_sign_relevance.yml"
+            }
+          }
+        }
+      },
+      {
         "key": "danger_signs_present_toaster",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "toaster_notes",
-        "text": "Danger sign! \nI have identified an urgent danger sign: {danger_signs_present}. You need to go to the closest health facility immediately. It is important that you complete the referral. I will follow-up with you within 24 hours to check if you have completed your referral.",
+        "text": "Danger sign! \nI have identified an urgent danger signs. You need to go to the closest health facility immediately. It is important that you complete the referral. I will follow-up with you within 24 hours to check if you have completed your referral.",
         "text_color": "#CF0800",
         "toaster_type": "problem",
         "relevance": {
@@ -378,7 +401,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "toaster_notes",
-        "text": "Recommend that the client visits a nearby ADDO. Tell them that you'll follow up with them in 3 days",
+        "text": "Recommend that the client visits a nearby ADDO. Tell them that you'll follow up with them in 3 days.",
         "text_color": "#CF0800",
         "toaster_type": "problem",
         "relevance": {

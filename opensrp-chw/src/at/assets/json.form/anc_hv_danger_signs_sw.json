@@ -337,12 +337,35 @@
         }
       },
       {
+        "key": "date_of_illness",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "1730AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "type": "date_picker",
+        "hint": "Tarehe mama mjamzito alipoanza kujihisi kuumwa",
+        "label_info_text": "Tarehe mama mjamzito alipoanza kujihisi kuumwa",
+        "expanded": false,
+        "min_date": "today-1y",
+        "max_date": "today",
+        "v_required": {
+          "value": "true",
+          "err": "Tafadhali jaza tarehe mama mjamzito alipoanza kujihisi kuumwa"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "anc_hv_danger_sign_relevance.yml"
+            }
+          }
+        }
+      },
+      {
         "key": "danger_signs_present_toaster",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "toaster_notes",
-        "text": "Dalili za hatari!\nMpe rufaa haraka kwenda kituo cha afya",
+        "text": "Mshauri mteja atembelee duka la dawa muhimu. Mwambie utamtembelea tena ndani ya siku 3.",
         "text_color": "#CF0800",
         "toaster_type": "problem",
         "relevance": {
@@ -372,7 +395,6 @@
           }
         }
       },
-
       {
         "key": "minor_illness_present_toaster",
         "openmrs_entity_parent": "",
