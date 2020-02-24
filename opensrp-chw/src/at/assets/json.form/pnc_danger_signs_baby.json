@@ -63,36 +63,22 @@
         ],
         "options": [
           {
-            "key": "chk_difficult_drinking",
-            "text": "Has difficulties in suckling/drinking",
+            "key": "chk_fever",
+            "text": "Fever",
             "value": false,
             "openmrs_entity": "",
             "openmrs_entity_id": ""
           },
           {
-            "key": "chk_difficult_breathing",
-            "text": "Difficulty breathing",
+            "key": "chk_crying",
+            "text": "Excessive crying",
             "value": false,
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "142373AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+            "openmrs_entity": "",
+            "openmrs_entity_id": ""
           },
           {
             "key": "chk_chest_indrawing",
-            "text": "Chest in-drawing",
-            "value": false,
-            "openmrs_entity": "",
-            "openmrs_entity_id": ""
-          },
-          {
-            "key": "chk_convulsions",
-            "text": "Has convulsions/fits",
-            "value": false,
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "164483AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-          },
-          {
-            "key": "chk_extreme_cold_or_hot",
-            "text": "Extreme cold or hot body temperature",
+            "text": "Chest-indrawing",
             "value": false,
             "openmrs_entity": "",
             "openmrs_entity_id": ""
@@ -105,29 +91,71 @@
             "openmrs_entity_id": ""
           },
           {
-            "key": "chk_redness_around_umbilical",
-            "text": "Redness around/discharge from umbilical cord",
+            "key": "chk_fast_breathing",
+            "text": "Fast breathing",
             "value": false,
             "openmrs_entity": "",
             "openmrs_entity_id": ""
           },
           {
+            "key": "chk_difficult_breathing",
+            "text": "Difficulty breathing",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_unable_to_suck",
+            "text": "Unable to suck",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_umbilical_discharge",
+            "text": "Umbilical blood / pus discharge",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_no_movement",
+            "text": "No movement",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_convulsions",
+            "text": "Convulsions",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "164483AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          {
             "key": "chk_body_rashes",
-            "text": "Body rashes discharging pus",
+            "text": "Skin rashes ",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "512AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           },
           {
+            "key": "chk_pale",
+            "text": "Pale or jaundiced",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": ""
+          },
+          {
             "key": "chk_eye_discharge",
-            "text": "Pus discharge from eyes",
+            "text": "Eye discharge",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "142246AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           },
           {
             "key": "chk_grunting_voice",
-            "text": "Grunting voice",
+            "text": "Grunting",
             "value": false,
             "openmrs_entity": "",
             "openmrs_entity_id":""
@@ -154,18 +182,18 @@
             "openmrs_entity_id":""
           },
           {
-            "key": "chk_diarrhea",
-            "text": "Diarrhea",
+            "key": "chk_malnutrition",
+            "text": "Malnutrition",
             "value": false,
             "openmrs_entity": "",
             "openmrs_entity_id":""
           },
           {
-            "key": "chk_sunk_eyes",
-            "text": "Sunk Eyes",
+            "key": "chk_other",
+            "text": "Other",
             "value": false,
-            "openmrs_entity": "",
-            "openmrs_entity_id":""
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           },
           {
             "key": "chk_none",
@@ -181,12 +209,35 @@
         }
       },
       {
+        "key": "illness_description_baby",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "type": "edit_text",
+        "hint": "Describe the signs and symptoms of the illness",
+        "v_required": {
+          "value": "true",
+          "err": "Describe the signs and symptoms of the illness"
+        },
+        "relevance": {
+          "step1:danger_signs_present_child": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "chk_other"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
         "key": "danger_signs_present_toaster",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "toaster_notes",
-        "text": "Danger sign! \nRefer immediately to health facility.",
+        "text": "Danger sign! \nI have identified an urgent danger sign. You and the baby need to go to the closest health facility immediately. I will follow-up with you within 24 hours to check if you have completed your referral.",
         "text_color": "#CF0800",
         "toaster_type": "problem",
         "relevance": {
@@ -194,19 +245,72 @@
             "ex-checkbox": [
               {
                 "or": [
-                  "chk_fever",
-                  "chk_excessive_crying",
                   "chk_fast_breathing",
-                  "chk_difficult_breathing",
-                  "chk_unable_to_suck",
-                  "chk_umbilical_discharge",
-                  "chk_no_movement",
+                  "chk_oversleeping",
+                  "chk_chest_indrawing",
+                  "chk_crying",
+                  "chk_fever",
                   "chk_convulsions",
-                  "chk_skin_rashes",
-                  "chk_pale",
+                  "chk_no_movement",
+                  "chk_umbilical_discharge",
+                  "chk_unable_to_suck",
+                  "chk_difficult_breathing",
+                  "chk_not_getting_better",
+                  "chk_grunting_voice",
                   "chk_eye_discharge",
-                  "chk_severe_abdominal_pain",
-                  "chk_lethargy"
+                  "chk_pale",
+                  "chk_body_rashes",
+                  "chk_none",
+                  "chk_other",
+                  "chk_malnutrition",
+                  "chk_weak",
+                  "chk_severe_vomit"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "key": "date_of_illness_1m5yr",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "1730AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "type": "date_picker",
+        "hint": "Date that the child was first observed to be ill",
+        "label_info_text": "Date that the child was first observed to be ill",
+        "expanded": false,
+        "min_date": "today-1y",
+        "max_date": "today",
+        "v_required": {
+          "value": "true",
+          "err": "Please enter the date of illness"
+        },
+        "relevance": {
+          "step1:danger_signs_present_child": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "chk_fast_breathing",
+                  "chk_oversleeping",
+                  "chk_chest_indrawing",
+                  "chk_crying",
+                  "chk_fever",
+                  "chk_convulsions",
+                  "chk_no_movement",
+                  "chk_umbilical_discharge",
+                  "chk_unable_to_suck",
+                  "chk_difficult_breathing",
+                  "chk_not_getting_better",
+                  "chk_grunting_voice",
+                  "chk_eye_discharge",
+                  "chk_pale",
+                  "chk_body_rashes",
+                  "chk_none",
+                  "chk_other",
+                  "chk_malnutrition",
+                  "chk_weak",
+                  "chk_severe_vomit"
                 ]
               }
             ]
