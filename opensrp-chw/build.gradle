@@ -363,7 +363,7 @@ dependencies {
     }
 
 
-    implementation ('org.smartregister:opensrp-client-native-form:1.7.22-DTREE-SNAPSHOT') {
+    implementation ('org.smartregister:opensrp-client-native-form:1.7.23-DTREE-SNAPSHOT') {
         transitive = true
         exclude group: 'com.android.support', module: 'appcompat-v7'
         exclude group: 'com.android.support', module: 'cardview-v7'
