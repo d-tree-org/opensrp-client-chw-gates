@@ -416,7 +416,7 @@
           "value": "(0[0-9]{9})|\\s*",
           "err": "Nambari lazima iwe na nambari 10 na lazima ianze na 0."
         }
-      },
+      }
     ]
   }
 }
