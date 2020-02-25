@@ -184,6 +184,14 @@
         }
       },
       {
+        "key": "consent_picture_label",
+        "type": "label",
+        "text": "Identify the head of household, or proxy head of household. Read the consent form and document the consent of the household.",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": ""
+      },
+      {
         "key": "fam_consent",
         "openmrs_entity_parent": "",
         "openmrs_entity": "",
@@ -192,21 +200,25 @@
         "exclusive": [
           "chk_consent_yes"
         ],
-        "label": "Consent to enroll in the program",
+        "label": "Does the household consent?",
         "options": [
           {
             "key": "chk_consent_yes",
-            "text": "Yes, the household consents to enroll?",
+            "text": "Yes",
             "text_size": "18px",
             "value": "false"
           },
           {
             "key": "chk_consent_no",
-            "text": "No, the household does not consent to enroll?",
+            "text": "No",
             "text_size": "18px",
             "value": "false"
           }
-        ]
+        ],
+        "v-required" : {
+          "value" : "true",
+          "err": "Please fill household consent"
+        }
       }
     ]
   },
@@ -231,14 +243,6 @@
             ]
           }
         }
-      },
-      {
-        "key": "spacer",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "",
-        "openmrs_entity_id": "spacer",
-        "type": "spacer",
-        "spacer_height": "10sp"
       },
       {
         "key": "finger_print",
