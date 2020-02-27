@@ -111,6 +111,42 @@
         "read_only": "true",
         "hidden": "true",
         "value": "0"
+      },
+      {
+        "key": "anc_hf_first_visit_not_done_toaster",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "ANC first visit not done! \nYou have not attended ANC clinic at the health facility since you got pregnant. You should attend the health facility as soon as you can as this is important to you and your pregnancy.",
+        "text_color": "#CF0800",
+        "toaster_type": "problem",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "anc_hv_health_facility_visit.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "save_n_refer",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "165310AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "type": "button",
+        "hint": "ANC referral to health facility",
+        "btn_bg_color": "#CE0400",
+        "action": {
+          "behaviour": "link"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "anc_hv_health_facility_visit.yml"
+            }
+          }
+        }
       }
     ]
   }
