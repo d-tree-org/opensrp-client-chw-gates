@@ -1,7 +1,7 @@
 {
   "validate_on_submit": true,
   "show_errors_on_submit": false,
-  "count": "2",
+  "count": "3",
   "encounter_type": "Family Registration",
   "entity_id": "",
   "relational_id": "",
@@ -138,8 +138,127 @@
     ]
   },
   "step2": {
-    "title": "Mkuu wa kaya",
+    "title": "Concent Form",
+    "next": "step3",
     "fields": [
+      {
+        "key": "consent_picture_label",
+        "type": "label",
+        "text": "Chukua picha ya fomu ya Ridhaa",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "relevance": {
+          "step2:fam_consent": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "chk_consent_yes"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "key": "unique_id",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "person_identifier",
+        "openmrs_entity_id": "opensrp_id",
+        "hidden": "true",
+        "type": "barcode",
+        "barcode_type": "qrcode",
+        "hint": "ID",
+        "scanButtonText": "Scan QR Code",
+        "v_numeric": {
+          "value": "true",
+          "err": "Tadadhali weka ID iliyo sahihi"
+        }
+      },
+      {
+        "key": "consent_photo",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "type": "choose_image",
+        "uploadButtonText": "Piga Picha",
+        "relevance": {
+          "step2:fam_consent": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "chk_consent_yes"
+                ]
+              }
+            ]
+          }
+        },
+        "v_required": {
+          "value": "true",
+          "err": "Please take a picture of the consent form"
+        }
+      },
+      {
+        "key": "consent_picture_label",
+        "type": "label",
+        "text": "Tambua mkuu wa kaya or mwakilishi wake. Soma fomu ya ridhaa na nukuu ridhaa ya kaya.",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": ""
+      },
+      {
+        "key": "fam_consent",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "type": "check_box",
+        "exclusive": [
+          "chk_consent_yes"
+        ],
+        "label": "Je! Kaya imetoa idhini?",
+        "options": [
+          {
+            "key": "chk_consent_yes",
+            "text": "Ndio",
+            "text_size": "18px",
+            "value": "false"
+          },
+          {
+            "key": "chk_consent_no",
+            "text": "Hapana",
+            "text_size": "18px",
+            "value": "false"
+          }
+        ],
+        "v-required" : {
+          "value" : "true",
+          "err": "Tafadhali jaza swali hili"
+        }
+      }
+    ]
+  },
+  "step3": {
+    "title": "Usajili wa Familia",
+    "fields": [
+      {
+        "key": "family_head_label",
+        "type": "label",
+        "text": "Mkuu wa Kaya",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "relevance": {
+          "step2:fam_consent": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "chk_consent_yes"
+                ]
+              }
+            ]
+          }
+        }
+      },
       {
         "key": "finger_print",
         "openmrs_entity_parent": "",
@@ -151,7 +270,18 @@
         "module_id":"global_module",
         "finger_print_option":"register",
         "uploadButtonText": "Chukua alama za vidole",
-        "image_file": ""
+        "image_file": "",
+        "relevance": {
+          "step2:fam_consent": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "chk_consent_yes"
+                ]
+              }
+            ]
+          }
+        }
       },
       {
         "key": "unique_id",
@@ -169,6 +299,17 @@
         "v_required": {
           "value": "true",
           "err": "Tafadhali ingiza namba"
+        },
+        "relevance": {
+          "step2:fam_consent": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "chk_consent_yes"
+                ]
+              }
+            ]
+          }
         }
       },
       {
@@ -186,6 +327,17 @@
         "v_regex": {
           "value": "[A-Za-z\\u00C0-\\u017F\\s\\u00C0-\\u017F\\.\\-]*",
           "err": "Tafadhali ingiza jina halali"
+        },
+        "relevance": {
+          "step2:fam_consent": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "chk_consent_yes"
+                ]
+              }
+            ]
+          }
         }
       },
       {
@@ -203,6 +355,17 @@
         "v_regex": {
           "value": "[A-Za-z\\u00C0-\\u017F\\s\\u00C0-\\u017F\\.\\-]*",
           "err": "Tafadhali ingiza jina halali"
+        },
+        "relevance": {
+          "step2:fam_consent": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "chk_consent_yes"
+                ]
+              }
+            ]
+          }
         }
       },
       {
@@ -223,6 +386,17 @@
             "ex-rules": {
               "rules-file": "family_register_calculation.yml"
             }
+          }
+        },
+        "relevance": {
+          "step2:fam_consent": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "chk_consent_yes"
+                ]
+              }
+            ]
           }
         }
       },
@@ -263,6 +437,17 @@
               "rules-file": "family_register_calculation.yml"
             }
           }
+        },
+        "relevance": {
+          "step2:fam_consent": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "chk_consent_yes"
+                ]
+              }
+            ]
+          }
         }
       },
       {
@@ -279,7 +464,18 @@
             "text_size": "18px",
             "value": "false"
           }
-        ]
+        ],
+        "relevance": {
+          "step2:fam_consent": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "chk_consent_yes"
+                ]
+              }
+            ]
+          }
+        }
       },
       {
         "key": "age",
@@ -330,6 +526,17 @@
         "v_required": {
           "value": "true",
           "err": "Please enter the sex"
+        },
+        "relevance": {
+          "step2:fam_consent": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "chk_consent_yes"
+                ]
+              }
+            ]
+          }
         }
       },
       {
@@ -399,6 +606,17 @@
         "v_regex": {
           "value": "(0[0-9]{9})|\\s*",
           "err": "Nambari lazima iwe na nambari 10 na lazima ianze na 0."
+        },
+        "relevance": {
+          "step2:fam_consent": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "chk_consent_yes"
+                ]
+              }
+            ]
+          }
         }
       },
       {
@@ -415,8 +633,40 @@
         "v_regex": {
           "value": "(0[0-9]{9})|\\s*",
           "err": "Nambari lazima iwe na nambari 10 na lazima ianze na 0."
+        },
+        "relevance": {
+          "step2:fam_consent": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "chk_consent_yes"
+                ]
+              }
+            ]
+          }
         }
       },
+      {
+        "key": "consent_toaster",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "Ridhaa haijatolewa kusajili familia hii.",
+        "text_color": "#CF0800",
+        "toaster_type": "problem",
+        "relevance": {
+          "step2:fam_consent": {
+            "ex-checkbox": [
+              {
+                "not": [
+                  "chk_consent_yes"
+                ]
+              }
+            ]
+          }
+        }
+      }
     ]
   }
 }
