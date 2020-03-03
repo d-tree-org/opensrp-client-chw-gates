@@ -12,3 +12,17 @@ priority: 1
 condition: "step1_confirmed_visits == 0 "
 actions:
   - "isRelevant = true"
+---
+name: step1_anc_hf_first_visit_not_done_toaster
+description: Display a toaster message when the ANC mother has never visited a health facility
+priority: 1
+condition: "step1_confirmed_visits == 0 && step1_anc_hf_visit == 'No'"
+actions:
+  - "isRelevant = true"
+---
+name: step1_save_n_refer
+description: Refer a pregnant woman to a health facility for ANC services
+priority: 1
+condition: "step1_confirmed_visits == 0 && step1_anc_hf_visit == 'No'"
+actions:
+  - "isRelevant = true"

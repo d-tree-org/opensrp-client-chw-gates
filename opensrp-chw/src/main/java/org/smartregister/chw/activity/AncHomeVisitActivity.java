@@ -105,7 +105,9 @@ public class AncHomeVisitActivity extends BaseAncHomeVisitActivity {
                         //refer
                         CoreReferralUtils.createReferralEvent(ChwApplication.getInstance().getContext().allSharedPreferences(),
                                 jsonString, "ec_anc_referral", baseEntityID);
-                        this.finish();
+                        if (buttonAction.equalsIgnoreCase("refer")){
+                            this.finish();
+                        }
                     }
 
                     //end of check referral
