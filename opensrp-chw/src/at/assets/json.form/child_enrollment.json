@@ -191,6 +191,21 @@
         }
       },
       {
+        "key": "preferred_name",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "person",
+        "openmrs_entity_id": "preferred_name",
+        "openmrs_data_type": "text",
+        "type": "edit_text",
+        "hint": "Preferred name",
+        "expanded": false,
+        "edit_type": "name",
+        "v_regex": {
+          "value": "[A-Za-z\\s\\-]*",
+          "err": "Please enter a valid name"
+        }
+      },
+      {
         "key": "dob",
         "openmrs_entity_parent": "",
         "openmrs_entity": "person",
@@ -264,101 +279,6 @@
         }
       },
       {
-        "key": "insurance_provider",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "person_attribute",
-        "openmrs_entity_id": "insurance_provider",
-        "type": "spinner",
-        "hint": "Health insurance provider",
-        "values": [
-          "Community Health Fund (CHF)",
-          "iCHF",
-          "National Social Security Fund - Social Health Insurance Benefit (SHIB)",
-          "Tiba Kwa Kadi (TIKA)",
-          "AAR Healthcare",
-          "Strategies Insurance",
-          "Milvik Tanzania Ltd (BIMA Mkononi)",
-          "Britam Insurance Tanzania",
-          "Jubilee Insurance",
-          "Resolutions Insurance",
-          "Reliance Insurance",
-          "Other",
-          "None"
-        ],
-        "keys": [
-          "Community Health Fund (CHF)",
-          "iCHF",
-          "National Social Security Fund - Social Health Insurance Benefit (SHIB)",
-          "Tiba Kwa Kadi (TIKA)",
-          "AAR Healthcare",
-          "Strategies Insurance",
-          "Milvik Tanzania Ltd (BIMA Mkononi)",
-          "Britam Insurance Tanzania",
-          "Jubilee Insurance",
-          "Resolutions Insurance",
-          "Reliance Insurance",
-          "Other",
-          "None"
-        ],
-        "openmrs_choice_ids": {
-          "Community Health Fund (CHF)": "Community_Health_Fund",
-          "iCHF": "iCHF",
-          "National Social Security Fund - Social Health Insurance Benefit (SHIB)": "National_Social_Security_Fund",
-          "Tiba Kwa Kadi (TIKA)": "Tiba_kwa_Kadi",
-          "AAR Healthcare": "AAR_Healthcare",
-          "AAR Strategies Insurance": "Strategies_Insurance",
-          "Milvik Tanzania Ltd (BIMA Mkononi)": "BIMA_Mkononi",
-          "Britam Insurance Tanzania": "Britam_Insurance_Tanzania",
-          "Jubilee Insurance": "Jubilee_Insurance",
-          "Resolutions Insurance": "Resolutions_Insurance",
-          "Reliance Insurance": "Reliance_Insurance",
-          "Other": "Other_Health_Insurance_Type",
-          "None": "No_Health_Insurance"
-        },
-        "v_required": {
-          "value": "true",
-          "err": "Please enter the insurance provider"
-        }
-      },
-      {
-        "key": "insurance_provider_other",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "person_attribute",
-        "openmrs_entity_id": "Other_Health_Insurance_Type",
-        "type": "edit_text",
-        "hint": "Other health insurance provider",
-        "v_required": {
-          "value": "true",
-          "err": "Please specify the insurance provider"
-        },
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "family_register_relevance.yml"
-            }
-          }
-        }
-      },
-      {
-        "key": "insurance_provider_number",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "person_attribute",
-        "openmrs_entity_id": "Health_Insurance_Number",
-        "type": "edit_text",
-        "hint": "Health insurance provider number",
-        "v_required": {
-          "value": "true",
-          "err": "Please add the health insurance provider iD Number"
-        },
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "family_register_relevance.yml"
-            }
-          }
-        }
-      },
-      {
         "key": "gender",
         "openmrs_entity_parent": "",
         "openmrs_entity": "person",
@@ -376,70 +296,6 @@
         "v_required": {
           "value": "true",
           "err": "Please enter the sex"
-        }
-      },
-      {
-        "key": "disabilities",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "162558AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-        "type": "spinner",
-        "hint": "Physical disabilities",
-        "values": [
-          "Yes",
-          "No"
-        ],
-        "keys": [
-          "Yes",
-          "No"
-        ],
-        "openmrs_choice_ids": {
-          "Yes": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-          "No": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-        },
-        "v_required": {
-          "value": "true",
-          "err": "Please select one"
-        }
-      },
-      {
-        "key": "type_of_disability",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "160632AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-        "type": "edit_text",
-        "edit_type": "name",
-        "hint": "Type of physical disabilities",
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "family-child-relevance.yml"
-            }
-          }
-        },
-        "v_required": {
-          "value": true,
-          "err": "Please enter type of physical disabilities"
-        }
-      },
-      {
-        "key": "birth_cert_available",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "165406AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-        "type": "spinner",
-        "hint": "Birth registration/certificate",
-        "values": [
-          "Yes",
-          "No"
-        ],
-        "keys": [
-          "Yes",
-          "No"
-        ],
-        "openmrs_choice_ids": {
-          "Yes": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-          "No": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
         }
       },
       {

@@ -210,7 +210,7 @@ public class ChwApplication extends CoreChwApplication {
 
         HashMap<String, String> setting = new HashMap<>();
         setting.put(Constants.CustomConfig.FAMILY_FORM_IMAGE_STEP, JsonFormUtils.STEP1);
-        setting.put(Constants.CustomConfig.FAMILY_MEMBER_FORM_IMAGE_STEP, JsonFormUtils.STEP2);
+        setting.put(Constants.CustomConfig.FAMILY_MEMBER_FORM_IMAGE_STEP, JsonFormUtils.STEP3);
         metadata.setCustomConfigs(setting);
         return metadata;
     }
