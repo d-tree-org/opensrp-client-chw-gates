@@ -76,6 +76,7 @@ public class ReferralRegisterActivity extends BaseReferralRegisterActivity {
             bottomNavigationView.getMenu().removeItem(org.smartregister.chw.referral.R.id.action_register);
             bottomNavigationView.getMenu().removeItem(org.smartregister.R.id.action_search);
             bottomNavigationView.getMenu().removeItem(org.smartregister.R.id.action_library);
+            bottomNavigationView.getMenu().removeItem(org.smartregister.R.id.scanQrCode);
 
             bottomNavigationView.inflateMenu(getMenuResource());
             bottomNavigationHelper.disableShiftMode(bottomNavigationView);

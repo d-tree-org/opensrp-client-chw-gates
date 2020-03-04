@@ -84,7 +84,7 @@ public class ReferralRegisterFragment extends BaseReferralRegisterFragment {
         topLeftLayout.setVisibility(View.GONE);
 
         View topRightLayout = view.findViewById(R.id.top_right_layout);
-        topRightLayout.setVisibility(View.VISIBLE);
+        topRightLayout.setVisibility(View.GONE);
 
         View sortFilterBarLayout = view.findViewById(R.id.register_sort_filter_bar_layout);
         sortFilterBarLayout.setVisibility(View.GONE);
@@ -93,7 +93,7 @@ public class ReferralRegisterFragment extends BaseReferralRegisterFragment {
         filterSortLayout.setVisibility(View.GONE);
 
         dueOnlyLayout = view.findViewById(R.id.due_only_layout);
-        dueOnlyLayout.setVisibility(View.VISIBLE);
+        dueOnlyLayout.setVisibility(View.GONE);
         dueOnlyLayout.setOnClickListener(registerActionHandler);
 
         if (getSearchView() != null) {
@@ -123,7 +123,7 @@ public class ReferralRegisterFragment extends BaseReferralRegisterFragment {
         super.onViewClicked(view);
 
         if (view.getId() == R.id.due_only_layout) {
-            toggleFilterSelection(view);
+            //toggleFilterSelection(view);
         }
     }
 

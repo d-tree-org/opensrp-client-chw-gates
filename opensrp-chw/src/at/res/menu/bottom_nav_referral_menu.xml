@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_sent_referrals"
+        android:enabled="true"
+        android:icon="@drawable/ic_trending_up_black_24dp"
+        android:title="@string/action_sent_referrals"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_received_referrals"
+        android:enabled="true"
+        android:icon="@drawable/ic_trending_down_black_24dp"
+        android:title="@string/action_received_followup_referrals"
+        app:showAsAction="ifRoom" />
+
+</menu>
