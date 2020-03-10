@@ -1,21 +1,35 @@
 ---
-name: step2_surname
+name: step3_surname
 description: surname calculation
 priority: 1
-condition: "step2_surname == ''"
+condition: "step3_surname == ''"
 actions:
   - "calculation = step1_fam_name"
 ---
-name: step2_age_calculated
+name: step3_age_calculated
 description: Age calculated
 priority: 1
 condition: "true"
 actions:
-  - "calculation = (!step2_dob_unknown.isEmpty() && step2_dob_unknown.contains('dob_unknown')) ? step2_age : helper.getDifferenceDays(step2_dob) / 365.25"
+  - "calculation = (!step3_dob_unknown.isEmpty() && step3_dob_unknown.contains('dob_unknown')) ? step3_age : helper.getDifferenceDays(step3_dob) / 365.25"
 ---
-name: step2_wra
+name: step3_dob_calculated
+description: Calculate date of birth from age given
+priority: 1
+condition: "true"
+actions:
+  - "calculation = (step3_dob_unknown.isEmpty() && !step3_dob_unknown.contains('dob_unknown')) ? step3_dob : helper.getDOBFromAge(step3_age) "
+---
+name: step3_wra
 description: wra calculation
 priority: 1
-condition: "step2_sex == 'Female' && (step2_age_calculated >= 10 && step2_age_calculated <= 49)"
+condition: "step3_sex == 'Female' && (step3_age_calculated >= 10 && step3_age_calculated <= 49)"
 actions:
   - "calculation = 1"
+---
+name: step3_surname_calculation
+description: Surname calculation
+priority: 1
+condition: "(!step3_same_as_fam_name.isEmpty() && step3_same_as_fam_name.contains('same_as_fam_name'))"
+actions:
+  - "calculation = step1_fam_name"

@@ -55,27 +55,13 @@
     "title": "Ongeza mtoto chini ya miaki 5",
     "fields": [
       {
-        "key": "finger_print",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "",
-        "openmrs_entity_id": "",
-        "type": "finger_print",
-        "project_id":"fUBnpzDdbsCsMp0egCHB",
-        "user_id":"global_user",
-        "module_id":"global_module",
-        "finger_print_option":"register",
-        "uploadButtonText": "Chukua alama za vidole",
-        "image_file": ""
-      },
-      {
         "key": "unique_id",
         "openmrs_entity_parent": "",
         "openmrs_entity": "person_identifier",
         "openmrs_entity_id": "opensrp_id",
-        "type": "barcode",
-        "barcode_type": "qrcode",
+        "type": "edit_text",
         "hint": "Afya-Tek ID",
-        "scanButtonText": "Chukua QR code",
+        "read_only": "true",
         "v_numeric": {
           "value": "true",
           "err": "Tafadhali ingiza namba halali"
@@ -143,7 +129,7 @@
         "openmrs_entity": "person",
         "openmrs_entity_id": "last_name",
         "type": "hidden",
-        "hint": "Jina la ukoo ni sawa na jina la famili",
+        "hint": "Jina la ukoo ni sawa na jina la familia",
         "calculation": {
           "rules-engine": {
             "ex-rules": {
@@ -276,6 +262,36 @@
         "v_required": {
           "value": true,
           "err": "Tafadhali ingiza umri"
+        }
+      },
+      {
+        "key": "dob_calculated",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "hidden",
+        "calculation": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "family-child-calculation.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "finger_print",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "type": "finger_print",
+        "project_id":"fUBnpzDdbsCsMp0egCHB",
+        "user_id":"global_user",
+        "module_id":"global_module",
+        "finger_print_option":"register",
+        "uploadButtonText": "Take finger print",
+        "image_file": "",
+        "extra_info": {
+          "DOB": "dob_calculated"
         }
       },
       {

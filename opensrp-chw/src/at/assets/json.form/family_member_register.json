@@ -61,6 +61,7 @@
         "openmrs_entity_id": "opensrp_id",
         "type": "edit_text",
         "hint": "Afya-Tek ID",
+        "read_only": "true",
         "v_numeric": {
           "value": "true",
           "err": "Please enter a valid ID"
@@ -283,7 +284,6 @@
             }
           }
         }
-
       },
       {
         "key": "finger_print",
