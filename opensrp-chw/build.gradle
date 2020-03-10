@@ -327,10 +327,19 @@ repositories {
             password = githubProperties['gpr.key'] ?: System.getenv("GPR_API_KEY")
         }
     }
+
+    maven {
+        name = "GitHubPackages"
+        url = uri("https://maven.pkg.github.com/d-tree-org/opensrp-client-chw-core")
+        credentials {
+            username = githubProperties['gpr.usr'] ?: System.getenv("GPR_USER")
+            password = githubProperties['gpr.key'] ?: System.getenv("GPR_API_KEY")
+        }
+    }
 }
 
 dependencies {
-    implementation('org.smartregister:opensrp-client-chw-core:1.1.39-SNAPSHOT@aar') {
+    implementation('org.smartregister:opensrp-client-chw-core:1.1.39-DTREE-SNAPSHOT@aar') {
         transitive = true
         exclude group: 'com.android.support', module: 'appcompat-v7'
         exclude group: 'androidx.legacy', module: 'legacy-support-v4'
@@ -365,12 +374,6 @@ dependencies {
         exclude group: 'com.rengwuxian.materialedittext', module: 'library'
     }
 
-    implementation ('org.smartregister:opensrp-client-simprints:1.0.4-DEMO-18-SNAPSHOT'){
-        transitive = true
-        exclude group: 'org.smartregister', module: 'opensrp-client-family'
-        exclude group: 'org.smartregister', module: 'opensrp-client-core'
-    }
-
     implementation ('org.smartregister:opensrp-client-family:1.2.35-DTREE-SNAPSHOT'){
         transitive = true
         exclude group: 'org.smartregister', module: 'opensrp-client-core'
@@ -379,6 +382,12 @@ dependencies {
         exclude group: 'com.android.support', module: 'appcompat-v7'
     }
 
+    implementation ('org.smartregister:opensrp-client-simprints-riddler:1.1.47-RESEARCH-SNAPSHOT'){
+        transitive = true
+        exclude group: 'org.smartregister', module: 'opensrp-client-family'
+        exclude group: 'org.smartregister', module: 'opensrp-client-core'
+    }
+    
     implementation ('org.smartregister:opensrp-client-native-form:1.7.24-DTREE-SNAPSHOT@aar') {
         transitive = true
         exclude group: 'com.android.support', module: 'appcompat-v7'
