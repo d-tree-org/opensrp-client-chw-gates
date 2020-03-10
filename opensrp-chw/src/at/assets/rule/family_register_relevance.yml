@@ -1,8 +1,22 @@
 ---
+name: step3_family_head_label
+description: Family head relevance
+priority: 1
+condition: "step2_fam_consent.contains('chk_consent_yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step3_unique_id
+description: Unique id relevance
+priority: 1
+condition: "step2_fam_consent.contains('chk_consent_yes')"
+actions:
+  - "isRelevant = true"
+---
 name: step3_surname
 description: surname relevance
 priority: 1
-condition: "!step3_same_as_fam_name.contains('same_as_fam_name')"
+condition: "step2_fam_consent.contains('chk_consent_yes') && !step3_same_as_fam_name.contains('same_as_fam_name')"
 actions:
   - "isRelevant = true"
 ---
@@ -20,15 +34,13 @@ priority: 1
 condition: "!step3_dob_unknown.contains('dob_unknown')"
 actions:
   - "isRelevant = true"
-
 ---
 name: step3_age
 description: age relevance
 priority: 1
-condition: "step2_fam_consent.contains('chk_consent_yes') || step3_dob_unknown.contains('dob_unknown')"
+condition: "step2_fam_consent.contains('chk_consent_yes') && step3_dob_unknown.contains('dob_unknown')"
 actions:
   - "isRelevant = true"
-
 ---
 name: step3_national_id
 description: national_id relevance

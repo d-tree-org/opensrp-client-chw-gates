@@ -54,7 +54,7 @@
     }
   },
   "step1": {
-    "title": "Taarifa ya familia",
+    "title": "Taarifa za familia",
     "next": "step2",
     "fields": [
       {
@@ -63,15 +63,15 @@
         "openmrs_entity": "person",
         "openmrs_entity_id": "first_name",
         "type": "edit_text",
-        "hint": "Taarifa ya familia",
+        "hint": "Jina la familia (ukoo)",
         "edit_type": "name",
         "v_required": {
           "value": "true",
-          "err": "Tafadhali ingiza jina la ukoo"
+          "err": "Tafadhali jaza jina la familia (ukoo)"
         },
         "v_regex": {
           "value": "[A-Za-z\\u00C0-\\u017F\\s\\u00C0-\\u017F\\.\\-]*",
-          "err": "Tafadhali ingiza jina la ukoo"
+          "err": "Tafadhali jaza jina sahihi"
         }
       },
       {
@@ -83,10 +83,10 @@
         "type": "barcode",
         "barcode_type": "qrcode",
         "hint": "ID",
-        "scanButtonText": "Chukua QR code",
+        "scanButtonText": "Scan QR Code",
         "v_numeric": {
           "value": "true",
-          "err": "Tafadhali ingiza namba halali"
+          "err": "Please enter a valid ID"
         }
       },
       {
@@ -96,14 +96,14 @@
         "openmrs_entity_id": "cityVillage",
         "type": "edit_text",
         "edit_type": "name",
-        "hint": "Kijiji / mtaa",
+        "hint": "Kijiji/Mtaa",
         "v_required": {
           "value": "true",
-          "err": "Tafadhali ingiza kijiji au jiji"
+          "err": "Tafadhali jaza jina la kijiji au mtaa."
         },
         "v_regex": {
           "value": "[A-Za-z\\u00C0-\\u017F\\s\\u00C0-\\u017F\\.\\-]*",
-          "err": "Tafadhali ingiza jina halali la kijiji"
+          "err": "Tafadhali jaza jina sahihi la kijiji au mtaa"
         }
       },
       {
@@ -113,10 +113,10 @@
         "openmrs_entity_id": "landmark",
         "type": "edit_text",
         "edit_type": "name",
-        "hint": "Alama ya eneo la makazi",
+        "hint": "Alama ya eneo la makazi.",
         "v_required": {
           "value": true,
-          "err": "Tafadhali ingiza maelezo ya alama au eneo la makazi"
+          "err": "Tafadhali jaza alama ya eneo la makazi."
         }
       },
       {
@@ -130,7 +130,7 @@
       {
         "key": "spacer",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "",
+        "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "spacer",
         "spacer_height": "15dp"
@@ -138,13 +138,23 @@
     ]
   },
   "step2": {
-    "title": "Concent Form",
+    "title": "Fomu ya ridhaa",
     "next": "step3",
     "fields": [
       {
+        "key": "consent_message",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "toaster_notes",
+        "type": "toaster_notes",
+        "text": "Ridhaa! \nTambua mkuu wa kaya au mwakilishi wake. Soma fomu ya ridhaa na nukuu ridhaa ya kaya.",
+        "text_color": "#1199F9",
+        "toaster_type": "warning"
+      },
+      {
         "key": "consent_picture_label",
         "type": "label",
-        "text": "Chukua picha ya fomu ya Ridhaa",
+        "text": "Piga picha ya fomu ya ridhaa.",
         "openmrs_entity_parent": "",
         "openmrs_entity": "",
         "openmrs_entity_id": "",
@@ -172,7 +182,7 @@
         "scanButtonText": "Scan QR Code",
         "v_numeric": {
           "value": "true",
-          "err": "Tadadhali weka ID iliyo sahihi"
+          "err": "Please enter a valid ID"
         }
       },
       {
@@ -181,7 +191,7 @@
         "openmrs_entity": "",
         "openmrs_entity_id": "",
         "type": "choose_image",
-        "uploadButtonText": "Piga Picha",
+        "uploadButtonText": "Take Photo",
         "relevance": {
           "step2:fam_consent": {
             "ex-checkbox": [
@@ -199,14 +209,6 @@
         }
       },
       {
-        "key": "consent_picture_label",
-        "type": "label",
-        "text": "Tambua mkuu wa kaya or mwakilishi wake. Soma fomu ya ridhaa na nukuu ridhaa ya kaya.",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "",
-        "openmrs_entity_id": ""
-      },
-      {
         "key": "fam_consent",
         "openmrs_entity_parent": "",
         "openmrs_entity": "",
@@ -215,11 +217,11 @@
         "exclusive": [
           "chk_consent_yes"
         ],
-        "label": "Je! Kaya imetoa idhini?",
+        "label": "Je! kaya imetoa idhini?",
         "options": [
           {
             "key": "chk_consent_yes",
-            "text": "Ndio",
+            "text": "Ndiyo",
             "text_size": "18px",
             "value": "false"
           },
@@ -232,54 +234,26 @@
         ],
         "v-required" : {
           "value" : "true",
-          "err": "Tafadhali jaza swali hili"
+          "err": "Tafadhali jaza ridhaa ya kaya."
         }
       }
     ]
   },
   "step3": {
-    "title": "Usajili wa Familia",
+    "title": "Mkuu wa kaya",
     "fields": [
       {
         "key": "family_head_label",
         "type": "label",
-        "text": "Mkuu wa Kaya",
+        "text": "Mkuu wa kaya",
         "openmrs_entity_parent": "",
         "openmrs_entity": "",
         "openmrs_entity_id": "",
         "relevance": {
-          "step2:fam_consent": {
-            "ex-checkbox": [
-              {
-                "or": [
-                  "chk_consent_yes"
-                ]
-              }
-            ]
-          }
-        }
-      },
-      {
-        "key": "finger_print",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "",
-        "openmrs_entity_id": "",
-        "type": "finger_print",
-        "project_id":"fUBnpzDdbsCsMp0egCHB",
-        "user_id":"global_user",
-        "module_id":"global_module",
-        "finger_print_option":"register",
-        "uploadButtonText": "Chukua alama za vidole",
-        "image_file": "",
-        "relevance": {
-          "step2:fam_consent": {
-            "ex-checkbox": [
-              {
-                "or": [
-                  "chk_consent_yes"
-                ]
-              }
-            ]
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "family_register_relevance.yml"
+            }
           }
         }
       },
@@ -289,17 +263,64 @@
         "openmrs_entity": "person_identifier",
         "openmrs_entity_id": "opensrp_id",
         "type": "edit_text",
-        "hint": "ID",
+        "hint": "Afya-Tek ID:",
         "value": "0",
         "read_only": "true",
         "v_numeric": {
           "value": "true",
-          "err": "Tafadhali ingiza namba halali"
+          "err": "Please enter a valid ID"
         },
         "v_required": {
           "value": "true",
-          "err": "Tafadhali ingiza namba"
+          "err": "Please enter the ID"
         },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "family_register_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "surname",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "edit_text",
+        "hint": "Jina la ukoo",
+        "edit_type": "name",
+        "v_regex": {
+          "value": "[A-Za-z\\u00C0-\\u017F\\s\\u00C0-\\u017F\\.\\-]*",
+          "err": "Please enter a valid name"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "family_register_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "same_as_fam_name",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "openmrs_data_type": "text",
+        "type": "check_box",
+        "label": "",
+        "exclusive": [
+          "none"
+        ],
+        "options": [
+          {
+            "key": "same_as_fam_name",
+            "text": "Jina la familia sawa na jina la ukoo",
+            "text_size": "18px",
+            "value": "false"
+          }
+        ],
         "relevance": {
           "step2:fam_consent": {
             "ex-checkbox": [
@@ -309,6 +330,21 @@
                 ]
               }
             ]
+          }
+        }
+      },
+      {
+        "key": "surname_calculation",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "person",
+        "openmrs_entity_id": "last_name",
+        "type": "hidden",
+        "hint": "Surname as Family name",
+        "calculation": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "family_register_calculation.yml"
+            }
           }
         }
       },
@@ -322,11 +358,11 @@
         "edit_type": "name",
         "v_required": {
           "value": "true",
-          "err": "Tafadhali ingiza jina la kwanza"
+          "err": "Tafadhali jaza jina la kwanza"
         },
         "v_regex": {
           "value": "[A-Za-z\\u00C0-\\u017F\\s\\u00C0-\\u017F\\.\\-]*",
-          "err": "Tafadhali ingiza jina halali"
+          "err": "Tafadhali jaza jina sahihi"
         },
         "relevance": {
           "step2:fam_consent": {
@@ -350,43 +386,11 @@
         "edit_type": "name",
         "v_required": {
           "value": "true",
-          "err": "Tafadhali ingiza jina la kati"
+          "err": "Tafadhali jaza jina la kati"
         },
         "v_regex": {
           "value": "[A-Za-z\\u00C0-\\u017F\\s\\u00C0-\\u017F\\.\\-]*",
-          "err": "Tafadhali ingiza jina halali"
-        },
-        "relevance": {
-          "step2:fam_consent": {
-            "ex-checkbox": [
-              {
-                "or": [
-                  "chk_consent_yes"
-                ]
-              }
-            ]
-          }
-        }
-      },
-      {
-        "key": "surname",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "",
-        "openmrs_entity_id": "",
-        "type": "edit_text",
-        "hint": "Jina la familia (ukoo)",
-        "edit_type": "name",
-        "read_only": "true",
-        "v_regex": {
-          "value": "[A-Za-z\\u00C0-\\u017F\\s\\u00C0-\\u017F\\.\\-]*",
-          "err": "Tafadhali ingiza jina halali"
-        },
-        "calculation": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "family_register_calculation.yml"
-            }
-          }
+          "err": "Tafadhali jaza jina sahihi"
         },
         "relevance": {
           "step2:fam_consent": {
@@ -406,16 +410,16 @@
         "openmrs_entity": "person",
         "openmrs_entity_id": "birthdate",
         "type": "date_picker",
-        "hint": "Tarehe ya kuzaliwa",
+        "hint": "Tarehe ya kuzaliwa (DOB)",
         "expanded": false,
         "duration": {
-          "label": "Age"
+          "label": "Umri"
         },
         "min_date": "today-120y",
         "max_date": "today-15y",
         "v_required": {
           "value": "true",
-          "err": "Tafadhali ingiza tarehe ya kuzaliwa"
+          "err": "Tafadhali jaza tarehe ya kuzaliwa"
         },
         "relevance": {
           "rules-engine": {
@@ -428,7 +432,7 @@
       {
         "key": "age_calculated",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "",
+        "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "hidden",
         "calculation": {
@@ -436,17 +440,6 @@
             "ex-rules": {
               "rules-file": "family_register_calculation.yml"
             }
-          }
-        },
-        "relevance": {
-          "step2:fam_consent": {
-            "ex-checkbox": [
-              {
-                "or": [
-                  "chk_consent_yes"
-                ]
-              }
-            ]
           }
         }
       },
@@ -486,15 +479,15 @@
         "hint": "Umri",
         "v_numeric": {
           "value": "true",
-          "err": "Nambari lazima ianze na 0 na lazima iwe jumla ya nambari 10 kwa urefu"
+          "err": "Tafadhali ingiza umri"
         },
         "v_min": {
           "value": "15",
-          "err": "Umri lazima uwe sawa au mkubwa kuliko 15"
+          "err": "Ingiza umri kuanzia miaka 15 na kuendelea"
         },
         "v_max": {
           "value": "120",
-          "err": "Umri lazima uwe sawa au chini ya 120"
+          "err": "Ingiza umri chini ya miaka 120"
         },
         "relevance": {
           "rules-engine": {
@@ -506,6 +499,47 @@
         "v_required": {
           "value": true,
           "err": "Tafadhali ingiza umri"
+        }
+      },
+      {
+        "key": "dob_calculated",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "hidden",
+        "calculation": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "family_register_calculation.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "finger_print",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "type": "finger_print",
+        "project_id":"fUBnpzDdbsCsMp0egCHB",
+        "user_id":"global_user",
+        "module_id":"global_module",
+        "finger_print_option":"register",
+        "uploadButtonText": "Skani alama za vidole",
+        "image_file": "",
+        "extra_info": {
+          "DOB": "dob_calculated"
+        },
+        "relevance": {
+          "step2:fam_consent": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "chk_consent_yes"
+                ]
+              }
+            ]
+          }
         }
       },
       {
@@ -542,7 +576,7 @@
       {
         "key": "wra",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "",
+        "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "hidden",
         "calculation": {
@@ -556,7 +590,7 @@
       {
         "key": "mra",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "",
+        "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "hidden",
         "values": ""
@@ -567,7 +601,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "160692AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
         "type": "spinner",
-        "hint": "Je, amejifungua ndani ya mwaka 1?",
+        "hint": "Je amejifungua ndani ya mwaka 1?",
         "values": [
           "Ndiyo",
           "Hapana"
@@ -582,7 +616,7 @@
         },
         "v_required": {
           "value": "true",
-          "err": "Tafadhali chagua ikiwa mwanamke amejifungua katika mwaka 1 uliopita"
+          "err": "Tafadhali chagua kama amejifungua ndani ya mwaka 1 au la."
         },
         "relevance": {
           "rules-engine": {
@@ -601,11 +635,11 @@
         "hint": "Namba ya simu",
         "v_numeric": {
           "value": "true",
-          "err": "Nambari lazima iwe jumla ya nambari 10 kwa urefu"
+          "err": "Nambari ya simu lazima iwe na urefu wa tarakimu 10."
         },
         "v_regex": {
           "value": "(0[0-9]{9})|\\s*",
-          "err": "Nambari lazima iwe na nambari 10 na lazima ianze na 0."
+          "err": "Nambari ya simu lazima iwe na tarakimu 10 na ianze na 0."
         },
         "relevance": {
           "step2:fam_consent": {
@@ -625,14 +659,14 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
         "type": "edit_text",
-        "hint": "Namba za simu nyingine",
+        "hint": "Namba ya simu nyingine",
         "v_numeric": {
           "value": "true",
-          "err": "Nambari lazima iwe jumla ya nambari 10 kwa urefu"
+          "err": "Nambari lazima iwe na urefu wa tarakimu 10."
         },
         "v_regex": {
           "value": "(0[0-9]{9})|\\s*",
-          "err": "Nambari lazima iwe na nambari 10 na lazima ianze na 0."
+          "err": "Nambari lazima iwe na tarakimu 10 na ianze na 0."
         },
         "relevance": {
           "step2:fam_consent": {
@@ -652,7 +686,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "toaster_notes",
-        "text": "Ridhaa haijatolewa kusajili familia hii.",
+        "text": "Hakuna ridhaa ya kusajili familia hii.",
         "text_color": "#CF0800",
         "toaster_type": "problem",
         "relevance": {
