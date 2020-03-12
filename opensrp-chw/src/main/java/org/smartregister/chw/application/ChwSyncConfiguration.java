@@ -19,13 +19,12 @@ public class ChwSyncConfiguration extends SyncConfiguration {
 
     @Override
     public SyncFilter getSyncFilterParam() {
-        return SyncFilter.LOCATION;
+        return this.flavor.getSyncFilterParam();
     }
 
     @Override
     public String getSyncFilterValue() {
-
-        return Utils.getSyncFilterValue();
+        return this.flavor.getSyncFilterValue();
     }
 
     @Override
@@ -50,7 +49,7 @@ public class ChwSyncConfiguration extends SyncConfiguration {
 
     @Override
     public SyncFilter getEncryptionParam() {
-        return SyncFilter.LOCATION;
+        return this.flavor.getEncryptionParam();
     }
 
     @Override
@@ -63,11 +62,20 @@ public class ChwSyncConfiguration extends SyncConfiguration {
         return this.flavor.getSyncFilterValueForSettings();
     }
 
+    @Override
+    public SyncFilter getSettingsSyncFilterParam() {
+        return this.flavor.getSettingsSyncFilterParam();
+    }
+
     public boolean isSyncUsingPost() {
         return !BuildConfig.DEBUG;
     }
 
     public interface Flavor {
         String getSyncFilterValueForSettings();
+        SyncFilter getSettingsSyncFilterParam();
+        SyncFilter getSyncFilterParam();
+        String getSyncFilterValue();
+        SyncFilter getEncryptionParam();
     }
 }
