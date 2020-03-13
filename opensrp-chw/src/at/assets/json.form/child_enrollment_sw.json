@@ -1,4 +1,6 @@
 {
+  "validate_on_submit": true,
+  "show_errors_on_submit": true,
   "count": "1",
   "encounter_type": "Child Registration",
   "entity_id": "",
@@ -177,21 +179,6 @@
         }
       },
       {
-        "key": "preferred_name",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "person",
-        "openmrs_entity_id": "preferred_name",
-        "openmrs_data_type": "text",
-        "type": "edit_text",
-        "hint": "Jina la Utani",
-        "expanded": false,
-        "edit_type": "name",
-        "v_regex": {
-          "value": "[A-Za-z\\s\\-]*",
-          "err": "Tafadhali ingiza jina halali"
-        }
-      },
-      {
         "key": "dob",
         "openmrs_entity_parent": "",
         "openmrs_entity": "person",
@@ -292,6 +279,10 @@
         "image_file": "",
         "extra_info": {
           "DOB": "dob_calculated"
+        },
+        "v_required": {
+          "value": "true",
+          "err": "Please scan fingerprint"
         }
       },
       {

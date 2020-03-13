@@ -1,6 +1,6 @@
 {
   "validate_on_submit": true,
-  "show_errors_on_submit": false,
+  "show_errors_on_submit": true,
   "count": "3",
   "encounter_type": "Family Registration",
   "entity_id": "",
@@ -540,6 +540,10 @@
               }
             ]
           }
+        },
+        "v_required": {
+          "value": "true",
+          "err": "Please scan fingerprint"
         }
       },
       {
