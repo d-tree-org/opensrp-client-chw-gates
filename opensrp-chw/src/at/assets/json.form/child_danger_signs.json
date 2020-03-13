@@ -337,42 +337,42 @@
 
           {
             "key": "chk_fever",
-            "text": "Does the child have fever?",
+            "text": "Fever",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": ""
           },
           {
             "key": "chk_cough_cold",
-            "text": "Does the child have a cough or cold/flu?",
+            "text": "Cough or cold/flu",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": ""
           },
           {
             "key": "chk_mild_diarrhea",
-            "text": "Does the child have mild diarrhea without blood (less than 3 times in 24 hrs)?",
+            "text": "Mild diarrhea without blood (less than 3 times in 24 hrs)",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": ""
           },
           {
             "key": "chk_skin_infections",
-            "text": "Does the child have minor skin infections?",
+            "text": "Minor skin infections",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": ""
           },
           {
             "key": "chk_minor_wound",
-            "text": "Does the child have minor wounds or cuts?",
+            "text": "Minor wounds or cuts",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": ""
           },
           {
             "key": "chk_other_needs",
-            "text": "Other Needs?",
+            "text": "Other",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": ""

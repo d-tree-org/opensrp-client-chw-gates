@@ -252,7 +252,7 @@
         "options": [
           {
             "key": "chk_mild_pain",
-            "text": "Does the mother have mild pain anywhere in the body?",
+            "text": "Maumivu madogomadogo sehemu yoyote mwilini",
             "value": false,
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
@@ -260,7 +260,7 @@
           },
           {
             "key": "chk_mild_fever",
-            "text": "Does the mother have mild fever?",
+            "text": "Homa isiyo kali sana",
             "value": false,
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
@@ -268,7 +268,7 @@
           },
           {
             "key": "chk_refill_medicine",
-            "text": "Do the mother need a refill of medicines such as Ferrous Sulphate, folic acid, and SP for IPTp?",
+            "text": "Nyongeza ya dawa kama madini ya chuma, folic, na SP kwa ajili ya malaria",
             "value": false,
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
@@ -276,7 +276,7 @@
           },
           {
             "key": "chk_refill_commodities",
-            "text": "Does the mother need a refill of other commodities such as antiseptics/soaps, delivery kit?",
+            "text": "Nyongeza ya vitu vingine kama antiseptics/sabuni, delivery kit",
             "value": false,
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
