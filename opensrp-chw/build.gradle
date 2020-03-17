@@ -374,7 +374,7 @@ dependencies {
         exclude group: 'com.rengwuxian.materialedittext', module: 'library'
     }
 
-    implementation ('org.smartregister:opensrp-client-family:1.2.35-DTREE-SNAPSHOT'){
+    implementation ('org.smartregister:opensrp-client-family:1.2.36-DTREE-SNAPSHOT'){
         transitive = true
         exclude group: 'org.smartregister', module: 'opensrp-client-core'
         exclude group: 'org.smartregister', module: 'opensrp-client-native-form'
