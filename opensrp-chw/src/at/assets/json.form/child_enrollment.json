@@ -339,40 +339,6 @@
           "Yes": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
           "No": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
         }
-      },
-      {
-        "key": "nutrition_status",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "163301AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-        "type": "spinner",
-        "hint": "Nutrition status",
-        "values": [
-          "Green",
-          "Grey/Yellow",
-          "Red"
-        ],
-        "keys": [
-          "Green",
-          "Grey",
-          "Red"
-        ],
-        "openmrs_choice_ids": {
-          "Green": "160909AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-          "Grey": "163639AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-          "Red": "127778AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-        },
-        "v_required": {
-          "value": "true",
-          "err": "Please provide child nutrition status"
-        },
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "family-child-relevance.yml"
-            }
-          }
-        }
       }
     ]
   }
