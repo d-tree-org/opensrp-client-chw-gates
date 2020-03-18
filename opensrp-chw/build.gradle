@@ -382,13 +382,13 @@ dependencies {
         exclude group: 'com.android.support', module: 'appcompat-v7'
     }
 
-    implementation ('org.smartregister:opensrp-client-simprints-riddler:1.1.47-RESEARCH-SNAPSHOT'){
+    implementation ('org.smartregister:opensrp-client-simprints-riddler:1.1.48-RESEARCH-SNAPSHOT'){
         transitive = true
         exclude group: 'org.smartregister', module: 'opensrp-client-family'
         exclude group: 'org.smartregister', module: 'opensrp-client-core'
     }
-
-    implementation ('org.smartregister:opensrp-client-native-form:1.7.24-DTREE-SNAPSHOT@aar') {
+    
+    implementation ('org.smartregister:opensrp-client-native-form:1.7.25-DTREE-SNAPSHOT@aar') {
         transitive = true
         exclude group: 'com.android.support', module: 'appcompat-v7'
         exclude group: 'com.android.support', module: 'cardview-v7'
