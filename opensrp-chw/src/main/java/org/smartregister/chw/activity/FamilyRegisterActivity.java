@@ -7,6 +7,7 @@ import android.os.Bundle;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.bottomnavigation.LabelVisibilityMode;
 
+import org.smartregister.CoreLibrary;
 import org.smartregister.chw.BuildConfig;
 import org.smartregister.chw.R;
 import org.smartregister.chw.application.ChwApplication;
@@ -17,6 +18,7 @@ import org.smartregister.chw.listener.ChwBottomNavigationListener;
 import org.smartregister.chw.listener.FamilyBottomNavigationListener;
 import org.smartregister.chw.referral.ReferralLibrary;
 import org.smartregister.chw.util.Constants;
+import org.smartregister.family.FamilyLibrary;
 import org.smartregister.helper.BottomNavigationHelper;
 import org.smartregister.simprint.SimPrintsIdentifyActivity;
 import org.smartregister.view.fragment.BaseRegisterFragment;
@@ -32,8 +34,12 @@ public class FamilyRegisterActivity extends CoreFamilyRegisterActivity {
     }
 
     public static void startFingerprintScan(Activity activity){
+        String moduleId = CoreLibrary.getInstance().context().allSharedPreferences().fetchUserLocalityName("");
+        if (moduleId == null || moduleId.isEmpty()){
+            moduleId = "global_module";
+        }
         SimPrintsIdentifyActivity.startSimprintsIdentifyActivity(activity,
-                BuildConfig.SIMPRINT_MODULE_ID, IDENTIFY_RESULT_CODE);
+                moduleId, IDENTIFY_RESULT_CODE);
     }
 
     public static void registerBottomNavigation(
