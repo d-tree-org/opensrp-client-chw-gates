@@ -1,6 +1,5 @@
 package org.smartregister.chw.application;
 
-import org.apache.http.params.SyncBasicHttpParams;
 import org.smartregister.CoreLibrary;
 import org.smartregister.SyncFilter;
 import org.smartregister.chw.util.Utils;
