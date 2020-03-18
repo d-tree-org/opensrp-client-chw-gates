@@ -96,6 +96,7 @@
         "openmrs_entity_id": "cityVillage",
         "type": "edit_text",
         "edit_type": "name",
+        "read_only": "true",
         "hint": "Village",
         "v_required": {
           "value": "true",
