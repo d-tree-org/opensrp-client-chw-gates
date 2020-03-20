@@ -1,0 +1,278 @@
+---
+name: step1_danger_signs_captured
+description: Get the danger signs that were selected
+priority: 1
+condition: "true"
+actions:
+  - "def getSelectedDS(selectedItem, otherIllnesses) {
+        import java.lang.*;
+        String selected = '';
+        if (selectedItem.contains('chk_difficult_drinking')) {
+            if (selected.isEmpty()) {
+                selected += 'Difficult Drinking/Sulking';
+            } else {
+                selected += ', Difficult Drinking/Sulking \n';
+            }
+
+        }
+        if (selectedItem.contains('chk_difficult_breathing')) {
+            if (selected.isEmpty()) {
+                selected += 'Difficulty breathing';
+            } else {
+                selected += ', Difficulty breathing';
+            }
+        }
+        if (selectedItem.contains('chk_chest_indrawing')) {
+            if (selected.isEmpty()) {
+                selected += 'Chest in-drawing';
+            } else {
+                selected += ', Chest in-drawing';
+            }
+        }
+        if (selectedItem.contains('chk_convulsions')) {
+            if (selected.isEmpty()) {
+                selected += 'Convulsions/fits';
+            } else {
+                selected += ', Convulsions/fits';
+            }
+        }
+        if (selectedItem.contains('chk_extreme_cold_or_hot')) {
+            if (selected.isEmpty()) {
+                selected += 'Extreme cold or hot body temperature';
+            } else {
+                selected += ', Extreme cold or hot body temperature';
+            }
+        }
+        if (selectedItem.contains('chk_oversleeping')) {
+            if (selected.isEmpty()) {
+                selected += 'Oversleeping/difficulty waking up';
+            } else {
+                selected += ', Oversleeping/difficulty waking up';
+            }
+        }
+        if (selectedItem.contains('chk_redness_around_umbilical')) {
+            if (selected.isEmpty()) {
+                selected += 'Redness around/discharge from umbilical cord';
+            } else {
+                selected += ', Redness around/discharge from umbilical cord';
+            }
+        }
+        if (selectedItem.contains('chk_body_rashes')) {
+            if (selected.isEmpty()) {
+                selected += 'Body rashes discharging pus';
+            } else {
+                selected += ', Body rashes discharging pus';
+            }
+        }
+        if (selectedItem.contains('chk_eye_discharge')) {
+            if (selected.isEmpty()) {
+                selected += 'Pus discharge from eyes';
+            } else {
+                selected += ', Pus discharge from eyes';
+            }
+        }
+        if (selectedItem.contains('chk_grunting_voice')) {
+            if (selected.isEmpty()) {
+                selected += 'Grunting voice';
+            } else {
+                selected += ', Grunting voice';
+            }
+        }
+        if (selectedItem.contains('chk_malnutrition')) {
+            if (selected.isEmpty()) {
+                selected += 'Malnutrition';
+            } else {
+                selected += ', Malnutrition';
+            }
+        }
+        if (selectedItem.contains('chk_not_getting_better')) {
+            if (selected.isEmpty()) {
+                selected += 'Not getting better after treatment';
+            } else {
+                selected += ', Not getting better after treatment';
+            }
+        }
+        if (selectedItem.contains('chk_severe_vomit')) {
+            if (selected.isEmpty()) {
+                selected += 'Severe vomiting';
+            } else {
+                selected += ', Severe vomiting';
+            }
+        }
+        if (selectedItem.contains('chk_weak')) {
+            if (selected.isEmpty()) {
+                selected += 'Very weak/unconscious';
+            } else {
+                selected += ', Very weak/unconscious';
+            }
+        }
+        if (selectedItem.contains('chk_diarrhea')) {
+            if (selected.isEmpty()) {
+                selected += 'Diarrhea';
+            } else {
+                selected += ', Diarrhea';
+            }
+        }
+        if (selectedItem.contains('chk_sunk_eyes')) {
+            if (selected.isEmpty()) {
+                selected += 'Sunk Eyes';
+            } else {
+                selected += ', Sunk Eyes';
+            }
+        }
+        if (selectedItem.contains('chk_other')) {
+            if (selected.isEmpty()) {
+                selected += otherIllnesses;
+            } else {
+                selected += ', '+otherIllnesses;
+            }
+        }
+        return selected;
+  }"
+  - "calculation = getSelectedDS(step1_danger_signs_present_child, step1_illness_description_1m5yr) "
+---
+name: step1_danger_signs_present_toaster
+description: Displaying the danger signs selected in the toaster message
+priority: 1
+condition: "true"
+actions:
+  - "calculation = ['danger_signs_captured': step1_danger_signs_captured]"
+---
+name: step1_danger_signs_captured_sw
+description: Get the danger signs that were selected in SW
+priority: 1
+condition: "true"
+actions:
+  - "def getSelectedDS(selectedItem, otherIllnesses) {
+        import java.lang.*;
+        String selected = '';
+        if (selectedItem.contains('chk_difficult_drinking')) {
+            if (selected.isEmpty()) {
+                selected += 'Kushindwa kunyonya/kunywa';
+            } else {
+                selected += ', Kushindwa kunyonya/kunywa \n';
+            }
+
+        }
+        if (selectedItem.contains('chk_difficult_breathing')) {
+            if (selected.isEmpty()) {
+                selected += 'Kupumua kwa shida';
+            } else {
+                selected += ', Kupumua kwa shida';
+            }
+        }
+        if (selectedItem.contains('chk_chest_indrawing')) {
+            if (selected.isEmpty()) {
+                selected += 'Chest in-drawing';
+            } else {
+                selected += ', Chest in-drawing';
+            }
+        }
+        if (selectedItem.contains('chk_convulsions')) {
+            if (selected.isEmpty()) {
+                selected += 'Degedege / Mtukutiko wa mwili';
+            } else {
+                selected += ', Degedege / Mtukutiko wa mwili';
+            }
+        }
+        if (selectedItem.contains('chk_extreme_cold_or_hot')) {
+            if (selected.isEmpty()) {
+                selected += 'Mwili kuwa baridi au joto sana';
+            } else {
+                selected += ', Mwili kuwa baridi au joto sana';
+            }
+        }
+        if (selectedItem.contains('chk_oversleeping')) {
+            if (selected.isEmpty()) {
+                selected += 'Kulala sana/kishindwa kuamka haraka';
+            } else {
+                selected += ', Kulala sana/kishindwa kuamka haraka';
+            }
+        }
+        if (selectedItem.contains('chk_redness_around_umbilical')) {
+            if (selected.isEmpty()) {
+                selected += 'Kitovu chekundu au kinachotoa usaha';
+            } else {
+                selected += ', Kitovu chekundu au kinachotoa usaha';
+            }
+        }
+        if (selectedItem.contains('chk_body_rashes')) {
+            if (selected.isEmpty()) {
+                selected += 'Vipele vyenye usaha mwilini';
+            } else {
+                selected += ', Vipele vyenye usaha mwilini';
+            }
+        }
+        if (selectedItem.contains('chk_eye_discharge')) {
+            if (selected.isEmpty()) {
+                selected += 'Macho yanayotoa usaha';
+            } else {
+                selected += ', Macho yanayotoa usaha';
+            }
+        }
+        if (selectedItem.contains('chk_grunting_voice')) {
+            if (selected.isEmpty()) {
+                selected += 'Sauti ya mtoto kuugulia';
+            } else {
+                selected += ', Sauti ya mtoto kuugulia';
+            }
+        }
+        if (selectedItem.contains('chk_malnutrition')) {
+            if (selected.isEmpty()) {
+                selected += 'Utapiamlo';
+            } else {
+                selected += ', Utapiamlo';
+            }
+        }
+        if (selectedItem.contains('chk_not_getting_better')) {
+            if (selected.isEmpty()) {
+                selected += 'Kutopata nafuu hata baada ya kupata tiba';
+            } else {
+                selected += ', Kutopata nafuu hata baada ya kupata tiba';
+            }
+        }
+        if (selectedItem.contains('chk_severe_vomit')) {
+            if (selected.isEmpty()) {
+                selected += 'Anatapika kila kitu';
+            } else {
+                selected += ', Anatapika kila kitu';
+            }
+        }
+        if (selectedItem.contains('chk_weak')) {
+            if (selected.isEmpty()) {
+                selected += 'Amelegea sana/hana fahamu';
+            } else {
+                selected += ', Amelegea sana/hana fahamu';
+            }
+        }
+        if (selectedItem.contains('chk_diarrhea')) {
+            if (selected.isEmpty()) {
+                selected += 'Kuharisha';
+            } else {
+                selected += ', Kuharisha';
+            }
+        }
+        if (selectedItem.contains('chk_sunk_eyes')) {
+            if (selected.isEmpty()) {
+                selected += 'Macho kuingia ndani';
+            } else {
+                selected += ', Macho kuingia ndani';
+            }
+        }
+        if (selectedItem.contains('chk_other')) {
+            if (selected.isEmpty()) {
+                selected += otherIllnesses;
+            } else {
+                selected += ', '+otherIllnesses;
+            }
+        }
+        return selected;
+  }"
+  - "calculation = getSelectedDS(step1_danger_signs_present_child, step1_illness_description_1m5yr) "
+---
+name: step1_danger_signs_present_toaster_sw
+description: Displaying the danger signs selected in the toaster message
+priority: 1
+condition: "true"
+actions:
+  - "calculation = ['danger_signs_captured_sw': step1_danger_signs_captured_sw]"
