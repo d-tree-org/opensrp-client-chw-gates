@@ -1,4 +1,6 @@
 {
+  "validate_on_submit": true,
+  "show_errors_on_submit": true,
   "count": "1",
   "encounter_type": "Home Visit - Danger signs",
   "entity_id": "",
@@ -238,6 +240,20 @@
         }
       },
       {
+        "key": "danger_signs_captured",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "type": "hidden",
+        "calculation": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "anc_hv_danger_sign_calculation.yml"
+            }
+          }
+        }
+      },
+      {
         "key": "minor_illnesses",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
@@ -365,9 +381,16 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "toaster_notes",
-        "text": "Danger sign! \nI have identified an urgent danger signs. You need to go to the closest health facility immediately. It is important that you complete the referral. I will follow-up with you within 24 hours to check if you have completed your referral.",
+        "text": "Danger sign! \nI have identified an urgent danger sign: {danger_signs_captured}. You need to go to the closest health facility immediately. It is important that you complete the referral. I will follow-up with you within 24 hours to check if you have completed your referral.",
         "text_color": "#CF0800",
         "toaster_type": "problem",
+        "calculation": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "child_danger_sign_calculation.yml"
+            }
+          }
+        },
         "relevance": {
           "step1:danger_signs_present": {
             "ex-checkbox": [

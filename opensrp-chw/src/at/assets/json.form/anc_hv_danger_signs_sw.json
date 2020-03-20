@@ -1,4 +1,6 @@
 {
+  "validate_on_submit": true,
+  "show_errors_on_submit": true,
   "count": "1",
   "encounter_type": "Home Visit - Danger signs",
   "entity_id": "",
@@ -238,6 +240,20 @@
         }
       },
       {
+        "key": "danger_signs_captured_sw",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "type": "hidden",
+        "calculation": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "anc_hv_danger_sign_calculation.yml"
+            }
+          }
+        }
+      },
+      {
         "key": "minor_illnesses",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
@@ -360,14 +376,21 @@
         }
       },
       {
-        "key": "danger_signs_present_toaster",
+        "key": "danger_signs_present_toaster_sw",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "toaster_notes",
-        "text": "Mshauri mteja atembelee duka la dawa muhimu. Mwambie utamtembelea tena ndani ya siku 3.",
+        "text": "Viashiria vya hatari!\nNimegundua viashiria vya hatari vinavyohitaji kushughulikiwa haraka: {danger_signs_captured_sw}. Unahitaji kwenda kwenye kituo cha karibu cha afya mara moja. Ni muhimu ukamilishe rufaa. Nitakufuatilia ndani ya masaa 24 ili kuona kama umefanikiwa kukamilisha rufaa yako.",
         "text_color": "#CF0800",
         "toaster_type": "problem",
+        "calculation": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "child_danger_sign_calculation.yml"
+            }
+          }
+        },
         "relevance": {
           "step1:danger_signs_present": {
             "ex-checkbox": [
