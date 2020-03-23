@@ -163,9 +163,9 @@ actions:
         }
         if (selectedItem.contains('chk_chest_indrawing')) {
             if (selected.isEmpty()) {
-                selected += 'Chest in-drawing';
+                selected += 'Kifua kubonyea sana';
             } else {
-                selected += ', Chest in-drawing';
+                selected += ', Kifua kubonyea sana';
             }
         }
         if (selectedItem.contains('chk_convulsions')) {
