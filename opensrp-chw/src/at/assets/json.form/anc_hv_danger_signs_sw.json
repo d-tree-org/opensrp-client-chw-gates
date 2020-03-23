@@ -425,8 +425,8 @@
         "openmrs_entity_id": "",
         "type": "toaster_notes",
         "text": "Mshauri mama aende duka la dawa (DLDM)\nMwambie kwamba utafuatilia baada ya siku 3",
-        "text_color": "#CF0800",
-        "toaster_type": "problem",
+        "text_color": "#FFC100",
+        "toaster_type": "warning",
         "relevance": {
           "step1:minor_illnesses": {
             "ex-checkbox": [

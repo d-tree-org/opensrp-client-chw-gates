@@ -425,8 +425,8 @@
         "openmrs_entity_id": "",
         "type": "toaster_notes",
         "text": "Recommend that the client visits a nearby ADDO. Tell them that you'll follow up with them in 3 days.",
-        "text_color": "#CF0800",
-        "toaster_type": "problem",
+        "text_color": "#FFC100",
+        "toaster_type": "warning",
         "relevance": {
           "step1:minor_illnesses": {
             "ex-checkbox": [
