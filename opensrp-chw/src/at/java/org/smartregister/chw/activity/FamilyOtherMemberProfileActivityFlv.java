@@ -33,11 +33,19 @@ public class FamilyOtherMemberProfileActivityFlv implements FamilyOtherMemberPro
 
     @Override
     public void updateMalariaMenuItems(String baseEntityId, Menu menu) {
+
+        //Disable Malaria menus : at
+        menu.findItem(R.id.action_malaria_followup_visit).setVisible(false);
+        menu.findItem(R.id.action_malaria_diagnosis).setEnabled(false);
+
         UtilsFlv.updateMalariaMenuItems(baseEntityId, menu);
     }
 
     @Override
     public void updateFpMenuItems(String baseEntityId, Menu menu) {
+        menu.findItem(R.id.action_fp_change).setVisible(false);
+        menu.findItem(R.id.action_fp_initiation).setVisible(false);
+        menu.findItem(R.id.action_family_planning_initiation).setVisible(false);
         UtilsFlv.updateFpMenuItems(baseEntityId, menu);
     }
 

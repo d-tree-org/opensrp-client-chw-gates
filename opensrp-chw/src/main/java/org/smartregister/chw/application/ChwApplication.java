@@ -121,7 +121,7 @@ public class ChwApplication extends CoreChwApplication {
         ReferralMetadata referralMetadata = new ReferralMetadata();
         referralMetadata.setLocationIdMap(new HashMap<>());
         ReferralLibrary.init(context, getRepository(), referralMetadata, BuildConfig.VERSION_CODE, BuildConfig.DATABASE_VERSION);
-        SimPrintsLibrary.init(mInstance, BuildConfig.SIMPRINT_PROJECT_ID,BuildConfig.SIMPRINT_MODULE_ID, getRepository());
+        SimPrintsLibrary.init(mInstance, BuildConfig.SIMPRINT_PROJECT_ID, BuildConfig.SIMPRINT_USER_ID, getRepository());
 
         SyncStatusBroadcastReceiver.init(this);
 

@@ -47,6 +47,9 @@ public class UtilsFlv {
         } else {
             menu.findItem(R.id.action_malaria_registration).setVisible(true);
         }
+
+        // Disable malaria for at
+        menu.findItem(R.id.action_malaria_registration).setVisible(false);
     }
 
     public static void updateFpMenuItems(String baseEntityId, Menu menu) {
@@ -55,6 +58,9 @@ public class UtilsFlv {
         } else {
             menu.findItem(R.id.action_fp_initiation).setVisible(true);
         }
+
+        menu.findItem(R.id.action_fp_change).setVisible(false);
+        menu.findItem(R.id.action_fp_initiation).setVisible(false);
     }
 
 }
