@@ -1,4 +1,6 @@
 {
+  "validate_on_submit": true,
+  "show_errors_on_submit": true,
   "count": "1",
   "encounter_type": "Danger signs - Mother",
   "entity_id": "",
@@ -154,6 +156,13 @@
             "openmrs_entity_id": "118982AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           },
           {
+            "key": "chk_other",
+            "text": "Nyingine",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          {
             "key": "chk_none",
             "text": "Hakuna",
             "value": false,
@@ -163,18 +172,47 @@
         ],
         "v_required": {
           "value": "true",
-          "err": "Tafadhali chagua angalau moja"
+          "err": "Tafadhali chagua moja"
         }
       },
       {
-        "key": "danger_signs_present_toaster",
+        "key": "danger_signs_other",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "type": "edit_text",
+        "hint": "Elezea dalili za hatari",
+        "v_required": {
+          "value": "true",
+          "err": "Elezea dalili za hatari"
+        },
+        "relevance": {
+          "step1:danger_signs_present_mama": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "chk_other"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "key": "date_of_illness",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "",
-        "type": "toaster_notes",
-        "text": "Dalili za hatari! \nMpe rufaa haraka kwenda kituo cha afya.",
-        "text_color": "#CF0800",
-        "toaster_type": "problem",
+        "openmrs_entity_id": "1730AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "type": "date_picker",
+        "hint": "Tarehe mama alipoanza kuonekana akiumwa",
+        "label_info_text": "Tarehe mama alipoanza kuonekana akiumwa",
+        "expanded": false,
+        "min_date": "today-1y",
+        "max_date": "today",
+        "v_required": {
+          "value": "true",
+          "err": "Tafadhali jaza tarehe"
+        },
         "relevance": {
           "step1:danger_signs_present_mama": {
             "ex-checkbox": [
@@ -192,7 +230,286 @@
                   "chk_vaginal_discharge",
                   "chk_blurred_vision",
                   "chk_loss_conscioueness",
-                  "chk_urination"
+                  "chk_urination",
+                  "chk_other"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "key": "danger_signs_captured_sw",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "type": "hidden",
+        "calculation": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "pnc_hv_danger_sign_calculation.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "danger_signs_present_toaster_sw",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "Viashiria vya hatari! \n Nimegundua viashiria vya hatari vinavyohitaji kushughulikiwa haraka: {danger_signs_captured_sw}. Unahitaji kwenda kwenye kituo cha karibu cha afya mara moja. Ni muhimu ukamilishe rufaa. Nitakufuatilia ndani ya masaa 24 ili kuona kama umefanikiwa kukamilisha rufaa yako.",
+        "text_color": "#CF0800",
+        "toaster_type": "problem",
+        "calculation": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "pnc_hv_danger_sign_calculation.yml"
+            }
+          }
+        },
+        "relevance": {
+          "step1:danger_signs_present_mama": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "chk_fever",
+                  "chk_bleeding_vaginally",
+                  "chk_server_headache",
+                  "chk_convulsions",
+                  "chk_difficulty_breathing",
+                  "chk_severe_leg_pain",
+                  "chk_unusual_behaviour",
+                  "chk_swelling of breast",
+                  "chk_severe_abdominal_pain",
+                  "chk_vaginal_discharge",
+                  "chk_blurred_vision",
+                  "chk_loss_conscioueness",
+                  "chk_urination",
+                  "chk_other"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "key": "save_n_refer",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "165310AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "type": "button",
+        "hint": "Hifadhi na toa rufaa",
+        "btn_bg_color": "#CF0800",
+        "action": {
+          "behaviour": "refer"
+        },
+        "relevance": {
+          "step1:danger_signs_present_mama": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "chk_fever",
+                  "chk_bleeding_vaginally",
+                  "chk_server_headache",
+                  "chk_convulsions",
+                  "chk_difficulty_breathing",
+                  "chk_severe_leg_pain",
+                  "chk_unusual_behaviour",
+                  "chk_swelling of breast",
+                  "chk_severe_abdominal_pain",
+                  "chk_vaginal_discharge",
+                  "chk_blurred_vision",
+                  "chk_loss_conscioueness",
+                  "chk_urination",
+                  "chk_other"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "key": "minor_illnesses_title",
+        "type": "label",
+        "text": "Magonjwa madogo madogo",
+        "label_text_size": "18sp",
+        "label_text_style": "bold",
+        "text_color": "#000000",
+        "relevance": {
+          "step1:danger_signs_present_mama": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "chk_none"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "key": "minor_illness_present_mama",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "160939AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "type": "check_box",
+        "label": "Je, mama ana yoyote kati ya magojwa na mahitaji madogo madogo kama yafuatayo?",
+        "label_text_style": "normal",
+        "text_color": "#C0C0C0",
+        "exclusive": [
+          "chk_none"
+        ],
+        "options": [
+          {
+            "key": "chk_mild_pain",
+            "text": "Maumivu madogomadogo sehemu yoyote mwilini",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "140238AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          {
+            "key": "chk_mild_fever",
+            "text": "Homa isiyo kali",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "150802AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          {
+            "key": "chk_refill_commodities",
+            "text": "Nyongeza ya bidhaa nyingine kama pedi, antiseptics/sabuni",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "139081AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          {
+            "key": "chk_other_needs",
+            "text": "Nyingine",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "1107AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          {
+            "key": "chk_none",
+            "text": "Hakuna",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Please pick at least one"
+        },
+        "relevance": {
+          "step1:danger_signs_present_mama": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "chk_none"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "key": "minorillness_description",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "type": "edit_text",
+        "hint": "Elezea mahitaji/magonjwa mengine madogo",
+        "v_required": {
+          "value": "true",
+          "err": "Elezea mahitaji/magonjwa mengine madogo"
+        },
+        "relevance": {
+          "step1:minor_illness_present_mama": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "chk_other_needs"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "key": "date_of_minor_illness",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "1730AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "type": "date_picker",
+        "hint": "Tarehe mama alipoanza kujihisi kuumwa",
+        "label_info_text": "Tarehe mama alipoanza kujihisi kuumwa",
+        "expanded": false,
+        "min_date": "today-1y",
+        "max_date": "today",
+        "v_required": {
+          "value": "true",
+          "err": "Tafadhali jaza tarehe mama alipoanza kujihisi kuumwa"
+        },
+        "relevance": {
+          "step1:minor_illness_present_mama": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "chk_mild_pain",
+                  "chk_mild_fever",
+                  "chk_refill_commodities",
+                  "chk_other_needs"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "key": "minor_illness_present_toaster",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "Mshauri mteja atembelee duka la dawa muhimu. Mwambie utamtembelea tena ndani ya siku 3.",
+        "text_color": "#FFC100",
+        "toaster_type": "warning",
+        "relevance": {
+          "step1:minor_illness_present_mama": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "chk_mild_pain",
+                  "chk_mild_fever",
+                  "chk_refill_commodities",
+                  "chk_other_needs"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "key": "save_n_link",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "165310AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "type": "button",
+        "hint": "Hifadhi na unganisha kwa DLDM",
+        "btn_bg_color": "#CF0800",
+        "action": {
+          "behaviour": "link"
+        },
+        "relevance": {
+          "step1:minor_illness_present_mama":{
+            "ex-checkbox": [
+              {
+                "or": [
+                  "chk_mild_pain",
+                  "chk_mild_fever",
+                  "chk_refill_commodities",
+                  "chk_other_needs"
                 ]
               }
             ]

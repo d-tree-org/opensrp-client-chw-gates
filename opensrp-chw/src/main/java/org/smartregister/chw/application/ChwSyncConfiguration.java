@@ -9,6 +9,9 @@ import org.smartregister.chw.core.utils.Utils;
  * Created by samuelgithengi on 10/19/18.
  */
 public class ChwSyncConfiguration extends SyncConfiguration {
+
+    private static ChwSyncConfiguration.Flavor flavor = new ChwSyncConfigurationFlv();
+
     @Override
     public int getSyncMaxRetries() {
         return BuildConfig.MAX_SYNC_RETRIES;
@@ -16,13 +19,12 @@ public class ChwSyncConfiguration extends SyncConfiguration {
 
     @Override
     public SyncFilter getSyncFilterParam() {
-        return SyncFilter.LOCATION;
+        return this.flavor.getSyncFilterParam();
     }
 
     @Override
     public String getSyncFilterValue() {
-
-        return Utils.getSyncFilterValue();
+        return this.flavor.getSyncFilterValue();
     }
 
     @Override
@@ -47,11 +49,33 @@ public class ChwSyncConfiguration extends SyncConfiguration {
 
     @Override
     public SyncFilter getEncryptionParam() {
-        return SyncFilter.LOCATION;
+        return this.flavor.getEncryptionParam();
     }
 
     @Override
     public boolean updateClientDetailsTable() {
         return false;
+    }
+
+    @Override
+    public String getSettingsSyncFilterValue() {
+        return this.flavor.getSyncFilterValueForSettings();
+    }
+
+    @Override
+    public SyncFilter getSettingsSyncFilterParam() {
+        return this.flavor.getSettingsSyncFilterParam();
+    }
+
+    public boolean isSyncUsingPost() {
+        return !BuildConfig.DEBUG;
+    }
+
+    public interface Flavor {
+        String getSyncFilterValueForSettings();
+        SyncFilter getSettingsSyncFilterParam();
+        SyncFilter getSyncFilterParam();
+        String getSyncFilterValue();
+        SyncFilter getEncryptionParam();
     }
 }

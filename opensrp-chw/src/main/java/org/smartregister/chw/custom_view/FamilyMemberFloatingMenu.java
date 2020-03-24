@@ -1,9 +1,10 @@
 package org.smartregister.chw.custom_view;
 
 import android.content.Context;
-import android.support.design.widget.FloatingActionButton;
 import android.util.AttributeSet;
 import android.view.View;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.smartregister.chw.core.custom_views.CoreFamilyMemberFloatingMenu;
 

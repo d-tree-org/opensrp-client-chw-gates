@@ -3,9 +3,11 @@ package org.smartregister.chw.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.bottomnavigation.LabelVisibilityMode;
-import android.support.design.widget.BottomNavigationView;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.bottomnavigation.LabelVisibilityMode;
+
+import org.smartregister.CoreLibrary;
 import org.smartregister.chw.BuildConfig;
 import org.smartregister.chw.R;
 import org.smartregister.chw.application.ChwApplication;
@@ -14,16 +16,30 @@ import org.smartregister.chw.core.custom_views.NavigationMenu;
 import org.smartregister.chw.fragment.FamilyRegisterFragment;
 import org.smartregister.chw.listener.ChwBottomNavigationListener;
 import org.smartregister.chw.listener.FamilyBottomNavigationListener;
+import org.smartregister.chw.referral.ReferralLibrary;
 import org.smartregister.chw.util.Constants;
+import org.smartregister.family.FamilyLibrary;
 import org.smartregister.helper.BottomNavigationHelper;
+import org.smartregister.simprint.SimPrintsIdentifyActivity;
 import org.smartregister.view.fragment.BaseRegisterFragment;
 
 public class FamilyRegisterActivity extends CoreFamilyRegisterActivity {
+
+    private static final int IDENTIFY_RESULT_CODE = 4061;
 
     public static void startFamilyRegisterForm(Activity activity) {
         Intent intent = new Intent(activity, FamilyRegisterActivity.class);
         intent.putExtra(Constants.ACTIVITY_PAYLOAD.ACTION, Constants.ACTION.START_REGISTRATION);
         activity.startActivity(intent);
+    }
+
+    public static void startFingerprintScan(Activity activity){
+        String moduleId = CoreLibrary.getInstance().context().allSharedPreferences().fetchUserLocalityName("");
+        if (moduleId == null || moduleId.isEmpty()){
+            moduleId = "global_module";
+        }
+        SimPrintsIdentifyActivity.startSimprintsIdentifyActivity(activity,
+                moduleId, IDENTIFY_RESULT_CODE);
     }
 
     public static void registerBottomNavigation(
@@ -67,7 +83,7 @@ public class FamilyRegisterActivity extends CoreFamilyRegisterActivity {
         super.onCreate(savedInstanceState);
         NavigationMenu.getInstance(this, null, null);
         ChwApplication.getInstance().notifyAppContextChange(); // initialize the language (bug in translation)
-
+        ReferralLibrary.getInstance().seedSampleReferralServicesAndIndicators(); // Used to seed referral module services and problems, temporally and will be removed once they are sync from the server in future versions.
         action = getIntent().getStringExtra(Constants.ACTIVITY_PAYLOAD.ACTION);
         if (action != null && action.equals(Constants.ACTION.START_REGISTRATION)) {
             startRegistration();

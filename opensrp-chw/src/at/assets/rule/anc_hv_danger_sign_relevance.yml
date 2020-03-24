@@ -1,0 +1,8 @@
+---
+name: step1_date_of_illness
+description: Minor Illnesses relevance
+priority: 1
+condition: "!step1_danger_signs_present.contains('chk_none') ||
+            !step1_minor_illnesses.contains('chk_none') "
+actions:
+  - "isRelevant = true"

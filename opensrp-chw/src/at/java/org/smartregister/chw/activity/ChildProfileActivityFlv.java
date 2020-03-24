@@ -11,28 +11,20 @@ import org.smartregister.chw.presenter.ChildProfilePresenter;
 public class ChildProfileActivityFlv implements ChildProfileActivity.Flavor{
 
     @Override
-    public OnClickFloatingMenu getOnClickFloatingMenu(Activity activity, ChildProfilePresenter presenter) {
+    public OnClickFloatingMenu getOnClickFloatingMenu(final Activity activity, final ChildProfilePresenter presenter) {
         return viewId -> {
-            switch (viewId){
-                case R.id.call_layout:
-                    FamilyCallDialogFragment.launchDialog(activity, presenter.getFamilyId());
-                    break;
-                case R.id.refer_to_facility_fab:
-                    Toast.makeText(activity, "Refer to facility", Toast.LENGTH_LONG).show();
-                    break;
-                default:
-                    break;
+            if (presenter != null) {
+                switch (viewId) {
+                    case R.id.call_layout:
+                        FamilyCallDialogFragment.launchDialog(activity, presenter.getFamilyId());
+                        break;
+                    case R.id.refer_to_facility_layout:
+                        presenter.referToFacility();
+                        break;
+                    default:
+                        break;
+                }
             }
         };
-    }
-
-    @Override
-    public boolean showMalariaConfirmationMenu() {
-        return false;
-    }
-
-    @Override
-    public boolean showFollowUpVisit() {
-        return true;
     }
 }

@@ -3,6 +3,8 @@ package org.smartregister.chw.interactor;
 import android.content.Context;
 import android.util.Pair;
 
+import androidx.annotation.Nullable;
+
 import org.jeasy.rules.api.Rules;
 import org.joda.time.LocalDate;
 import org.smartregister.chw.anc.AncLibrary;
@@ -19,8 +21,8 @@ import org.smartregister.chw.core.rule.PncVisitAlertRule;
 import org.smartregister.chw.core.utils.CoreConstants;
 import org.smartregister.chw.core.utils.CoreReferralUtils;
 import org.smartregister.chw.core.utils.HomeVisitUtil;
+import org.smartregister.chw.dao.FamilyDao;
 import org.smartregister.chw.pnc.PncLibrary;
-import org.smartregister.chw.util.ScheduleUtil;
 import org.smartregister.clientandeventmodel.Client;
 import org.smartregister.clientandeventmodel.Event;
 import org.smartregister.dao.AbstractDao;
@@ -41,7 +43,6 @@ import timber.log.Timber;
 public class PncMemberProfileInteractor extends CorePncMemberProfileInteractor implements PncMemberProfileContract.Interactor {
     private Context context;
     private Date lastVisitDate;
-    private Date deliveryDate;
 
     public PncMemberProfileInteractor(Context context) {
         this.context = context;
@@ -57,7 +58,8 @@ public class PncMemberProfileInteractor extends CorePncMemberProfileInteractor i
     public void refreshProfileInfo(final MemberObject memberObject, final BaseAncMemberProfileContract.InteractorCallBack callback) {
         Runnable runnable = new Runnable() {
             Date lastVisitDate = getLastVisitDate(memberObject);
-            AlertStatus familyAlert = ScheduleUtil.getFamilyAlertStatus(context, memberObject.getBaseEntityId(), memberObject.getFamilyBaseEntityId());
+
+            AlertStatus familyAlert = FamilyDao.getFamilyAlertStatus(memberObject.getBaseEntityId());
             Alert upcomingService = getAlerts(context, memberObject);
 
             @Override
@@ -148,18 +150,19 @@ public class PncMemberProfileInteractor extends CorePncMemberProfileInteractor i
         } else {
             return lastVisitDate = getDeliveryDate(motherBaseID);
         }
-
     }
 
+    @Nullable
     private Date getDeliveryDate(String motherBaseID) {
-        String deliveryDateString = PncLibrary.getInstance().profileRepository().getDeliveryDate(motherBaseID);
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
         try {
-            deliveryDate = sdf.parse(deliveryDateString);
+            String deliveryDateString = PncLibrary.getInstance().profileRepository().getDeliveryDate(motherBaseID);
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
+            return sdf.parse(deliveryDateString);
+
         } catch (ParseException e) {
             Timber.e(e);
         }
-        return deliveryDate;
+        return null;
     }
 
     @Override

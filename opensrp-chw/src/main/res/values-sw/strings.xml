@@ -6,6 +6,8 @@
     <string name="not_done">Haijafanyika</string>
     <string name="not_provided">Haijatolewa</string>
 
+    <string name="scan_fingerprint"> Scan </string>
+
     <string name="child_under_five">Mtoto chini ya miaka 5</string>
     <string name="go_to_family_s_profile">Elekea kwenye taarifa binafsi za kaya</string>
     <string name="family_has_nothing_due">Muda wa huduma kwenye kaya haujafika</string>

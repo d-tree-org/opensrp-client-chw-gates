@@ -1,6 +1,7 @@
 package org.smartregister.chw.interactor;
 
 import android.content.Context;
+import android.text.TextUtils;
 
 import org.apache.commons.lang3.StringUtils;
 import org.joda.time.DateTime;
@@ -9,6 +10,7 @@ import org.joda.time.format.DateTimeFormat;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.smartregister.chw.R;
+import org.smartregister.chw.actionhelper.DangerSignsAction;
 import org.smartregister.chw.actionhelper.HealthFacilityVisitAction;
 import org.smartregister.chw.anc.AncLibrary;
 import org.smartregister.chw.anc.contract.BaseAncHomeVisitContract;
@@ -17,6 +19,8 @@ import org.smartregister.chw.anc.domain.Visit;
 import org.smartregister.chw.anc.domain.VisitDetail;
 import org.smartregister.chw.anc.model.BaseAncHomeVisitAction;
 import org.smartregister.chw.anc.util.VisitUtils;
+import org.smartregister.chw.core.utils.CoreConstants;
+import org.smartregister.chw.core.utils.Utils;
 import org.smartregister.chw.util.Constants;
 import org.smartregister.chw.util.ContactUtil;
 import org.smartregister.chw.util.JsonFormUtils;
@@ -74,11 +78,11 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
 
         evaluateDangerSigns(actionList, details, context);
         evaluateHealthFacilityVisit(actionList, details, memberObject, dateMap, context);
-        evaluateFamilyPlanning(actionList, details, context);
-        evaluateNutritionStatus(actionList, details, context);
+//        evaluateFamilyPlanning(actionList, details, context);
+//        evaluateNutritionStatus(actionList, details, context);
         evaluateCounsellingStatus(actionList, details, context);
         evaluateMalaria(actionList, details, context);
-        evaluateObservation(actionList, details, context);
+//        evaluateObservation(actionList, details, context);
         evaluateRemarks(actionList, details, context);
 
         return actionList;
@@ -87,7 +91,7 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
     private void evaluateDangerSigns(LinkedHashMap<String, BaseAncHomeVisitAction> actionList,
                                      Map<String, List<VisitDetail>> details,
                                      final Context context) throws BaseAncHomeVisitAction.ValidationException {
-        BaseAncHomeVisitAction danger_signs = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.anc_home_visit_danger_signs))
+        BaseAncHomeVisitAction danger_signs = new BaseAncHomeVisitAction.Builder(context, "Danger signs")
                 .withOptional(false)
                 .withDetails(details)
                 .withFormName(Constants.JSON_FORM.ANC_HOME_VISIT.getDangerSigns())
@@ -132,6 +136,7 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
                 .withDetails(details)
                 .withFormName(Constants.JSON_FORM.ANC_HOME_VISIT.getNutritionStatus())
                 .withHelper(new NutritionAction())
+                .withDisabledMessage("")
                 .build();
         actionList.put(context.getString(R.string.anc_home_visit_nutrition_status), nutrition_ba);
     }
@@ -184,10 +189,10 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
         actionList.put(context.getString(R.string.anc_home_visit_remarks_and_comments), remark_ba);
     }
 
-
-    private class DangerSignsAction implements BaseAncHomeVisitAction.AncHomeVisitActionHelper {
+    private class DangerSignsAction extends org.smartregister.chw.actionhelper.DangerSignsAction {
         private String danger_signs_counseling;
         private String danger_signs_present;
+        private String minor_illnesses_present;
         private Context context;
 
         @Override
@@ -206,6 +211,7 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
                 JSONObject jsonObject = new JSONObject(jsonPayload);
                 danger_signs_counseling = JsonFormUtils.getValue(jsonObject, "danger_signs_counseling");
                 danger_signs_present = JsonFormUtils.getCheckBoxValue(jsonObject, "danger_signs_present");
+                minor_illnesses_present = JsonFormUtils.getValue(jsonObject, "mild_pain");
             } catch (JSONException e) {
                 Timber.e(e);
             }
@@ -229,6 +235,8 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
         @Override
         public String evaluateSubTitle() {
             return MessageFormat.format("Danger signs: {0}", danger_signs_present) +
+                    "\n" +
+                    MessageFormat.format("Minor illnesses: {0}", !TextUtils.isEmpty(minor_illnesses_present)) +
                     "\n" +
                     MessageFormat.format("Health facility counselling {0}",
                             (danger_signs_counseling.equalsIgnoreCase("Yes") ? context.getString(R.string.done).toLowerCase() : context.getString(R.string.not_done).toLowerCase())
