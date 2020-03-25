@@ -95,6 +95,7 @@
         "openmrs_entity": "person_address",
         "openmrs_entity_id": "cityVillage",
         "type": "edit_text",
+        "read_only": "true",
         "edit_type": "name",
         "hint": "Kijiji/Mtaa",
         "v_required": {
