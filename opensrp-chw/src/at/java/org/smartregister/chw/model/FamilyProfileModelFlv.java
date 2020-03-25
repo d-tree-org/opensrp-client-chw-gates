@@ -7,6 +7,6 @@ public class FamilyProfileModelFlv implements FamilyProfileModel.Flavor {
 
     @Override
     public void updateWra(FamilyEventClient familyEventClient) {
-        FormUtils.updateWraForBA(familyEventClient);
+        //FormUtils.updateWraForBA(familyEventClient);
     }
 }
