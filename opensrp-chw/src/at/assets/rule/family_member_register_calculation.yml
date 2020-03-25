@@ -1,21 +1,21 @@
 ---
-name: step1_age_calculated
+name: step2_age_calculated
 description: Age calculated
 priority: 1
 condition: "true"
 actions:
-  - "calculation = (!step1_dob_unknown.isEmpty() && step1_dob_unknown.contains('dob_unknown')) ? step1_age : helper.getDifferenceDays(step1_dob) / 365.25"
+  - "calculation = (!step2_dob_unknown.isEmpty() && step2_dob_unknown.contains('dob_unknown')) ? step2_age : helper.getDifferenceDays(step2_dob) / 365.25"
 ---
-name: step1_wra
+name: step2_wra
 description: wra calculation
 priority: 1
-condition: "step1_sex == 'Female' && (step1_age_calculated >= 10 && step1_age_calculated <= 49)"
+condition: "step2_sex == 'Female' && (step1_age_calculated >= 10 && step2_age_calculated <= 49)"
 actions:
   - "calculation = 1"
 ---
-name: step1_dob_calculated
+name: step2_dob_calculated
 description: Date of birth calculated
 priority: 1
 condition: "true"
 actions:
-  - "calculation = (step1_dob_unknown.isEmpty() && !step1_dob_unknown.contains('dob_unknown')) ? step1_dob : helper.getDOBFromAge(step1_age)"
+  - "calculation = (step2_dob_unknown.isEmpty() && !step2_dob_unknown.contains('dob_unknown')) ? step2_dob : helper.getDOBFromAge(step2_age)"
