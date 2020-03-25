@@ -381,7 +381,7 @@ dependencies {
 
     implementation 'com.mcxiaoke.volley:library:1.0.19'
 
-    implementation ('org.smartregister:opensrp-client-family:1.2.36-DTREE-SNAPSHOT'){
+    implementation ('org.smartregister:opensrp-client-family:1.2.39-DTREE-SNAPSHOT'){
         transitive = true
         exclude group: 'org.smartregister', module: 'opensrp-client-core'
         exclude group: 'org.smartregister', module: 'opensrp-client-native-form'
