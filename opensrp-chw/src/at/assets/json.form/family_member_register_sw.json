@@ -1,7 +1,7 @@
 {
   "validate_on_submit": true,
   "show_errors_on_submit": true,
-  "count": "1",
+  "count": "2",
   "encounter_type": "Family Member Registration",
   "entity_id": "",
   "relational_id": "",
@@ -54,6 +54,51 @@
     }
   },
   "step1": {
+    "title": "Fomu ya Ridhaa",
+    "next": "step2",
+    "fields": [
+      {
+        "key": "consent_message",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "toaster_notes",
+        "type": "toaster_notes",
+        "text": "Lengo la programu ya Afya Tek ni kuimarisha utaratibu wa kupata huduma ili kuhakikisha familia za Kibaha zinafikia huduma za afya kwa wakati.\n\nKama sehemu ya kuboresha upatikanaji wa huduma za afya na taratibu za rufaa, tunahitaji kusajili wanakaya wote wa Kibaha ili tuweze kuwafuatilia wale waliopo kwenye makundi maalum (watoto, vijana, mama mjamzito na mama aliyejifungua) pindi wanapotafuta huduma sehemu mbalimbali kuhakikisha wanapata huduma husika zenye ubora. Usajili wa wanakaya utajumuisha uskanaji wa alama za vidole ili programu iweze kukutambua na kuoanisha taarifa zako za afya. Alama zako za vidole pamoja na taarifa zitakazokusanywa zitazingatia usiri na kutunzwa kulingana na viwango vya kulinda taarifa.\n\n\nKama mjamzito, utatembelewa na CHV wakati wa ujauzito na baada ya kujifungua, na kupewa ushauri na kutathminiwa kwaajili ya viashiria vya hatari. Kisha, kama itahitajika, utapewa rufaa ya kwenda kwenye kituo cha afya au utaunganishwa na duka la dawa muhimu na kufuatiliwa na CHV ili kuhakikisha mwendelezo wa huduma bora.\n\nJe! Unakubali kushiriki katika programu hiyo?",
+        "text_color": "#1199F9",
+        "toaster_type": "warning"
+      },
+      {
+        "key": "member_consent",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "type": "check_box",
+        "exclusive": [
+          "chk_consent_yes"
+        ],
+        "label": "Je mtu huyu anaridhia kuunganishwa kwenye programu?",
+        "options": [
+          {
+            "key": "chk_consent_yes",
+            "text": "Yes",
+            "text_size": "18px",
+            "value": "false"
+          },
+          {
+            "key": "chk_consent_no",
+            "text": "No",
+            "text_size": "18px",
+            "value": "false"
+          }
+        ],
+        "v-required" : {
+          "value" : "true",
+          "err": "Please fill household consent"
+        }
+      }
+    ]
+  },
+  "step2": {
     "title": "Ongeza mwana familia",
     "fields": [
       {
@@ -440,6 +485,27 @@
             "ex-rules": {
               "rules-file": "family_member_relevance.yml"
             }
+          }
+        }
+      },
+      {
+        "key": "consent_toaster",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "Ridhaa haijatolewa kumsajili mwanafamilia huyu",
+        "text_color": "#CF0800",
+        "toaster_type": "problem",
+        "relevance": {
+          "step1:member_consent": {
+            "ex-checkbox": [
+              {
+                "not": [
+                  "chk_consent_yes"
+                ]
+              }
+            ]
           }
         }
       }
