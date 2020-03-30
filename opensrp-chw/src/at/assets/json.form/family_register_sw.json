@@ -269,11 +269,11 @@
         "read_only": "true",
         "v_numeric": {
           "value": "true",
-          "err": "Please enter a valid ID"
+          "err": "Jafadhali weka namba ya utambulisho sahihi"
         },
         "v_required": {
           "value": "true",
-          "err": "Please enter the ID"
+          "err": "Jafadhali weka namba ya utambulisho sahihi"
         },
         "relevance": {
           "rules-engine": {
@@ -324,7 +324,11 @@
         "edit_type": "name",
         "v_regex": {
           "value": "[A-Za-z\\u00C0-\\u017F\\s\\u00C0-\\u017F\\.\\-]*",
-          "err": "Please enter a valid name"
+          "err": "Tafadhali jaza jina sahihi"
+        },
+        "v_required": {
+          "value": "true",
+          "err": "Tafadhali jaza jina la mwisho (Ukoo)"
         },
         "relevance": {
           "rules-engine": {
@@ -340,7 +344,7 @@
         "openmrs_entity": "person",
         "openmrs_entity_id": "last_name",
         "type": "hidden",
-        "hint": "Surname as Family name",
+        "hint": "Jina la ukoo sawa na jina la familia",
         "calculation": {
           "rules-engine": {
             "ex-rules": {
