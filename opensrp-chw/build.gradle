@@ -145,15 +145,15 @@ android {
         at {
             dimension = 'baseDimension'
             applicationIdSuffix ".at"
-            versionCode 1
-            versionName "0.0.1"
+            versionCode 3
+            versionName "0.1.1"
             buildConfigField "String", 'opensrp_url', '"https://opensrp-dev.d-tree.org/opensrp/"'
             buildConfigField "String", 'guidebooks_url', '"https://opensrp.s3.amazonaws.com/media/ba/"'
             buildConfigField "String", 'opensrp_url_debug', '"https://opensrp-dev.d-tree.org/opensrp/"'
             buildConfigField "String[]", "LOCATION_HIERACHY", '{"Country", "Region", "District", "Ward" ,"Village", "Facility Name"}'
             buildConfigField "String[]", "ALLOWED_LOCATION_LEVELS", '{"Facility Name", "Village"}'
             buildConfigField "String[]", "ALLOWED_LOCATION_LEVELS_DEBUG", '{"Facility Name", "Village"}'
-            buildConfigField "String", 'DEFAULT_LOCATION', '"Village Sublocations"'
+            buildConfigField "String", 'DEFAULT_LOCATION', '"Village"'
             buildConfigField "String", 'DEFAULT_LOCATION_DEBUG', '"Village"'
             buildConfigField "boolean", 'SUPPORT_QR', 'true'
             buildConfigField "boolean", 'SUPPORT_REPORT', 'false'
@@ -381,7 +381,7 @@ dependencies {
 
     implementation 'com.mcxiaoke.volley:library:1.0.19'
 
-    implementation ('org.smartregister:opensrp-client-family:1.2.36-DTREE-SNAPSHOT'){
+    implementation ('org.smartregister:opensrp-client-family:1.2.39-DTREE-SNAPSHOT'){
         transitive = true
         exclude group: 'org.smartregister', module: 'opensrp-client-core'
         exclude group: 'org.smartregister', module: 'opensrp-client-native-form'
