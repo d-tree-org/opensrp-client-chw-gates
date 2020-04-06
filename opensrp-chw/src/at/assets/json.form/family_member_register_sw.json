@@ -397,37 +397,6 @@
 
       },
       {
-        "key": "finger_print",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "",
-        "openmrs_entity_id": "",
-        "type": "finger_print",
-        "project_id":"fUBnpzDdbsCsMp0egCHB",
-        "user_id":"global_user",
-        "module_id":"global_module",
-        "finger_print_option":"register",
-        "uploadButtonText": "Take finger print",
-        "image_file": "",
-        "extra_info": {
-          "DOB": "dob_calculated"
-        },
-        "v_required": {
-          "value": "true",
-          "err": "Please scan fingerprint"
-        },
-        "relevance": {
-          "step1:member_consent": {
-            "ex-checkbox": [
-              {
-                "or": [
-                  "chk_consent_yes"
-                ]
-              }
-            ]
-          }
-        }
-      },
-      {
         "key": "sex",
         "openmrs_entity_parent": "",
         "openmrs_entity": "person",
@@ -595,6 +564,37 @@
             "ex-rules": {
               "rules-file": "family_member_relevance.yml"
             }
+          }
+        }
+      },
+      {
+        "key": "finger_print",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "type": "finger_print",
+        "project_id":"fUBnpzDdbsCsMp0egCHB",
+        "user_id":"global_user",
+        "module_id":"global_module",
+        "finger_print_option":"register",
+        "uploadButtonText": "Take finger print",
+        "image_file": "",
+        "extra_info": {
+          "DOB": "dob_calculated"
+        },
+        "v_required": {
+          "value": "true",
+          "err": "Please scan fingerprint"
+        },
+        "relevance": {
+          "step1:member_consent": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "chk_consent_yes"
+                ]
+              }
+            ]
           }
         }
       },
