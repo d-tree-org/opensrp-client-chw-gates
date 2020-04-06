@@ -301,26 +301,6 @@
         }
       },
       {
-        "key": "rhc_card",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "164147AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-        "type": "spinner",
-        "hint": "Does the child have RCH card 1/child growth booklet?",
-        "values": [
-          "Yes",
-          "No"
-        ],
-        "keys": [
-          "Yes",
-          "No"
-        ],
-        "openmrs_choice_ids": {
-          "Yes": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-          "No": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-        }
-      },
-      {
         "key": "finger_print",
         "openmrs_entity_parent": "",
         "openmrs_entity": "",
