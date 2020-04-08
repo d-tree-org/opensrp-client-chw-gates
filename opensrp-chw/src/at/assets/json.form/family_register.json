@@ -200,6 +200,9 @@
         "key": "consent_picture_label",
         "type": "label",
         "text": "Take a picture of the consent form",
+        "v_required": {
+          "value": true
+        },
         "openmrs_entity_parent": "",
         "openmrs_entity": "",
         "openmrs_entity_id": "",
@@ -234,7 +237,7 @@
           }
         },
         "v_required": {
-          "value": "true",
+          "value": true,
           "err": "Please take a picture of the consent form"
         }
       }

@@ -200,6 +200,9 @@
         "key": "consent_picture_label",
         "type": "label",
         "text": "Piga picha ya fomu ya ridhaa.",
+        "v_required": {
+          "value": true
+        },
         "openmrs_entity_parent": "",
         "openmrs_entity": "",
         "openmrs_entity_id": "",
