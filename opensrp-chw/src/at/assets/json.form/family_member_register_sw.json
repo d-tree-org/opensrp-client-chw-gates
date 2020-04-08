@@ -568,6 +568,26 @@
         }
       },
       {
+        "key": "national_id",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "person_attribute",
+        "openmrs_entity_id": "National_ID",
+        "type": "edit_text",
+        "hint": "Namba ya kitambulisho cha taifa",
+        "edit_type": "name",
+        "relevance": {
+          "step2:fam_consent": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "chk_consent_yes"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
         "key": "finger_print",
         "openmrs_entity_parent": "",
         "openmrs_entity": "",
