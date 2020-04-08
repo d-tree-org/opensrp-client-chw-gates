@@ -576,7 +576,7 @@
          "hint": "National ID number",
          "edit_type": "name",
          "relevance": {
-           "step2:fam_consent": {
+           "step1:member_consent": {
              "ex-checkbox": [
                {
                  "or": [
