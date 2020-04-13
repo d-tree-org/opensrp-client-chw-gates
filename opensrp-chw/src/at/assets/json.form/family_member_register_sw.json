@@ -404,8 +404,8 @@
         "type": "spinner",
         "hint": "Jinsi",
         "values": [
-          "Male",
-          "Female"
+          "Me",
+          "Ke"
         ],
         "keys": [
           "Male",
