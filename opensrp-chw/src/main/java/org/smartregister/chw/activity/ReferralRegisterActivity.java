@@ -3,10 +3,9 @@ package org.smartregister.chw.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.fragment.app.Fragment;
-
-import com.google.android.material.bottomnavigation.LabelVisibilityMode;
 
 import org.apache.commons.lang3.tuple.Triple;
 import org.json.JSONArray;
@@ -25,7 +24,6 @@ import org.smartregister.job.ImageUploadServiceJob;
 import org.smartregister.job.PullUniqueIdsServiceJob;
 import org.smartregister.job.SyncServiceJob;
 import org.smartregister.job.SyncTaskServiceJob;
-import org.smartregister.listener.BottomNavigationListener;
 import org.smartregister.view.fragment.BaseRegisterFragment;
 
 import java.util.Arrays;
@@ -71,19 +69,7 @@ public class ReferralRegisterActivity extends BaseReferralRegisterActivity {
         bottomNavigationView = findViewById(org.smartregister.R.id.bottom_navigation);
 
         if (bottomNavigationView != null) {
-            bottomNavigationView.setLabelVisibilityMode(LabelVisibilityMode.LABEL_VISIBILITY_LABELED);
-            bottomNavigationView.getMenu().removeItem(org.smartregister.R.id.action_clients);
-            bottomNavigationView.getMenu().removeItem(org.smartregister.chw.referral.R.id.action_register);
-            bottomNavigationView.getMenu().removeItem(org.smartregister.R.id.action_search);
-            bottomNavigationView.getMenu().removeItem(org.smartregister.R.id.action_library);
-            bottomNavigationView.getMenu().removeItem(org.smartregister.R.id.scanQrCode);
-
-            bottomNavigationView.inflateMenu(getMenuResource());
-            bottomNavigationHelper.disableShiftMode(bottomNavigationView);
-
-            BottomNavigationListener referralBottomNavigationListener = getBottomNavigation(this);
-            bottomNavigationView.setOnNavigationItemSelectedListener(referralBottomNavigationListener);
-
+            bottomNavigationView.setVisibility(View.GONE);
         }
     }
 
