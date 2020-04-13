@@ -422,7 +422,7 @@
         "options": [
           {
             "key": "dob_unknown",
-            "text": "Tarehe ya kuzaliwa haijulikani?",
+            "text": "Je tarehe ya kuzaliwa haijulikani?",
             "text_size": "18px",
             "value": "false"
           }
