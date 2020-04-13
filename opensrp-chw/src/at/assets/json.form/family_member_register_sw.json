@@ -80,13 +80,13 @@
         "options": [
           {
             "key": "chk_consent_yes",
-            "text": "Yes",
+            "text": "Ndio",
             "text_size": "18px",
             "value": "false"
           },
           {
             "key": "chk_consent_no",
-            "text": "No",
+            "text": "Hapana",
             "text_size": "18px",
             "value": "false"
           }
