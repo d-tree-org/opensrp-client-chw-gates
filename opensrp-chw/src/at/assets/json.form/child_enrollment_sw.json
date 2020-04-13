@@ -301,60 +301,6 @@
         }
       },
       {
-        "key": "rhc_card",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "164147AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-        "type": "spinner",
-        "hint": "Je, mtoto ana RCH kadi namba moja/kitabu cha ukuaji wa mtoto?",
-        "values": [
-          "Ndiyo",
-          "Hapana"
-        ],
-        "keys": [
-          "Yes",
-          "No"
-        ],
-        "openmrs_choice_ids": {
-          "Yes": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-          "No": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-        }
-      },
-      {
-        "key": "nutrition_status",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "163301AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-        "type": "spinner",
-        "hint": "Hali ya lishe ya mtoto",
-        "values": [
-          "Kijani",
-          "Kijivu/Njano",
-          "Nyekundu"
-        ],
-        "keys": [
-          "Green",
-          "Grey",
-          "Red"
-        ],
-        "openmrs_choice_ids": {
-          "Green": "160909AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-          "Grey": "163639AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-          "Red": "127778AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-        },
-        "v_required": {
-          "value": "true",
-          "err": "Tafadhali toa hali ya lishe ya watoto"
-        },
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "family-child-relevance.yml"
-            }
-          }
-        }
-      },
-      {
         "key": "finger_print",
         "openmrs_entity_parent": "",
         "openmrs_entity": "",
