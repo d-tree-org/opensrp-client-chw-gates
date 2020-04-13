@@ -142,7 +142,7 @@
         "options": [
           {
             "key": "same_as_fam_name",
-            "text": "Jina la mwisho (Ukoo) ni sawa na jina la familia",
+            "text": "Je jina la familia ni sawa na jina la kaya?",
             "text_size": "18px",
             "value": "false"
           }
@@ -165,7 +165,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "edit_text",
-        "hint": "Jina la mwisho (Ukoo)",
+        "hint": "Jina la Familia",
         "edit_type": "name",
         "v_regex": {
           "value": "[A-Za-z\\u00C0-\\u017F\\s\\u00C0-\\u017F\\.\\-]*",
@@ -173,7 +173,7 @@
         },
         "v_required": {
           "value": "true",
-          "err": "Tafadhali jaza jina la mwisho (Ukoo)"
+          "err": "Tafadhali jaza jina la familia"
         },
         "relevance": {
           "rules-engine": {
