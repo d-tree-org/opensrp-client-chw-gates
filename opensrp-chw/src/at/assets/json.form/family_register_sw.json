@@ -63,7 +63,7 @@
         "openmrs_entity": "person",
         "openmrs_entity_id": "first_name",
         "type": "edit_text",
-        "hint": "Jina la familia (ukoo)",
+        "hint": "Jina la familia (kaya)",
         "edit_type": "name",
         "v_required": {
           "value": "true",
@@ -200,6 +200,9 @@
         "key": "consent_picture_label",
         "type": "label",
         "text": "Piga picha ya fomu ya ridhaa.",
+        "v_required": {
+          "value": true
+        },
         "openmrs_entity_parent": "",
         "openmrs_entity": "",
         "openmrs_entity_id": "",
@@ -221,7 +224,7 @@
         "openmrs_entity": "",
         "openmrs_entity_id": "",
         "type": "choose_image",
-        "uploadButtonText": "Take Photo",
+        "uploadButtonText": "Piga Picha",
         "relevance": {
           "step2:fam_consent": {
             "ex-checkbox": [
@@ -235,7 +238,7 @@
         },
         "v_required": {
           "value": "true",
-          "err": "Please take a picture of the consent form"
+          "err": "Tafadhali piga picha ya fomu ya ridhaa."
         }
       }
     ]
@@ -297,7 +300,7 @@
         "options": [
           {
             "key": "same_as_fam_name",
-            "text": "Jina la familia sawa na jina la ukoo",
+            "text": "Je jina la familia ni sawa na jina la kaya?",
             "text_size": "18px",
             "value": "false"
           }
@@ -320,7 +323,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "edit_text",
-        "hint": "Jina la ukoo",
+        "hint": "Jina la familia",
         "edit_type": "name",
         "v_regex": {
           "value": "[A-Za-z\\u00C0-\\u017F\\s\\u00C0-\\u017F\\.\\-]*",
@@ -419,7 +422,7 @@
         "options": [
           {
             "key": "dob_unknown",
-            "text": "Tarehe ya kuzaliwa haijulikani?",
+            "text": "Je tarehe ya kuzaliwa haijulikani?",
             "text_size": "18px",
             "value": "false"
           }
