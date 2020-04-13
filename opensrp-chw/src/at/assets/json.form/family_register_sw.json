@@ -153,25 +153,6 @@
         "toaster_type": "warning"
       },
       {
-        "key": "consent_picture_label",
-        "type": "label",
-        "text": "Piga picha ya fomu ya ridhaa.",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "",
-        "openmrs_entity_id": "",
-        "relevance": {
-          "step2:fam_consent": {
-            "ex-checkbox": [
-              {
-                "or": [
-                  "chk_consent_yes"
-                ]
-              }
-            ]
-          }
-        }
-      },
-      {
         "key": "unique_id",
         "openmrs_entity_parent": "",
         "openmrs_entity": "person_identifier",
@@ -184,29 +165,6 @@
         "v_numeric": {
           "value": "true",
           "err": "Please enter a valid ID"
-        }
-      },
-      {
-        "key": "consent_photo",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "",
-        "openmrs_entity_id": "",
-        "type": "choose_image",
-        "uploadButtonText": "Take Photo",
-        "relevance": {
-          "step2:fam_consent": {
-            "ex-checkbox": [
-              {
-                "or": [
-                  "chk_consent_yes"
-                ]
-              }
-            ]
-          }
-        },
-        "v_required": {
-          "value": "true",
-          "err": "Please take a picture of the consent form"
         }
       },
       {
@@ -236,6 +194,48 @@
         "v-required" : {
           "value" : "true",
           "err": "Tafadhali jaza ridhaa ya kaya."
+        }
+      },
+      {
+        "key": "consent_picture_label",
+        "type": "label",
+        "text": "Piga picha ya fomu ya ridhaa.",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "relevance": {
+          "step2:fam_consent": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "chk_consent_yes"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "key": "consent_photo",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "type": "choose_image",
+        "uploadButtonText": "Take Photo",
+        "relevance": {
+          "step2:fam_consent": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "chk_consent_yes"
+                ]
+              }
+            ]
+          }
+        },
+        "v_required": {
+          "value": "true",
+          "err": "Please take a picture of the consent form"
         }
       }
     ]
