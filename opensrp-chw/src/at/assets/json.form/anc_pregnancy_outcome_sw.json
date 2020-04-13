@@ -378,7 +378,7 @@
         "openmrs_entity_id": "opensrp_id",
         "type": "barcode",
         "barcode_type": "qrcode",
-        "hint": "Boresha Afya ID",
+        "hint": "Afya-Tek ID",
         "scanButtonText": "Chukua QR code",
         "v_numeric": {
           "value": "true",
