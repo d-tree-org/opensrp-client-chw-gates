@@ -495,7 +495,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "165310AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
         "type": "button",
-        "hint": "Hifadhi & Unganisha na DLDM",
+        "hint": "Hifadhi na Unganisha kwa DLDM",
         "btn_bg_color": "#CF0800",
         "action": {
           "behaviour": "link"
