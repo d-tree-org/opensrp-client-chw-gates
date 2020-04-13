@@ -164,7 +164,7 @@
           },
           {
             "key": "chk_anemia",
-            "text": "Anemia demonstrated by paleness on the palms",
+            "text": "Upungufu wa damu unajionyesha kwa weupe mkubwa kwenye viganja vya mkono na ulimi, kulegea au uchovu.",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": ""
