@@ -225,7 +225,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "1730AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
         "type": "date_picker",
-        "hint": "Date that the child was first observed to be ill",
+        "hint": "Date child started to be ill",
         "label_info_text": "Date that the child was first observed to be ill",
         "expanded": false,
         "min_date": "today-1y",
