@@ -284,4 +284,7 @@
     <string name="family_planning_done">Ushauri wa uzazi wa mpango kutoka kituo cha afya umefanyika</string>
     <string name="family_planning_not_done">Ushauri wa uzazi wa mpango kutoka kituo cha afya haujakamilika</string>
 
+    <!-- Referral -->
+    <string name="referral_submitted">Fomu ya rufaa imetumwa!</string>
+
 </resources>

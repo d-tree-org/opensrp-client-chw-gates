@@ -9,6 +9,7 @@ import com.vijay.jsonwizard.constants.JsonFormConstants;
 import com.vijay.jsonwizard.fragments.JsonWizardFormFragment;
 import com.vijay.jsonwizard.interactors.JsonFormInteractor;
 
+import org.smartregister.chw.R;
 import org.smartregister.chw.presenter.ReferralJsonWizardFormFragmentPresenter;
 
 public class ReferralJsonWizardFormFragment extends JsonWizardFormFragment {
@@ -23,7 +24,7 @@ public class ReferralJsonWizardFormFragment extends JsonWizardFormFragment {
 
     @Override
     public void customClick(Context context, String behaviour){
-        Toast.makeText(context, "Referral has been submitted!", Toast.LENGTH_LONG).show();
+        Toast.makeText(context, getResources().getString(R.string.referral_submitted), Toast.LENGTH_LONG).show();
         //save
         save();
     }
