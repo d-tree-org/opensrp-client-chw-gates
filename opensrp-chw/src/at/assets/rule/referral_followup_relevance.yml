@@ -1,0 +1,47 @@
+---
+name: step1_services_hf
+description: determine if treatment was given or not
+priority: 1
+condition: "step1_visit_hf.contains('Yes')"
+actions:
+  - "isRelevant = true"
+
+---
+name: step1_reminder_toaster
+description: determine if treatment was given or not
+priority: 1
+condition: "step1_services_hf.contains('Yes')"
+actions:
+  - "isRelevant = true"
+
+---
+name: step1_noservices_reason
+description: determine if treatment was given or not
+priority: 1
+condition: "step1_services_hf.contains('No')"
+actions:
+  - "isRelevant = true"
+
+---
+name: step1_novisit_reason
+description: determine if treatment was given or not
+priority: 1
+condition: "step1_visit_hf.contains('No')"
+actions:
+  - "isRelevant = true"
+
+---
+name: step1_encourage_toaster
+description: determine if treatment was given or not
+priority: 1
+condition: "step1_services_hf.contains('No') || step1_visit_hf.contains('No')"
+actions:
+  - "isRelevant = true"
+
+---
+name: step1_complete_referral
+description: determine if treatment was given or not
+priority: 1
+condition: "step1_services_hf.contains('No') || step1_visit_hf.contains('No')"
+actions:
+  - "isRelevant = true"

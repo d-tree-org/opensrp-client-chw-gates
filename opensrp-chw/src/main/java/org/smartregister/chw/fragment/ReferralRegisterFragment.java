@@ -14,6 +14,7 @@ import androidx.loader.content.Loader;
 import org.apache.commons.lang3.StringUtils;
 import org.smartregister.chw.R;
 import org.smartregister.chw.activity.MalariaFollowUpVisitActivity;
+import org.smartregister.chw.activity.ReferralFollowupActivity;
 import org.smartregister.chw.anc.util.DBConstants;
 import org.smartregister.chw.core.custom_views.NavigationMenu;
 import org.smartregister.chw.core.utils.QueryBuilder;
@@ -125,6 +126,9 @@ public class ReferralRegisterFragment extends BaseReferralRegisterFragment {
         if (view.getId() == R.id.due_only_layout) {
             //toggleFilterSelection(view);
         }
+        if(view.getId() == R.id.text_view_referral_status) {
+            openFollowUpVisit((CommonPersonObjectClient) view.getTag());
+        }
     }
 
     protected void toggleFilterSelection(View dueOnlyLayout) {
@@ -160,7 +164,7 @@ public class ReferralRegisterFragment extends BaseReferralRegisterFragment {
 
     @Override
     protected void openFollowUpVisit(CommonPersonObjectClient client) {
-        MalariaFollowUpVisitActivity.startMalariaRegistrationActivity(getActivity(), client.getCaseId());
+        ReferralFollowupActivity.startReferralFollowupActivity(getActivity(), new MemberObject(client), client);
     }
 
     @Override
