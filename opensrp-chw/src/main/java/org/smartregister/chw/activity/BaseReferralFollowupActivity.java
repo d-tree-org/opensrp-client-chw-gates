@@ -26,9 +26,12 @@ import java.util.List;
 
 import timber.log.Timber;
 
+import static com.vijay.jsonwizard.constants.JsonFormConstants.JSON_FORM_KEY.JSON;
 import static org.smartregister.chw.core.utils.CoreConstants.ENTITY_ID;
 import static org.smartregister.chw.core.utils.CoreConstants.JSON_FORM.isMultiPartForm;
 import static org.smartregister.chw.malaria.util.JsonFormUtils.validateParameters;
+import static org.smartregister.chw.util.JsonFormUtils.ENCOUNTER_TYPE;
+import static org.smartregister.chw.util.JsonFormUtils.REQUEST_CODE_GET_JSON;
 import static org.smartregister.util.JsonFormUtils.VALUE;
 import static org.smartregister.util.JsonFormUtils.getFieldJSONObject;
 
@@ -75,13 +78,13 @@ public abstract class BaseReferralFollowupActivity extends CoreReferralFollowupA
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == Activity.RESULT_OK && requestCode == org.smartregister.chw.malaria.util.Constants.REQUEST_CODE_GET_JSON) {
-            String jsonString = data.getStringExtra(org.smartregister.chw.malaria.util.Constants.JSON_FORM_EXTRA.JSON);
+        if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_CODE_GET_JSON) {
+            String jsonString = data.getStringExtra(JSON);
             try {
                 JSONObject form = new JSONObject(jsonString);
                 Triple<Boolean, JSONObject, JSONArray> registrationFormParams = validateParameters(form.toString());
                 JSONObject jsonForm = registrationFormParams.getMiddle();
-                String encounter_type = jsonForm.optString(org.smartregister.chw.malaria.util.Constants.JSON_FORM_EXTRA.ENCOUNTER_TYPE);
+                String encounter_type = jsonForm.optString(ENCOUNTER_TYPE);
 
                 if ("Referral Follow-up Visit".equals(encounter_type) || "Linkage Follow-up Visit".equals(encounter_type)) {
                     JSONArray fields = registrationFormParams.getRight();
@@ -96,7 +99,7 @@ public abstract class BaseReferralFollowupActivity extends CoreReferralFollowupA
                         taskRepository.addOrUpdate(task);
                     }
                 }
-                startRegisterActivity(getMalariaRegisterActivity().getClass());
+                startRegisterActivity(getReferralRegisterActivity().getClass());
 
             } catch (JSONException e) {
                 Timber.e(e);
@@ -108,7 +111,7 @@ public abstract class BaseReferralFollowupActivity extends CoreReferralFollowupA
 
     }
 
-    protected abstract Activity getMalariaRegisterActivity();
+    protected abstract Activity getReferralRegisterActivity();
 
     private void startRegisterActivity(Class registerClass) {
         SyncServiceJob.scheduleJobImmediately(SyncServiceJob.TAG);
@@ -123,7 +126,7 @@ public abstract class BaseReferralFollowupActivity extends CoreReferralFollowupA
         super.onResumption();
         NavigationMenu menu = NavigationMenu.getInstance(this, null, null);
         if (menu != null) {
-            menu.getNavigationAdapter().setSelectedView(CoreConstants.DrawerMenu.MALARIA);
+            menu.getNavigationAdapter().setSelectedView(CoreConstants.DrawerMenu.REFERRALS);
         }
     }
 }

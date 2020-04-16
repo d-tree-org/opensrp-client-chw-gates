@@ -13,7 +13,6 @@ import com.vijay.jsonwizard.domain.Form;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.smartregister.AllConstants;
 import org.smartregister.Context;
 import org.smartregister.CoreLibrary;
 import org.smartregister.chw.malaria.activity.BaseMalariaRegisterActivity;
@@ -23,7 +22,6 @@ import org.smartregister.chw.malaria.interactor.BaseMalariaRegisterInteractor;
 import org.smartregister.chw.malaria.model.BaseMalariaRegisterModel;
 import org.smartregister.chw.malaria.presenter.BaseMalariaRegisterPresenter;
 import org.smartregister.chw.malaria.util.Constants;
-import org.smartregister.helper.BottomNavigationHelper;
 import org.smartregister.util.Utils;
 import org.smartregister.view.activity.BaseRegisterActivity;
 import org.smartregister.view.fragment.BaseRegisterFragment;
@@ -110,20 +108,7 @@ public class CoreReferralFollowupActivity extends BaseRegisterActivity implement
      */
     @Override
     protected void registerBottomNavigation() {
-        bottomNavigationHelper = new BottomNavigationHelper();
-        bottomNavigationView = findViewById(org.smartregister.R.id.bottom_navigation);
-
-        if (bottomNavigationView != null) {
-            /*bottomNavigationView.setLabelVisibilityMode(LabelVisibilityMode.LABEL_VISIBILITY_LABELED);
-            bottomNavigationView.getMenu().removeItem(org.smartregister.R.id.action_clients);
-            bottomNavigationView.getMenu().removeItem(org.smartregister.malaria.R.id.action_register);
-            bottomNavigationView.getMenu().removeItem(org.smartregister.R.id.action_search);
-            bottomNavigationView.getMenu().removeItem(org.smartregister.R.id.action_library);
-            bottomNavigationView.inflateMenu(getMenuResource());
-            bottomNavigationHelper.disableShiftMode(bottomNavigationView);
-            BottomNavigationListener familyBottomNavigationListener = new MalariaBottomNavigationListener(this);
-            bottomNavigationView.setOnNavigationItemSelectedListener(familyBottomNavigationListener);*/
-        }
+        // not needed
     }
 
     @MenuRes
@@ -158,9 +143,6 @@ public class CoreReferralFollowupActivity extends BaseRegisterActivity implement
             try {
                 String jsonString = data.getStringExtra(Constants.JSON_FORM_EXTRA.JSON);
                 JSONObject form = new JSONObject(jsonString);
-                //JSONArray fieldsOne = MalariaJsonFormUtils.fields(form, Constants.STEP_ONE);
-                //updateFormField(fieldsOne, DBConstants.KEY.RELATIONAL_ID, FAMILY_BASE_ENTITY_ID);
-//                process malaria form
                 presenter().saveForm(form.toString());
             } catch (JSONException e) {
                 Timber.e(e);
@@ -188,7 +170,7 @@ public class CoreReferralFollowupActivity extends BaseRegisterActivity implement
         try {
             long lastSyncTimeStamp = Utils.getAllSharedPreferences().fetchLastUpdatedAtDate(0);
             Date lastSyncDate = new Date(lastSyncTimeStamp);
-            //MalariaUtil.getClientProcessorForJava().processClient(MalariaUtil.getSyncHelper().getEvents(lastSyncDate, BaseRepository.TYPE_Unprocessed));
+            //ReferralUtil.getClientProcessorForJava().processClient(ReferralUtil.getSyncHelper().getEvents(lastSyncDate, BaseRepository.TYPE_Unprocessed));
             Utils.getAllSharedPreferences().saveLastUpdatedAtDate(lastSyncDate.getTime());
         } catch (Exception e) {
             Timber.d(e);
