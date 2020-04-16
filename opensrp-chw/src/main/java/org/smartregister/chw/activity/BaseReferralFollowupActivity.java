@@ -51,10 +51,15 @@ public abstract class BaseReferralFollowupActivity extends CoreReferralFollowupA
         form.setHomeAsUpIndicator(org.smartregister.chw.core.R.mipmap.ic_cross_white);
         form.setSaveLabel(getString(org.smartregister.chw.core.R.string.submit));
 
+        String title = "Referral Followup";
+        if(jsonForm.optString("encounter_type", "").equalsIgnoreCase("Linkage Follow-up Visit")){
+            title = "Linkage Followup";
+        }
+
         if (isMultiPartForm(jsonForm)) {
             form.setWizard(true);
             form.setNavigationBackground(org.smartregister.chw.core.R.color.family_navigation);
-            form.setName("Referral Followup");
+            form.setName(title);
             form.setNextLabel(this.getResources().getString(org.smartregister.chw.core.R.string.next));
             form.setPreviousLabel(this.getResources().getString(org.smartregister.chw.core.R.string.back));
         }
@@ -78,13 +83,12 @@ public abstract class BaseReferralFollowupActivity extends CoreReferralFollowupA
                 JSONObject jsonForm = registrationFormParams.getMiddle();
                 String encounter_type = jsonForm.optString(org.smartregister.chw.malaria.util.Constants.JSON_FORM_EXTRA.ENCOUNTER_TYPE);
 
-                if ("Referral Follow-up Visit".equals(encounter_type)) {
+                if ("Referral Follow-up Visit".equals(encounter_type) || "Linkage Follow-up Visit".equals(encounter_type)) {
                     JSONArray fields = registrationFormParams.getRight();
                     JSONObject visit_hf_object = getFieldJSONObject(fields, "visit_hf");
                     JSONObject services_hf_object = getFieldJSONObject(fields, "services_hf");
                     if (visit_hf_object != null && "Yes".equalsIgnoreCase(visit_hf_object.optString(VALUE)) &&
                             services_hf_object != null && "Yes".equalsIgnoreCase(services_hf_object.optString(VALUE)) ) {
-                        //MalariaDao.closeMemberFromRegister(jsonForm.optString(ENTITY_ID));
                         // update task
                         TaskRepository taskRepository = ChwApplication.getInstance().getTaskRepository();
                         Task task = taskRepository.getTaskByIdentifier(jsonForm.optString(ENTITY_ID));
