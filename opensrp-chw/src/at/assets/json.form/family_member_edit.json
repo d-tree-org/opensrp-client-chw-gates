@@ -275,26 +275,6 @@
         }
       },
       {
-        "key": "finger_print",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "",
-        "openmrs_entity_id": "",
-        "type": "finger_print",
-        "project_id":"fUBnpzDdbsCsMp0egCHB",
-        "user_id":"global_user",
-        "module_id":"global_module",
-        "finger_print_option":"register",
-        "uploadButtonText": "Take finger print",
-        "image_file": "",
-        "extra_info": {
-          "DOB": "dob_calculated"
-        },
-        "v_required": {
-          "value": "true",
-          "err": "Please scan fingerprint"
-        }
-      },
-      {
         "key": "sex",
         "openmrs_entity_parent": "",
         "openmrs_entity": "person",
@@ -441,6 +421,26 @@
               "rules-file": "family_member_edit_relevance.yml"
             }
           }
+        }
+      },
+      {
+        "key": "finger_print",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "type": "finger_print",
+        "project_id":"fUBnpzDdbsCsMp0egCHB",
+        "user_id":"global_user",
+        "module_id":"global_module",
+        "finger_print_option":"register",
+        "uploadButtonText": "Take finger print",
+        "image_file": "",
+        "extra_info": {
+          "DOB": "dob_calculated"
+        },
+        "v_required": {
+          "value": "true",
+          "err": "Please scan fingerprint"
         }
       }
     ]
