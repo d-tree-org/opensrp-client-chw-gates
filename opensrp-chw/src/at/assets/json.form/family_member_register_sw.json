@@ -58,6 +58,14 @@
     "next": "step2",
     "fields": [
       {
+        "key": "fam_name",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "label",
+        "hidden": "true"
+      },
+      {
         "key": "consent_message",
         "openmrs_entity_parent": "",
         "openmrs_entity": "",
