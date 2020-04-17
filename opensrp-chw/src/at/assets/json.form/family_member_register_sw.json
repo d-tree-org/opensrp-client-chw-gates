@@ -315,7 +315,7 @@
         "max_date": "today-5y",
         "v_required": {
           "value": "true",
-          "err": "Please enter the date of birth"
+          "err": "Tafadhali jaza tarehe ya kuzaliwa"
         },
         "relevance": {
           "rules-engine": {
@@ -597,14 +597,14 @@
         "user_id":"global_user",
         "module_id":"global_module",
         "finger_print_option":"register",
-        "uploadButtonText": "Take finger print",
+        "uploadButtonText": "Chukua alama za vidole",
         "image_file": "",
         "extra_info": {
           "DOB": "dob_calculated"
         },
         "v_required": {
           "value": "true",
-          "err": "Please scan fingerprint"
+          "err": "Tafadhali skani alama za vidole"
         },
         "relevance": {
           "step1:member_consent": {
