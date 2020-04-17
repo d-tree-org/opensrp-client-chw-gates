@@ -101,11 +101,13 @@
         "values": [
           "Kifo",
           "Amehama",
+          "Ameondoa ridhaa",
           "Sababu nyingine"
         ],
         "keys": [
           "Death",
           "Moved away",
+          "Revoked consent",
           "Other"
         ],
         "openmrs_choice_ids": {

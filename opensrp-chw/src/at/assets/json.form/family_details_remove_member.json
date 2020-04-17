@@ -101,11 +101,13 @@
         "values": [
           "Death",
           "Moved away",
+          "Revoked consent",
           "Other"
         ],
         "keys": [
           "Death",
           "Moved away",
+          "Revoked consent",
           "Other"
         ],
         "openmrs_choice_ids": {
