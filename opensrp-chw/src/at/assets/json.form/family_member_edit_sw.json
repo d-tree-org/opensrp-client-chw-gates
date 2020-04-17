@@ -1,0 +1,448 @@
+{
+  "validate_on_submit": true,
+  "show_errors_on_submit": true,
+  "count": "1",
+  "encounter_type": "Family Member Registration",
+  "entity_id": "",
+  "relational_id": "",
+  "metadata": {
+    "start": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "start",
+      "openmrs_entity_id": "163137AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "end": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "end",
+      "openmrs_entity_id": "163138AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "today": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "encounter",
+      "openmrs_entity_id": "encounter_date"
+    },
+    "deviceid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "deviceid",
+      "openmrs_entity_id": "163149AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "subscriberid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "subscriberid",
+      "openmrs_entity_id": "163150AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "simserial": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "simserial",
+      "openmrs_entity_id": "163151AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "phonenumber": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "phonenumber",
+      "openmrs_entity_id": "163152AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "encounter_location": "",
+    "look_up": {
+      "entity_id": "",
+      "value": ""
+    }
+  },
+  "step1": {
+    "title": "Badilisha taarifa",
+    "fields": [
+      {
+        "key": "unique_id",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "person_identifier",
+        "openmrs_entity_id": "opensrp_id",
+        "type": "edit_text",
+        "hint": "Afya-Tek ID",
+        "read_only": "true",
+        "v_numeric": {
+          "value": "true",
+          "err": "Tafadhali ingiza nambari sahihi ya kitambulisho"
+        },
+        "v_required": {
+          "value": "true",
+          "err": "Tafadhali ingiza nambari ya kitambulisho"
+        }
+      },
+      {
+        "key": "same_as_fam_name",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "openmrs_data_type": "text",
+        "type": "check_box",
+        "label": "",
+        "exclusive": [
+          "none"
+        ],
+        "options": [
+          {
+            "key": "same_as_fam_name",
+            "text": "Je jina la familia ni sawa na jina la kaya?",
+            "text_size": "18px",
+            "value": "false"
+          }
+        ]
+      },
+      {
+        "key": "surname",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "edit_text",
+        "hint": "Jina la Familia",
+        "edit_type": "name",
+        "v_regex": {
+          "value": "[A-Za-z\\u00C0-\\u017F\\s\\u00C0-\\u017F\\.\\-]*",
+          "err": "Tafadhali jaza jina sahihi"
+        },
+        "v_required": {
+          "value": "true",
+          "err": "Tafadhali jaza jina la familia"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "family_member_edit_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "fam_name",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "label",
+        "hidden": "true"
+      },
+      {
+        "key": "surname_calculation",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "person",
+        "openmrs_entity_id": "last_name",
+        "type": "hidden",
+        "hint": "Surname as Family name",
+        "calculation": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "family-member-edit-calculation.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "first_name",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "person",
+        "openmrs_entity_id": "first_name",
+        "type": "edit_text",
+        "hint": "Jina la Kwanza",
+        "edit_type": "name",
+        "v_required": {
+          "value": "true",
+          "err": "Tafadhali jaza jina la kwanza"
+        },
+        "v_regex": {
+          "value": "[A-Za-z\\u00C0-\\u017F\\s\\u00C0-\\u017F\\.\\-]*",
+          "err": "Tafadhali jaza jina sahihi"
+        }
+      },
+      {
+        "key": "middle_name",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "person",
+        "openmrs_entity_id": "middle_name",
+        "type": "edit_text",
+        "hint": "Jina la Kati",
+        "edit_type": "name",
+        "v_regex": {
+          "value": "[A-Za-z\\u00C0-\\u017F\\s\\u00C0-\\u017F\\.\\-]*",
+          "err": "Tafadhali jaza jina sahihi"
+        },
+        "v_required": {
+          "value": "true",
+          "err": "Tafadhali jaza jina la kati"
+        }
+      },
+      {
+        "key": "dob_unknown",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "person",
+        "openmrs_entity_id": "birthdateApprox",
+        "type": "check_box",
+        "label": "",
+        "options": [
+          {
+            "key": "dob_unknown",
+            "text": "Je tarehe ya kuzaliwa haijulikani?",
+            "text_size": "18px",
+            "value": "false"
+          }
+        ]
+      },
+      {
+        "key": "dob",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "person",
+        "openmrs_entity_id": "birthdate",
+        "type": "date_picker",
+        "hint": "Date of birth (DOB)",
+        "expanded": false,
+        "duration": {
+          "label": "Umri"
+        },
+        "min_date": "today-120y",
+        "max_date": "today-5y",
+        "v_required": {
+          "value": "true",
+          "err": "Tafahdali jaza tarehe ya kuzaliwa"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "family_member_edit_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "age_calculated",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "hidden",
+        "calculation": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "family-member-edit-calculation.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "age",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "person_attribute",
+        "openmrs_entity_id": "age",
+        "type": "edit_text",
+        "hint": "Umri",
+        "v_numeric": {
+          "value": "true",
+          "err": "Namba lazima ianze na 0 na iwe na urefu wa nambari 10"
+        },
+        "v_min": {
+          "value": "5",
+          "err": "Umri lazima uwe kuanzia miaka 5 na kuendelea"
+        },
+        "v_max": {
+          "value": "120",
+          "err": "Umri lazima uwe miaka 120 kushuka chini"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "family_member_edit_relevance.yml"
+            }
+          }
+        },
+        "v_required": {
+          "value": true,
+          "err": "tafadhali jaza umri"
+        }
+      },
+      {
+        "key": "dob_calculated",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "hidden",
+        "calculation": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "family-member-edit-calculation.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "sex",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "person",
+        "openmrs_entity_id": "gender",
+        "type": "spinner",
+        "hint": "Jinsi",
+        "values": [
+          "Me",
+          "Ke"
+        ],
+        "keys": [
+          "Male",
+          "Female"
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Tafadhali jaza Jinsia"
+        }
+      },
+      {
+        "key": "wra",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "hidden",
+        "calculation": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "family-member-edit-calculation.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "mra",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "hidden",
+        "calculation": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "family-member-edit-calculation.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "preg_1yr",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "160692AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "type": "spinner",
+        "hint": "Je, amejifungua ndani ya mwaka 1?",
+        "values": [
+          "Ndio",
+          "Hapana"
+        ],
+        "keys": [
+          "Yes",
+          "No"
+        ],
+        "openmrs_choice_ids": {
+          "Yes": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+          "No": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+        },
+        "v_required": {
+          "value": "true",
+          "err": "Tafadhali jaza kuonyesha kama mwanamke amejifungua ndani ya mwaka 1"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "family_member_edit_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "is_primary_caregiver",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "spinner",
+        "hint": "Ni mlezi mkuu wa familia?",
+        "values": [
+          "Ndio",
+          "Hapana"
+        ],
+        "keys": [
+          "Yes",
+          "No"
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Tafadhali chagua moja"
+        }
+      },
+      {
+        "key": "phone_number",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "159635AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "type": "edit_text",
+        "hint": "Namba ya Simu",
+        "v_numeric": {
+          "value": "true",
+          "err": "Namba ya simu lazima iwe na urefu wa nambari 10"
+        },
+        "v_regex": {
+          "value": "(0[0-9]{9})|\\s*",
+          "err": "Namba ya simu lazima iwe na nambari 10 na lazima ianze na 0."
+        },
+        "v_required": {
+          "value": false,
+          "err": "Tafadhali jaza namba ya simu"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "family_member_edit_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "other_phone_number",
+        "openmrs_entity_parent": "159635AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "type": "edit_text",
+        "hint": "Namba nyingine ya simu",
+        "v_numeric": {
+          "value": "true",
+          "err": "Namba ya simu lazima iwe na urefu wa nambari 10"
+        },
+        "v_regex": {
+          "value": "(0[0-9]{9})|\\s*",
+          "err": "Namba ya simu lazima iwe na nambari 10 na lazima ianze na 0."
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "family_member_edit_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "finger_print",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "type": "finger_print",
+        "project_id":"fUBnpzDdbsCsMp0egCHB",
+        "user_id":"global_user",
+        "module_id":"global_module",
+        "finger_print_option":"register",
+        "uploadButtonText": "Chukua alama za vidole",
+        "image_file": "",
+        "extra_info": {
+          "DOB": "dob_calculated"
+        },
+        "v_required": {
+          "value": "true",
+          "err": "Tafadhali skani alama za vidole"
+        }
+      }
+    ]
+  }
+}
