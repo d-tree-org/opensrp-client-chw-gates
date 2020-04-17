@@ -5,6 +5,7 @@ import org.smartregister.chw.referral.contract.BaseReferralRegisterFragmentContr
 import org.smartregister.chw.referral.presenter.BaseReferralRegisterFragmentPresenter;
 import org.smartregister.chw.referral.util.DBConstants;
 import org.smartregister.chw.util.Constants;
+import org.smartregister.domain.Task;
 
 import static org.apache.commons.lang3.StringUtils.trim;
 
@@ -16,8 +17,8 @@ public class ReferralRegisterFragmentPresenter extends BaseReferralRegisterFragm
 
     @Override
     public String getMainCondition() {
-        return " " + Constants.TABLE_NAME.FAMILY_MEMBER + "." + DBConstants.KEY.DATE_REMOVED + " is null ";
-                //"AND " + org.smartregister.chw.referral.util.Constants.TABLES.REFERRAL + "." + DBConstants.KEY.REFERRAL_STATUS + " = '" + org.smartregister.chw.referral.util.Constants.REFERRAL_STATUS.PENDING + "' "+
+        return " " + Constants.TABLE_NAME.FAMILY_MEMBER + "." + DBConstants.KEY.DATE_REMOVED + " is null " +
+                "AND status  = '" + Task.TaskStatus.READY + "' ";
                 //"AND " + org.smartregister.chw.referral.util.Constants.TABLES.REFERRAL + "." + DBConstants.KEY.REFERRAL_TYPE + " = '" + org.smartregister.chw.referral.util.Constants.REFERRAL_TYPE.COMMUNITY_TO_FACILITY_REFERRAL + "' ";
 
     }
