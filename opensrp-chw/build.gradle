@@ -389,7 +389,7 @@ dependencies {
         exclude group: 'com.android.support', module: 'appcompat-v7'
     }
 
-    implementation ('org.smartregister:opensrp-client-simprints-riddler:1.2.0-RESEARCH-SNAPSHOT'){
+    implementation ('org.smartregister:opensrp-client-simprints-riddler:1.2.1-RESEARCH-SNAPSHOT'){
         transitive = true
         exclude group: 'org.smartregister', module: 'opensrp-client-family'
         exclude group: 'org.smartregister', module: 'opensrp-client-core'
