@@ -49,7 +49,7 @@
     "encounter_location": ""
   },
   "step1": {
-    "title": "Dalili za hatari kwa mtoto",
+    "title": "Dalili za hatari kwa mtoto na magojwa madogo madogo",
     "fields": [
       {
         "key": "danger_signs_present_child",
@@ -225,8 +225,8 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "1730AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
         "type": "date_picker",
-        "hint": "Tarehe mtoto alipogundulika anaumwa",
-        "label_info_text": "Tarehe mtoto alipogundulika anaumwa",
+        "hint": "Tarehe mtoto alipoanza anaumwa",
+        "label_info_text": "Tarehe mtoto alipoanza anaumwa",
         "expanded": false,
         "min_date": "today-1y",
         "max_date": "today",
@@ -284,7 +284,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "toaster_notes",
-        "text": "Viashiria vya hatari!\nNimegundua viashiria vya hatari vinavyohitaji kushughulikiwa haraka: \n {danger_signs_captured_sw}. Wewe pamoja na mtoto mnahitaji kwenda kwenye kituo cha karibu cha afya mara moja. Ni muhimu ukamilishe rufaa. Nitakufuatilia ndani ya masaa 24 ili kuona kama umefanikiwa kukamilisha rufaa yako.",
+        "text": "Viashiria vya hatari!\nNimegundua viashiria vya hatari vinavyohitaji kushughulikiwa haraka: \n {danger_signs_captured_sw}. Mshauri mama au mlezi ampeleke mtoto kwenye dula la dawa muhimu. Mwambie utamtembelea tena ndani ya siku tatu.",
         "text_color": "#CF0800",
         "toaster_type": "problem",
         "calculation": {
@@ -545,7 +545,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "165310AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
         "type": "button",
-        "hint": "Save and Link to ADDO",
+        "hint": "Hifadhi na unganisha kwa DLDM",
         "btn_bg_color": "#CF0800",
         "action": {
           "behaviour": "refer"

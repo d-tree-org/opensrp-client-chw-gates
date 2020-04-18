@@ -58,6 +58,14 @@
     "next": "step2",
     "fields": [
       {
+        "key": "fam_name",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "label",
+        "hidden": "true"
+      },
+      {
         "key": "consent_message",
         "openmrs_entity_parent": "",
         "openmrs_entity": "",
@@ -130,30 +138,6 @@
          }
        },
        {
-         "key": "surname",
-         "openmrs_entity_parent": "",
-         "openmrs_entity": "concept",
-         "openmrs_entity_id": "",
-         "type": "edit_text",
-         "hint": "Surname",
-         "edit_type": "name",
-         "v_regex": {
-           "value": "[A-Za-z\\u00C0-\\u017F\\s\\u00C0-\\u017F\\.\\-]*",
-           "err": "Please enter a valid name"
-         },
-         "v_required": {
-           "value": "true",
-           "err": "Please enter the surname"
-         },
-         "relevance": {
-           "rules-engine": {
-             "ex-rules": {
-               "rules-file": "family_member_relevance.yml"
-             }
-           }
-         }
-       },
-       {
          "key": "same_as_fam_name",
          "openmrs_entity_parent": "",
          "openmrs_entity": "concept",
@@ -181,6 +165,30 @@
                  ]
                }
              ]
+           }
+         }
+       },
+       {
+         "key": "surname",
+         "openmrs_entity_parent": "",
+         "openmrs_entity": "concept",
+         "openmrs_entity_id": "",
+         "type": "edit_text",
+         "hint": "Surname",
+         "edit_type": "name",
+         "v_regex": {
+           "value": "[A-Za-z\\u00C0-\\u017F\\s\\u00C0-\\u017F\\.\\-]*",
+           "err": "Please enter a valid name"
+         },
+         "v_required": {
+           "value": "true",
+           "err": "Please enter the surname"
+         },
+         "relevance": {
+           "rules-engine": {
+             "ex-rules": {
+               "rules-file": "family_member_relevance.yml"
+             }
            }
          }
        },
@@ -275,6 +283,33 @@
          }
        },
        {
+         "key": "dob_unknown",
+         "openmrs_entity_parent": "",
+         "openmrs_entity": "person",
+         "openmrs_entity_id": "birthdateApprox",
+         "type": "check_box",
+         "label": "",
+         "options": [
+           {
+             "key": "dob_unknown",
+             "text": "DOB unknown?",
+             "text_size": "18px",
+             "value": "false"
+           }
+         ],
+         "relevance": {
+           "step1:member_consent": {
+             "ex-checkbox": [
+               {
+                 "or": [
+                   "chk_consent_yes"
+                 ]
+               }
+             ]
+           }
+         }
+       },
+       {
          "key": "dob",
          "openmrs_entity_parent": "",
          "openmrs_entity": "person",
@@ -312,33 +347,6 @@
              }
            }
          },
-         "relevance": {
-           "step1:member_consent": {
-             "ex-checkbox": [
-               {
-                 "or": [
-                   "chk_consent_yes"
-                 ]
-               }
-             ]
-           }
-         }
-       },
-       {
-         "key": "dob_unknown",
-         "openmrs_entity_parent": "",
-         "openmrs_entity": "person",
-         "openmrs_entity_id": "birthdateApprox",
-         "type": "check_box",
-         "label": "",
-         "options": [
-           {
-             "key": "dob_unknown",
-             "text": "DOB unknown?",
-             "text_size": "18px",
-             "value": "false"
-           }
-         ],
          "relevance": {
            "step1:member_consent": {
              "ex-checkbox": [
@@ -393,37 +401,6 @@
              "ex-rules": {
                "rules-file": "family_member_register_calculation.yml"
              }
-           }
-         }
-       },
-       {
-         "key": "finger_print",
-         "openmrs_entity_parent": "",
-         "openmrs_entity": "",
-         "openmrs_entity_id": "",
-         "type": "finger_print",
-         "project_id":"fUBnpzDdbsCsMp0egCHB",
-         "user_id":"global_user",
-         "module_id":"global_module",
-         "finger_print_option":"register",
-         "uploadButtonText": "Take finger print",
-         "image_file": "",
-         "extra_info": {
-           "DOB": "dob_calculated"
-         },
-         "v_required": {
-           "value": "true",
-           "err": "Please scan fingerprint"
-         },
-         "relevance": {
-           "step1:member_consent": {
-             "ex-checkbox": [
-               {
-                 "or": [
-                   "chk_consent_yes"
-                 ]
-               }
-             ]
            }
          }
        },
@@ -595,6 +572,57 @@
              "ex-rules": {
                "rules-file": "family_member_relevance.yml"
              }
+           }
+         }
+       },
+       {
+         "key": "national_id",
+         "openmrs_entity_parent": "",
+         "openmrs_entity": "person_attribute",
+         "openmrs_entity_id": "National_ID",
+         "type": "edit_text",
+         "hint": "National ID number",
+         "edit_type": "name",
+         "relevance": {
+           "step1:member_consent": {
+             "ex-checkbox": [
+               {
+                 "or": [
+                   "chk_consent_yes"
+                 ]
+               }
+             ]
+           }
+         }
+       },
+       {
+         "key": "finger_print",
+         "openmrs_entity_parent": "",
+         "openmrs_entity": "",
+         "openmrs_entity_id": "",
+         "type": "finger_print",
+         "project_id":"fUBnpzDdbsCsMp0egCHB",
+         "user_id":"global_user",
+         "module_id":"global_module",
+         "finger_print_option":"register",
+         "uploadButtonText": "Take finger print",
+         "image_file": "",
+         "extra_info": {
+           "DOB": "dob_calculated"
+         },
+         "v_required": {
+           "value": "true",
+           "err": "Please scan fingerprint"
+         },
+         "relevance": {
+           "step1:member_consent": {
+             "ex-checkbox": [
+               {
+                 "or": [
+                   "chk_consent_yes"
+                 ]
+               }
+             ]
            }
          }
        },

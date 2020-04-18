@@ -266,26 +266,6 @@
         }
       },
       {
-        "key": "finger_print",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "",
-        "openmrs_entity_id": "",
-        "type": "finger_print",
-        "project_id":"fUBnpzDdbsCsMp0egCHB",
-        "user_id":"global_user",
-        "module_id":"global_module",
-        "finger_print_option":"register",
-        "uploadButtonText": "Take finger print",
-        "image_file": "",
-        "extra_info": {
-          "DOB": "dob_calculated"
-        },
-        "v_required": {
-          "value": "true",
-          "err": "Please scan fingerprint"
-        }
-      },
-      {
         "key": "gender",
         "openmrs_entity_parent": "",
         "openmrs_entity": "person",
@@ -321,23 +301,23 @@
         }
       },
       {
-        "key": "rhc_card",
+        "key": "finger_print",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "164147AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-        "type": "spinner",
-        "hint": "Does the child have RCH card 1/child growth booklet?",
-        "values": [
-          "Yes",
-          "No"
-        ],
-        "keys": [
-          "Yes",
-          "No"
-        ],
-        "openmrs_choice_ids": {
-          "Yes": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-          "No": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "type": "finger_print",
+        "project_id":"fUBnpzDdbsCsMp0egCHB",
+        "user_id":"global_user",
+        "module_id":"global_module",
+        "finger_print_option":"register",
+        "uploadButtonText": "Take finger print",
+        "image_file": "",
+        "extra_info": {
+          "DOB": "dob_calculated"
+        },
+        "v_required": {
+          "value": "true",
+          "err": "Please scan fingerprint"
         }
       }
     ]

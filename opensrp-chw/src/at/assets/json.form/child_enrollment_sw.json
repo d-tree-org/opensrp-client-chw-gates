@@ -266,26 +266,6 @@
         }
       },
       {
-        "key": "finger_print",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "",
-        "openmrs_entity_id": "",
-        "type": "finger_print",
-        "project_id":"fUBnpzDdbsCsMp0egCHB",
-        "user_id":"global_user",
-        "module_id":"global_module",
-        "finger_print_option":"register",
-        "uploadButtonText": "Take finger print",
-        "image_file": "",
-        "extra_info": {
-          "DOB": "dob_calculated"
-        },
-        "v_required": {
-          "value": "true",
-          "err": "Please scan fingerprint"
-        }
-      },
-      {
         "key": "gender",
         "openmrs_entity_parent": "",
         "openmrs_entity": "person",
@@ -321,57 +301,23 @@
         }
       },
       {
-        "key": "rhc_card",
+        "key": "finger_print",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "164147AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-        "type": "spinner",
-        "hint": "Je, mtoto ana RCH kadi namba moja/kitabu cha ukuaji wa mtoto?",
-        "values": [
-          "Ndiyo",
-          "Hapana"
-        ],
-        "keys": [
-          "Yes",
-          "No"
-        ],
-        "openmrs_choice_ids": {
-          "Yes": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-          "No": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-        }
-      },
-      {
-        "key": "nutrition_status",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "163301AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-        "type": "spinner",
-        "hint": "Hali ya lishe ya mtoto",
-        "values": [
-          "Kijani",
-          "Kijivu/Njano",
-          "Nyekundu"
-        ],
-        "keys": [
-          "Green",
-          "Grey",
-          "Red"
-        ],
-        "openmrs_choice_ids": {
-          "Green": "160909AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-          "Grey": "163639AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-          "Red": "127778AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "type": "finger_print",
+        "project_id":"fUBnpzDdbsCsMp0egCHB",
+        "user_id":"global_user",
+        "module_id":"global_module",
+        "finger_print_option":"register",
+        "uploadButtonText": "Take finger print",
+        "image_file": "",
+        "extra_info": {
+          "DOB": "dob_calculated"
         },
         "v_required": {
           "value": "true",
-          "err": "Tafadhali toa hali ya lishe ya watoto"
-        },
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "family-child-relevance.yml"
-            }
-          }
+          "err": "Please scan fingerprint"
         }
       }
     ]

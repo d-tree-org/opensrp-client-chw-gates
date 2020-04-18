@@ -96,7 +96,8 @@ public class FamilyOtherMemberProfileActivity extends CoreFamilyOtherMemberProfi
 
         NativeFormsDataBinder binder = new NativeFormsDataBinder(this, client.getCaseId());
         binder.setDataLoader(new FamilyMemberDataLoader(familyName, isPrimaryCareGiver, titleString, eventName, uniqueID));
-        JSONObject jsonObject = binder.getPrePopulatedForm(CoreConstants.JSON_FORM.getFamilyMemberRegister());
+        //JSONObject jsonObject = binder.getPrePopulatedForm(CoreConstants.JSON_FORM.getFamilyMemberRegister());
+        JSONObject jsonObject = binder.getPrePopulatedForm("family_member_edit");
 
         try {
             if (jsonObject != null)

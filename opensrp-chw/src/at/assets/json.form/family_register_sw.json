@@ -63,7 +63,7 @@
         "openmrs_entity": "person",
         "openmrs_entity_id": "first_name",
         "type": "edit_text",
-        "hint": "Jina la familia (ukoo)",
+        "hint": "Jina la familia (kaya)",
         "edit_type": "name",
         "v_required": {
           "value": "true",
@@ -153,25 +153,6 @@
         "toaster_type": "warning"
       },
       {
-        "key": "consent_picture_label",
-        "type": "label",
-        "text": "Piga picha ya fomu ya ridhaa.",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "",
-        "openmrs_entity_id": "",
-        "relevance": {
-          "step2:fam_consent": {
-            "ex-checkbox": [
-              {
-                "or": [
-                  "chk_consent_yes"
-                ]
-              }
-            ]
-          }
-        }
-      },
-      {
         "key": "unique_id",
         "openmrs_entity_parent": "",
         "openmrs_entity": "person_identifier",
@@ -184,29 +165,6 @@
         "v_numeric": {
           "value": "true",
           "err": "Please enter a valid ID"
-        }
-      },
-      {
-        "key": "consent_photo",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "",
-        "openmrs_entity_id": "",
-        "type": "choose_image",
-        "uploadButtonText": "Take Photo",
-        "relevance": {
-          "step2:fam_consent": {
-            "ex-checkbox": [
-              {
-                "or": [
-                  "chk_consent_yes"
-                ]
-              }
-            ]
-          }
-        },
-        "v_required": {
-          "value": "true",
-          "err": "Please take a picture of the consent form"
         }
       },
       {
@@ -236,6 +194,51 @@
         "v-required" : {
           "value" : "true",
           "err": "Tafadhali jaza ridhaa ya kaya."
+        }
+      },
+      {
+        "key": "consent_picture_label",
+        "type": "label",
+        "text": "Piga picha ya fomu ya ridhaa.",
+        "v_required": {
+          "value": true
+        },
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "relevance": {
+          "step2:fam_consent": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "chk_consent_yes"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "key": "consent_photo",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "type": "choose_image",
+        "uploadButtonText": "Piga Picha",
+        "relevance": {
+          "step2:fam_consent": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "chk_consent_yes"
+                ]
+              }
+            ]
+          }
+        },
+        "v_required": {
+          "value": "true",
+          "err": "Tafadhali piga picha ya fomu ya ridhaa."
         }
       }
     ]
@@ -269,31 +272,11 @@
         "read_only": "true",
         "v_numeric": {
           "value": "true",
-          "err": "Please enter a valid ID"
+          "err": "Jafadhali weka namba ya utambulisho sahihi"
         },
         "v_required": {
           "value": "true",
-          "err": "Please enter the ID"
-        },
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "family_register_relevance.yml"
-            }
-          }
-        }
-      },
-      {
-        "key": "surname",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "",
-        "type": "edit_text",
-        "hint": "Jina la ukoo",
-        "edit_type": "name",
-        "v_regex": {
-          "value": "[A-Za-z\\u00C0-\\u017F\\s\\u00C0-\\u017F\\.\\-]*",
-          "err": "Please enter a valid name"
+          "err": "Jafadhali weka namba ya utambulisho sahihi"
         },
         "relevance": {
           "rules-engine": {
@@ -317,7 +300,7 @@
         "options": [
           {
             "key": "same_as_fam_name",
-            "text": "Jina la familia sawa na jina la ukoo",
+            "text": "Je jina la familia ni sawa na jina la kaya?",
             "text_size": "18px",
             "value": "false"
           }
@@ -335,12 +318,36 @@
         }
       },
       {
+        "key": "surname",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "edit_text",
+        "hint": "Jina la familia",
+        "edit_type": "name",
+        "v_regex": {
+          "value": "[A-Za-z\\u00C0-\\u017F\\s\\u00C0-\\u017F\\.\\-]*",
+          "err": "Tafadhali jaza jina sahihi"
+        },
+        "v_required": {
+          "value": "true",
+          "err": "Tafadhali jaza jina la mwisho (Ukoo)"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "family_register_relevance.yml"
+            }
+          }
+        }
+      },
+      {
         "key": "surname_calculation",
         "openmrs_entity_parent": "",
         "openmrs_entity": "person",
         "openmrs_entity_id": "last_name",
         "type": "hidden",
-        "hint": "Surname as Family name",
+        "hint": "Jina la ukoo sawa na jina la familia",
         "calculation": {
           "rules-engine": {
             "ex-rules": {
@@ -406,6 +413,33 @@
         }
       },
       {
+        "key": "dob_unknown",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "person",
+        "openmrs_entity_id": "birthdateApprox",
+        "type": "check_box",
+        "label": "",
+        "options": [
+          {
+            "key": "dob_unknown",
+            "text": "Je tarehe ya kuzaliwa haijulikani?",
+            "text_size": "18px",
+            "value": "false"
+          }
+        ],
+        "relevance": {
+          "step2:fam_consent": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "chk_consent_yes"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
         "key": "dob",
         "openmrs_entity_parent": "",
         "openmrs_entity": "person",
@@ -441,33 +475,6 @@
             "ex-rules": {
               "rules-file": "family_register_calculation.yml"
             }
-          }
-        }
-      },
-      {
-        "key": "dob_unknown",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "person",
-        "openmrs_entity_id": "birthdateApprox",
-        "type": "check_box",
-        "label": "",
-        "options": [
-          {
-            "key": "dob_unknown",
-            "text": "Tarehe ya kuzaliwa haijulikani?",
-            "text_size": "18px",
-            "value": "false"
-          }
-        ],
-        "relevance": {
-          "step2:fam_consent": {
-            "ex-checkbox": [
-              {
-                "or": [
-                  "chk_consent_yes"
-                ]
-              }
-            ]
           }
         }
       },
@@ -514,37 +521,6 @@
               "rules-file": "family_register_calculation.yml"
             }
           }
-        }
-      },
-      {
-        "key": "finger_print",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "",
-        "openmrs_entity_id": "",
-        "type": "finger_print",
-        "project_id":"fUBnpzDdbsCsMp0egCHB",
-        "user_id":"global_user",
-        "module_id":"global_module",
-        "finger_print_option":"register",
-        "uploadButtonText": "Skani alama za vidole",
-        "image_file": "",
-        "extra_info": {
-          "DOB": "dob_calculated"
-        },
-        "relevance": {
-          "step2:fam_consent": {
-            "ex-checkbox": [
-              {
-                "or": [
-                  "chk_consent_yes"
-                ]
-              }
-            ]
-          }
-        },
-        "v_required": {
-          "value": "true",
-          "err": "Please scan fingerprint"
         }
       },
       {
@@ -683,6 +659,57 @@
               }
             ]
           }
+        }
+      },
+      {
+        "key": "national_id",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "person_attribute",
+        "openmrs_entity_id": "National_ID",
+        "type": "edit_text",
+        "hint": "Namba ya kitambulisho cha taifa",
+        "edit_type": "name",
+        "relevance": {
+          "step2:fam_consent": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "chk_consent_yes"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "key": "finger_print",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "type": "finger_print",
+        "project_id":"fUBnpzDdbsCsMp0egCHB",
+        "user_id":"global_user",
+        "module_id":"global_module",
+        "finger_print_option":"register",
+        "uploadButtonText": "Skani alama za vidole",
+        "image_file": "",
+        "extra_info": {
+          "DOB": "dob_calculated"
+        },
+        "relevance": {
+          "step2:fam_consent": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "chk_consent_yes"
+                ]
+              }
+            ]
+          }
+        },
+        "v_required": {
+          "value": "true",
+          "err": "Please scan fingerprint"
         }
       },
       {

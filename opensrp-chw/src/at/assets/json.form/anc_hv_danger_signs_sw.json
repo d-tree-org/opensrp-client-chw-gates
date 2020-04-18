@@ -49,7 +49,7 @@
     "encounter_location": ""
   },
   "step1": {
-    "title": "Dalili za hatari",
+    "title": "Dalili za hatari na magonjwa madogo madogo",
     "fields": [
       {
         "key": "danger_signs_present",
@@ -164,7 +164,7 @@
           },
           {
             "key": "chk_anemia",
-            "text": "Anemia demonstrated by paleness on the palms",
+            "text": "Upungufu wa damu unajionyesha kwa weupe mkubwa kwenye viganja vya mkono na ulimi, kulegea au uchovu.",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": ""
@@ -358,8 +358,8 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "1730AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
         "type": "date_picker",
-        "hint": "Tarehe mama mjamzito alipoanza kujihisi kuumwa",
-        "label_info_text": "Tarehe mama mjamzito alipoanza kujihisi kuumwa",
+        "hint": "Tarehe mama alipoanza kuumwa",
+        "label_info_text": "Tarehe mama alipoanza kuumwa",
         "expanded": false,
         "min_date": "today-1y",
         "max_date": "today",
@@ -495,7 +495,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "165310AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
         "type": "button",
-        "hint": "Hifadhi & Unganisha na DLDM",
+        "hint": "Hifadhi na Unganisha kwa DLDM",
         "btn_bg_color": "#CF0800",
         "action": {
           "behaviour": "link"
