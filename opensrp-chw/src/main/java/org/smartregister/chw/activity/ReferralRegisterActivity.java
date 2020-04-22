@@ -1,6 +1,7 @@
 package org.smartregister.chw.activity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -24,6 +25,7 @@ import org.smartregister.job.ImageUploadServiceJob;
 import org.smartregister.job.PullUniqueIdsServiceJob;
 import org.smartregister.job.SyncServiceJob;
 import org.smartregister.job.SyncTaskServiceJob;
+import org.smartregister.util.LangUtils;
 import org.smartregister.view.fragment.BaseRegisterFragment;
 
 import java.util.Arrays;
@@ -139,6 +141,13 @@ public class ReferralRegisterActivity extends BaseReferralRegisterActivity {
         if (menu != null) {
             menu.getNavigationAdapter().setSelectedView(Constants.DrawerMenu.REFERRALS);
         }
+    }
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        // get language from prefs
+        String lang = LangUtils.getLanguage(base.getApplicationContext());
+        super.attachBaseContext(LangUtils.setAppLocale(base, lang));
     }
 }
  

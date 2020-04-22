@@ -109,8 +109,8 @@ public class AncHomeVisitActivity extends BaseAncHomeVisitActivity {
                             this.finish();
                         }
                     }
-
                     //end of check referral
+
                     BaseAncHomeVisitAction ancHomeVisitAction = actionList.get(current_action);
                     if (ancHomeVisitAction != null) {
                         ancHomeVisitAction.setJsonPayload(jsonString);

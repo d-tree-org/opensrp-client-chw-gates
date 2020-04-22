@@ -1,6 +1,7 @@
 package org.smartregister.chw.activity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 
 import org.smartregister.chw.application.ChwApplication;
@@ -9,6 +10,7 @@ import org.smartregister.chw.referral.util.Constants;
 import org.smartregister.commonregistry.CommonPersonObjectClient;
 import org.smartregister.domain.Task;
 import org.smartregister.repository.TaskRepository;
+import org.smartregister.util.LangUtils;
 
 import static org.smartregister.chw.core.utils.CoreConstants.JSON_FORM.getReferralFollowupForm;
 
@@ -41,5 +43,12 @@ public class ReferralFollowupActivity extends BaseReferralFollowupActivity {
         TaskRepository taskRepository = ChwApplication.getInstance().getTaskRepository();
         Task task = taskRepository.getTaskByIdentifier(identifier);
         return task.getPriority();
+    }
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        // get language from prefs
+        String lang = LangUtils.getLanguage(base.getApplicationContext());
+        super.attachBaseContext(LangUtils.setAppLocale(base, lang));
     }
 }
