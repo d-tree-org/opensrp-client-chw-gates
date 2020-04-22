@@ -12,6 +12,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.smartregister.chw.CoreReferralFollowupActivity;
+import org.smartregister.chw.R;
 import org.smartregister.chw.application.ChwApplication;
 import org.smartregister.chw.core.custom_views.NavigationMenu;
 import org.smartregister.chw.core.utils.CoreConstants;
@@ -54,9 +55,9 @@ public abstract class BaseReferralFollowupActivity extends CoreReferralFollowupA
         form.setHomeAsUpIndicator(org.smartregister.chw.core.R.mipmap.ic_cross_white);
         form.setSaveLabel(getString(org.smartregister.chw.core.R.string.submit));
 
-        String title = "Referral Followup";
+        String title = getContext().getString(R.string.referral_followup);
         if(jsonForm.optString("encounter_type", "").equalsIgnoreCase("Linkage Follow-up Visit")){
-            title = "Linkage Followup";
+            title = getContext().getString(R.string.linkage_followup);
         }
 
         if (isMultiPartForm(jsonForm)) {

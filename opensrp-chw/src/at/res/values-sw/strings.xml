@@ -8,4 +8,9 @@
 
     <string name="scan_fingerprint"> Scan </string>
 
+    <string name="referral_followup">Tembeleo lijalo</string>
+    <string name="linkage_followup">Tembeleo lijalo</string>
+
+    <string name="followup">FWATILIA</string>
+
 </resources>

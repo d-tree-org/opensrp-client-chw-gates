@@ -142,7 +142,7 @@ public class ReferralRegisterProvider implements RecyclerViewProvider<ReferralRe
     }
 
     private void setReferralStatusColor(Context context, TextView textViewStatus, String status) {
-        textViewStatus.setText("FOLLOW UP"); // temporary. to be fixed
+        textViewStatus.setText(context.getString(R.string.followup)); // temporary. to be fixed
         switch (status) {
             case "":
                 textViewStatus.setTextColor(context.getResources().getColor(org.smartregister.chw.referral.R.color.alert_in_progress_blue));
