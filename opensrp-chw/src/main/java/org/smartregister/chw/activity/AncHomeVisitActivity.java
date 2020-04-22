@@ -22,7 +22,6 @@ import org.smartregister.chw.interactor.AncHomeVisitInteractor;
 import org.smartregister.chw.schedulers.ChwScheduleTaskExecutor;
 import org.smartregister.family.util.Constants;
 import org.smartregister.family.util.JsonFormUtils;
-import org.smartregister.family.util.Utils;
 import org.smartregister.util.LangUtils;
 
 import java.util.Date;
@@ -104,7 +103,7 @@ public class AncHomeVisitActivity extends BaseAncHomeVisitActivity {
                     if(!buttonAction.isEmpty()) {
                         //refer
                         CoreReferralUtils.createReferralEvent(ChwApplication.getInstance().getContext().allSharedPreferences(),
-                                jsonString, "ec_anc_referral", baseEntityID);
+                                jsonString, CoreConstants.TABLE_NAME.ANC_REFERRAL, baseEntityID);
                         if (buttonAction.equalsIgnoreCase("refer")){
                             this.finish();
                         }

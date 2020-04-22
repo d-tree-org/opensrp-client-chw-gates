@@ -71,7 +71,6 @@ public class ReferralRegisterProvider implements RecyclerViewProvider<ReferralRe
             String patientName = getName(fname, Utils.getValue(pc.getColumnmaps(), DBConstants.KEY.LAST_NAME, true));
             viewHolder.patientName.setText(String.format(Locale.getDefault(), "%s, %d", patientName, age));
             viewHolder.textViewGender.setText(Utils.getValue(pc.getColumnmaps(), DBConstants.KEY.GENDER, true));
-            viewHolder.textViewVillage.setText(Utils.getValue(pc.getColumnmaps(), DBConstants.KEY.VILLAGE_TOWN, true));
             viewHolder.textViewService.setText(Utils.getValue(pc.getColumnmaps(), "problem", true));
             viewHolder.textViewFacility.setText(Utils.getValue(pc.getColumnmaps(), DBConstants.KEY.REFERRAL_HF, true));
 
@@ -162,7 +161,6 @@ public class ReferralRegisterProvider implements RecyclerViewProvider<ReferralRe
 
     public class RegisterViewHolder extends RecyclerView.ViewHolder {
         public TextView patientName;
-        public TextView textViewVillage;
         public TextView textViewGender;
         public TextView textReferralStatus;
         public View patientColumn;
@@ -175,7 +173,6 @@ public class ReferralRegisterProvider implements RecyclerViewProvider<ReferralRe
             super(itemView);
 
             patientName = itemView.findViewById(org.smartregister.chw.referral.R.id.patient_name_age);
-            textViewVillage = itemView.findViewById(org.smartregister.chw.referral.R.id.text_view_village);
             textViewGender = itemView.findViewById(org.smartregister.chw.referral.R.id.text_view_gender);
             textReferralStatus = itemView.findViewById(org.smartregister.chw.referral.R.id.text_view_referral_status);
             patientColumn = itemView.findViewById(org.smartregister.chw.referral.R.id.patient_column);
