@@ -213,33 +213,6 @@
         }
       },
       {
-        "key": "danger_signs_counseling",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "165310AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-        "openmrs_data_type": "select one",
-        "type": "spinner",
-        "label_info_title": "Did the mother receive counselling",
-        "label_info_text": "Did the mother receive counselling on danger signs at the health facility recently?",
-        "hint": "Did the mother receive counselling on danger signs at the health facility recently?",
-        "values": [
-          "Yes",
-          "No"
-        ],
-        "keys": [
-          "Yes",
-          "No"
-        ],
-        "openmrs_choice_ids": {
-          "Yes": "1267AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-          "No": "1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-        },
-        "v_required": {
-          "value": "true",
-          "err": "Please select one option"
-        }
-      },
-      {
         "key": "danger_signs_captured",
         "openmrs_entity_parent": "",
         "openmrs_entity": "",

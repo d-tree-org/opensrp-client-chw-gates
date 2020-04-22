@@ -211,34 +211,7 @@
             ]
           }
         }
-      },
-      {
-        "key": "danger_signs_counseling",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "165310AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-        "openmrs_data_type": "select one",
-        "type": "spinner",
-        "label_info_title": "Je mama amepewa ushauri nasaha wowote?",
-        "label_info_text": "Je mama amepewa ushauri wowote kuhusu dalili za hatari katika kituo cha afya?",
-        "hint": "Je mama amepewa ushauri wowote kuhusu dalili za hatari katika kituo cha afya?",
-        "values": [
-          "Yes",
-          "No"
-        ],
-        "keys": [
-          "Yes",
-          "No"
-        ],
-        "openmrs_choice_ids": {
-          "Yes": "1267AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-          "No": "1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-        },
-        "v_required": {
-          "value": "true",
-          "err": "Tafadhali chagua"
-        }
-      },
+      }
       {
         "key": "danger_signs_captured_sw",
         "openmrs_entity_parent": "",
