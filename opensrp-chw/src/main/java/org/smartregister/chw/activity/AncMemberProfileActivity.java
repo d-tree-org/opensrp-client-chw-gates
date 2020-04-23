@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import org.apache.commons.lang3.StringUtils;
 import org.json.JSONArray;
@@ -268,12 +269,21 @@ public class AncMemberProfileActivity extends CoreAncMemberProfileActivity imple
             AncHomeVisitActivity.startMe(this, memberObject.getBaseEntityId(), false);
         } else if (id == R.id.textview_edit) {
             AncHomeVisitActivity.startMe(this, memberObject.getBaseEntityId(), true);
+        } else if (id == R.id.referral_row) {
+            Task task = (Task) view.getTag();
+            ReferralFollowupActivity.startReferralFollowupActivity(this, task.getIdentifier());
         }
     }
 
     @Override
     public void setClientTasks(Set<Task> taskList) {
-        //overridden
+            if (taskList.size() > 0) {
+                RelativeLayout layoutReferralRow = findViewById(R.id.referral_row);
+                layoutReferralRow.setOnClickListener(this);
+                layoutReferralRow.setVisibility(View.VISIBLE);
+                findViewById(R.id.view_referral_row).setVisibility(View.VISIBLE);
+                layoutReferralRow.setTag(taskList.iterator().next());
+            }
     }
 
     @Override

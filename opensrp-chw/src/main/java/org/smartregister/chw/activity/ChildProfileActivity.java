@@ -22,6 +22,7 @@ import org.smartregister.chw.dao.MalariaDao;
 import org.smartregister.chw.model.ReferralTypeModel;
 import org.smartregister.chw.presenter.ChildProfilePresenter;
 import org.smartregister.chw.schedulers.ChwScheduleTaskExecutor;
+import org.smartregister.domain.Task;
 import org.smartregister.family.util.Constants;
 
 import java.util.ArrayList;
@@ -74,6 +75,9 @@ public class ChildProfileActivity extends CoreChildProfileActivity {
             imageViewCrossChild.setImageResource(R.drawable.activityrow_notvisited);
         } else if (i == R.id.textview_undo) {
             presenter().updateVisitNotDone(0);
+        } else if(i == R.id.referral_row) {
+            Task task = (Task) view.getTag();
+            ReferralFollowupActivity.startReferralFollowupActivity(this, task.getIdentifier());
         }
     }
 
