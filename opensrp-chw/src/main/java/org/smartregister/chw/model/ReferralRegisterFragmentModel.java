@@ -4,6 +4,7 @@ package org.smartregister.chw.model;
 import androidx.annotation.NonNull;
 
 import org.smartregister.chw.core.utils.ChildDBConstants;
+import org.smartregister.chw.core.utils.CoreConstants;
 import org.smartregister.chw.referral.model.BaseReferralRegisterFragmentModel;
 import org.smartregister.chw.util.Constants;
 import org.smartregister.cursoradapter.SmartRegisterQueryBuilder;
@@ -38,6 +39,7 @@ public class ReferralRegisterFragmentModel extends BaseReferralRegisterFragmentM
         columnList.add(Constants.TABLE_NAME.FAMILY_MEMBER + "." + DBConstants.KEY.RELATIONAL_ID);
         columnList.add(Constants.TABLE_NAME.FAMILY_MEMBER + "." + DBConstants.KEY.PHONE_NUMBER);
         columnList.add(Constants.TABLE_NAME.FAMILY_MEMBER + "." + DBConstants.KEY.OTHER_PHONE_NUMBER);
+        columnList.add(tableName + "." + CoreConstants.DB_CONSTANTS.STATUS);
         columnList.add(tableName + "." +  "focus AS " + org.smartregister.chw.referral.util.DBConstants.KEY.PROBLEM);
         return columnList.toArray(new String[columnList.size()]);
     }
