@@ -23,7 +23,6 @@ import org.smartregister.chw.pnc.activity.BasePncHomeVisitActivity;
 import org.smartregister.chw.schedulers.ChwScheduleTaskExecutor;
 import org.smartregister.family.util.Constants;
 import org.smartregister.family.util.JsonFormUtils;
-import org.smartregister.family.util.Utils;
 import org.smartregister.util.LangUtils;
 
 import java.util.Date;
@@ -97,10 +96,10 @@ public class PncHomeVisitActivity extends BasePncHomeVisitActivity {
                         //refer
                         if (baseEntityID!=null){
                             CoreReferralUtils.createReferralEvent(ChwApplication.getInstance().getContext().allSharedPreferences(),
-                                    jsonString, "ec_anc_referral", baseEntityID);
+                                    jsonString, CoreConstants.TABLE_NAME.PNC_REFERRAL, baseEntityID);
                         }else {
                             CoreReferralUtils.createReferralEvent(ChwApplication.getInstance().getContext().allSharedPreferences(),
-                                    jsonString, "ec_anc_referral", memberObject.getBaseEntityId());
+                                    jsonString, CoreConstants.TABLE_NAME.PNC_REFERRAL, memberObject.getBaseEntityId());
                         }
                         this.finish();
                     }

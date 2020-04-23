@@ -9,12 +9,12 @@ import com.vijay.jsonwizard.domain.Form;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.smartregister.chw.anc.domain.MemberObject;
 import org.smartregister.chw.anc.model.BaseAncHomeVisitAction;
 import org.smartregister.chw.anc.presenter.BaseAncHomeVisitPresenter;
 import org.smartregister.chw.application.ChwApplication;
 import org.smartregister.chw.core.activity.CoreChildHomeVisitActivity;
 import org.smartregister.chw.core.interactor.CoreChildHomeVisitInteractor;
+import org.smartregister.chw.core.utils.CoreConstants;
 import org.smartregister.chw.core.utils.CoreReferralUtils;
 import org.smartregister.chw.interactor.ChildHomeVisitInteractorFlv;
 import org.smartregister.family.util.Constants;
@@ -74,10 +74,10 @@ public class ChildHomeVisitActivity extends CoreChildHomeVisitActivity {
                         //refer
                         if (baseEntityID!=null){
                             CoreReferralUtils.createReferralEvent(ChwApplication.getInstance().getContext().allSharedPreferences(),
-                                    jsonString, "ec_anc_referral", baseEntityID);
+                                    jsonString, CoreConstants.TABLE_NAME.CHILD_REFERRAL, baseEntityID);
                         }else {
                             CoreReferralUtils.createReferralEvent(ChwApplication.getInstance().getContext().allSharedPreferences(),
-                                    jsonString, "ec_anc_referral", memberObject.getBaseEntityId());
+                                    jsonString, CoreConstants.TABLE_NAME.CHILD_REFERRAL, memberObject.getBaseEntityId());
                         }
 
                         this.finish();

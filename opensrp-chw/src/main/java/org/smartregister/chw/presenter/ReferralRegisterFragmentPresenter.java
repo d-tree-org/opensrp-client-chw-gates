@@ -19,8 +19,6 @@ public class ReferralRegisterFragmentPresenter extends BaseReferralRegisterFragm
     public String getMainCondition() {
         return " " + Constants.TABLE_NAME.FAMILY_MEMBER + "." + DBConstants.KEY.DATE_REMOVED + " is null " +
                 "AND status  = '" + Task.TaskStatus.READY + "' ";
-                //"AND " + org.smartregister.chw.referral.util.Constants.TABLES.REFERRAL + "." + DBConstants.KEY.REFERRAL_TYPE + " = '" + org.smartregister.chw.referral.util.Constants.REFERRAL_TYPE.COMMUNITY_TO_FACILITY_REFERRAL + "' ";
-
     }
 
     @Override

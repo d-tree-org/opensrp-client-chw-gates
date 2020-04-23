@@ -342,4 +342,9 @@
     <string name="sick_visits">Sick Visits</string>
     <string name="sick_visit">Sick Visit</string>
 
+    <string name="referral_followup">Referral Followup</string>
+    <string name="linkage_followup">Linkage Followup</string>
+
+    <string name="followup">FOLLOW UP</string>
+
 </resources>
