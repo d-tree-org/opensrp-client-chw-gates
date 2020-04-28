@@ -19,7 +19,6 @@ import org.smartregister.chw.core.utils.CoreConstants;
 import org.smartregister.domain.Task;
 import org.smartregister.family.util.JsonFormUtils;
 import org.smartregister.family.util.Utils;
-import org.smartregister.job.SyncServiceJob;
 import org.smartregister.repository.TaskRepository;
 
 import java.util.Collections;
@@ -100,7 +99,8 @@ public abstract class BaseReferralFollowupActivity extends CoreReferralFollowupA
                         taskRepository.addOrUpdate(task);
                     }
                 }
-                startRegisterActivity(getReferralRegisterActivity().getClass());
+
+                finish();
 
             } catch (JSONException e) {
                 Timber.e(e);
@@ -110,16 +110,6 @@ public abstract class BaseReferralFollowupActivity extends CoreReferralFollowupA
             finish();
         }
 
-    }
-
-    protected abstract Activity getReferralRegisterActivity();
-
-    private void startRegisterActivity(Class registerClass) {
-        SyncServiceJob.scheduleJobImmediately(SyncServiceJob.TAG);
-        Intent intent = new Intent(this, registerClass);
-        this.startActivity(intent);
-        this.overridePendingTransition(org.smartregister.chw.core.R.anim.slide_in_up, org.smartregister.chw.core.R.anim.slide_out_up);
-        this.finish();
     }
 
     @Override
