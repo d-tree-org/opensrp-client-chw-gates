@@ -289,6 +289,7 @@ android {
     dataBinding {
         enabled = true
     }
+    buildToolsVersion = androidBuildToolsVersion
 }
 
 def githubProperties = new Properties()
