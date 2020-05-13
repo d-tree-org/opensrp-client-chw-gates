@@ -13,8 +13,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.joda.time.DateTime;
 import org.joda.time.Period;
 import org.smartregister.chw.R;
+import org.smartregister.chw.core.utils.CoreConstants;
 import org.smartregister.chw.referral.fragment.BaseReferralRegisterFragment;
-import org.smartregister.chw.referral.util.Constants;
 import org.smartregister.chw.referral.util.DBConstants;
 import org.smartregister.commonregistry.CommonPersonObjectClient;
 import org.smartregister.cursoradapter.RecyclerViewProvider;
@@ -32,6 +32,8 @@ import java.util.Set;
 
 import timber.log.Timber;
 
+import static org.smartregister.chw.core.utils.ChwDBConstants.TASK_STATUS_READY;
+import static org.smartregister.chw.util.ChwDBConstants.TASK_STATUS_NEW;
 import static org.smartregister.util.Utils.getName;
 
 public class ReferralRegisterProvider implements RecyclerViewProvider<ReferralRegisterProvider.RegisterViewHolder> {
@@ -71,7 +73,6 @@ public class ReferralRegisterProvider implements RecyclerViewProvider<ReferralRe
             String patientName = getName(fname, Utils.getValue(pc.getColumnmaps(), DBConstants.KEY.LAST_NAME, true));
             viewHolder.patientName.setText(String.format(Locale.getDefault(), "%s, %d", patientName, age));
             viewHolder.textViewGender.setText(Utils.getValue(pc.getColumnmaps(), DBConstants.KEY.GENDER, true));
-            viewHolder.textViewVillage.setText(Utils.getValue(pc.getColumnmaps(), DBConstants.KEY.VILLAGE_TOWN, true));
             viewHolder.textViewService.setText(Utils.getValue(pc.getColumnmaps(), "problem", true));
             viewHolder.textViewFacility.setText(Utils.getValue(pc.getColumnmaps(), DBConstants.KEY.REFERRAL_HF, true));
 
@@ -86,7 +87,7 @@ public class ReferralRegisterProvider implements RecyclerViewProvider<ReferralRe
             viewHolder.registerColumns.setOnClickListener(onClickListener);
 
             viewHolder.registerColumns.setOnClickListener(v -> viewHolder.patientColumn.performClick());
-            setReferralStatusColor(context, viewHolder.textReferralStatus, Utils.getValue(pc.getColumnmaps(), DBConstants.KEY.REFERRAL_STATUS, true));
+            setReferralStatusColor(context, viewHolder.textReferralStatus, Utils.getValue(pc.getColumnmaps(), CoreConstants.DB_CONSTANTS.STATUS, true));
 
         } catch (Exception e) {
             Timber.e(e);
@@ -143,15 +144,12 @@ public class ReferralRegisterProvider implements RecyclerViewProvider<ReferralRe
     }
 
     private void setReferralStatusColor(Context context, TextView textViewStatus, String status) {
-        textViewStatus.setText("FOLLOW UP"); // temporary. to be fixed
+        textViewStatus.setText(context.getString(R.string.followup));
         switch (status) {
-            case "":
+            case TASK_STATUS_READY:
                 textViewStatus.setTextColor(context.getResources().getColor(org.smartregister.chw.referral.R.color.alert_in_progress_blue));
                 break;
-            case Constants.REFERRAL_STATUS.FAILED:
-                textViewStatus.setTextColor(context.getResources().getColor(org.smartregister.chw.referral.R.color.alert_urgent_red));
-                break;
-            case Constants.REFERRAL_STATUS.SUCCESSFUL:
+            case TASK_STATUS_NEW:
                 textViewStatus.setTextColor(context.getResources().getColor(org.smartregister.chw.referral.R.color.alert_complete_green));
                 break;
             default:
@@ -162,7 +160,6 @@ public class ReferralRegisterProvider implements RecyclerViewProvider<ReferralRe
 
     public class RegisterViewHolder extends RecyclerView.ViewHolder {
         public TextView patientName;
-        public TextView textViewVillage;
         public TextView textViewGender;
         public TextView textReferralStatus;
         public View patientColumn;
@@ -175,7 +172,6 @@ public class ReferralRegisterProvider implements RecyclerViewProvider<ReferralRe
             super(itemView);
 
             patientName = itemView.findViewById(org.smartregister.chw.referral.R.id.patient_name_age);
-            textViewVillage = itemView.findViewById(org.smartregister.chw.referral.R.id.text_view_village);
             textViewGender = itemView.findViewById(org.smartregister.chw.referral.R.id.text_view_gender);
             textReferralStatus = itemView.findViewById(org.smartregister.chw.referral.R.id.text_view_referral_status);
             patientColumn = itemView.findViewById(org.smartregister.chw.referral.R.id.patient_column);

@@ -155,7 +155,7 @@ public class FollowupRegisterFragment extends BaseFollowupRegisterFragment {
 
     @Override
     protected void openProfile(CommonPersonObjectClient client) {
-        ReferralFollowupActivity.startReferralFollowupActivity(getActivity(), new MemberObject(client), client);
+        ReferralFollowupActivity.startReferralFollowupActivity(getActivity(), client.getCaseId());
     }
 
     @Override

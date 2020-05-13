@@ -171,6 +171,14 @@
             "openmrs_entity": "concept",
             "openmrs_entity_id": "155052AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           },
+		  {
+            "key": "chk_unavailable_skills",
+            "text": "There were no skilled service providers",
+            "value": false,
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "155053AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
           {
             "key": "chk_other_reason",
             "text": "Other",
