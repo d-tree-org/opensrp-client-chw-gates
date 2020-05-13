@@ -61,123 +61,123 @@
         "label_text_style": "normal",
         "text_color": "#C0C0C0",
         "exclusive": [
-          "chk_none"
+          "ds_none"
         ],
         "options": [
           {
-            "key": "chk_fever",
+            "key": "ds_fever",
             "text": "Severe fever and shivering",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "140238AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           },
           {
-            "key": "chk_bleeding_vaginally",
+            "key": "ds_bleeding_vaginally",
             "text": "Vaginal bleeding",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "150802AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           },
           {
-            "key": "chk_server_headache",
+            "key": "ds_server_headache",
             "text": "Severe headache",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "139081AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           },
           {
-            "key": "chk_blurred_vision",
+            "key": "ds_blurred_vision",
             "text": "Blurred vision",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "147104AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           },
           {
-            "key": "chk_convulsions",
+            "key": "ds_convulsions",
             "text": "Convulsions/Seizures",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "164483AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           },
           {
-            "key": "chk_difficulty_breathing",
+            "key": "ds_difficulty_breathing",
             "text": "Difficulty breathing",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "142373AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           },
           {
-            "key": "chk_severe_abdominal_pain",
+            "key": "ds_severe_abdominal_pain",
             "text": "Severe abdominal pain",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "165271AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           },
           {
-            "key": "chk_loss_consciousness",
+            "key": "ds_loss_consciousness",
             "text": "Loss of consciousness",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "135592AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           },
           {
-            "key": "chk_swelling",
+            "key": "ds_swelling",
             "text": "Swelling of the hands, face, and/or legs",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "460AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           },
           {
-            "key": "chk_early_labour",
+            "key": "ds_early_labour",
             "text": "Early labour pains before 9 months",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "151687AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           },
           {
-            "key": "chk_vaginal_discharge",
+            "key": "ds_vaginal_discharge",
             "text": "Foul smelling vaginal discharge",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "123395AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           },
           {
-            "key": "chk_unusual_movement",
+            "key": "ds_unusual_movement",
             "text": "Less/no fetal movement",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "113377AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           },
           {
-            "key": "chk_water_broke",
+            "key": "ds_water_broke",
             "text": "Water broke before 9 months",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": ""
           },
           {
-            "key": "chk_vomiting",
+            "key": "ds_vomiting",
             "text": "Vomiting",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": ""
           },
           {
-            "key": "chk_anemia",
+            "key": "ds_anemia",
             "text": "Anemia demonstrated by paleness on the palms or tongue, weakness or tiredness",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": ""
           },
           {
-            "key": "chk_other",
+            "key": "ds_other",
             "text": "Other",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": ""
           },
           {
-            "key": "chk_none",
+            "key": "ds_none",
             "text": "None",
             "value": false,
             "openmrs_entity": "concept",
@@ -205,38 +205,11 @@
             "ex-checkbox": [
               {
                 "or": [
-                  "chk_other"
+                  "ds_other"
                 ]
               }
             ]
           }
-        }
-      },
-      {
-        "key": "danger_signs_counseling",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "165310AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-        "openmrs_data_type": "select one",
-        "type": "spinner",
-        "label_info_title": "Did the mother receive counselling",
-        "label_info_text": "Did the mother receive counselling on danger signs at the health facility recently?",
-        "hint": "Did the mother receive counselling on danger signs at the health facility recently?",
-        "values": [
-          "Yes",
-          "No"
-        ],
-        "keys": [
-          "Yes",
-          "No"
-        ],
-        "openmrs_choice_ids": {
-          "Yes": "1267AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-          "No": "1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-        },
-        "v_required": {
-          "value": "true",
-          "err": "Please select one option"
         }
       },
       {
@@ -259,23 +232,23 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "5219AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
         "type": "check_box",
-        "label": "Minor Illnesses",
+        "label": "Minor Illnesses and other",
         "label_text_style": "bold",
         "text_color": "#000000",
         "exclusive": [
-          "chk_none"
+          "mi_none"
         ],
         "options": [
           {
-            "key": "chk_mild_pain",
+            "key": "mi_mild_pain",
             "text": "Mild pain anywhere in the body",
             "value": false,
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "123395AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+            "openmrs_entity_id": "123396AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           },
           {
-            "key": "chk_mild_fever",
+            "key": "mi_mild_fever",
             "text": "Mild fever",
             "value": false,
             "openmrs_entity_parent": "",
@@ -283,7 +256,7 @@
             "openmrs_entity_id": "136443AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           },
           {
-            "key": "chk_refill_medicine",
+            "key": "mi_refill_medicine",
             "text": "Refill of medicines such as Ferrous Sulphate, folic acid, and SP for IPTp",
             "value": false,
             "openmrs_entity_parent": "",
@@ -291,7 +264,7 @@
             "openmrs_entity_id": "155052AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           },
           {
-            "key": "chk_refill_commodities",
+            "key": "mi_refill_commodities",
             "text": "Refill of other commodities such as antiseptics/soaps, delivery kit",
             "value": false,
             "openmrs_entity_parent": "",
@@ -299,18 +272,18 @@
             "openmrs_entity_id": "996AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           },
           {
-            "key": "chk_other_needs",
+            "key": "mi_other_needs",
             "text": "Other",
             "value": false,
             "openmrs_entity": "",
             "openmrs_entity_id": ""
           },
           {
-            "key": "chk_none",
+            "key": "mi_none",
             "text": "None",
             "value": false,
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "1107AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+            "openmrs_entity_id": "1108AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           }
         ],
         "v_required": {
@@ -322,7 +295,7 @@
             "ex-checkbox": [
               {
                 "or": [
-                  "chk_none"
+                  "ds_none"
                 ]
               }
             ]
@@ -345,7 +318,7 @@
             "ex-checkbox": [
               {
                 "or": [
-                  "chk_other_needs"
+                  "mi_other_needs"
                 ]
               }
             ]
@@ -396,22 +369,22 @@
             "ex-checkbox": [
               {
                 "or": [
-                  "chk_fever",
-                  "chk_bleeding_vaginally",
-                  "chk_server_headache",
-                  "chk_blurred_vision",
-                  "chk_convulsions",
-                  "chk_difficulty_breathing",
-                  "chk_severe_abdominal_pain",
-                  "chk_loss_consciousness",
-                  "chk_swelling",
-                  "chk_early_labour",
-                  "chk_vaginal_discharge",
-                  "chk_unusual_movement",
-                  "chk_water_broke",
-                  "chk_vomiting",
-                  "chk_anemia",
-                  "chk_other"
+                  "ds_fever",
+                  "ds_bleeding_vaginally",
+                  "ds_server_headache",
+                  "ds_blurred_vision",
+                  "ds_convulsions",
+                  "ds_difficulty_breathing",
+                  "ds_severe_abdominal_pain",
+                  "ds_loss_consciousness",
+                  "ds_swelling",
+                  "ds_early_labour",
+                  "ds_vaginal_discharge",
+                  "ds_unusual_movement",
+                  "ds_water_broke",
+                  "ds_vomiting",
+                  "ds_anemia",
+                  "ds_other"
                 ]
               }
             ]
@@ -432,11 +405,11 @@
             "ex-checkbox": [
               {
                 "or": [
-                  "chk_mild_pain",
-                  "chk_mild_fever",
-                  "chk_refill_medicine",
-                  "chk_refill_commodities",
-                  "chk_other_needs"
+                  "mi_mild_pain",
+                  "mi_mild_fever",
+                  "mi_refill_medicine",
+                  "mi_refill_commodities",
+                  "mi_other_needs"
                 ]
               }
             ]
@@ -467,22 +440,22 @@
             "ex-checkbox": [
               {
                 "or": [
-                  "chk_fever",
-                  "chk_bleeding_vaginally",
-                  "chk_server_headache",
-                  "chk_blurred_vision",
-                  "chk_convulsions",
-                  "chk_difficulty_breathing",
-                  "chk_severe_abdominal_pain",
-                  "chk_loss_consciousness",
-                  "chk_swelling",
-                  "chk_early_labour",
-                  "chk_vaginal_discharge",
-                  "chk_unusual_movement",
-                  "chk_water_broke",
-                  "chk_vomiting",
-                  "chk_anemia",
-                  "chk_other"
+                  "ds_fever",
+                  "ds_bleeding_vaginally",
+                  "ds_server_headache",
+                  "ds_blurred_vision",
+                  "ds_convulsions",
+                  "ds_difficulty_breathing",
+                  "ds_severe_abdominal_pain",
+                  "ds_loss_consciousness",
+                  "ds_swelling",
+                  "ds_early_labour",
+                  "ds_vaginal_discharge",
+                  "ds_unusual_movement",
+                  "ds_water_broke",
+                  "ds_vomiting",
+                  "ds_anemia",
+                  "ds_other"
                 ]
               }
             ]
@@ -505,11 +478,11 @@
             "ex-checkbox": [
               {
                 "or": [
-                  "chk_mild_pain",
-                  "chk_mild_fever",
-                  "chk_refill_medicine",
-                  "chk_refill_commodities",
-                  "chk_other_needs"
+                  "mi_mild_pain",
+                  "mi_mild_fever",
+                  "mi_refill_medicine",
+                  "mi_refill_commodities",
+                  "mi_other_needs"
                 ]
               }
             ]
