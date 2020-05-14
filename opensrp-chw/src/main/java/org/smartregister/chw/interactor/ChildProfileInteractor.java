@@ -116,7 +116,7 @@ public class ChildProfileInteractor extends CoreChildProfileInteractor {
         if (getpClient() == null) {
             return;
         }
-        updateUpcomingServices(callback, context);
+        //updateUpcomingServices(callback, context);
         updateFamilyDueStatus(context, familyId, baseEntityId, callback);
 
     }
