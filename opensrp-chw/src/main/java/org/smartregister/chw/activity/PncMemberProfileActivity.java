@@ -223,33 +223,7 @@ public class PncMemberProfileActivity extends CorePncMemberProfileActivity imple
 
     @Override
     public void initializeFloatingMenu() {
-        baseAncFloatingMenu = new AncFloatingMenu(this, getAncWomanName(),
-                memberObject.getPhoneNumber(), getFamilyHeadName(), getFamilyHeadPhoneNumber(), getProfileType());
-
-        OnClickFloatingMenu onClickFloatingMenu = viewId -> {
-            switch (viewId) {
-                case R.id.anc_fab:
-                    redrawFabWithNoPhone();
-                    ((AncFloatingMenu) baseAncFloatingMenu).animateFAB();
-                    break;
-                case R.id.call_layout:
-                    ((AncFloatingMenu) baseAncFloatingMenu).launchCallWidget();
-                    ((AncFloatingMenu) baseAncFloatingMenu).animateFAB();
-                    break;
-                case R.id.refer_to_facility_layout:
-                    pncMemberProfilePresenter().referToFacility();
-                    ((AncFloatingMenu) baseAncFloatingMenu).animateFAB();
-                    break;
-                default:
-                    Timber.d("Unknown fab action");
-                    break;
-            }
-        };
-
-        ((AncFloatingMenu) baseAncFloatingMenu).setFloatMenuClickListener(onClickFloatingMenu);
-        baseAncFloatingMenu.setGravity(Gravity.BOTTOM | Gravity.END);
-        addContentView(baseAncFloatingMenu, new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.MATCH_PARENT));
+        // menu not needed
     }
 
     @Override
