@@ -94,7 +94,7 @@ public class AncHomeVisitActivity extends BaseAncHomeVisitActivity {
 
                     for (int i=0; i<a.length(); i++) {
                         org.json.JSONObject jo = a.getJSONObject(i);
-                        if (jo.getString("key").compareToIgnoreCase("save_n_link") == 0 || jo.getString("key").compareToIgnoreCase("save_n_refer") == 0) {
+                        if (jo.getString("key").equalsIgnoreCase("save_n_link") || jo.getString("key").equalsIgnoreCase("save_n_refer")) {
                             if(jo.optString("value") != null && jo.optString("value").compareToIgnoreCase("true") == 0){
                                 buttonAction = jo.getJSONObject("action").getString("behaviour");
                             }
