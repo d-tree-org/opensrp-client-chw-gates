@@ -71,12 +71,6 @@ public class AncMemberProfileActivity extends CoreAncMemberProfileActivity imple
         activity.startActivity(intent);
     }
 
-    private void checkPhoneNumberProvided() {
-        ((AncFloatingMenu) baseAncFloatingMenu).redraw(!StringUtils.isBlank(memberObject.getPhoneNumber())
-                || !StringUtils.isBlank(getFamilyHeadPhoneNumber()));
-    }
-
-
     @Override
     protected void onCreation() {
         super.onCreation();
@@ -87,35 +81,7 @@ public class AncMemberProfileActivity extends CoreAncMemberProfileActivity imple
 
     @Override
     public void initializeFloatingMenu() {
-        baseAncFloatingMenu = new AncFloatingMenu(this, getAncWomanName(),
-                memberObject.getPhoneNumber(), getFamilyHeadName(), getFamilyHeadPhoneNumber(), getProfileType());
-
-        OnClickFloatingMenu onClickFloatingMenu = viewId -> {
-            switch (viewId) {
-                case R.id.anc_fab:
-                    checkPhoneNumberProvided();
-                    ((AncFloatingMenu) baseAncFloatingMenu).animateFAB();
-                    break;
-                case R.id.call_layout:
-                    ((AncFloatingMenu) baseAncFloatingMenu).launchCallWidget();
-                    ((AncFloatingMenu) baseAncFloatingMenu).animateFAB();
-                    break;
-                case R.id.refer_to_facility_layout:
-                    ((AncMemberProfilePresenter) ancMemberProfilePresenter()).referToFacility();
-                    ((AncFloatingMenu) baseAncFloatingMenu).animateFAB();
-                    break;
-                default:
-                    Timber.d("Unknown fab action");
-                    break;
-            }
-
-        };
-
-        ((AncFloatingMenu) baseAncFloatingMenu).setFloatMenuClickListener(onClickFloatingMenu);
-        baseAncFloatingMenu.setGravity(Gravity.BOTTOM | Gravity.END);
-        LinearLayout.LayoutParams linearLayoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.MATCH_PARENT);
-        addContentView(baseAncFloatingMenu, linearLayoutParams);
+        // menu not needed
     }
 
     @Override

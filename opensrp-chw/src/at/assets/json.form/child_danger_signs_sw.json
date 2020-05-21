@@ -548,7 +548,7 @@
         "hint": "Hifadhi na unganisha kwa DLDM",
         "btn_bg_color": "#CF0800",
         "action": {
-          "behaviour": "refer"
+          "behaviour": "link"
         },
         "relevance": {
           "step1:minor_illness_present_child": {

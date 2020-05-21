@@ -517,7 +517,7 @@
         "hint": "Save and Link to ADDO",
         "btn_bg_color": "#CF0800",
         "action": {
-          "behaviour": "refer"
+          "behaviour": "link"
         },
         "relevance": {
           "step1:minor_illness_present_child": {
