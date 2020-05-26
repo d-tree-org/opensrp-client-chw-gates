@@ -2,11 +2,9 @@ package org.smartregister.chw.activity;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.LinearLayout;
 
 import org.smartregister.chw.R;
 import org.smartregister.chw.anc.domain.MemberObject;
@@ -94,15 +92,6 @@ public class ChildProfileActivity extends CoreChildProfileActivity {
     @Override
     protected void setupViews() {
         super.setupViews();
-        familyFloatingMenu = new FamilyMemberFloatingMenu(this);
-        LinearLayout.LayoutParams linearLayoutParams =
-                new LinearLayout.LayoutParams(
-                        LinearLayout.LayoutParams.MATCH_PARENT,
-                        LinearLayout.LayoutParams.MATCH_PARENT);
-        familyFloatingMenu.setGravity(Gravity.BOTTOM | Gravity.END);
-        addContentView(familyFloatingMenu, linearLayoutParams);
-
-        familyFloatingMenu.setClickListener(onClickFloatingMenu);
         fetchProfileData();
     }
 
