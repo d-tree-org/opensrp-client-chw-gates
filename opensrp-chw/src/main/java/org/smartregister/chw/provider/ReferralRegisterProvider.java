@@ -33,7 +33,7 @@ import java.util.Set;
 import timber.log.Timber;
 
 import static org.smartregister.chw.core.utils.ChwDBConstants.TASK_STATUS_READY;
-import static org.smartregister.chw.util.ChwDBConstants.TASK_STATUS_NEW;
+import static org.smartregister.chw.util.ChwDBConstants.TASK_STATUS_IN_PROGRESS;
 import static org.smartregister.util.Utils.getName;
 
 public class ReferralRegisterProvider implements RecyclerViewProvider<ReferralRegisterProvider.RegisterViewHolder> {
@@ -153,7 +153,7 @@ public class ReferralRegisterProvider implements RecyclerViewProvider<ReferralRe
             case TASK_STATUS_READY:
                 textViewStatus.setTextColor(context.getResources().getColor(org.smartregister.chw.referral.R.color.alert_in_progress_blue));
                 break;
-            case TASK_STATUS_NEW:
+            case TASK_STATUS_IN_PROGRESS:
                 textViewStatus.setTextColor(context.getResources().getColor(org.smartregister.chw.referral.R.color.alert_complete_green));
                 break;
             default:
