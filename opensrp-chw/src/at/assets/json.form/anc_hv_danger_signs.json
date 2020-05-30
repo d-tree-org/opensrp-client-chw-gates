@@ -341,10 +341,29 @@
           "err": "Please enter the date of illness"
         },
         "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "anc_hv_danger_sign_relevance.yml"
-            }
+          "step1:danger_signs_present": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "ds_fever",
+                  "ds_bleeding_vaginally",
+                  "ds_server_headache",
+                  "ds_blurred_vision",
+                  "ds_convulsions",
+                  "ds_difficulty_breathing",
+                  "ds_severe_abdominal_pain",
+                  "ds_loss_consciousness",
+                  "ds_swelling",
+                  "ds_early_labour",
+                  "ds_vaginal_discharge",
+                  "ds_unusual_movement",
+                  "ds_water_broke",
+                  "ds_vomiting",
+                  "ds_anemia",
+                  "ds_other"
+                ]
+              }
+            ]
           }
         }
       },
@@ -354,13 +373,13 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "toaster_notes",
-        "text": "Danger sign! \nI have identified an urgent danger sign: {danger_signs_captured}. You need to go to the closest health facility immediately. It is important that you complete the referral. I will follow-up with you within 24 hours to check if you have completed your referral.",
+        "text": "Danger sign! \nI have identified an urgent danger sign. You need to go to the closest health facility immediately. It is important that you complete the referral. I will follow-up with you within 24 hours to check if you have completed your referral.",
         "text_color": "#CF0800",
         "toaster_type": "problem",
         "calculation": {
           "rules-engine": {
             "ex-rules": {
-              "rules-file": "child_danger_sign_calculation.yml"
+              "rules-file": "anc_danger_sign_calculation.yml"
             }
           }
         },

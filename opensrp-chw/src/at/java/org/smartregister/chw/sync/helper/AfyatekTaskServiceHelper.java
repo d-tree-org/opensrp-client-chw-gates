@@ -1,6 +1,7 @@
 package org.smartregister.chw.sync.helper;
 
 import org.smartregister.CoreLibrary;
+import org.smartregister.repository.AllSharedPreferences;
 import org.smartregister.repository.TaskRepository;
 import org.smartregister.sync.helper.TaskServiceHelper;
 
@@ -26,7 +27,9 @@ public class AfyatekTaskServiceHelper extends TaskServiceHelper {
     @Override
     protected List<String> getLocationIds() {
         List<String> res = new ArrayList<>();
-        res.add("bb8e7fd4-f8d8-42d9-a71c-d659f9e2c64d");
+        AllSharedPreferences allSharedPreferences = CoreLibrary.getInstance().context().allSharedPreferences();
+        String locationId =  allSharedPreferences.fetchUserLocalityId(allSharedPreferences.fetchRegisteredANM());
+        res.add(locationId);
         return res;
     }
 

@@ -33,7 +33,7 @@ import java.util.Set;
 import timber.log.Timber;
 
 import static org.smartregister.chw.core.utils.ChwDBConstants.TASK_STATUS_READY;
-import static org.smartregister.chw.util.ChwDBConstants.TASK_STATUS_NEW;
+import static org.smartregister.chw.util.ChwDBConstants.TASK_STATUS_IN_PROGRESS;
 import static org.smartregister.util.Utils.getName;
 
 public class ReferralRegisterProvider implements RecyclerViewProvider<ReferralRegisterProvider.RegisterViewHolder> {
@@ -70,10 +70,14 @@ public class ReferralRegisterProvider implements RecyclerViewProvider<ReferralRe
             String dobString = Utils.getValue(pc.getColumnmaps(), DBConstants.KEY.DOB, false);
             int age = new Period(new DateTime(dobString), new DateTime()).getYears();
 
+            String focus = Utils.getValue(pc.getColumnmaps(), CoreConstants.DB_CONSTANTS.FOCUS, true);
+            String priority = Utils.getValue(pc.getColumnmaps(), "priority", true);
+
+
             String patientName = getName(fname, Utils.getValue(pc.getColumnmaps(), DBConstants.KEY.LAST_NAME, true));
             viewHolder.patientName.setText(String.format(Locale.getDefault(), "%s, %d", patientName, age));
             viewHolder.textViewGender.setText(Utils.getValue(pc.getColumnmaps(), DBConstants.KEY.GENDER, true));
-            viewHolder.textViewService.setText(Utils.getValue(pc.getColumnmaps(), "problem", true));
+            viewHolder.textViewService.setText(getCategory(focus, priority));
             viewHolder.textViewFacility.setText(Utils.getValue(pc.getColumnmaps(), DBConstants.KEY.REFERRAL_HF, true));
 
 
@@ -149,7 +153,7 @@ public class ReferralRegisterProvider implements RecyclerViewProvider<ReferralRe
             case TASK_STATUS_READY:
                 textViewStatus.setTextColor(context.getResources().getColor(org.smartregister.chw.referral.R.color.alert_in_progress_blue));
                 break;
-            case TASK_STATUS_NEW:
+            case TASK_STATUS_IN_PROGRESS:
                 textViewStatus.setTextColor(context.getResources().getColor(org.smartregister.chw.referral.R.color.alert_complete_green));
                 break;
             default:
@@ -193,6 +197,26 @@ public class ReferralRegisterProvider implements RecyclerViewProvider<ReferralRe
             nextPageView = view.findViewById(org.smartregister.R.id.btn_next_page);
             previousPageView = view.findViewById(org.smartregister.R.id.btn_previous_page);
             pageInfoView = view.findViewById(org.smartregister.R.id.txt_page_info);
+        }
+    }
+
+    private static String getCategory(String problem, String referralTypeArg) {
+        int referralType = Integer.parseInt(referralTypeArg);
+        if (problem.equalsIgnoreCase(CoreConstants.TASKS_FOCUS.SICK_CHILD)) {
+            if(referralType == 1) {
+                return "Child - HF Referral";
+            }
+            return "Child - ADDO Linkage";
+        } else if (problem.equalsIgnoreCase(CoreConstants.TASKS_FOCUS.ANC_DANGER_SIGNS)){
+            if(referralType == 1) {
+                return "ANC - HF Referral";
+            }
+            return "ANC - ADDO Linkage";
+        } else {
+            if(referralType == 1) {
+                return "PNC - HF Referral";
+            }
+            return "PNC - ADDO Linkage";
         }
     }
 
