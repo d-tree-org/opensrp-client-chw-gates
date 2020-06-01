@@ -7,7 +7,6 @@ import android.widget.Toast;
 import org.smartregister.chw.R;
 import org.smartregister.chw.core.fragment.FamilyCallDialogFragment;
 import org.smartregister.chw.core.listener.OnClickFloatingMenu;
-import org.smartregister.chw.dao.MalariaDao;
 import org.smartregister.chw.util.UtilsFlv;
 import org.smartregister.commonregistry.CommonPersonObjectClient;
 

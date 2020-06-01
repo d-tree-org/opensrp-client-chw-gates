@@ -40,7 +40,8 @@ public class ReferralRegisterFragmentModel extends BaseReferralRegisterFragmentM
         columnList.add(Constants.TABLE_NAME.FAMILY_MEMBER + "." + DBConstants.KEY.PHONE_NUMBER);
         columnList.add(Constants.TABLE_NAME.FAMILY_MEMBER + "." + DBConstants.KEY.OTHER_PHONE_NUMBER);
         columnList.add(tableName + "." + CoreConstants.DB_CONSTANTS.STATUS);
-        columnList.add(tableName + "." +  "focus AS " + org.smartregister.chw.referral.util.DBConstants.KEY.PROBLEM);
+        columnList.add(tableName + ".priority");
+        columnList.add(tableName + "." + CoreConstants.DB_CONSTANTS.FOCUS);
         return columnList.toArray(new String[columnList.size()]);
     }
 }

@@ -18,7 +18,7 @@ public class ReferralRegisterFragmentPresenter extends BaseReferralRegisterFragm
     @Override
     public String getMainCondition() {
         return " " + Constants.TABLE_NAME.FAMILY_MEMBER + "." + DBConstants.KEY.DATE_REMOVED + " is null " +
-                "AND status  = '" + Task.TaskStatus.READY + "' ";
+                "AND status  in ('" + Task.TaskStatus.READY + "', '" + Task.TaskStatus.IN_PROGRESS  +"')";
     }
 
     @Override
