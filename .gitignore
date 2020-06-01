@@ -21,3 +21,4 @@ build/
 jacoco.exec
 /github.properties
 /app.properties
+/database/
