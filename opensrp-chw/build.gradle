@@ -290,6 +290,11 @@ android {
         enabled = true
     }
     buildToolsVersion = androidBuildToolsVersion
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/org/smartregister/chw>'
+    }
+
 }
 
 def githubProperties = new Properties()
@@ -390,7 +395,7 @@ dependencies {
         exclude group: 'com.android.support', module: 'appcompat-v7'
     }
 
-    implementation ('org.smartregister:opensrp-client-simprints-riddler:1.2.1-RESEARCH-SNAPSHOT'){
+    implementation ('org.smartregister:opensrp-client-simprints-riddler:1.2.2-RESEARCH-SNAPSHOT'){
         transitive = true
         exclude group: 'org.smartregister', module: 'opensrp-client-family'
         exclude group: 'org.smartregister', module: 'opensrp-client-core'
