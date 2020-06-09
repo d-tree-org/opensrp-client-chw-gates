@@ -30,10 +30,11 @@ public class ReferralJsonWizardFormFragment extends JsonWizardFormFragment {
         // check if referral exist
         String businessStatus = behaviour.equalsIgnoreCase("refer") ? CoreConstants.BUSINESS_STATUS.REFERRED : CoreConstants.BUSINESS_STATUS.LINKED;
         String baseEntityID = ((ReferralWizardFormActivity) getActivity()).getBaseEntityID();
+        String referredTo = behaviour.equalsIgnoreCase("refer") ? "Health Facility" : "Addo";
 
         if (CoreReferralUtils.hasReferralTask(baseEntityID, businessStatus)) {
             AlertDialog dialog = new AlertDialog.Builder(getActivity())
-                    .setMessage("This client already has a referral to the Health Facility, do you want to close this referral and open a new one?")
+                    .setMessage("This client already has a referral to the "+ referredTo +", do you want to close this referral and open a new one?")
                     .setTitle("Existing Referral")
                     .setCancelable(false)
                     .setPositiveButton(R.string.no_button_label,
