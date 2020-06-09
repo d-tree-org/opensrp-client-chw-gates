@@ -365,7 +365,7 @@
         "label_text_style": "normal",
         "text_color": "#C0C0C0",
         "exclusive": [
-          "chk_none"
+          "mi_none"
         ],
         "options": [
           {
@@ -397,7 +397,7 @@
             "openmrs_entity_id": ""
           },
           {
-            "key": "chk_none",
+            "key": "mi_none",
             "text": "None",
             "value": false,
             "openmrs_entity": "concept",
@@ -525,6 +525,29 @@
                   "chk_mild_fever",
                   "chk_refill_commodities",
                   "chk_other_needs"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "key": "save",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "165310AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "type": "button",
+        "hint": "Save",
+        "btn_bg_color": "#3596c0",
+        "action": {
+          "behaviour": "save"
+        },
+        "relevance": {
+          "step1:minor_illness_present_mama": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "mi_none"
                 ]
               }
             ]
