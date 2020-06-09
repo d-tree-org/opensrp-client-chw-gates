@@ -101,7 +101,6 @@ public class PncHomeVisitActivity extends BasePncHomeVisitActivity {
                             CoreReferralUtils.createReferralEvent(ChwApplication.getInstance().getContext().allSharedPreferences(),
                                     jsonString, CoreConstants.TABLE_NAME.PNC_REFERRAL, memberObject.getBaseEntityId());
                         }
-                        this.finish();
                     }
 
                     //end of check referral

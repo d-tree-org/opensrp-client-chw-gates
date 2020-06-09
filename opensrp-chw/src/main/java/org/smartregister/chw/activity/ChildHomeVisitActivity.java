@@ -79,8 +79,6 @@ public class ChildHomeVisitActivity extends CoreChildHomeVisitActivity {
                             CoreReferralUtils.createReferralEvent(ChwApplication.getInstance().getContext().allSharedPreferences(),
                                     jsonString, CoreConstants.TABLE_NAME.CHILD_REFERRAL, memberObject.getBaseEntityId());
                         }
-
-                        this.finish();
                     }
 
                     //end of check referral
