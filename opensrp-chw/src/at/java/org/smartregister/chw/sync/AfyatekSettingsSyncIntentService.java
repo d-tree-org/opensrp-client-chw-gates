@@ -35,6 +35,8 @@ public class AfyatekSettingsSyncIntentService extends SettingsSyncIntentService 
                 if (count > 0) {
                     intent.putExtra(AllConstants.INTENT_KEY.SYNC_TOTAL_RECORDS, count);
                     isSimprintsResearchActivated();
+                } else {
+                    preferences.edit().putBoolean(IS_SIMPRINTS_RESEARCH_ENABLED, true).commit();
                 }
 
             } catch (Exception e) {
