@@ -9,6 +9,7 @@ import org.json.JSONObject;
 import org.smartregister.chw.R;
 import org.smartregister.chw.activity.ChildProfileActivity;
 import org.smartregister.chw.activity.ReferralRegistrationActivity;
+import org.smartregister.chw.contract.ChildProfileContract;
 import org.smartregister.chw.core.contract.CoreChildProfileContract;
 import org.smartregister.chw.core.presenter.CoreChildProfilePresenter;
 import org.smartregister.chw.core.utils.CoreConstants;
@@ -35,7 +36,7 @@ import java.util.Map;
 
 import timber.log.Timber;
 
-public class ChildProfilePresenter extends CoreChildProfilePresenter {
+public class ChildProfilePresenter extends CoreChildProfilePresenter implements ChildProfileContract.Presenter, ChildProfileContract.InteractorCallback {
 
     private List<ReferralTypeModel> referralTypeModels;
 
@@ -45,6 +46,29 @@ public class ChildProfilePresenter extends CoreChildProfilePresenter {
         setInteractor(new ChildProfileInteractor());
         getInteractor().setChildBaseEntityId(childBaseEntityId);
         setModel(model);
+    }
+
+    @Override
+    public void verifyChildFingerprint() {
+        /**
+         * Get child profile
+         * Check if has fingerprint registered
+         * if not -> Call fingerprint enrollment
+         * If yes -> Get the child's fingerprint
+         *  Call simprints verification
+         */
+        getAtInteractor().getChildFingerprintForVerification(childBaseEntityId, this);
+
+    }
+
+    @Override
+    public void callFingerprintEnrollment(org.smartregister.domain.db.Client client) {
+        getAtView().callFingerprintRegister(client);
+    }
+
+    @Override
+    public void callFingerprintVerification(String clientFingerprint) {
+        getAtView().callFingerprintVerification(clientFingerprint);
     }
 
     @Override
@@ -121,4 +145,12 @@ public class ChildProfilePresenter extends CoreChildProfilePresenter {
         }
     }
 
+    ChildProfileContract.Interactor getAtInteractor(){
+        return (ChildProfileContract.Interactor) getInteractor();
+    }
+
+
+    ChildProfileContract.View getAtView(){
+        return (ChildProfileContract.View) getView();
+    }
 }
