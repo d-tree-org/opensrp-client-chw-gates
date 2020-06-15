@@ -7,6 +7,7 @@
     <string name="not_provided">Haijatolewa</string>
 
     <string name="scan_fingerprint"> Scan </string>
+    <string name="verify_child_fingerprint">Hakiki Alama za Vidole</string>
 
     <string name="child_under_five">Mtoto chini ya miaka 5</string>
     <string name="go_to_family_s_profile">Elekea kwenye taarifa binafsi za kaya</string>
