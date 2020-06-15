@@ -58,10 +58,13 @@ public class PncHomeVisitActivity extends BasePncHomeVisitActivity {
         form.setActionBarBackground(R.color.family_actionbar);
         form.setWizard(false);
 
+        String entityID = baseEntityID != null ? baseEntityID : memberObject.getBaseEntityId();
+
         Intent intent = new Intent(this, ReferralWizardFormActivity.class);
         intent.putExtra(org.smartregister.family.util.Constants.JSON_FORM_EXTRA.JSON, jsonForm.toString());
         intent.putExtra(Constants.WizardFormActivity.EnableOnCloseDialog, false);
         intent.putExtra(JsonFormConstants.JSON_FORM_KEY.FORM, form);
+        intent.putExtra(Constants.INTENT_KEY.BASE_ENTITY_ID, entityID);
         startActivityForResult(intent, JsonFormUtils.REQUEST_CODE_GET_JSON);
     }
 
@@ -93,15 +96,15 @@ public class PncHomeVisitActivity extends BasePncHomeVisitActivity {
                         }
                     }
                     if(!buttonAction.isEmpty()) {
-                        //refer
-                        if (baseEntityID!=null){
+                        // check if other referral exists
+                        String entityID = baseEntityID != null ? baseEntityID : memberObject.getBaseEntityId();
+                        String businessStatus = buttonAction.equalsIgnoreCase("refer") ? CoreConstants.BUSINESS_STATUS.REFERRED : CoreConstants.BUSINESS_STATUS.LINKED;
+                        if (!CoreReferralUtils.hasReferralTask(entityID, businessStatus)) {
+                            // refer
                             CoreReferralUtils.createReferralEvent(ChwApplication.getInstance().getContext().allSharedPreferences(),
-                                    jsonString, CoreConstants.TABLE_NAME.PNC_REFERRAL, baseEntityID);
-                        }else {
-                            CoreReferralUtils.createReferralEvent(ChwApplication.getInstance().getContext().allSharedPreferences(),
-                                    jsonString, CoreConstants.TABLE_NAME.PNC_REFERRAL, memberObject.getBaseEntityId());
+                                    jsonString, CoreConstants.TABLE_NAME.PNC_REFERRAL, entityID);
+                            Toast.makeText(getContext(), getResources().getString(org.smartregister.chw.R.string.referral_submitted), Toast.LENGTH_LONG).show();
                         }
-                        this.finish();
                     }
 
                     //end of check referral

@@ -61,6 +61,7 @@ public class AncHomeVisitActivity extends BaseAncHomeVisitActivity {
         intent.putExtra(org.smartregister.family.util.Constants.JSON_FORM_EXTRA.JSON, jsonForm.toString());
         intent.putExtra(Constants.WizardFormActivity.EnableOnCloseDialog, false);
         intent.putExtra(JsonFormConstants.JSON_FORM_KEY.FORM, form);
+        intent.putExtra(Constants.INTENT_KEY.BASE_ENTITY_ID, baseEntityID);
         startActivityForResult(intent, JsonFormUtils.REQUEST_CODE_GET_JSON);
     }
 
@@ -101,11 +102,13 @@ public class AncHomeVisitActivity extends BaseAncHomeVisitActivity {
                         }
                     }
                     if(!buttonAction.isEmpty()) {
-                        //refer
-                        CoreReferralUtils.createReferralEvent(ChwApplication.getInstance().getContext().allSharedPreferences(),
-                                jsonString, CoreConstants.TABLE_NAME.ANC_REFERRAL, baseEntityID);
-                        if (buttonAction.equalsIgnoreCase("refer")){
-                            this.finish();
+                        // check if other referral exists
+                        String businessStatus = buttonAction.equalsIgnoreCase("refer") ? CoreConstants.BUSINESS_STATUS.REFERRED : CoreConstants.BUSINESS_STATUS.LINKED;
+                        if (!CoreReferralUtils.hasReferralTask(baseEntityID, businessStatus)) {
+                            //refer
+                            CoreReferralUtils.createReferralEvent(ChwApplication.getInstance().getContext().allSharedPreferences(),
+                                    jsonString, CoreConstants.TABLE_NAME.ANC_REFERRAL, baseEntityID);
+                            Toast.makeText(getContext(), getResources().getString(org.smartregister.chw.R.string.referral_submitted), Toast.LENGTH_LONG).show();
                         }
                     }
                     //end of check referral
