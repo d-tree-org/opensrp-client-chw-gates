@@ -159,8 +159,7 @@ public class ChildProfileActivity extends CoreChildProfileActivity implements Ch
 
         try {
             DateTime birthdate = client.getBirthdate();
-            SimpleDateFormat dateFormatForRiddler = new SimpleDateFormat("yyyy-MM-dd");
-            SimpleDateFormat dateFormatFromNativeForms = new SimpleDateFormat("dd-MM-yyyy");
+            SimpleDateFormat dateFormatForRiddler = new SimpleDateFormat("dd-MM-yyyy");
             String formatedDate = "";
             formatedDate = dateFormatForRiddler.format(birthdate.toDate());
 
