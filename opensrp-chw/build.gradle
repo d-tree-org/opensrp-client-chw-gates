@@ -345,7 +345,7 @@ repositories {
 }
 
 dependencies {
-    implementation('org.smartregister:opensrp-client-chw-core:1.1.39-DTREE-8-SNAPSHOT@aar') {
+    implementation('org.smartregister:opensrp-client-chw-core:1.1.39-DEMO-2-SNAPSHOT') {
         transitive = true
         exclude group: 'com.android.support', module: 'appcompat-v7'
         exclude group: 'androidx.legacy', module: 'legacy-support-v4'
