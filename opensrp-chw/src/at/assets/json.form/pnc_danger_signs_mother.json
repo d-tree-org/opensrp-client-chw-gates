@@ -50,6 +50,7 @@
   },
   "step1": {
     "title": "Mother danger signs and minor illnesses",
+    "submit-button": "true",
     "fields": [
       {
         "key": "danger_signs_present_mama",
