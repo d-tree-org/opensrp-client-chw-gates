@@ -50,6 +50,7 @@
   },
   "step1": {
     "title": "Dalili za hatari na magojwa madogo madogo kwa mama",
+    "submit-button": "true",
     "fields": [
       {
         "key": "danger_signs_present_mama",

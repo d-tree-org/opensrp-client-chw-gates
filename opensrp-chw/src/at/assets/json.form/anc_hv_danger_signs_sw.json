@@ -50,6 +50,7 @@
   },
   "step1": {
     "title": "Dalili za hatari na magonjwa madogo madogo",
+    "submit-button": "true",
     "fields": [
       {
         "key": "danger_signs_present",

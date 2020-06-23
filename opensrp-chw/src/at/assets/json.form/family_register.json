@@ -245,6 +245,7 @@
   },
   "step3": {
     "title": "Head of the household",
+    "submit-button": "true",
     "fields": [
       {
         "key": "family_head_label",

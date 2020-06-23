@@ -50,6 +50,7 @@
   },
   "step1": {
     "title": "ANC Danger Signs and minor illnesses",
+    "submit-button": "true",
     "fields": [
       {
         "key": "danger_signs_present",
