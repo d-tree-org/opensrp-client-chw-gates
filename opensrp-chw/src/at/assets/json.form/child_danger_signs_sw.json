@@ -50,6 +50,7 @@
   },
   "step1": {
     "title": "Dalili za hatari kwa mtoto na magojwa madogo madogo",
+    "submit-button": "true",
     "fields": [
       {
         "key": "danger_signs_present_child",
