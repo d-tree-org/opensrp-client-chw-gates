@@ -2,6 +2,9 @@ package org.smartregister.chw.presenter;
 
 import android.content.Context;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.smartregister.CoreLibrary;
 import org.smartregister.chw.core.contract.FamilyProfileExtendedContract;
 import org.smartregister.chw.core.domain.FamilyMember;
 import org.smartregister.chw.core.model.CoreChildRegisterModel;
@@ -11,10 +14,14 @@ import org.smartregister.chw.interactor.FamilyChangeContractInteractor;
 import org.smartregister.chw.interactor.FamilyProfileInteractor;
 import org.smartregister.chw.model.ChildRegisterModel;
 import org.smartregister.family.contract.FamilyProfileContract;
+import org.smartregister.family.domain.FamilyEventClient;
 import org.smartregister.location.helper.LocationHelper;
 import org.smartregister.view.LocationPickerView;
 
 import timber.log.Timber;
+
+import static org.smartregister.util.JsonFormUtils.getFieldValue;
+
 
 public class FamilyProfilePresenter extends CoreFamilyProfilePresenter {
 
@@ -49,4 +56,49 @@ public class FamilyProfilePresenter extends CoreFamilyProfilePresenter {
         }
         return res;
     }
+
+    @Override
+    public String saveChwFamilyMember(String jsonString) {
+        try {
+            getView().showProgressDialog(org.smartregister.family.R.string.saving_dialog_title);
+
+            if (isAdolescent(jsonString)) {
+                jsonString = updateAdolescentEventType(jsonString);
+            }
+
+            FamilyEventClient familyEventClient = model.processMemberRegistration(jsonString, familyBaseEntityId);
+            if (familyEventClient == null) {
+                return null;
+            }
+
+            interactor.saveRegistration(familyEventClient, jsonString, false, this);
+            return familyEventClient.getClient().getBaseEntityId();
+        } catch (Exception e) {
+            Timber.e(e);
+        }
+        return null;
+    }
+
+    private boolean isAdolescent(String jsonString) {
+
+        // Use this implementation for now, modify to increase accuracy, less than 12 year and 1 months is still treated as 12
+        String age = getFieldValue(jsonString, "age_calculated");
+        Float ageInt = Float.parseFloat(age);
+
+        return (ageInt > 12 && ageInt < 20);
+    }
+
+    private String updateAdolescentEventType(String jsonString) {
+
+        try {
+            JSONObject jsonForm = new JSONObject(jsonString);
+            jsonForm.putOpt("encounter_type", "Adolescent Registration");
+            return jsonForm.toString();
+        } catch (JSONException e) {
+            Timber.e(e);
+        }
+
+        return null;
+    }
+
 }
