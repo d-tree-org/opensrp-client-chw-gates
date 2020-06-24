@@ -40,7 +40,9 @@ public class AdolescentRegisterFragmentModel implements AdolescentRegisterFragme
     @Override
     public String mainSelect(String tableName, String mainCondition) {
         SmartRegisterQueryBuilder queryBUilder = new SmartRegisterQueryBuilder();
-        queryBUilder.selectInitiateMainTable(tableName, mainColumns(tableName), "id");
+        queryBUilder.SelectInitiateMainTable(tableName, mainColumns(tableName));
+        queryBUilder.customJoin("INNER JOIN " + CoreConstants.TABLE_NAME.FAMILY_MEMBER + " ON  " + tableName + "." + DBConstants.KEY.BASE_ENTITY_ID + " = " + CoreConstants.TABLE_NAME.FAMILY_MEMBER + "." + DBConstants.KEY.BASE_ENTITY_ID + " COLLATE NOCASE ");
+        queryBUilder.customJoin("INNER JOIN " + CoreConstants.TABLE_NAME.FAMILY + " ON  " + CoreConstants.TABLE_NAME.FAMILY_MEMBER + "." + DBConstants.KEY.RELATIONAL_ID + " = " + CoreConstants.TABLE_NAME.FAMILY + "." + DBConstants.KEY.BASE_ENTITY_ID);
         return queryBUilder.mainCondition(mainCondition);
     }
 
@@ -50,7 +52,9 @@ public class AdolescentRegisterFragmentModel implements AdolescentRegisterFragme
                 tableName + ".first_name",
                 tableName + ".middle_name",
                 tableName + ".last_name",
-                tableName + "." + DBConstants.KEY.DOB
+                tableName + "." + DBConstants.KEY.DOB,
+                tableName + "." + DBConstants.KEY.GENDER,
+                CoreConstants.TABLE_NAME.FAMILY + "." + DBConstants.KEY.VILLAGE_TOWN
         };
         return columns;
     }

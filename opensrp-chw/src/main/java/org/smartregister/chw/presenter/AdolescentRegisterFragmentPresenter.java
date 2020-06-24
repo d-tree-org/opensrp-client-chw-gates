@@ -36,7 +36,7 @@ public class AdolescentRegisterFragmentPresenter implements AdolescentRegisterFr
 
     @Override
     public String getMainCondition() {
-        return "date_removed is null";
+        return "";
     }
 
     @Override

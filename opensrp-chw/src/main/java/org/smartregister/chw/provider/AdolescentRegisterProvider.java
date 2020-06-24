@@ -13,6 +13,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.joda.time.DateTime;
 import org.joda.time.Period;
 import org.smartregister.chw.R;
+import org.smartregister.chw.core.holders.RegisterViewHolder;
+import org.smartregister.chw.core.utils.ChildDBConstants;
 import org.smartregister.chw.core.utils.CoreConstants;
 import org.smartregister.chw.referral.fragment.BaseReferralRegisterFragment;
 import org.smartregister.chw.referral.util.DBConstants;
@@ -67,16 +69,13 @@ public class AdolescentRegisterProvider implements RecyclerViewProvider<Adolesce
                     Utils.getValue(pc.getColumnmaps(), DBConstants.KEY.MIDDLE_NAME, true));
 
             String dobString = Utils.getValue(pc.getColumnmaps(), DBConstants.KEY.DOB, false);
-            int age = new Period(new DateTime(dobString), new DateTime()).getYears();
-
-/*            String focus = Utils.getValue(pc.getColumnmaps(), CoreConstants.DB_CONSTANTS.FOCUS, true);
-            String priority = Utils.getValue(pc.getColumnmaps(), "priority", true);*/
-
+            String age = org.smartregister.family.util.Utils.getTranslatedDate(org.smartregister.family.util.Utils.getDuration(dobString), context);
 
             String patientName = getName(fname, Utils.getValue(pc.getColumnmaps(), DBConstants.KEY.LAST_NAME, true));
-            viewHolder.patientName.setText(String.format(Locale.getDefault(), "%s, %d", patientName, age));
-            viewHolder.textViewGender.setText(Utils.getValue(pc.getColumnmaps(), DBConstants.KEY.GENDER, true));
-            viewHolder.textViewFacility.setText(Utils.getValue(pc.getColumnmaps(), DBConstants.KEY.REFERRAL_HF, true));
+            viewHolder.patientName.setText(patientName);
+            viewHolder.textViewAge.setText("Age: " + age);
+
+            setAddressAndGender(pc, viewHolder);
 
 
             viewHolder.patientColumn.setOnClickListener(onClickListener);
@@ -92,6 +91,24 @@ public class AdolescentRegisterProvider implements RecyclerViewProvider<Adolesce
 
         } catch (Exception e) {
             Timber.e(e);
+        }
+    }
+
+    public void setAddressAndGender(CommonPersonObjectClient pc, RegisterViewHolder viewHolder) {
+        String address = org.smartregister.family.util.Utils.getValue(pc.getColumnmaps(), DBConstants.KEY.VILLAGE_TOWN, true);
+        String gender_key = org.smartregister.family.util.Utils.getValue(pc.getColumnmaps(), org.smartregister.family.util.DBConstants.KEY.GENDER, true);
+        String gender = "";
+        if (gender_key.equalsIgnoreCase("Male")) {
+            gender = context.getString(R.string.male);
+        } else if (gender_key.equalsIgnoreCase("Female")) {
+            gender = context.getString(R.string.female);
+        }
+        fillValue(viewHolder.textViewAddressAndGender, address + " \u00B7 " + gender);
+    }
+
+    protected static void fillValue(TextView v, String value) {
+        if (v != null) {
+            v.setText(value);
         }
     }
 
@@ -130,7 +147,7 @@ public class AdolescentRegisterProvider implements RecyclerViewProvider<Adolesce
 
     @Override
     public RegisterViewHolder createViewHolder(ViewGroup viewGroup) {
-        View view = inflater.inflate(R.layout.referral_register_list_row_item, viewGroup, false);
+        View view = inflater.inflate(R.layout.adapter_adolescent_register_list_row, viewGroup, false);
         return new RegisterViewHolder(view);
     }
 
@@ -147,25 +164,25 @@ public class AdolescentRegisterProvider implements RecyclerViewProvider<Adolesce
 
     public class RegisterViewHolder extends RecyclerView.ViewHolder {
         public TextView patientName;
-        public TextView textViewGender;
+        public TextView textViewAge;
+        public TextView textViewAddressAndGender;
         public TextView textReferralStatus;
         public View patientColumn;
-        public TextView textViewService;
-        public TextView textViewFacility;
         public View registerColumns;
         public View dueWrapper;
 
         public RegisterViewHolder(View itemView) {
             super(itemView);
 
-            patientName = itemView.findViewById(org.smartregister.chw.referral.R.id.patient_name_age);
-            textViewGender = itemView.findViewById(org.smartregister.chw.referral.R.id.text_view_gender);
-            textReferralStatus = itemView.findViewById(org.smartregister.chw.referral.R.id.text_view_referral_status);
-            patientColumn = itemView.findViewById(org.smartregister.chw.referral.R.id.patient_column);
-            registerColumns = itemView.findViewById(org.smartregister.chw.referral.R.id.register_columns);
-            dueWrapper = itemView.findViewById(org.smartregister.chw.referral.R.id.due_button_wrapper);
-            textViewService = itemView.findViewById(org.smartregister.chw.referral.R.id.text_view_service);
-            textViewFacility = itemView.findViewById(org.smartregister.chw.referral.R.id.text_view_facility);
+            patientName = itemView.findViewById(R.id.textview_adolescent_name_age);
+            textViewAge = itemView.findViewById(R.id.text_adolescent_age);
+            textViewAddressAndGender = itemView.findViewById(R.id.text_view_address_gender);
+            //textReferralStatus = itemView.findViewById(org.smartregister.chw.referral.R.id.text_view_referral_status);
+            patientColumn = itemView.findViewById(R.id.adolescent_column);
+            registerColumns = itemView.findViewById(R.id.register_columns);
+            //dueWrapper = itemView.findViewById(org.smartregister.chw.referral.R.id.due_button_wrapper);
+            //textViewService = itemView.findViewById(org.smartregister.chw.referral.R.id.text_view_service);
+            //textViewFacility = itemView.findViewById(org.smartregister.chw.referral.R.id.text_view_facility);
         }
     }
 
