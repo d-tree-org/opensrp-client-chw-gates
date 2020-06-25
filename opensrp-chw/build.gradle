@@ -82,7 +82,7 @@ android {
             buildConfigField "int", "REPORT_INDICATOR_GENERATION_MINUTES", '120'
             buildConfigField "int", "BASE_PNC_CLOSE_MINUTES", '1440'
             buildConfigField "int", "SCHEDULE_SERVICE_MINUTES", '720'
-            buildConfigField("String", "SIMPRINT_PROJECT_ID", ' "fUBnpzDdbsCsMp0egCHB" ')
+            buildConfigField("String", "SIMPRINT_PROJECT_ID", ' "8rlGBhsk6371eW2KLZm6" ')
             buildConfigField("String", "SIMPRINT_USER_ID", ' "global_user" ')
             buildConfigField("String", "SIMPRINT_OPENSRP_MODULE_ID", ' "global_module" ')
         }
@@ -100,7 +100,7 @@ android {
             buildConfigField "int", "REPORT_INDICATOR_GENERATION_MINUTES", '120'
             buildConfigField "int", "BASE_PNC_CLOSE_MINUTES", '1440'
             buildConfigField "int", "SCHEDULE_SERVICE_MINUTES", '360'
-            buildConfigField("String", "SIMPRINT_PROJECT_ID", ' "fUBnpzDdbsCsMp0egCHB" ')
+            buildConfigField("String", "SIMPRINT_PROJECT_ID", ' "8rlGBhsk6371eW2KLZm6" ')
             buildConfigField("String", "SIMPRINT_USER_ID", ' "global_user" ')
             buildConfigField("String", "SIMPRINT_OPENSRP_MODULE_ID", ' "global_module" ')
             testCoverageEnabled false
@@ -145,8 +145,8 @@ android {
         at {
             dimension = 'baseDimension'
             applicationIdSuffix ".at"
-            versionCode 9
-            versionName "1.3.2"
+            versionCode 11
+            versionName "1.3.4"
             buildConfigField "String", 'opensrp_url', '"https://afyatek.smartregister.org/opensrp/"'
             buildConfigField "String", 'guidebooks_url', '"https://opensrp.s3.amazonaws.com/media/ba/"'
             buildConfigField "String", 'opensrp_url_debug', '"https://opensrp-dev.d-tree.org/opensrp/"'
