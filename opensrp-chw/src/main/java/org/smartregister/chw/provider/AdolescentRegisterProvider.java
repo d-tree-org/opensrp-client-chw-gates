@@ -2,6 +2,8 @@ package org.smartregister.chw.provider;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.os.AsyncTask;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,12 +12,18 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.jeasy.rules.api.Rules;
 import org.joda.time.DateTime;
+import org.joda.time.LocalDate;
 import org.joda.time.Period;
 import org.smartregister.chw.R;
+import org.smartregister.chw.anc.provider.AncRegisterProvider;
+import org.smartregister.chw.core.application.CoreChwApplication;
 import org.smartregister.chw.core.holders.RegisterViewHolder;
+import org.smartregister.chw.core.interactor.CoreChildProfileInteractor;
 import org.smartregister.chw.core.utils.ChildDBConstants;
 import org.smartregister.chw.core.utils.CoreConstants;
+import org.smartregister.chw.core.utils.VisitSummary;
 import org.smartregister.chw.referral.fragment.BaseReferralRegisterFragment;
 import org.smartregister.chw.referral.util.DBConstants;
 import org.smartregister.commonregistry.CommonPersonObjectClient;
@@ -29,11 +37,14 @@ import org.smartregister.view.dialog.SortOption;
 import org.smartregister.view.viewholder.OnClickFormLauncher;
 
 import java.text.MessageFormat;
+import java.text.SimpleDateFormat;
 import java.util.Locale;
 import java.util.Set;
 
 import timber.log.Timber;
 
+import static org.smartregister.chw.fragment.AdolescentRegisterFragment.CLICK_VIEW_DOSAGE_STATUS;
+import static org.smartregister.chw.fragment.AdolescentRegisterFragment.CLICK_VIEW_NORMAL;
 import static org.smartregister.util.Utils.getName;
 
 public class AdolescentRegisterProvider implements RecyclerViewProvider<AdolescentRegisterProvider.RegisterViewHolder> {
@@ -59,6 +70,7 @@ public class AdolescentRegisterProvider implements RecyclerViewProvider<Adolesce
         CommonPersonObjectClient pc = (CommonPersonObjectClient) smartRegisterClient;
         if (visibleColumns.isEmpty()) {
             populatePatientColumn(pc, registerViewHolder);
+            populateLastColumn(pc, registerViewHolder);
         }
     }
 
@@ -80,11 +92,8 @@ public class AdolescentRegisterProvider implements RecyclerViewProvider<Adolesce
 
             viewHolder.patientColumn.setOnClickListener(onClickListener);
             viewHolder.patientColumn.setTag(pc);
-            viewHolder.patientColumn.setTag(org.smartregister.chw.referral.R.id.VIEW_ID, BaseReferralRegisterFragment.CLICK_VIEW_NORMAL);
+            viewHolder.patientColumn.setTag(R.id.VIEW_ID, CLICK_VIEW_NORMAL);
 
-            viewHolder.textReferralStatus.setOnClickListener(onClickListener);
-            viewHolder.textReferralStatus.setTag(pc);
-            viewHolder.textReferralStatus.setTag(org.smartregister.chw.referral.R.id.VIEW_ID, BaseReferralRegisterFragment.FOLLOW_UP_VISIT);
             viewHolder.registerColumns.setOnClickListener(onClickListener);
 
             viewHolder.registerColumns.setOnClickListener(v -> viewHolder.patientColumn.performClick());
@@ -92,6 +101,10 @@ public class AdolescentRegisterProvider implements RecyclerViewProvider<Adolesce
         } catch (Exception e) {
             Timber.e(e);
         }
+    }
+
+    private void populateLastColumn(CommonPersonObjectClient pc, AdolescentRegisterProvider.RegisterViewHolder viewHolder) {
+        Utils.startAsyncTask(new UpdateAsyncTaskAdolescent(context, viewHolder, pc, onClickListener), null);
     }
 
     public void setAddressAndGender(CommonPersonObjectClient pc, RegisterViewHolder viewHolder) {
@@ -162,14 +175,65 @@ public class AdolescentRegisterProvider implements RecyclerViewProvider<Adolesce
         return viewHolder instanceof AdolescentRegisterProvider.FooterViewHolder;
     }
 
+    private void updateDueColumn(Context context, AdolescentRegisterProvider.RegisterViewHolder viewHolder, VisitSummary visitSummary) {
+        viewHolder.dueButton.setVisibility(View.VISIBLE);
+        if (visitSummary.getVisitStatus().equalsIgnoreCase(CoreChildProfileInteractor.VisitType.DUE.name())) {
+            setVisitButtonDueStatus(context, viewHolder.dueButton);
+        } else if (visitSummary.getVisitStatus().equalsIgnoreCase(CoreChildProfileInteractor.VisitType.OVERDUE.name())) {
+            setVisitButtonOverdueStatus(context, viewHolder.dueButton, visitSummary.getNoOfMonthDue());
+        } else if (visitSummary.getVisitStatus().equalsIgnoreCase(CoreChildProfileInteractor.VisitType.LESS_TWENTY_FOUR.name())) {
+            setVisitLessTwentyFourView(context, viewHolder.dueButton);
+        } else if (visitSummary.getVisitStatus().equalsIgnoreCase(CoreChildProfileInteractor.VisitType.VISIT_THIS_MONTH.name())) {
+            setVisitAboveTwentyFourView(context, viewHolder.dueButton);
+        } else if (visitSummary.getVisitStatus().equalsIgnoreCase(CoreChildProfileInteractor.VisitType.NOT_VISIT_THIS_MONTH.name())) {
+            setVisitNotDone(context, viewHolder.dueButton);
+        }
+    }
+
+    private void setVisitButtonDueStatus(Context context, Button dueButton) {
+        dueButton.setTextColor(context.getResources().getColor(org.smartregister.chw.core.R.color.alert_in_progress_blue));
+        dueButton.setText(context.getString(org.smartregister.chw.core.R.string.record_home_visit));
+        dueButton.setBackgroundResource(org.smartregister.chw.core.R.drawable.blue_btn_selector);
+        dueButton.setOnClickListener(onClickListener);
+    }
+
+    private void setVisitButtonOverdueStatus(Context context, Button dueButton, String lastVisitDays) {
+        dueButton.setTextColor(context.getResources().getColor(org.smartregister.chw.core.R.color.white));
+        if (TextUtils.isEmpty(lastVisitDays)) {
+            dueButton.setText(context.getString(org.smartregister.chw.core.R.string.record_visit));
+        } else {
+            dueButton.setText(context.getString(org.smartregister.chw.core.R.string.due_visit, lastVisitDays));
+        }
+        dueButton.setBackgroundResource(org.smartregister.chw.core.R.drawable.overdue_red_btn_selector);
+        dueButton.setOnClickListener(onClickListener);
+    }
+
+    private void setVisitLessTwentyFourView(Context context, Button dueButton) {
+        setVisitAboveTwentyFourView(context, dueButton);
+    }
+
+    private void setVisitAboveTwentyFourView(Context context, Button dueButton) {
+        dueButton.setTextColor(context.getResources().getColor(org.smartregister.chw.core.R.color.alert_complete_green));
+        dueButton.setText(context.getString(org.smartregister.chw.core.R.string.visit_done));
+        dueButton.setBackgroundColor(context.getResources().getColor(org.smartregister.chw.core.R.color.transparent));
+        dueButton.setOnClickListener(null);
+    }
+
+    private void setVisitNotDone(Context context, Button dueButton) {
+        dueButton.setTextColor(context.getResources().getColor(org.smartregister.chw.core.R.color.progress_orange));
+        dueButton.setText(context.getString(org.smartregister.chw.core.R.string.visit_not_done));
+        dueButton.setBackgroundColor(context.getResources().getColor(org.smartregister.chw.core.R.color.transparent));
+        dueButton.setOnClickListener(null);
+    }
+
     public class RegisterViewHolder extends RecyclerView.ViewHolder {
         public TextView patientName;
         public TextView textViewAge;
         public TextView textViewAddressAndGender;
-        public TextView textReferralStatus;
         public View patientColumn;
         public View registerColumns;
         public View dueWrapper;
+        public Button dueButton;
 
         public RegisterViewHolder(View itemView) {
             super(itemView);
@@ -177,12 +241,10 @@ public class AdolescentRegisterProvider implements RecyclerViewProvider<Adolesce
             patientName = itemView.findViewById(R.id.textview_adolescent_name_age);
             textViewAge = itemView.findViewById(R.id.text_adolescent_age);
             textViewAddressAndGender = itemView.findViewById(R.id.text_view_address_gender);
-            //textReferralStatus = itemView.findViewById(org.smartregister.chw.referral.R.id.text_view_referral_status);
             patientColumn = itemView.findViewById(R.id.adolescent_column);
             registerColumns = itemView.findViewById(R.id.register_columns);
-            //dueWrapper = itemView.findViewById(org.smartregister.chw.referral.R.id.due_button_wrapper);
-            //textViewService = itemView.findViewById(org.smartregister.chw.referral.R.id.text_view_service);
-            //textViewFacility = itemView.findViewById(org.smartregister.chw.referral.R.id.text_view_facility);
+            dueWrapper = itemView.findViewById(R.id.due_button_wrapper);
+            dueButton = itemView.findViewById(R.id.due_button);
         }
     }
 
@@ -197,6 +259,50 @@ public class AdolescentRegisterProvider implements RecyclerViewProvider<Adolesce
             nextPageView = view.findViewById(org.smartregister.R.id.btn_next_page);
             previousPageView = view.findViewById(org.smartregister.R.id.btn_previous_page);
             pageInfoView = view.findViewById(org.smartregister.R.id.txt_page_info);
+        }
+    }
+
+    private class UpdateAsyncTaskAdolescent extends AsyncTask<Void, Void, Void> {
+
+        private final AdolescentRegisterProvider.RegisterViewHolder viewHolder;
+        private final CommonPersonObjectClient pc;
+        private final Context context;
+        private View.OnClickListener onClickListener;
+        private final Rules rules;
+        private VisitSummary visitSummary;
+
+        public UpdateAsyncTaskAdolescent( Context context, RegisterViewHolder viewHolder, CommonPersonObjectClient pc, View.OnClickListener onClickListener) {
+            this.viewHolder = viewHolder;
+            this.pc = pc;
+            this.context = context;
+            this.onClickListener = onClickListener;
+            this.rules = CoreChwApplication.getInstance().getRulesEngineHelper().rules(CoreConstants.RULE_FILE.HOME_VISIT);
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
+
+            String baseEntityID = org.smartregister.util.Utils.getValue(pc.getColumnmaps(), org.smartregister.chw.anc.util.DBConstants.KEY.BASE_ENTITY_ID, false);
+
+            LocalDate dateCreated = (new DateTime(org.smartregister.util.Utils.getValue(pc.getColumnmaps(), org.smartregister.chw.anc.util.DBConstants.KEY.DATE_CREATED, false))).toLocalDate();
+
+            //ToDo: Implement Visit Rule for Adolescent client
+
+            // Placeholder for the implementation of visitSummary reference to HomeVisit.getANCVisitRule or Child Provider
+            visitSummary = new VisitSummary();
+            visitSummary.setVisitStatus("DUE");
+            visitSummary.setNoOfMonthDue(null);
+            visitSummary.setNoOfDaysDue("less than 24 hrs");
+            visitSummary.setLastVisitDays("less than 24 hrs");
+            visitSummary.setLastVisitMonthName("June");
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            updateDueColumn(context, viewHolder, visitSummary);
         }
     }
 }

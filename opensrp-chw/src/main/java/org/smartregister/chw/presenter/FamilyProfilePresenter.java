@@ -81,11 +81,10 @@ public class FamilyProfilePresenter extends CoreFamilyProfilePresenter {
 
     private boolean isAdolescent(String jsonString) {
 
-        // Use this implementation for now, modify to increase accuracy, less than 12 year and 1 months is still treated as 12
         String age = getFieldValue(jsonString, "age_calculated");
         Float ageInt = Float.parseFloat(age);
 
-        return (ageInt > 12 && ageInt < 20);
+        return (ageInt >= 13 && ageInt <= 19);
     }
 
     private String updateAdolescentEventType(String jsonString) {

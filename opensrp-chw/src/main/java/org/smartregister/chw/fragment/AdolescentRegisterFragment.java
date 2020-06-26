@@ -1,19 +1,28 @@
 package org.smartregister.chw.fragment;
 
+import android.content.Intent;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
 
 import org.smartregister.chw.R;
+import org.smartregister.chw.activity.AboveFiveChildProfileActivity;
+import org.smartregister.chw.anc.domain.MemberObject;
 import org.smartregister.chw.contract.AdolescentRegisterFragmentContract;
+import org.smartregister.chw.core.activity.CoreChildProfileActivity;
 import org.smartregister.chw.core.custom_views.NavigationMenu;
+import org.smartregister.chw.core.utils.CoreConstants;
 import org.smartregister.chw.core.utils.Utils;
 import org.smartregister.chw.model.AdolescentRegisterFragmentModel;
 import org.smartregister.chw.presenter.AdolescentRegisterFragmentPresenter;
 import org.smartregister.chw.provider.AdolescentRegisterProvider;
+import org.smartregister.commonregistry.CommonPersonObjectClient;
 import org.smartregister.configurableviews.model.View;
 import org.smartregister.cursoradapter.RecyclerViewPaginatedAdapter;
+import org.smartregister.family.util.DBConstants;
 import org.smartregister.view.activity.BaseRegisterActivity;
 import org.smartregister.view.customcontrols.CustomFontTextView;
 import org.smartregister.view.customcontrols.FontVariant;
@@ -22,12 +31,21 @@ import org.smartregister.view.fragment.BaseRegisterFragment;
 import java.util.HashMap;
 import java.util.Set;
 
+import timber.log.Timber;
+
 import static org.smartregister.chw.R.color.primary_color;
 import static org.smartregister.chw.R.color.white;
 
 public class AdolescentRegisterFragment extends BaseRegisterFragment implements AdolescentRegisterFragmentContract.View {
 
+    public static final String CLICK_VIEW_NORMAL = "click_view_normal";
+    public static final String CLICK_VIEW_DOSAGE_STATUS = "click_view_dosage_status";
+
+    private static final String DUE_FILTER_TAG = "PRESSED";
+    private android.view.View dueOnlyLayout;
     private android.view.View view;
+    private boolean dueFilterActive = false;
+
     @Override
     public void initializeAdapter(Set<View> visibleColumns) {
         AdolescentRegisterProvider adolescentRegisterProvider = new AdolescentRegisterProvider(getActivity(), paginationViewHandler, registerActionHandler, visibleColumns);
@@ -98,9 +116,9 @@ public class AdolescentRegisterFragment extends BaseRegisterFragment implements 
         android.view.View filterSortLayout = view.findViewById(R.id.filter_sort_layout);
         filterSortLayout.setVisibility(android.view.View.GONE);
 
-/*        dueOnlyLayout = view.findViewById(R.id.due_only_layout);
-        dueOnlyLayout.setVisibility(android.view.View.GONE);
-        dueOnlyLayout.setOnClickListener(registerActionHandler);*/
+        dueOnlyLayout = view.findViewById(R.id.due_only_layout);
+        dueOnlyLayout.setVisibility(android.view.View.VISIBLE);
+        dueOnlyLayout.setOnClickListener(registerActionHandler);
 
         if (getSearchView() != null) {
             getSearchView().setBackgroundResource(org.smartregister.family.R.color.white);
@@ -137,6 +155,77 @@ public class AdolescentRegisterFragment extends BaseRegisterFragment implements 
     @Override
     protected void onViewClicked(android.view.View view) {
 
+        if (getActivity() == null) {
+            return;
+        }
+
+        if (view.getTag() != null && view.getTag(org.smartregister.chw.core.R.id.VIEW_ID) == CLICK_VIEW_NORMAL) {
+            if (view.getTag() instanceof CommonPersonObjectClient) {
+                goToAdolescentDetailActivity((CommonPersonObjectClient) view.getTag(), false);
+            }
+        } else if (view.getId() == org.smartregister.chw.core.R.id.due_only_layout) {
+            toggleFilterSelection(view);
+        }
+
+    }
+
+    public void goToAdolescentDetailActivity(CommonPersonObjectClient patient,
+                                        boolean launchDialog) {
+        if (launchDialog) {
+            Timber.i(patient.name);
+        }
+        String name = org.smartregister.family.util.Utils.getValue(patient.getColumnmaps(), DBConstants.KEY.FIRST_NAME, false);
+
+        Intent intent = new Intent(getActivity(), AboveFiveChildProfileActivity.class);
+        intent.putExtra(CoreConstants.INTENT_KEY.IS_COMES_FROM_FAMILY, true);
+        intent.putExtra(org.smartregister.family.util.Constants.INTENT_KEY.BASE_ENTITY_ID, patient.getCaseId());
+        intent.putExtra(org.smartregister.chw.anc.util.Constants.ANC_MEMBER_OBJECTS.MEMBER_PROFILE_OBJECT, new MemberObject(patient));
+        startActivity(intent);
+    }
+
+    protected void toggleFilterSelection(android.view.View dueOnlyLayout) {
+        if (dueOnlyLayout != null) {
+            if (dueOnlyLayout.getTag() == null) {
+                dueFilterActive = true;
+                dueFilter(dueOnlyLayout);
+            } else if (dueOnlyLayout.getTag().toString().equals(DUE_FILTER_TAG)) {
+                dueFilterActive = false;
+                normalFilter(dueOnlyLayout);
+            }
+        }
+    }
+
+    protected void dueFilter(android.view.View dueOnlyLayout) {
+        filterDue(searchText(), "", presenter().getDueFilterCondition());
+        dueOnlyLayout.setTag(DUE_FILTER_TAG);
+        switchViews(dueOnlyLayout, true);
+    }
+
+    protected void normalFilter(android.view.View dueOnlyLayout) {
+        filterDue(searchText(), "", presenter().getMainCondition());
+        dueOnlyLayout.setTag(null);
+        switchViews(dueOnlyLayout, false);
+    }
+
+    protected void filterDue(String filterString, String joinTableString, String mainConditionString) {
+        filters = filterString;
+        joinTable = joinTableString;
+        mainCondition = mainConditionString;
+        filterandSortExecute(countBundle());
+    }
+
+    protected String searchText() {
+        return (getSearchView() == null) ? "" : getSearchView().getText().toString();
+    }
+
+    private void switchViews(android.view.View dueOnlyLayout, boolean isPress) {
+        TextView dueOnlyTextView = dueOnlyLayout.findViewById(org.smartregister.chw.core.R.id.due_only_text_view);
+        if (isPress) {
+            dueOnlyTextView.setCompoundDrawablesWithIntrinsicBounds(0, 0, org.smartregister.chw.core.R.drawable.ic_due_filter_on, 0);
+        } else {
+            dueOnlyTextView.setCompoundDrawablesWithIntrinsicBounds(0, 0, org.smartregister.chw.core.R.drawable.ic_due_filter_off, 0);
+
+        }
     }
 
     @Override

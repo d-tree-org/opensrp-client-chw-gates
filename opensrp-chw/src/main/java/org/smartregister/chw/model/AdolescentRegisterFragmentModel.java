@@ -54,6 +54,7 @@ public class AdolescentRegisterFragmentModel implements AdolescentRegisterFragme
                 tableName + ".last_name",
                 tableName + "." + DBConstants.KEY.DOB,
                 tableName + "." + DBConstants.KEY.GENDER,
+                tableName + ".date_created",
                 CoreConstants.TABLE_NAME.FAMILY + "." + DBConstants.KEY.VILLAGE_TOWN
         };
         return columns;

@@ -21,7 +21,7 @@ public class NavigationModelFlv implements NavigationModel.Flavor {
             NavigationOption op2 = new NavigationOption(R.mipmap.sidemenu_children, R.mipmap.sidemenu_children_active, R.string.menu_child_clients, Constants.DrawerMenu.CHILD_CLIENTS, 0);
             NavigationOption op3 = new NavigationOption(R.mipmap.sidemenu_anc, R.mipmap.sidemenu_anc_active, R.string.menu_anc, Constants.DrawerMenu.ANC, 0);
             NavigationOption op4 = new NavigationOption(R.mipmap.sidemenu_pnc, R.mipmap.sidemenu_pnc_active, R.string.menu_pnc, Constants.DrawerMenu.PNC, 0);
-            NavigationOption op5 = new NavigationOption(R.mipmap.sidemenu_childrenalt, R.mipmap.sidemenu_children_active, R.string.menu_adolescent, Constants.DrawerMenu.ADOLESCENT, 0);
+            NavigationOption op5 = new NavigationOption(R.mipmap.side_menu_adolescent, R.mipmap.side_menu_adolescent_active, R.string.menu_adolescent, Constants.DrawerMenu.ADOLESCENT, 0);
             NavigationOption op6 = new NavigationOption(R.mipmap.sidemenu_referrals, R.mipmap.sidemenu_referrals_active, R.string.menu_referrals, Constants.DrawerMenu.REFERRALS, 0);
             navigationOptions.addAll(Arrays.asList(op1, op3, op2, op4, op5, op6));
         }
