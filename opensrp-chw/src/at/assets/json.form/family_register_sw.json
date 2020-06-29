@@ -176,7 +176,7 @@
         "exclusive": [
           "chk_consent_yes"
         ],
-        "label": "Je! kaya imetoa idhini?",
+        "label": "Je, kaya imeridhia kusajiliwa?",
         "options": [
           {
             "key": "chk_consent_yes",
