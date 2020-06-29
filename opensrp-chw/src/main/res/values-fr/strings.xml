@@ -333,5 +333,7 @@
     <string name="cancel_download_confirmation">Vous êtes sûr de vouloir annuler ce téléchargement ?</string>
     <string name="cancel_download">Annuler le téléchargement</string>
 
+    <string name="return_to_previous_page_adolescent">Return to all adolescents</string>
+
 
 </resources>
