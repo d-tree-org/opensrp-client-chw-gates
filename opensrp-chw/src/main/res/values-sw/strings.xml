@@ -287,5 +287,6 @@
 
     <!-- Referral -->
     <string name="referral_submitted">Fomu ya rufaa imetumwa!</string>
+    <string name="record_pnc_visit">Rekodi hudhurio la mama baada ya kujifungua</string>
 
 </resources>
