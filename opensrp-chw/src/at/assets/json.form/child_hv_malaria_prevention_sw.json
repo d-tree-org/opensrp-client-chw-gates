@@ -56,7 +56,7 @@
         "openmrs_entity_id": "",
         "openmrs_data_type": "select one",
         "type": "spinner",
-        "hint": "Ana chandarua chenye viuwatilifu vya muda mrefu?",
+        "hint": "Ana chandarua chenye viuatilifu vya muda mrefu?",
         "values": [
           "Ndiyo",
           "Hapana"
