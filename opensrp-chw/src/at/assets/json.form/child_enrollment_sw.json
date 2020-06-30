@@ -87,7 +87,7 @@
         "options": [
           {
             "key": "same_as_fam_name",
-            "text": "Je jina la familia ni sawa na jina la kaya?",
+            "text": "Jina la familia ni sawa na jina la kaya",
             "text_size": "18px",
             "value": "false"
           }
