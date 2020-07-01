@@ -10,6 +10,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import org.smartregister.chw.R;
 import org.smartregister.chw.activity.AboveFiveChildProfileActivity;
+import org.smartregister.chw.activity.AdolescentProfileActivity;
 import org.smartregister.chw.anc.domain.MemberObject;
 import org.smartregister.chw.contract.AdolescentRegisterFragmentContract;
 import org.smartregister.chw.core.activity.CoreChildProfileActivity;
@@ -176,7 +177,7 @@ public class AdolescentRegisterFragment extends BaseRegisterFragment implements 
         }
         String name = org.smartregister.family.util.Utils.getValue(patient.getColumnmaps(), DBConstants.KEY.FIRST_NAME, false);
 
-        Intent intent = new Intent(getActivity(), AboveFiveChildProfileActivity.class);
+        Intent intent = new Intent(getActivity(), AdolescentProfileActivity.class);
         intent.putExtra(CoreConstants.INTENT_KEY.IS_COMES_FROM_FAMILY, true);
         intent.putExtra(org.smartregister.family.util.Constants.INTENT_KEY.BASE_ENTITY_ID, patient.getCaseId());
         intent.putExtra(org.smartregister.chw.anc.util.Constants.ANC_MEMBER_OBJECTS.MEMBER_PROFILE_OBJECT, new MemberObject(patient));
