@@ -175,10 +175,8 @@ public class AdolescentRegisterFragment extends BaseRegisterFragment implements 
         if (launchDialog) {
             Timber.i(patient.name);
         }
-        String name = org.smartregister.family.util.Utils.getValue(patient.getColumnmaps(), DBConstants.KEY.FIRST_NAME, false);
-
         Intent intent = new Intent(getActivity(), AdolescentProfileActivity.class);
-        intent.putExtra(CoreConstants.INTENT_KEY.IS_COMES_FROM_FAMILY, true);
+        intent.putExtra(CoreConstants.INTENT_KEY.IS_COMES_FROM_FAMILY, false);
         intent.putExtra(org.smartregister.family.util.Constants.INTENT_KEY.BASE_ENTITY_ID, patient.getCaseId());
         intent.putExtra(org.smartregister.chw.anc.util.Constants.ANC_MEMBER_OBJECTS.MEMBER_PROFILE_OBJECT, new MemberObject(patient));
         startActivity(intent);
