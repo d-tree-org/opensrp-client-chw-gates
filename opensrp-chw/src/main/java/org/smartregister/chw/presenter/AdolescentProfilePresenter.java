@@ -2,7 +2,10 @@ package org.smartregister.chw.presenter;
 
 import org.smartregister.chw.contract.AdolescentProfileContract;
 import org.smartregister.chw.interactor.AdolescentProfileInteractor;
+import org.smartregister.chw.util.ChildDBConstants;
 import org.smartregister.commonregistry.CommonPersonObjectClient;
+import org.smartregister.family.util.DBConstants;
+import org.smartregister.family.util.Utils;
 
 import java.lang.ref.WeakReference;
 
@@ -31,6 +34,22 @@ public class AdolescentProfilePresenter implements AdolescentProfileContract.Pre
         if (pClient == null || pClient.getColumnmaps() == null) {
             return;
         }
+        String firstName = Utils.getValue(pClient.getColumnmaps(), DBConstants.KEY.FIRST_NAME, true);
+        String lastName = Utils.getValue(pClient.getColumnmaps(), DBConstants.KEY.LAST_NAME, true);
+        String middleName = Utils.getValue(pClient.getColumnmaps(), DBConstants.KEY.MIDDLE_NAME, true);
+        String adolescentName = org.smartregister.util.Utils.getName(firstName, middleName + " " + lastName);
+        String dobString = org.smartregister.util.Utils.getValue(pClient.getColumnmaps(), org.smartregister.chw.referral.util.DBConstants.KEY.DOB, false);
+        String age = org.smartregister.family.util.Utils.getTranslatedDate(org.smartregister.family.util.Utils.getDuration(dobString), getView().getContext());
+        getView().setAdolescentNameAndAge(String.format("%s, %s", adolescentName, age));
+
+        String gender = Utils.getValue(pClient.getColumnmaps(), DBConstants.KEY.GENDER, true);
+        getView().setGender(gender);
+
+        String villageTown = Utils.getValue(pClient.getColumnmaps(), ChildDBConstants.KEY.FAMILY_HOME_ADDRESS, true);
+        getView().setVillageLocation(villageTown);
+
+        String id = Utils.getValue(pClient.getColumnmaps(), DBConstants.KEY.UNIQUE_ID, true);
+        getView().setUniqueId(id);
 
     }
 
@@ -46,6 +65,8 @@ public class AdolescentProfilePresenter implements AdolescentProfileContract.Pre
 
     @Override
     public AdolescentProfileContract.View getView() {
+        if (view != null)
+            return view.get();
         return null;
     }
 

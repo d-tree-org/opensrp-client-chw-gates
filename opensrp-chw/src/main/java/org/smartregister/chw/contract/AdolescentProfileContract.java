@@ -1,5 +1,7 @@
 package org.smartregister.chw.contract;
 
+import android.content.Context;
+
 import org.smartregister.chw.malaria.contract.MalariaProfileContract;
 import org.smartregister.chw.malaria.domain.MemberObject;
 import org.smartregister.commonregistry.CommonPersonObjectClient;
@@ -8,6 +10,8 @@ import org.smartregister.view.contract.BaseProfileContract;
 public interface AdolescentProfileContract {
 
     interface View extends BaseProfileContract.View{
+
+        Context getContext();
 
         AdolescentProfileContract.Presenter presenter();
 
@@ -34,6 +38,7 @@ public interface AdolescentProfileContract {
     }
 
     interface Presenter extends BaseProfileContract.Presenter {
+
         AdolescentProfileContract.View getView();
 
         void fetchProfileData();

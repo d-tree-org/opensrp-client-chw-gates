@@ -1,5 +1,6 @@
 package org.smartregister.chw.activity;
 
+import android.content.Context;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -15,6 +16,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
 
+import org.opensrp.api.constants.Gender;
 import org.smartregister.chw.R;
 import org.smartregister.chw.anc.domain.MemberObject;
 import org.smartregister.chw.contract.AdolescentProfileContract;
@@ -65,7 +67,7 @@ public class AdolescentProfileActivity extends BaseProfileActivity implements Ad
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            baseEntityId = getIntent().getStringExtra(Constants.ACTIVITY_PAYLOAD.BASE_ENTITY_ID);
+            baseEntityId = getIntent().getStringExtra(org.smartregister.family.util.Constants.INTENT_KEY.BASE_ENTITY_ID);
             isComesFromFamily = getIntent().getBooleanExtra(CoreConstants.INTENT_KEY.IS_COMES_FROM_FAMILY, false);
             memberObject = (MemberObject) getIntent().getSerializableExtra(org.smartregister.chw.anc.util.Constants.ANC_MEMBER_OBJECTS.MEMBER_PROFILE_OBJECT);
         }
@@ -84,7 +86,11 @@ public class AdolescentProfileActivity extends BaseProfileActivity implements Ad
         if (Build.VERSION.SDK_INT >= 21) {
             appBarLayout.setOutlineProvider(null);
         }
+        TextView textViewVerifyFingerPrint = findViewById(R.id.textview_verify_fingerprint);
+        textViewVerifyFingerPrint.setVisibility(View.GONE);
         imageRenderHelper = new ImageRenderHelper(this);
+        setupViews();
+        initializePresenter();
 
     }
 
@@ -95,7 +101,9 @@ public class AdolescentProfileActivity extends BaseProfileActivity implements Ad
         textViewGender = findViewById(R.id.textview_gender);
         textViewLocation = findViewById(R.id.textview_address);
         textViewUniqueID = findViewById(R.id.textview_id);
-
+        progressBar = findViewById(R.id.progress_bar);
+        textViewTitle = findViewById(R.id.toolbar_title);
+        setUpToolbar();
     }
 
     @Override
@@ -104,24 +112,16 @@ public class AdolescentProfileActivity extends BaseProfileActivity implements Ad
     }
 
     @Override
-    public void setAdolescentNameAndAge(String nameAndAge) {
-        textViewName.setText(nameAndAge);
-    }
+    public void setAdolescentNameAndAge(String nameAndAge) { textViewName.setText(nameAndAge); }
 
     @Override
-    public void setGender(String gender) {
-
-    }
+    public void setGender(String gender) { textViewGender.setText(getGenderTranslated(gender)); }
 
     @Override
-    public void setVillageLocation(String location) {
-
-    }
+    public void setVillageLocation(String location) { textViewLocation.setText(location); }
 
     @Override
-    public void setUniqueId(String uniqueId) {
-
-    }
+    public void setUniqueId(String uniqueId) { textViewUniqueID.setText(uniqueId); }
 
     @Override
     public void setOverDueColor() {
@@ -172,4 +172,26 @@ public class AdolescentProfileActivity extends BaseProfileActivity implements Ad
         presenter().fetchProfileData();
     }
 
+    @Override
+    public Context getContext() {
+        return this;
+    }
+
+    private String getGenderTranslated(String gender) {
+        if (gender.equalsIgnoreCase(Gender.MALE.toString())) {
+            return getResources().getString(org.smartregister.family.R.string.male);
+        } else if (gender.equalsIgnoreCase(Gender.FEMALE.toString())) {
+            return getResources().getString(org.smartregister.family.R.string.female);
+        }
+        return "";
+    }
+
+    public void setUpToolbar() {
+        if (isComesFromFamily) {
+            textViewTitle.setText(getString(R.string.return_to_family_members));
+        } else {
+            textViewTitle.setText(getString(R.string.return_to_previous_page_adolescent));
+        }
+
+    }
 }
