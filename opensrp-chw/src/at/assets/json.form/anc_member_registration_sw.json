@@ -432,7 +432,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "160642AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
         "type": "edit_text",
-        "hint": "Phone number",
+        "hint": "Namba ya simu",
         "v_required": {
           "value": false
         },
