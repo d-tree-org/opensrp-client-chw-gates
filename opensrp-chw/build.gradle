@@ -146,10 +146,10 @@ android {
     productFlavors {
         at {
             dimension = 'baseDimension'
-            applicationIdSuffix ".at"
-            versionCode 11
-            versionName "1.3.4"
-            buildConfigField "String", 'opensrp_url', '"https://afyatek.smartregister.org/opensrp/"'
+            applicationIdSuffix ".at.staging"
+            versionCode 14
+            versionName "1.4.0"
+            buildConfigField "String", 'opensrp_url', '"https://opensrp-dev.d-tree.org/opensrp/"'
             buildConfigField "String", 'guidebooks_url', '"https://opensrp.s3.amazonaws.com/media/ba/"'
             buildConfigField "String", 'opensrp_url_debug', '"https://opensrp-dev.d-tree.org/opensrp/"'
             buildConfigField "String[]", "LOCATION_HIERACHY", '{"Country", "Region", "District", "Ward" ,"Village", "Facility Name"}'
