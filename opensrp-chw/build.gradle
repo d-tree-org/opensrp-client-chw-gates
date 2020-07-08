@@ -46,7 +46,7 @@ android {
         buildConfigField "long", "MAX_SERVER_TIME_DIFFERENCE", "1800000l"
         buildConfigField "boolean", "TIME_CHECK", "false"
         buildConfigField "String", "SYNC_TYPE", '"teamId"'
-        buildConfigField "int", "MAX_SYNC_RETRIES", '1'
+        buildConfigField "int", "MAX_SYNC_RETRIES", '3'
         buildConfigField "long", "BUILD_TIMESTAMP", System.currentTimeMillis() + "L"
         buildConfigField "boolean", "IS_SYNC_SETTINGS", "false"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -72,7 +72,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             buildConfigField "int", "OPENMRS_UNIQUE_ID_INITIAL_BATCH_SIZE", '500'
             buildConfigField "int", "OPENMRS_UNIQUE_ID_BATCH_SIZE", '500'
-            buildConfigField "int", "OPENMRS_UNIQUE_ID_SOURCE", '1'
+            buildConfigField "int", "OPENMRS_UNIQUE_ID_SOURCE", '3'
             buildConfigField "boolean", "TIME_CHECK", "true"
             buildConfigField "int", "DATA_SYNC_DURATION_MINUTES", '15'
             buildConfigField "int", "VACCINE_SYNC_PROCESSING_MINUTES", '30'
@@ -146,14 +146,14 @@ android {
     productFlavors {
         at {
             dimension = 'baseDimension'
-            applicationIdSuffix ".at.staging"
-            versionCode 10
-            versionName "1.3.3"
-            buildConfigField "String", 'opensrp_url', '"https://opensrp-dev.d-tree.org/opensrp/"'
+            applicationIdSuffix ".at"
+            versionCode 11
+            versionName "1.3.4"
+            buildConfigField "String", 'opensrp_url', '"https://afyatek.smartregister.org/opensrp/"'
             buildConfigField "String", 'guidebooks_url', '"https://opensrp.s3.amazonaws.com/media/ba/"'
             buildConfigField "String", 'opensrp_url_debug', '"https://opensrp-dev.d-tree.org/opensrp/"'
             buildConfigField "String[]", "LOCATION_HIERACHY", '{"Country", "Region", "District", "Ward" ,"Village", "Facility Name"}'
-            buildConfigField "int", "OPENMRS_UNIQUE_ID_SOURCE", '1'
+            buildConfigField "int", "OPENMRS_UNIQUE_ID_SOURCE", '3'
             buildConfigField "String[]", "ALLOWED_LOCATION_LEVELS", '{"Facility Name", "Village"}'
             buildConfigField "String[]", "ALLOWED_LOCATION_LEVELS_DEBUG", '{"Facility Name", "Village"}'
             buildConfigField "String", 'DEFAULT_LOCATION', '"Village"'
@@ -352,7 +352,7 @@ repositories {
 }
 
 dependencies {
-    implementation('org.smartregister:opensrp-client-chw-core:1.1.39-DTREE-8-SNAPSHOT@aar') {
+    implementation('org.smartregister:opensrp-client-chw-core:1.1.39-DTREE-10-SNAPSHOT@aar') {
         transitive = true
         exclude group: 'com.android.support', module: 'appcompat-v7'
         exclude group: 'androidx.legacy', module: 'legacy-support-v4'
@@ -393,8 +393,9 @@ dependencies {
     }
 
     implementation 'com.mcxiaoke.volley:library:1.0.19'
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
 
-    implementation ('org.smartregister:opensrp-client-family:1.2.41-DTREE-SNAPSHOT'){
+    implementation ('org.smartregister:opensrp-client-family:1.2.43-DTREE-1-SNAPSHOT@aar'){
         transitive = true
         exclude group: 'org.smartregister', module: 'opensrp-client-core'
         exclude group: 'org.smartregister', module: 'opensrp-client-native-form'

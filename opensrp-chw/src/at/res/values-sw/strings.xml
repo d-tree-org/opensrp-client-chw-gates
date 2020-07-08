@@ -21,7 +21,10 @@
 
     <string name="record_anc_visit">Rekodi tembeleo la mjamzito</string>
 
-    <string name="followup">FWATILIA</string>
+    <string name="followup">FUATILIA</string>
     <string name="confirm_remove_text">Una uhakika unataka kuondoa taarifa za huyu mteja? Hii itaondoa taarifa zote za %s kutoka kwenye simu yako. Haitawezekana kumrudisha.</string>
+    <string name="care_giver_initials">MLEZI</string>
+    <string name="gestation_age_initial">Umri wa Mimba</string>
+    <string name="pnc_day">Siku baada ya kuzaa</string>
 
 </resources>

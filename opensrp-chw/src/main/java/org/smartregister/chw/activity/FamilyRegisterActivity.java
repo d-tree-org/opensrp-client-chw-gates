@@ -10,6 +10,7 @@ import com.google.android.material.bottomnavigation.LabelVisibilityMode;
 import org.smartregister.CoreLibrary;
 import org.smartregister.chw.BuildConfig;
 import org.smartregister.chw.R;
+import org.smartregister.chw.application.ChwApplication;
 import org.smartregister.chw.core.activity.CoreFamilyRegisterActivity;
 import org.smartregister.chw.core.custom_views.NavigationMenu;
 import org.smartregister.chw.fragment.FamilyRegisterFragment;
@@ -80,7 +81,7 @@ public class FamilyRegisterActivity extends CoreFamilyRegisterActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         NavigationMenu.getInstance(this, null, null);
-        //ChwApplication.getInstance().notifyAppContextChange(); // initialize the language (bug in translation)
+        ChwApplication.getInstance().notifyAppContextChange(); // initialize the language (bug in translation)
         ReferralLibrary.getInstance().seedSampleReferralServicesAndIndicators(); // Used to seed referral module services and problems, temporally and will be removed once they are sync from the server in future versions.
         action = getIntent().getStringExtra(Constants.ACTIVITY_PAYLOAD.ACTION);
         if (action != null && action.equals(Constants.ACTION.START_REGISTRATION)) {
