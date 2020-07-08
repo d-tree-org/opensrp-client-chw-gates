@@ -91,7 +91,7 @@ public class ReferralRegisterProvider implements RecyclerViewProvider<ReferralRe
             viewHolder.registerColumns.setOnClickListener(onClickListener);
 
             viewHolder.registerColumns.setOnClickListener(v -> viewHolder.patientColumn.performClick());
-            setReferralStatusColor(context, viewHolder.textReferralStatus, Utils.getValue(pc.getColumnmaps(), CoreConstants.DB_CONSTANTS.STATUS, true));
+            setReferralStatusColor(context, viewHolder, Utils.getValue(pc.getColumnmaps(), CoreConstants.DB_CONSTANTS.STATUS, true));
 
         } catch (Exception e) {
             Timber.e(e);
@@ -147,14 +147,14 @@ public class ReferralRegisterProvider implements RecyclerViewProvider<ReferralRe
         return viewHolder instanceof ReferralRegisterProvider.FooterViewHolder;
     }
 
-    private void setReferralStatusColor(Context context, TextView textViewStatus, String status) {
-        textViewStatus.setText(context.getString(R.string.followup));
+    private void setReferralStatusColor(Context context, ReferralRegisterProvider.RegisterViewHolder viewHolder, String status) {
+        viewHolder.textReferralStatus.setText(context.getString(R.string.followup));
         switch (status) {
             case TASK_STATUS_READY:
-                textViewStatus.setTextColor(context.getResources().getColor(org.smartregister.chw.referral.R.color.alert_in_progress_blue));
+                setTasksDueStatus(context, viewHolder);
                 break;
             case TASK_STATUS_IN_PROGRESS:
-                textViewStatus.setTextColor(context.getResources().getColor(org.smartregister.chw.referral.R.color.alert_complete_green));
+                setTasksOverdueStatus(context, viewHolder);
                 break;
             default:
                 break;
@@ -220,4 +220,13 @@ public class ReferralRegisterProvider implements RecyclerViewProvider<ReferralRe
         }
     }
 
+    private void setTasksOverdueStatus(Context context, ReferralRegisterProvider.RegisterViewHolder viewHolder) {
+        viewHolder.textReferralStatus.setTextColor(context.getResources().getColor(org.smartregister.chw.core.R.color.white));
+        viewHolder.dueWrapper.setBackgroundResource(org.smartregister.chw.core.R.drawable.overdue_red_btn_selector);
+    }
+
+    private void setTasksDueStatus(Context context, ReferralRegisterProvider.RegisterViewHolder viewHolder) {
+        viewHolder.textReferralStatus.setTextColor(context.getResources().getColor(org.smartregister.chw.core.R.color.alert_in_progress_blue));
+        viewHolder.dueWrapper.setBackgroundResource(org.smartregister.chw.core.R.drawable.blue_btn_selector);
+    }
 }

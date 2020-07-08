@@ -349,7 +349,7 @@ repositories {
 }
 
 dependencies {
-    implementation('org.smartregister:opensrp-client-chw-core:1.1.39-DTREE-8-SNAPSHOT@aar') {
+    implementation('org.smartregister:opensrp-client-chw-core:1.1.39-DTREE-9-SNAPSHOT@aar') {
         transitive = true
         exclude group: 'com.android.support', module: 'appcompat-v7'
         exclude group: 'androidx.legacy', module: 'legacy-support-v4'
@@ -391,7 +391,7 @@ dependencies {
 
     implementation 'com.mcxiaoke.volley:library:1.0.19'
 
-    implementation ('org.smartregister:opensrp-client-family:1.2.41-DTREE-SNAPSHOT'){
+    implementation ('org.smartregister:opensrp-client-family:1.2.43-DTREE-1-SNAPSHOT@aar'){
         transitive = true
         exclude group: 'org.smartregister', module: 'opensrp-client-core'
         exclude group: 'org.smartregister', module: 'opensrp-client-native-form'
