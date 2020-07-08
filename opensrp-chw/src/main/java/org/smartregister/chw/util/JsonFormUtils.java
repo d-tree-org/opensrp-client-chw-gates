@@ -26,6 +26,7 @@ import org.smartregister.commonregistry.CommonPersonObjectClient;
 import org.smartregister.domain.Photo;
 import org.smartregister.domain.tag.FormTag;
 import org.smartregister.family.FamilyLibrary;
+import org.smartregister.family.domain.FamilyEventClient;
 import org.smartregister.family.util.Constants;
 import org.smartregister.family.util.DBConstants;
 import org.smartregister.immunization.domain.ServiceRecord;
@@ -131,6 +132,40 @@ public class JsonFormUtils extends CoreJsonFormUtils {
             return Pair.create(baseClient, baseEvent);
         } catch (Exception e) {
             Timber.e(e);
+            return null;
+        }
+    }
+
+    public static FamilyEventClient processFamilyMemberRegistrationForm(AllSharedPreferences allSharedPreferences, String jsonString, String familyBaseEntityId) {
+        return processFamilyForm(allSharedPreferences, jsonString, familyBaseEntityId);
+    }
+
+    private static FamilyEventClient processFamilyForm(AllSharedPreferences allSharedPreferences, String jsonString, String familyBaseEntityId) {
+        try {
+            Triple<Boolean, JSONObject, JSONArray> registrationFormParams = validateParameters(jsonString);
+            if (!(Boolean)registrationFormParams.getLeft()) {
+                return null;
+            } else {
+                JSONObject jsonForm = (JSONObject)registrationFormParams.getMiddle();
+                JSONArray fields = (JSONArray)registrationFormParams.getRight();
+                String entityId = getString(jsonForm, "entity_id");
+                if (StringUtils.isBlank(entityId)) {
+                    entityId = generateRandomUUIDString();
+                }
+
+                lastInteractedWith(fields);
+                dobUnknownUpdateFromAge(fields);
+                Client baseClient = org.smartregister.util.JsonFormUtils.createBaseClient(fields, formTag(allSharedPreferences), entityId);
+                if (baseClient != null && !baseClient.getBaseEntityId().equals(familyBaseEntityId)) {
+                    baseClient.addRelationship(org.smartregister.family.util.Utils.metadata().familyMemberRegister.familyRelationKey, familyBaseEntityId);
+                }
+
+                Event baseEvent = org.smartregister.util.JsonFormUtils.createEvent(fields, getJSONObject(jsonForm, "metadata"), formTag(allSharedPreferences), entityId, getString(jsonForm, ENCOUNTER_TYPE), org.smartregister.family.util.Utils.metadata().familyMemberRegister.tableName);
+                tagSyncMetadata(allSharedPreferences, baseEvent);
+                return new FamilyEventClient(baseClient, baseEvent);
+            }
+        } catch (Exception var10) {
+            Timber.e(var10);
             return null;
         }
     }

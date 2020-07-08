@@ -185,6 +185,22 @@
             "creates_case": [
               "ec_referral_followup"
             ]
+          },
+          {
+            "field": "eventType",
+            "field_value": "Adolescent Registration",
+            "creates_case": [
+              "ec_adolescent",
+              "ec_family_member"
+            ]
+          },
+          {
+            "field": "eventType",
+            "field_value": "Update Adolescent Registration",
+            "creates_case": [
+              "ec_adolescent",
+              "ec_family_member"
+            ]
           }
         ]
       }

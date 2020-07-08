@@ -136,6 +136,11 @@ public class FamilyProfileActivity extends CoreFamilyProfileActivity {
     }
 
     @Override
+    protected Class<?> getAdolescentProfileActivityClass() {
+        return AdolescentProfileActivity.class;
+    }
+
+    @Override
     protected boolean isAncMember(String baseEntityId) {
         return ChwApplication.getApplicationFlavor().hasANC() && getFamilyProfilePresenter().isAncMember(baseEntityId);
     }
