@@ -22,4 +22,4 @@ jacoco.exec
 /github.properties
 /app.properties
 /database/
-/opensrp-chw/at
+at/
