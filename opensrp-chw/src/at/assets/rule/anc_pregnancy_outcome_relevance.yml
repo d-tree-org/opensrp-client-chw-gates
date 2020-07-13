@@ -1,13 +1,36 @@
 ---
-name: step1_miscarriage_date
-description: miscarriage_date
+name: step1_preg_outcome_motherdead_toaster_note
+description: Toaster note mother died
 priority: 1
-condition: "step1_preg_outcome == 'miscarriage'"
+condition: "step1_preg_outcome_motheralive == 'no'"
 actions:
   - "isRelevant = true"
 
 ---
+name: step1_no_childrenalive
+description: Number of children born alive
+priority: 1
+condition: "step1_preg_outcome_miscarriage == 'no'"
+actions:
+  - "isRelevant = true"
+
+---
+name: step1_no_childrendied
+description: Number of children born alive
+priority: 1
+condition: "step1_preg_outcome_miscarriage == 'no'"
+actions:
+  - "isRelevant = true"
+---
 name: step1_delivery_date
+description: delivery_miscarriage_date
+priority: 1
+condition: "step1_no_childrenalive > 0 || step1_no_childrendied > 0 || preg_outcome_miscarriage == 'yes'"
+actions:
+  - "isRelevant = true"
+
+---
+name: step1_delivery_miscarriage_date
 description: delivery_date relevance
 priority: 1
 condition: "step1_preg_outcome != 'miscarriage' && step1_preg_outcome != '' && step1_preg_outcome != 'mother_dead'"
@@ -26,23 +49,23 @@ actions:
 name: step1_delivery_place
 description: delivery_place relevance
 priority: 1
-condition: "step1_preg_outcome != '' && step1_preg_outcome != 'miscarriage' && step1_preg_outcome != 'mother_dead'"
+condition: "step1_no_childrenalive > 0 || step1_no_childrendied > 0"
 actions:
   - "isRelevant = true"
 
 ---
-name: step1_delivery_home
-description: delivery_home relevance
+name: step1_other_place_description
+description: other_place_description
 priority: 1
-condition: "step1_delivery_place == 'At home'"
+condition: "step1_delivery_place == 'other'"
 actions:
   - "isRelevant = true"
 
 ---
-name: step1_delivery_hf
-description: delivery_hf relevance
+name: step1_instruction_to_register_child
+description: instruction_to_register_child relevance
 priority: 1
-condition: "step1_delivery_place =='At a health facility'"
+condition: "step1_no_childrenalive > 0"
 actions:
   - "isRelevant = true"
 
