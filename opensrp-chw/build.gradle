@@ -148,12 +148,12 @@ android {
             dimension = 'baseDimension'
             applicationIdSuffix ".at.staging"
             versionCode 14
-            versionName "1.4.0"
+            versionName "1.4.1"
             buildConfigField "String", 'opensrp_url', '"https://opensrp-dev.d-tree.org/opensrp/"'
             buildConfigField "String", 'guidebooks_url', '"https://opensrp.s3.amazonaws.com/media/ba/"'
             buildConfigField "String", 'opensrp_url_debug', '"https://opensrp-dev.d-tree.org/opensrp/"'
             buildConfigField "String[]", "LOCATION_HIERACHY", '{"Country", "Region", "District", "Ward" ,"Village", "Facility Name"}'
-            buildConfigField "int", "OPENMRS_UNIQUE_ID_SOURCE", '3'
+            buildConfigField "int", "OPENMRS_UNIQUE_ID_SOURCE", '1'
             buildConfigField "String[]", "ALLOWED_LOCATION_LEVELS", '{"Facility Name", "Village"}'
             buildConfigField "String[]", "ALLOWED_LOCATION_LEVELS_DEBUG", '{"Facility Name", "Village"}'
             buildConfigField "String", 'DEFAULT_LOCATION', '"Village"'
@@ -349,10 +349,19 @@ repositories {
             password = githubProperties['gpr.key'] ?: System.getenv("GPR_API_KEY")
         }
     }
+
+    maven {
+        name = "GitHubPackages"
+        url = uri("https://maven.pkg.github.com/d-tree-org/opensrp-client-chw-anc")
+        credentials {
+            username = githubProperties['gpr.usr'] ?: System.getenv("GPR_USER")
+            password = githubProperties['gpr.key'] ?: System.getenv("GPR_API_KEY")
+        }
+    }
 }
 
 dependencies {
-    implementation('org.smartregister:opensrp-client-chw-core:1.1.39-DTREE-10-SNAPSHOT@aar') {
+    implementation('org.smartregister:opensrp-client-chw-core:1.1.39-DTREE-11-SNAPSHOT@aar') {
         transitive = true
         exclude group: 'com.android.support', module: 'appcompat-v7'
         exclude group: 'androidx.legacy', module: 'legacy-support-v4'
@@ -365,6 +374,7 @@ dependencies {
         exclude group: 'org.smartregister', module: 'opensrp-client-core'
         exclude group: 'org.smartregister', module: 'opensrp-client-native-form'
         exclude group: 'org.smartregister', module: 'opensrp-client-family'
+        exclude group: 'org.smartregister', module: 'opensrp-chw-family-planning'
     }
     implementation 'androidx.appcompat:appcompat:1.0.2' //Do not upgrade to 1.1.0 due to compatibility issues
     implementation 'com.google.android.material:material:1.0.0'
