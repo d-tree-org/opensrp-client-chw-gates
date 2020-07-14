@@ -15,10 +15,18 @@ actions:
   - "isRelevant = true"
 
 ---
+name: step1_no_childrendied
+description: no_children relevance
+priority: 1
+condition: "step1_preg_outcome_miscarriage == 'no'"
+actions:
+  - "isRelevant = true"
+
+---
 name: step1_no_children
 description: no_children relevance
 priority: 1
-condition: "step1_preg_outcome == 'born_alive' || step1_preg_outcome == 'born_alive_died' || step1_preg_outcome == 'alive_with_problem'"
+condition: "step1_preg_outcome_miscarriage == 'no'"
 actions:
   - "isRelevant = true"
 

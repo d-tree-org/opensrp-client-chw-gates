@@ -161,6 +161,13 @@
         "v_required": {
           "value": "true",
           "err": "Tafadhali jaza namba ya watoto waliozaliwa hai"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "anc_pregnancy_outcome_relevance.yml"
+            }
+          }
         }
       },
       {
@@ -182,6 +189,13 @@
         "v_required": {
           "value": "true",
           "err": "Tafadhali jaza namba ya watoto waliozaliwa na kufariki"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "anc_pregnancy_outcome_relevance.yml"
+            }
+          }
         }
       },
       {

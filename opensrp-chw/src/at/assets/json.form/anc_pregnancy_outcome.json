@@ -64,7 +64,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "161033AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
         "type": "native_radio",
-        "label": "Did the woman survive childbirth?",
+        "label": "Did the woman survive?",
         "label_text_style": "bold",
         "text_color": "#000000",
         "options": [
@@ -161,6 +161,13 @@
         "v_required": {
           "value": "true",
           "err": "Enter the number of children born alive"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "anc_pregnancy_outcome_relevance.yml"
+            }
+          }
         }
       },
       {
@@ -182,6 +189,13 @@
         "v_required": {
           "value": "true",
           "err": "Enter the number of children deceased"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "anc_pregnancy_outcome_relevance.yml"
+            }
+          }
         }
       },
       {
