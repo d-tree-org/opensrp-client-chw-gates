@@ -393,10 +393,6 @@
         "type": "edit_text",
         "hint": "Middle name",
         "edit_type": "name",
-        "v_required": {
-          "value": "true",
-          "err": "Please enter the middle name"
-        },
         "v_regex": {
           "value": "[A-Za-z\\u00C0-\\u017F\\s\\u00C0-\\u017F\\.\\-]*",
           "err": "Please enter a valid name"
