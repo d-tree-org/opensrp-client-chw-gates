@@ -265,7 +265,7 @@
          "v_regex": {
            "value": "[A-Za-z\\u00C0-\\u017F\\s\\u00C0-\\u017F\\.\\-]*",
            "err": "Please enter a valid name"
-         }
+         },
          "relevance": {
            "step1:member_consent": {
              "ex-checkbox": [
