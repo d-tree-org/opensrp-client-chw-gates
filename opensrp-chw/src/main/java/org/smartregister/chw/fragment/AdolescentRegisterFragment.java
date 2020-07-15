@@ -100,7 +100,7 @@ public class AdolescentRegisterFragment extends BaseRegisterFragment implements 
         CustomFontTextView titleView = view.findViewById(org.smartregister.chw.core.R.id.txt_title_label);
         if (titleView != null) {
             titleView.setVisibility(android.view.View.VISIBLE);
-            titleView.setText("Adolescent Clients");
+            titleView.setText(R.string.adolescent_fragment_title);
             titleView.setFontVariant(FontVariant.REGULAR);
             titleView.setPadding(0, titleView.getTop(), titleView.getPaddingRight(), titleView.getPaddingBottom());
         }
