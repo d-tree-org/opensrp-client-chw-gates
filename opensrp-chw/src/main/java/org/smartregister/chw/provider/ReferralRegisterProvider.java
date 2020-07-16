@@ -2,12 +2,16 @@ package org.smartregister.chw.provider;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.joda.time.DateTime;
@@ -148,7 +152,6 @@ public class ReferralRegisterProvider implements RecyclerViewProvider<ReferralRe
     }
 
     private void setReferralStatusColor(Context context, ReferralRegisterProvider.RegisterViewHolder viewHolder, String status) {
-        viewHolder.textReferralStatus.setText(context.getString(R.string.followup));
         switch (status) {
             case TASK_STATUS_READY:
                 setTasksDueStatus(context, viewHolder);
@@ -171,6 +174,7 @@ public class ReferralRegisterProvider implements RecyclerViewProvider<ReferralRe
         public TextView textViewFacility;
         public View registerColumns;
         public View dueWrapper;
+        public ImageView doneIcon;
 
         public RegisterViewHolder(View itemView) {
             super(itemView);
@@ -183,6 +187,7 @@ public class ReferralRegisterProvider implements RecyclerViewProvider<ReferralRe
             dueWrapper = itemView.findViewById(org.smartregister.chw.referral.R.id.due_button_wrapper);
             textViewService = itemView.findViewById(org.smartregister.chw.referral.R.id.text_view_service);
             textViewFacility = itemView.findViewById(org.smartregister.chw.referral.R.id.text_view_facility);
+            doneIcon = itemView.findViewById(R.id.done_icon);
         }
     }
 
@@ -222,11 +227,17 @@ public class ReferralRegisterProvider implements RecyclerViewProvider<ReferralRe
 
     private void setTasksOverdueStatus(Context context, ReferralRegisterProvider.RegisterViewHolder viewHolder) {
         viewHolder.textReferralStatus.setTextColor(context.getResources().getColor(org.smartregister.chw.core.R.color.white));
+        viewHolder.doneIcon.setColorFilter(context.getResources().getColor(org.smartregister.chw.core.R.color.white));
         viewHolder.dueWrapper.setBackgroundResource(org.smartregister.chw.core.R.drawable.overdue_red_btn_selector);
+        viewHolder.doneIcon.setVisibility(View.VISIBLE);
+        viewHolder.textReferralStatus.setGravity(Gravity.CENTER_HORIZONTAL);
     }
 
     private void setTasksDueStatus(Context context, ReferralRegisterProvider.RegisterViewHolder viewHolder) {
         viewHolder.textReferralStatus.setTextColor(context.getResources().getColor(org.smartregister.chw.core.R.color.alert_in_progress_blue));
+        viewHolder.doneIcon.setColorFilter(context.getResources().getColor(org.smartregister.chw.core.R.color.alert_in_progress_blue));
         viewHolder.dueWrapper.setBackgroundResource(org.smartregister.chw.core.R.drawable.blue_btn_selector);
+        viewHolder.doneIcon.setVisibility(View.GONE);
+        viewHolder.textReferralStatus.setGravity(Gravity.CENTER);
     }
 }

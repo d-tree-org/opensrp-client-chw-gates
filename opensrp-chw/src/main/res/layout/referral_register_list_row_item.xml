@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/register_columns"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -103,14 +104,24 @@
         android:paddingEnd="@dimen/register_list_item_padding"
         android:paddingRight="@dimen/register_list_item_padding"
         android:paddingBottom="@dimen/register_list_top_bottom_padding"
+        android:orientation="vertical"
         android:layout_marginEnd="@dimen/register_list_top_bottom_padding">
+
+        <ImageView
+            android:id="@+id/done_icon"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:clickable="true"
+            android:contentDescription="Done Icon"
+            android:visibility="gone"
+            android:layout_gravity="center_horizontal"
+            app:srcCompat="@mipmap/baseline_done" />
 
         <org.smartregister.view.customcontrols.CustomFontTextView
             android:id="@+id/text_view_referral_status"
             style="@style/CustomFontTextViewStyle.ClientList"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_gravity="center"
             android:adjustViewBounds="true"
             android:gravity="center"
             android:hapticFeedbackEnabled="true"
@@ -118,7 +129,7 @@
             android:paddingRight="20dp"
             android:textAllCaps="false"
             android:textColor="@color/vaccine_blue_bg_st"
-            android:text="@string/referral_status_pending"
+            android:text="@string/followup"
             android:textSize="@dimen/referral_register_list_due_size" />
 
     </LinearLayout>
