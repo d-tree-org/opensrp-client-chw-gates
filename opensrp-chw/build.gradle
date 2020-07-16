@@ -170,8 +170,8 @@ android {
         at {
             dimension = 'baseDimension'
             applicationIdSuffix ".at"
-            versionCode 14
-            versionName "1.4.0"
+            versionCode 15
+            versionName "1.4.2"
             buildConfigField "String", 'opensrp_url', '"https://afyatek.smartregister.org/opensrp/"'
             buildConfigField "String", 'guidebooks_url', '"https://opensrp.s3.amazonaws.com/media/ba/"'
             buildConfigField "String", 'opensrp_url_debug', '"https://opensrp-dev.d-tree.org/opensrp/"'
