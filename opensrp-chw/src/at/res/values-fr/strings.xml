@@ -8,4 +8,12 @@
 
     <string name="scan_fingerprint"> Scan </string>
 
+    <string name="fingerprint_matched"> Fingerprint Matched </string>
+
+    <string name="fingerprint_did_not_match"> Fingerprint Did not match </string>
+
+    <string name="fingerprint_verification_terminated"> Verification Terminated </string>
+
+    <string name="fingerprint_enrolled"> Fingerprint enrolled successfully </string>
+
 </resources>

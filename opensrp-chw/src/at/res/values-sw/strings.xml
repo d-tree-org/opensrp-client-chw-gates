@@ -27,4 +27,12 @@
     <string name="gestation_age_initial">Umri wa Mimba</string>
     <string name="pnc_day">Siku baada ya kuzaa</string>
 
+    <string name="fingerprint_matched"> Alama za vidole ziko sawa </string>
+
+    <string name="fingerprint_did_not_match"> Fingerprint Did not match </string>
+
+    <string name="fingerprint_verification_terminated"> Verification Terminated </string>
+
+    <string name="fingerprint_enrolled"> Alama za vidole zimechukuliwa </string>
+
 </resources>

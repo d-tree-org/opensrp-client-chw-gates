@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.room.util.StringUtil;
+
 import com.google.android.material.snackbar.Snackbar;
 
 import net.sqlcipher.database.SQLiteDatabase;
@@ -230,37 +232,46 @@ public class ChildProfileActivity extends CoreChildProfileActivity implements Ch
 
             if (data.getExtras() != null){
                 SimPrintsVerification simprintsVerification = (SimPrintsVerification) data.getSerializableExtra(SimPrintsConstantHelper.INTENT_DATA);
-                switch (simprintsVerification.getMaskedTier()){
-                    case TIER_3:
-                        showSnackBar("Fingerprint Matched");
-                        break;
-                    case TIER_2:
-                        showSnackBar("Fingerprint Matched");
-                        break;
-                    case TIER_1:
-                        showSnackBar("Fingerprint Matched");
-                        break;
-                    default:
-                        showSnackBar("Fingerprint did not match!");
+                if (simprintsVerification.getCheckStatus()){
+                    switch (simprintsVerification.getMaskedTier()){
+                        case TIER_3:
+                            showSnackBar(this.getResources().getString(R.string.fingerprint_matched));
+                            break;
+                        case TIER_2:
+                            showSnackBar(this.getResources().getString(R.string.fingerprint_matched));
+                            break;
+                        case TIER_1:
+                            showSnackBar(this.getResources().getString(R.string.fingerprint_matched));
+                            break;
+                        default:
+                            showSnackBar(this.getResources().getString(R.string.fingerprint_did_not_match));
+                    }
+                }else{
+                    showSnackBar(this.getResources().getString(R.string.fingerprint_verification_terminated));
                 }
             }
         }else if(requestCode == REGISTER_RESULT_CODE && resultCode == RESULT_OK){
             if (data.getExtras() != null){
 
                 SimPrintsRegistration simPrintsRegistration = (SimPrintsRegistration) data.getSerializableExtra(SimPrintsConstantHelper.INTENT_DATA);
-                String guid = simPrintsRegistration.getGuid();
+                if (simPrintsRegistration.getCheckStatus()){
+                    String guid = simPrintsRegistration.getGuid();
 
-                Map<String, String> identifier = new HashMap<>();
-                identifier.put("simprints_guid", guid);
+                    if (!guid.isEmpty()){
 
-                currentClient.setIdentifiers(identifier);
+                        Map<String, String> identifier = new HashMap<>();
+                        identifier.put("simprints_guid", guid);
 
-                JSONObject object = CoreLibrary.getInstance().context().getEventClientRepository().convertToJson(currentClient);
+                        currentClient.setIdentifiers(identifier);
 
-                CoreLibrary.getInstance().context().getEventClientRepository().addorUpdateClient(currentClient.getBaseEntityId(), object);
+                        JSONObject object = CoreLibrary.getInstance().context().getEventClientRepository().convertToJson(currentClient);
 
-                showSnackBar("Child's Fingerprint enrolled successfully");
+                        CoreLibrary.getInstance().context().getEventClientRepository().addorUpdateClient(currentClient.getBaseEntityId(), object);
 
+
+                        showSnackBar(this.getResources().getString(R.string.fingerprint_enrolled));
+                    }
+                }
             }
         }
         ChwScheduleTaskExecutor.getInstance().execute(memberObject.getBaseEntityId(), CoreConstants.EventType.CHILD_HOME_VISIT, new Date());
