@@ -64,56 +64,24 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "161033AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
         "type": "native_radio",
-        "label": "Pregnancy outcome",
+        "label": "Did the woman survive?",
         "label_text_style": "bold",
         "text_color": "#000000",
         "options": [
           {
-            "key": "born_alive",
-            "text": "Child was born alive",
+            "key": "yes",
+            "text": "Yes",
             "value": false,
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "151849AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "openmrs_entity_id": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
             "openmrs_entity_parent": ""
           },
           {
-            "key": "born_alive_died",
-            "text": "Child was born alive, but died",
+            "key": "no",
+            "text": "No",
             "value": false,
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "164816AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-            "openmrs_entity_parent": ""
-          },
-          {
-            "key": "still_born",
-            "text": "Child was stillborn",
-            "value": false,
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "125872AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-            "openmrs_entity_parent": ""
-          },
-          {
-            "key": "alive_with_problem",
-            "text": "Child was born alive, but they have a problem (i.e. disability, respiratory issues, etc.)",
-            "value": false,
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "161599AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-            "openmrs_entity_parent": ""
-          },
-          {
-            "key": "miscarriage",
-            "text": "Miscarriage",
-            "value": false,
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "48AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-            "openmrs_entity_parent": ""
-          },
-          {
-            "key": "mother_dead",
-            "text": "Mother dead",
-            "value": false,
-            "openmrs_entity": "",
-            "openmrs_entity_id": "",
+            "openmrs_entity_id": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
             "openmrs_entity_parent": ""
           }
         ],
@@ -123,17 +91,104 @@
         }
       },
       {
-        "key": "miscarriage_date",
+        "key": "preg_outcome_motherdead_toaster_note",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "165248AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-        "type": "date_picker",
-        "hint": "Date of miscarriage",
-        "expanded": false,
-        "max_date": "today",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "After completing this form, proceed to the family profile and remove the mother from the list of family members.",
+        "text_color": "#CF0800",
+        "toaster_type": "problem",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "anc_pregnancy_outcome_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "preg_outcome_miscarriage",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "161033AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "type": "native_radio",
+        "label": "Did the woman have a miscarriage?",
+        "label_text_style": "bold",
+        "text_color": "#000000",
+        "options": [
+          {
+            "key": "yes",
+            "text": "Yes",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "openmrs_entity_parent": ""
+          },
+          {
+            "key": "no",
+            "text": "No",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "openmrs_entity_parent": ""
+          }
+        ],
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "anc_pregnancy_outcome_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "no_children",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "164894AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "openmrs_data_type": "text",
+        "type": "edit_text",
+        "hint": "Number of children born alive",
+        "v_numeric": {
+          "value": "true",
+          "err": "Enter a valid number"
+        },
+        "v_max": {
+          "value": "10",
+          "err": "Number must be less than 10"
+        },
         "v_required": {
           "value": "true",
-          "err": "Please enter date the woman miscarried."
+          "err": "Enter the number of children born alive"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "anc_pregnancy_outcome_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "no_childrendied",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "openmrs_data_type": "text",
+        "type": "edit_text",
+        "hint": "Number of children deceased",
+        "v_numeric": {
+          "value": "true",
+          "err": "Enter a valid number"
+        },
+        "v_max": {
+          "value": "10",
+          "err": "Number must be less than 10"
+        },
+        "v_required": {
+          "value": "true",
+          "err": "Enter the number of children deceased"
         },
         "relevance": {
           "rules-engine": {
@@ -149,44 +204,12 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "5599AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
         "type": "date_picker",
-        "hint": "Delivery date",
+        "hint": "Date of delivery or miscarriage",
         "expanded": false,
         "max_date": "today",
         "v_required": {
           "value": "true",
-          "err": "Please enter date the woman delivered"
-        },
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "anc_pregnancy_outcome_relevance.yml"
-            }
-          }
-        }
-      },
-      {
-        "key": "no_children",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "164894AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-        "openmrs_data_type": "select one",
-        "type": "spinner",
-        "hint": "Number of children born alive",
-        "values": [
-          "1",
-          "2+"
-        ],
-        "keys": [
-          "1",
-          "2+"
-        ],
-        "openmrs_choice_ids": {
-          "1": "159913AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-          "2+": "159914AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-        },
-        "v_required": {
-          "value": "true",
-          "err": "Please select one option"
+          "err": "Please enter date the woman delivered or miscarried"
         },
         "relevance": {
           "rules-engine": {
@@ -235,17 +258,15 @@
         }
       },
       {
-        "key": "delivery_home",
+        "key": "other_delivery_place_description",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "1573AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-        "type": "native_radio",
-        "label": "Who helped the mother with a home delivery?",
-        "label_text_style": "bold",
-        "text_color": "#C0C0C0",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "type": "edit_text",
+        "hint": "Describe the other place the woman gave birth",
         "v_required": {
           "value": "true",
-          "err": "Please select"
+          "err": "Describe the other place"
         },
         "relevance": {
           "rules-engine": {
@@ -253,96 +274,24 @@
               "rules-file": "anc_pregnancy_outcome_relevance.yml"
             }
           }
-        },
-        "options": [
-          {
-            "key": "gave_birth_alone",
-            "text": "She gave birth at home alone",
-            "value": false,
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "1107AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-          },
-          {
-            "key": "gave_birth_with_help",
-            "text": "She gave birth at home with the help of a family member/friend/neighbor",
-            "value": false,
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "1575AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-          },
-          {
-            "key": "midwife_help",
-            "text": "She gave birth at home with the help of a traditional midwife",
-            "value": false,
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "125872AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-          }
-        ]
+        }
       },
       {
-        "key": "delivery_hf",
+        "key": "instruction_to_register_child",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "159771AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-        "type": "native_radio",
-        "label": "The mother gave birth in a health facility. Who accompanied the mother to the health facility?",
-        "label_text_style": "bold",
-        "text_color": "#C0C0C0",
-        "v_required": {
-          "value": "true",
-          "err": "Please select"
-        },
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "Register each child as a separate record in the family profile.",
+        "text_color": "#CF0800",
+        "toaster_type": "problem",
         "relevance": {
           "rules-engine": {
             "ex-rules": {
               "rules-file": "anc_pregnancy_outcome_relevance.yml"
             }
           }
-        },
-        "options": [
-          {
-            "key": "facility_family_member",
-            "text": "She gave birth in a health facility, and she was accompanied by family member(s)",
-            "value": false,
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "969AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-          },
-          {
-            "key": "facility_midwife",
-            "text": "She gave birth in a health facility, and she was accompanied by a traditional midwife",
-            "value": false,
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "1575AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-          },
-          {
-            "key": "alone",
-            "text": "She gave birth in a health facility, and she came by herself",
-            "value": false,
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "1107AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-          },
-          {
-            "key": "other_pple",
-            "text": "She gave birth in a health facility, and she was accompanied by other people",
-            "value": false,
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "1582AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-          },
-          {
-            "key": "other_chw",
-            "text": "She gave birth in a health facility, and she was accompanied by the CHW",
-            "value": false,
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "1555AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-          }
-        ]
+        }
       },
       {
         "key": "baby_label",

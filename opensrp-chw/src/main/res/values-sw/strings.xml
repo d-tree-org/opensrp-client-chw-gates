@@ -290,5 +290,9 @@
     <string name="record_pnc_visit">Rekodi hudhurio la mama baada ya kujifungua</string>
 
     <string name="return_to_previous_page_adolescent">Rudi kwenye vijana wote</string>
+    <string name="adolescent_fragment_title">Vijana Balehe</string>
+    <string name="menu_adolescent">Vijana Balehe</string>
+    <string name="return_to_all_pnc_women">Rudi kwenye orodha ya waliojifungua</string>
+    <string name="family_planning_initiation">Anzisha Uzazi wa Mpango</string>
 
 </resources>
