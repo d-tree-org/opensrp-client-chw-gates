@@ -128,7 +128,7 @@
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
             android:textAllCaps="false"
-            android:textColor="@color/vaccine_blue_bg_st"
+            android:textColor="@color/alert_in_progress_blue"
             android:text="@string/followup"
             android:textSize="@dimen/referral_register_list_due_size" />
 

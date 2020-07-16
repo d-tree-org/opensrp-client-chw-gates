@@ -41,6 +41,7 @@ public class ReferralRegisterFragmentModel extends BaseReferralRegisterFragmentM
         columnList.add(Constants.TABLE_NAME.FAMILY_MEMBER + "." + DBConstants.KEY.OTHER_PHONE_NUMBER);
         columnList.add(tableName + "." + CoreConstants.DB_CONSTANTS.STATUS);
         columnList.add(tableName + ".priority");
+        columnList.add(tableName + ".authored_on");
         columnList.add(tableName + "." + CoreConstants.DB_CONSTANTS.FOCUS);
         return columnList.toArray(new String[columnList.size()]);
     }
