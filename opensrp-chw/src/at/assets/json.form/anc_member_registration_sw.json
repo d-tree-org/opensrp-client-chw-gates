@@ -137,7 +137,7 @@
         "openmrs_entity": "",
         "openmrs_entity_id": "",
         "type": "edit_text",
-        "hint": "Umri wa mimba (GA)",
+        "hint": "Umri wa mimba",
         "read_only": true,
         "calculation": {
           "rules-engine": {

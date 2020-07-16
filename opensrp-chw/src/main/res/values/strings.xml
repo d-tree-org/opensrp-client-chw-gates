@@ -349,5 +349,6 @@
     <string name="followup">FOLLOW UP</string>
 
     <string name="return_to_previous_page_adolescent">Return to all adolescents</string>
+    <string name="adolescent_fragment_title">Adolescent Clients</string>
 
 </resources>
