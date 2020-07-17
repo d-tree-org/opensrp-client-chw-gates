@@ -146,7 +146,7 @@ android {
     productFlavors {
         at {
             dimension = 'baseDimension'
-            applicationIdSuffix ".at.staging"
+            applicationIdSuffix ".at"
             versionCode 15
             versionName "1.4.1"
             buildConfigField "String", 'opensrp_url', '"https://opensrp-dev.d-tree.org/opensrp/"'
