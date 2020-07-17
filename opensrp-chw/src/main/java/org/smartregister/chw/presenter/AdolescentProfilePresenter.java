@@ -17,6 +17,9 @@ public class AdolescentProfilePresenter implements AdolescentProfileContract.Pre
     private AdolescentProfileContract.Interactor interactor;
     private String dob;
     private String familyName;
+    private String gender;
+    private String phoneNumber;
+    private CommonPersonObjectClient commonPersonObjectClient;
 
     public AdolescentProfilePresenter(AdolescentProfileContract.View adolescentView, String adolescentBaseEntityId) {
         this.adolescentBaseEntityId = adolescentBaseEntityId;
@@ -27,6 +30,28 @@ public class AdolescentProfilePresenter implements AdolescentProfileContract.Pre
     @Override
     public void fetchProfileData() {
         interactor.refreshProfileInfo(adolescentBaseEntityId, this);
+        commonPersonObjectClient = interactor.getcommonPersonObjectClient();
+    }
+
+    @Override
+    public void setFamilyID(String familyID) {
+        this.familyID = familyID;
+    }
+
+    @Override
+    public void setFamilyName(String familyName) {
+        this.familyName = familyName;
+    }
+
+
+    @Override
+    public void setAdolescentGender(String gender) {
+        this.gender = gender;
+    }
+
+    @Override
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     @Override
@@ -42,7 +67,6 @@ public class AdolescentProfilePresenter implements AdolescentProfileContract.Pre
         String age = org.smartregister.family.util.Utils.getTranslatedDate(org.smartregister.family.util.Utils.getDuration(dobString), getView().getContext());
         getView().setAdolescentNameAndAge(String.format("%s, %s", adolescentName, age));
 
-        String gender = Utils.getValue(pClient.getColumnmaps(), DBConstants.KEY.GENDER, true);
         getView().setGender(gender);
 
         String villageTown = Utils.getValue(pClient.getColumnmaps(), ChildDBConstants.KEY.FAMILY_HOME_ADDRESS, true);
@@ -51,6 +75,24 @@ public class AdolescentProfilePresenter implements AdolescentProfileContract.Pre
         String id = Utils.getValue(pClient.getColumnmaps(), DBConstants.KEY.UNIQUE_ID, true);
         getView().setUniqueId(id);
 
+    }
+
+    public String getAdolescentGender() {
+        return gender;
+    }
+
+    @Override
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public String getFamilyID() {
+        return familyID;
+    }
+
+    @Override
+    public String getFamilyName() {
+        return familyName;
     }
 
     @Override

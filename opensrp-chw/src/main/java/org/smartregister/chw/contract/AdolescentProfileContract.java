@@ -43,6 +43,13 @@ public interface AdolescentProfileContract {
 
         void fetchProfileData();
 
+        String getAdolescentGender();
+
+        String getPhoneNumber();
+
+        String getFamilyID();
+
+        String getFamilyName();
 
         void fetchVisitStatus(String baseEntityId);
 
@@ -53,10 +60,20 @@ public interface AdolescentProfileContract {
 
         void refreshProfileInfo(String baseEntityId, AdolescentProfileContract.InteractorCallBack callback);
 
+        CommonPersonObjectClient getcommonPersonObjectClient();
+
         void saveRegistration(String jsonString, final AdolescentProfileContract.InteractorCallBack callBack);
 
     }
     interface InteractorCallBack{
+
+        void setFamilyID(String familyID);
+
+        void setFamilyName(String familyName);
+
+        void setAdolescentGender(String gender);
+
+        void setPhoneNumber(String phoneNumber);
 
         void refreshProfileView(CommonPersonObjectClient pClient);
 
