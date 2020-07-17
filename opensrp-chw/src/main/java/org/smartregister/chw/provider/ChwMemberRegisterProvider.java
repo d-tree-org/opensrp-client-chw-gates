@@ -19,6 +19,7 @@ import org.smartregister.chw.core.dao.PNCDao;
 import org.smartregister.chw.core.model.ChildVisit;
 import org.smartregister.chw.core.utils.ChildDBConstants;
 import org.smartregister.chw.core.utils.CoreConstants;
+import org.smartregister.chw.core.utils.CoreReferralUtils;
 import org.smartregister.chw.dao.FamilyDao;
 import org.smartregister.chw.util.ChildUtils;
 import org.smartregister.chw.util.Constants;
@@ -143,6 +144,10 @@ public class ChwMemberRegisterProvider extends FamilyMemberRegisterProvider {
 
         updateDueColumn(viewHolder, baseEntityId);
 
+        // indicate if anc has referral
+        if(CoreReferralUtils.hasAnyReferralTask(((CommonPersonObjectClient) client).getCaseId())) {
+            viewHolder.textViewHasReferral.setVisibility(View.VISIBLE);
+        }
     }
 
     private void attachPatientOnclickListener(View view, SmartRegisterClient client) {

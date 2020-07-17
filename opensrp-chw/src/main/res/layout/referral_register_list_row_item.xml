@@ -102,7 +102,8 @@
         android:paddingTop="@dimen/register_list_top_bottom_padding"
         android:paddingEnd="@dimen/register_list_item_padding"
         android:paddingRight="@dimen/register_list_item_padding"
-        android:paddingBottom="@dimen/register_list_top_bottom_padding">
+        android:paddingBottom="@dimen/register_list_top_bottom_padding"
+        android:layout_marginEnd="@dimen/register_list_top_bottom_padding">
 
         <org.smartregister.view.customcontrols.CustomFontTextView
             android:id="@+id/text_view_referral_status"

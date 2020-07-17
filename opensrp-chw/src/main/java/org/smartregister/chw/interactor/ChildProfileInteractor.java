@@ -8,6 +8,8 @@ import androidx.annotation.VisibleForTesting;
 import org.apache.commons.lang3.StringUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.smartregister.CoreLibrary;
+import org.smartregister.chw.contract.ChildProfileContract;
 import org.smartregister.chw.core.contract.CoreChildProfileContract;
 import org.smartregister.chw.core.interactor.CoreChildProfileInteractor;
 import org.smartregister.chw.core.model.ChildVisit;
@@ -21,6 +23,7 @@ import org.smartregister.chw.util.Constants;
 import org.smartregister.chw.util.Utils;
 import org.smartregister.clientandeventmodel.Client;
 import org.smartregister.clientandeventmodel.Event;
+import org.smartregister.commonregistry.CommonPersonObject;
 import org.smartregister.commonregistry.CommonPersonObjectClient;
 import org.smartregister.family.util.AppExecutors;
 import org.smartregister.family.util.DBConstants;
@@ -40,7 +43,8 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import timber.log.Timber;
 
-public class ChildProfileInteractor extends CoreChildProfileInteractor {
+public class ChildProfileInteractor extends CoreChildProfileInteractor implements ChildProfileContract.Interactor {
+
     public static final String TAG = ChildProfileInteractor.class.getName();
     private AppExecutors appExecutors;
     private Map<String, Date> vaccineList = new LinkedHashMap<>();
@@ -94,6 +98,17 @@ public class ChildProfileInteractor extends CoreChildProfileInteractor {
                     public void onComplete() {
                     }
                 });
+    }
+
+    @Override
+    public void getChildFingerprintForVerification(String baseEntityId, ChildProfileContract.InteractorCallback callback) {
+        org.smartregister.domain.db.Client client = CoreLibrary.getInstance().context().getEventClientRepository().fetchClientByBaseEntityId(baseEntityId);
+        String simprintsId = client.getIdentifier("simprints_guid");
+        if (simprintsId != null){
+            callback.callFingerprintVerification(simprintsId);
+        }else {
+            callback.callFingerprintEnrollment(client);
+        }
     }
 
     @Override

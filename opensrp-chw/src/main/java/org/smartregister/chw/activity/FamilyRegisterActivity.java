@@ -18,7 +18,6 @@ import org.smartregister.chw.listener.ChwBottomNavigationListener;
 import org.smartregister.chw.listener.FamilyBottomNavigationListener;
 import org.smartregister.chw.referral.ReferralLibrary;
 import org.smartregister.chw.util.Constants;
-import org.smartregister.family.FamilyLibrary;
 import org.smartregister.helper.BottomNavigationHelper;
 import org.smartregister.simprint.SimPrintsIdentifyActivity;
 import org.smartregister.view.fragment.BaseRegisterFragment;

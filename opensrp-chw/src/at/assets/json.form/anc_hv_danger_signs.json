@@ -50,6 +50,7 @@
   },
   "step1": {
     "title": "ANC Danger Signs and minor illnesses",
+    "submit-button": "true",
     "fields": [
       {
         "key": "danger_signs_present",
@@ -170,13 +171,6 @@
             "openmrs_entity_id": ""
           },
           {
-            "key": "ds_other",
-            "text": "Other",
-            "value": false,
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": ""
-          },
-          {
             "key": "ds_none",
             "text": "None",
             "value": false,
@@ -187,29 +181,6 @@
         "v_required": {
           "value": "true",
           "err": "Please pick at least one"
-        }
-      },
-      {
-        "key": "danger_sign_description",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "",
-        "openmrs_entity_id": "",
-        "type": "edit_text",
-        "hint": "Describe the danger sign",
-        "v_required": {
-          "value": "true",
-          "err": "Describe the danger sign"
-        },
-        "relevance": {
-          "step1:danger_signs_present": {
-            "ex-checkbox": [
-              {
-                "or": [
-                  "ds_other"
-                ]
-              }
-            ]
-          }
         }
       },
       {
@@ -359,8 +330,7 @@
                   "ds_unusual_movement",
                   "ds_water_broke",
                   "ds_vomiting",
-                  "ds_anemia",
-                  "ds_other"
+                  "ds_anemia"
                 ]
               }
             ]
@@ -402,8 +372,7 @@
                   "ds_unusual_movement",
                   "ds_water_broke",
                   "ds_vomiting",
-                  "ds_anemia",
-                  "ds_other"
+                  "ds_anemia"
                 ]
               }
             ]
@@ -473,8 +442,7 @@
                   "ds_unusual_movement",
                   "ds_water_broke",
                   "ds_vomiting",
-                  "ds_anemia",
-                  "ds_other"
+                  "ds_anemia"
                 ]
               }
             ]
@@ -502,6 +470,29 @@
                   "mi_refill_medicine",
                   "mi_refill_commodities",
                   "mi_other_needs"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "key": "save",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "165310AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "type": "button",
+        "hint": "Save",
+        "btn_bg_color": "#3596c0",
+        "action": {
+          "behaviour": "save"
+        },
+        "relevance": {
+          "step1:minor_illnesses": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "mi_none"
                 ]
               }
             ]

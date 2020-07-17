@@ -50,6 +50,7 @@
   },
   "step1": {
     "title": "Dalili za hatari na magonjwa madogo madogo",
+    "submit-button": "true",
     "fields": [
       {
         "key": "danger_signs_present",
@@ -170,13 +171,6 @@
             "openmrs_entity_id": ""
           },
           {
-            "key": "ds_other",
-            "text": "Nyingine",
-            "value": false,
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": ""
-          },
-          {
             "key": "ds_none",
             "text": "Hakuna",
             "value": false,
@@ -187,29 +181,6 @@
         "v_required": {
           "value": "true",
           "err": "Tafadhali chagua moja"
-        }
-      },
-      {
-        "key": "danger_sign_description",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "",
-        "openmrs_entity_id": "",
-        "type": "edit_text",
-        "hint": "Elezea dalili ya hatari ya mama",
-        "v_required": {
-          "value": "true",
-          "err": "Elezea dalili ya hatari ya mama"
-        },
-        "relevance": {
-          "step1:danger_signs_present": {
-            "ex-checkbox": [
-              {
-                "or": [
-                  "ds_other"
-                ]
-              }
-            ]
-          }
         }
       },
       {
@@ -257,7 +228,7 @@
           },
           {
             "key": "mi_refill_medicine",
-            "text": "Nyongeza ya dawa kama madini ya chuma, folic, na SP kwa ajili ya malaria",
+            "text": "Nyongeza ya dawa kama madini ya chuma, vidonge vya folic, na SP kwa ajili ya malaria",
             "value": false,
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
@@ -265,7 +236,7 @@
           },
           {
             "key": "mi_refill_commodities",
-            "text": "Nyongeza ya vitu vingine kama antiseptics/sabuni, delivery kit",
+            "text": "Nyongeza ya vitu vingine kama antiseptiki/sabuni, kisanduku cha vitu vya kujifungulia",
             "value": false,
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
@@ -308,10 +279,10 @@
         "openmrs_entity": "",
         "openmrs_entity_id": "",
         "type": "edit_text",
-        "hint": "Elezea magojwa madogo madogo",
+        "hint": "Elezea mahitaji/magojwa mengine",
         "v_required": {
           "value": "true",
-          "err": "Elezea magojwa madogo madogo"
+          "err": "Elezea mahitaji/magojwa mengine"
         },
         "relevance": {
           "step1:minor_illnesses": {
@@ -359,8 +330,7 @@
                   "ds_unusual_movement",
                   "ds_water_broke",
                   "ds_vomiting",
-                  "ds_anemia",
-                  "ds_other"
+                  "ds_anemia"
                 ]
               }
             ]
@@ -402,8 +372,7 @@
                   "ds_unusual_movement",
                   "ds_water_broke",
                   "ds_vomiting",
-                  "ds_anemia",
-                  "ds_other"
+                  "ds_anemia"
                 ]
               }
             ]
@@ -473,8 +442,7 @@
                   "ds_unusual_movement",
                   "ds_water_broke",
                   "ds_vomiting",
-                  "ds_anemia",
-                  "ds_other"
+                  "ds_anemia"
                 ]
               }
             ]
@@ -502,6 +470,29 @@
                   "mi_refill_medicine",
                   "mi_refill_commodities",
                   "mi_other_needs"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "key": "save",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "165310AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "type": "button",
+        "hint": "Hifadhi",
+        "btn_bg_color": "#3596c0",
+        "action": {
+          "behaviour": "save"
+        },
+        "relevance": {
+          "step1:minor_illnesses": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "mi_none"
                 ]
               }
             ]

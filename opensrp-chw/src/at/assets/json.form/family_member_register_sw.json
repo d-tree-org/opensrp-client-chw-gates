@@ -71,7 +71,7 @@
         "openmrs_entity": "",
         "openmrs_entity_id": "toaster_notes",
         "type": "toaster_notes",
-        "text": "Lengo la programu ya Afya Tek ni kuimarisha utaratibu wa kupata huduma ili kuhakikisha familia za Kibaha zinafikia huduma za afya kwa wakati.\n\nKama sehemu ya kuboresha upatikanaji wa huduma za afya na taratibu za rufaa, tunahitaji kusajili wanakaya wote wa Kibaha ili tuweze kuwafuatilia wale waliopo kwenye makundi maalum (watoto, vijana, mama mjamzito na mama aliyejifungua) pindi wanapotafuta huduma sehemu mbalimbali kuhakikisha wanapata huduma husika zenye ubora. Usajili wa wanakaya utajumuisha uskanaji wa alama za vidole ili programu iweze kukutambua na kuoanisha taarifa zako za afya. Alama zako za vidole pamoja na taarifa zitakazokusanywa zitazingatia usiri na kutunzwa kulingana na viwango vya kulinda taarifa.\n\n\nKama mjamzito, utatembelewa na CHV wakati wa ujauzito na baada ya kujifungua, na kupewa ushauri na kutathminiwa kwaajili ya viashiria vya hatari. Kisha, kama itahitajika, utapewa rufaa ya kwenda kwenye kituo cha afya au utaunganishwa na duka la dawa muhimu na kufuatiliwa na CHV ili kuhakikisha mwendelezo wa huduma bora.\n\nJe! Unakubali kushiriki katika programu hiyo?",
+        "text": "Lengo la programu ya Afya-Tek ni kuimarisha utaratibu wa kupata huduma ili kuhakikisha familia za Kibaha zinapata huduma za afya kwa wakati.\n\nKama sehemu ya kuboresha upatikanaji wa huduma za afya na uratibu wa rufaa, tunahitaji kusajili wanakaya wote wa Kibaha ili tuweze kuwafuatilia wale waliopo kwenye makundi maalumu (watoto, vijana balehe, mama mjamzito na aliyejifungua) pindi wanapotafuta huduma za afya sehemu mbalimbali na kuhakikisha wanapata huduma husika zenye ubora. Usajili wa wanakaya utajumuisha kuchukua wa alama zako za vidole ili programu iweze kukutambua na kuoanisha taarifa zako za afya. Alama zako za vidole pamoja na taarifa zitakazokusanywa zitahifadhiwa kwa usiri mkubwa na kutunzwa kwa kuzingatia viwango husika vya kulinda taarifa.\n\n\nWajawazito, Waliojifungua, Vijana balehe, au Watoto wenye miaka mitano kwenda chini watatembelewa na mhudumu wa afya katika jamii ili kupewa ushauri na kutathminiwa kwa ajili ya viashiria vya hatari. Kisha, kama itahitajika, watapewa rufaa ya kwenda kwenye kituo cha kutolea huduma za afya au utaunganishwa na duka la dawa muhimu na kufuatiliwa na mhudumu huyo ili kuhakikisha mwendelezo wa huduma zilizo bora.\n\nJe, unakubali kushiriki katika programu hii?",
         "text_color": "#1199F9",
         "toaster_type": "warning"
       },
@@ -116,6 +116,7 @@
         "openmrs_entity_id": "opensrp_id",
         "type": "edit_text",
         "hint": "Afya-Tek ID",
+        "read_only": "true",
         "v_numeric": {
           "value": "true",
           "err": "Tafadhali ingiza nambari sahihi ya kitambulisho"
@@ -150,7 +151,7 @@
         "options": [
           {
             "key": "same_as_fam_name",
-            "text": "Je jina la familia ni sawa na jina la kaya?",
+            "text": "Jina la familia ni sawa na jina la kaya",
             "text_size": "18px",
             "value": "false"
           }
@@ -264,10 +265,6 @@
         "v_regex": {
           "value": "[A-Za-z\\u00C0-\\u017F\\s\\u00C0-\\u017F\\.\\-]*",
           "err": "Tafadhali jaza jina sahihi"
-        },
-        "v_required": {
-          "value": "true",
-          "err": "Tafadhali jaza jina la kati"
         },
         "relevance": {
           "step1:member_consent": {

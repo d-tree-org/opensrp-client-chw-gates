@@ -62,7 +62,7 @@
         "openmrs_entity": "",
         "openmrs_entity_id": "1889AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
         "openmrs_entity_parent": "",
-        "label": "Je! Mteja alitembelea kituo cha afya kukamilisha rufaa?",
+        "label": "Je, mteja alitembelea kituo cha kutolea huduma za afya kukamilisha rufaa?",
         "options": [
           {
             "key": "Yes",
@@ -90,7 +90,7 @@
         "openmrs_entity": "",
         "openmrs_entity_id": "1889AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
         "openmrs_entity_parent": "",
-        "label": "Je! Walipokea huduma husika kwenye kituo cha afya?",
+        "label": "Je, alipokea huduma husika kwenye kituo cha kutolea huduma za afya?",
         "options": [
           {
             "key": "Yes",
@@ -125,7 +125,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "toaster_notes",
-        "text": "Mkumbushe mteja au mlezi juu ya kufuata ushauri aliopokea kwenye kituo cha afya",
+        "text": "Mkumbushe mteja au mlezi juu ya kufuata ushauri aliopokea kutoka kutuoni.",
         "toaster_type": "info",
         "relevance": {
           "rules-engine": {
@@ -228,7 +228,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "5219AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
         "type": "check_box",
-        "label": "Kwanini hakuenda kwenye kituo cha afya?",
+        "label": "Kwanini hakwenda kwenye kituo cha kutolea huduma za afya?",
         "label_text_style": "bold",
         "exclusive": [
           "chk_other_visit_reason"
@@ -331,7 +331,7 @@
         "openmrs_entity": "",
         "openmrs_entity_id": "1889AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
         "openmrs_entity_parent": "",
-        "label": "Je! Wangependa kujaribu tena kukamilisha rufaa katika kituo cha afya hicho hicho au kujaribu kingine?",
+        "label": "Je, angependa kujaribu tena kukamilisha rufaa hii?",
         "options": [
           {
             "key": "Yes",

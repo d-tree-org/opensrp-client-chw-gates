@@ -7,6 +7,7 @@
     <string name="not_provided">Not provided</string>
 
     <string name="scan_fingerprint"> Scan </string>
+    <string name="verify_child_fingerprint">Verify Fingerprint</string>
 
     <string name="child_under_five">Child under 5 years</string>
     <string name="go_to_family_s_profile">Go to family\'s profile</string>
@@ -271,7 +272,7 @@
 
     <!-- PNC Home visit-->
     <!-- PNC home visit tasks labels -->
-    <string name="pnc_danger_signs_mother">Danger signs - mother</string>
+    <string name="pnc_danger_signs_mother">Danger signs</string>
     <string name="pnc_danger_signs_baby">Danger signs - baby ({0})</string>
     <string name="pnc_health_facility_visit">PNC health facility visit - day {0} ({1})</string>
     <string name="pnc_health_facility_visit_mother">PNC health facility visit - day {0}</string>
@@ -291,7 +292,7 @@
     <string name="pnc_nutrition_status_baby_name">Nutrition status baby ({0})</string>
     <string name="pnc_malaria_prevention">Malaria prevention</string>
     <!-- PNC Home visit subtitle text -->
-    <string name="pnc_danger_signs_mama">Danger signs - Mama</string>
+    <string name="pnc_danger_signs_mama">Danger signs</string>
     <string name="pnc_danger_signs_baby_task">Danger signs - Baby</string>
 
     <string name="pnc_health_facility_visit_within_fourty_eight_hours">PNC health facility visit - within 48 hours </string>
@@ -346,5 +347,8 @@
     <string name="linkage_followup">Linkage Followup</string>
 
     <string name="followup">FOLLOW UP</string>
+
+    <string name="return_to_previous_page_adolescent">Return to all adolescents</string>
+    <string name="adolescent_fragment_title">Adolescent Clients</string>
 
 </resources>

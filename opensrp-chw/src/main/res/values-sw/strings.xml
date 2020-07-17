@@ -7,6 +7,7 @@
     <string name="not_provided">Haijatolewa</string>
 
     <string name="scan_fingerprint"> Scan </string>
+    <string name="verify_child_fingerprint">Hakiki Alama za Vidole</string>
 
     <string name="child_under_five">Mtoto chini ya miaka 5</string>
     <string name="go_to_family_s_profile">Elekea kwenye taarifa binafsi za kaya</string>
@@ -246,7 +247,7 @@
 
     <!-- PNC Home visit-->
     <!-- PNC home visit tasks labels -->
-    <string name="pnc_danger_signs_mother">Dalili za hatari - mama</string>
+    <string name="pnc_danger_signs_mother">Dalili za hatari</string>
     <string name="pnc_danger_signs_baby">Dalili za hatari - mtoto ({0})</string>
     <string name="pnc_health_facility_visit">Hudhurio katika kituo cha kutolea huduma za afya kwa huduma ya mtoto na mama baada ya kujifungua - siku {0} ({1})</string>
     <string name="pnc_health_facility_visit_mother">Hudhurio katika kituo cha kutolea huduma za afya kwa huduma ya mtoto na mama baada ya kujifungua - siku {0}</string>
@@ -265,7 +266,7 @@
     <string name="pnc_nutrition_status_baby_name">Hali ya lishe kwa mtoto ({0})</string>
     <string name="pnc_malaria_prevention">Kinga dhidi ya malaria</string>
     <!-- PNC Home visit subtitle text -->
-    <string name="pnc_danger_signs_mama">Dalili za hatari - Mama</string>
+    <string name="pnc_danger_signs_mama">Dalili za hatari</string>
     <string name="pnc_danger_signs_baby_task">Dalili za hatari - Mtoto </string>
 
     <string name="pnc_health_facility_visit_within_fourty_eight_hours">Hudhurio katika kituo cha kutolea huduma za afya kwa huduma ya mtoto na mama baada ya kujifungua - ndani ya masal 48</string>
@@ -286,5 +287,12 @@
 
     <!-- Referral -->
     <string name="referral_submitted">Fomu ya rufaa imetumwa!</string>
+    <string name="record_pnc_visit">Rekodi hudhurio la mama baada ya kujifungua</string>
+
+    <string name="return_to_previous_page_adolescent">Rudi kwenye vijana wote</string>
+    <string name="adolescent_fragment_title">Vijana Balehe</string>
+    <string name="menu_adolescent">Vijana Balehe</string>
+    <string name="return_to_all_pnc_women">Rudi kwenye orodha ya waliojifungua</string>
+    <string name="family_planning_initiation">Anzisha Uzazi wa Mpango</string>
 
 </resources>

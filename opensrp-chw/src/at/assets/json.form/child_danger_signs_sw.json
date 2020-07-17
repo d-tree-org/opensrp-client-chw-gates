@@ -50,6 +50,7 @@
   },
   "step1": {
     "title": "Dalili za hatari kwa mtoto na magojwa madogo madogo",
+    "submit-button": "true",
     "fields": [
       {
         "key": "danger_signs_present_child",
@@ -177,13 +178,6 @@
             "openmrs_entity_id":""
           },
           {
-            "key": "chk_other",
-            "text": "Nyingine",
-            "value": false,
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-          },
-          {
             "key": "chk_none",
             "text": "Hakuna",
             "value": false,
@@ -194,29 +188,6 @@
         "v_required": {
           "value": "true",
           "err": "Tafadhali changua moja"
-        }
-      },
-      {
-        "key": "illness_description_1m5yr",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "",
-        "openmrs_entity_id": "",
-        "type": "edit_text",
-        "hint": "Tafadhali elezea dalili za kuumwa",
-        "v_required": {
-          "value": "true",
-          "err": "Tafadhali elezea dalili za kuumwa"
-        },
-        "relevance": {
-          "step1:danger_signs_present_child": {
-            "ex-checkbox": [
-              {
-                "or": [
-                  "chk_other"
-                ]
-              }
-            ]
-          }
         }
       },
       {
@@ -256,8 +227,7 @@
                   "chk_not_getting_better",
                   "chk_weak",
                   "chk_diarrhea",
-                  "chk_sunk_eyes",
-                  "chk_other"
+                  "chk_sunk_eyes"
                 ]
               }
             ]
@@ -316,8 +286,7 @@
                   "chk_not_getting_better",
                   "chk_weak",
                   "chk_diarrhea",
-                  "chk_sunk_eyes",
-                  "chk_other"
+                  "chk_sunk_eyes"
                 ]
               }
             ]
@@ -357,8 +326,7 @@
                   "chk_not_getting_better",
                   "chk_weak",
                   "chk_diarrhea",
-                  "chk_sunk_eyes",
-                  "chk_other"
+                  "chk_sunk_eyes"
                 ]
               }
             ]
@@ -393,7 +361,7 @@
         "label_text_style": "normal",
         "text_color": "#C0C0C0",
         "exclusive": [
-          "chk_none"
+          "mi_none"
         ],
         "options": [
           {
@@ -419,7 +387,7 @@
           },
           {
             "key": "chk_skin_infections",
-            "text": "Maumbikizi madogo ya ngozi",
+            "text": "Maambikizi madogo ya ngozi",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": ""
@@ -439,7 +407,7 @@
             "openmrs_entity_id": ""
           },
           {
-            "key": "chk_none",
+            "key": "mi_none",
             "text": "Hakuna",
             "value": false,
             "openmrs_entity": "concept",
@@ -464,10 +432,10 @@
         "openmrs_entity": "",
         "openmrs_entity_id": "",
         "type": "edit_text",
-        "hint": "Describe the other needs",
+        "hint": "Elezea mahitaji/magojwa mengine",
         "v_required": {
           "value": "true",
-          "err": "Describe the other needs"
+          "err": "Elezea mahitaji/magojwa mengine"
         },
         "relevance": {
           "step1:minor_illness_present_child": {
@@ -561,6 +529,29 @@
                   "chk_skin_infections",
                   "chk_minor_wound",
                   "chk_other_needs"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "key": "save",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "165310AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "type": "button",
+        "hint": "Hifadhi",
+        "btn_bg_color": "#3596c0",
+        "action": {
+          "behaviour": "save"
+        },
+        "relevance": {
+          "step1:minor_illness_present_child": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "mi_none"
                 ]
               }
             ]

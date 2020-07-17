@@ -2,16 +2,19 @@ package org.smartregister.chw.application;
 
 import org.smartregister.CoreLibrary;
 import org.smartregister.SyncFilter;
+import org.smartregister.chw.util.Utils;
 
 public class ChwSyncConfigurationFlv extends DefaultChwSyncConfigurationFlv {
     @Override
     public String getSyncFilterValueForSettings() {
-        return super.getSyncFilterValueForSettings();
+        String providerId = Utils.context().allSharedPreferences().fetchRegisteredANM();
+        String teamId = Utils.context().allSharedPreferences().fetchDefaultTeamId(providerId);
+        return teamId;
     }
 
     @Override
     public SyncFilter getSettingsSyncFilterParam() {
-        return super.getSettingsSyncFilterParam();
+        return SyncFilter.TEAM_ID;
     }
 
     @Override

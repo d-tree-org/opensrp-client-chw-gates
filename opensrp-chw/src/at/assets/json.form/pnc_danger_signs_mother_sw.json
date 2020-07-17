@@ -49,7 +49,8 @@
     "encounter_location": ""
   },
   "step1": {
-    "title": "Dalili za hatari na magojwa madogo madogo kwa mama",
+    "title": "Dalili za hatari na magojwa madogo madogo",
+    "submit-button": "true",
     "fields": [
       {
         "key": "danger_signs_present_mama",
@@ -156,13 +157,6 @@
             "openmrs_entity_id": "118982AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           },
           {
-            "key": "chk_other",
-            "text": "Nyingine",
-            "value": false,
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-          },
-          {
             "key": "chk_none",
             "text": "Hakuna",
             "value": false,
@@ -173,29 +167,6 @@
         "v_required": {
           "value": "true",
           "err": "Tafadhali chagua moja"
-        }
-      },
-      {
-        "key": "danger_signs_other",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "",
-        "openmrs_entity_id": "",
-        "type": "edit_text",
-        "hint": "Elezea dalili za hatari",
-        "v_required": {
-          "value": "true",
-          "err": "Elezea dalili za hatari"
-        },
-        "relevance": {
-          "step1:danger_signs_present_mama": {
-            "ex-checkbox": [
-              {
-                "or": [
-                  "chk_other"
-                ]
-              }
-            ]
-          }
         }
       },
       {
@@ -230,8 +201,7 @@
                   "chk_vaginal_discharge",
                   "chk_blurred_vision",
                   "chk_loss_conscioueness",
-                  "chk_urination",
-                  "chk_other"
+                  "chk_urination"
                 ]
               }
             ]
@@ -285,8 +255,7 @@
                   "chk_vaginal_discharge",
                   "chk_blurred_vision",
                   "chk_loss_conscioueness",
-                  "chk_urination",
-                  "chk_other"
+                  "chk_urination"
                 ]
               }
             ]
@@ -321,8 +290,7 @@
                   "chk_vaginal_discharge",
                   "chk_blurred_vision",
                   "chk_loss_conscioueness",
-                  "chk_urination",
-                  "chk_other"
+                  "chk_urination"
                 ]
               }
             ]
@@ -358,7 +326,7 @@
         "label_text_style": "normal",
         "text_color": "#C0C0C0",
         "exclusive": [
-          "chk_none"
+          "mi_none"
         ],
         "options": [
           {
@@ -377,7 +345,7 @@
           },
           {
             "key": "chk_refill_commodities",
-            "text": "Nyongeza ya bidhaa nyingine kama pedi, antiseptics/sabuni",
+            "text": "Nyongeza ya bidhaa nyingine kama pedi, antiseptiki/sabuni",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "139081AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
@@ -390,7 +358,7 @@
             "openmrs_entity_id": "1107AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           },
           {
-            "key": "chk_none",
+            "key": "mi_none",
             "text": "Hakuna",
             "value": false,
             "openmrs_entity": "concept",
@@ -419,7 +387,7 @@
         "openmrs_entity": "",
         "openmrs_entity_id": "",
         "type": "edit_text",
-        "hint": "Elezea mahitaji/magonjwa mengine madogo",
+        "hint": "Elezea mahitaji/magonjwa mengine",
         "v_required": {
           "value": "true",
           "err": "Elezea mahitaji/magonjwa mengine madogo"
@@ -510,6 +478,29 @@
                   "chk_mild_fever",
                   "chk_refill_commodities",
                   "chk_other_needs"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "key": "save",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "165310AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "type": "button",
+        "hint": "Hifadhi",
+        "btn_bg_color": "#3596c0",
+        "action": {
+          "behaviour": "save"
+        },
+        "relevance": {
+          "step1:minor_illness_present_mama": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "mi_none"
                 ]
               }
             ]

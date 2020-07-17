@@ -176,7 +176,7 @@
         "exclusive": [
           "chk_consent_yes"
         ],
-        "label": "Je! kaya imetoa idhini?",
+        "label": "Je, kaya imeridhia kusajiliwa?",
         "options": [
           {
             "key": "chk_consent_yes",
@@ -392,10 +392,6 @@
         "type": "edit_text",
         "hint": "Jina la kati",
         "edit_type": "name",
-        "v_required": {
-          "value": "true",
-          "err": "Tafadhali jaza jina la kati"
-        },
         "v_regex": {
           "value": "[A-Za-z\\u00C0-\\u017F\\s\\u00C0-\\u017F\\.\\-]*",
           "err": "Tafadhali jaza jina sahihi"
