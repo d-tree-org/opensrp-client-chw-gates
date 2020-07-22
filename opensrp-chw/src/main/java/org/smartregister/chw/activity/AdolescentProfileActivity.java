@@ -5,12 +5,15 @@ import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.widget.Toolbar;
@@ -20,15 +23,19 @@ import org.opensrp.api.constants.Gender;
 import org.smartregister.chw.R;
 import org.smartregister.chw.anc.domain.MemberObject;
 import org.smartregister.chw.contract.AdolescentProfileContract;
+import org.smartregister.chw.core.dao.AncDao;
 import org.smartregister.chw.core.utils.CoreConstants;
 import org.smartregister.chw.malaria.activity.BaseMalariaProfileActivity;
 import org.smartregister.chw.malaria.util.Constants;
 import org.smartregister.chw.presenter.AdolescentProfilePresenter;
+import org.smartregister.commonregistry.CommonPersonObjectClient;
 import org.smartregister.helper.ImageRenderHelper;
 import org.smartregister.view.activity.BaseProfileActivity;
 import org.smartregister.view.contract.BaseProfileContract;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+
+import static org.smartregister.chw.core.utils.Utils.isWomanOfReproductiveAge;
 
 
 public class AdolescentProfileActivity extends BaseProfileActivity implements AdolescentProfileContract.View {
@@ -55,6 +62,12 @@ public class AdolescentProfileActivity extends BaseProfileActivity implements Ad
     protected TextView textViewRecordAncNotDone;
     public String baseEntityId;
     public boolean isComesFromFamily = false;
+    private String PhoneNumber;
+    protected String familyBaseEntityId;
+    protected String familyHead;
+    protected String primaryCaregiver;
+    protected String familyName;
+    protected CommonPersonObjectClient commonPersonObject;
 
     private ProgressBar progressBar;
 
@@ -109,6 +122,33 @@ public class AdolescentProfileActivity extends BaseProfileActivity implements Ad
     @Override
     public AdolescentProfileContract.Presenter presenter() {
         return (AdolescentProfileContract.Presenter) presenter;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.other_member_menu, menu);
+
+        // Check if they are already registered and they are gender is female because they are already in reproductive age
+        if (!AncDao.isANCMember(baseEntityId) && "Female".equalsIgnoreCase(presenter().getAdolescentGender())) {
+            menu.findItem(R.id.action_anc_registration).setVisible(true);
+        } else {
+            menu.findItem(R.id.action_anc_registration).setVisible(false);
+        }
+
+        menu.findItem(R.id.action_sick_child_follow_up).setVisible(false);
+        menu.findItem(R.id.action_malaria_diagnosis).setVisible(false);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int i = item.getItemId();
+        if (i == R.id.action_anc_registration) {
+            startAncRegister();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -192,6 +232,13 @@ public class AdolescentProfileActivity extends BaseProfileActivity implements Ad
         } else {
             textViewTitle.setText(getString(R.string.return_to_previous_page_adolescent));
         }
+    }
 
+    protected void startAncRegister() {
+        PhoneNumber = presenter().getPhoneNumber();
+        familyBaseEntityId = presenter().getFamilyID();
+        familyName = presenter().getFamilyName();
+        AncRegisterActivity.startAncRegistrationActivity(AdolescentProfileActivity.this, baseEntityId, PhoneNumber,
+                org.smartregister.chw.util.Constants.JSON_FORM.getAncRegistration(), null, familyBaseEntityId, familyName);
     }
 }

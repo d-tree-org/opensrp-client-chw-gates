@@ -34,6 +34,8 @@ public class AdolescentRegisterFragmentModel implements AdolescentRegisterFragme
     public String countSelect(String tableName, String mainCondition) {
         SmartRegisterQueryBuilder countQueryBuilder = new SmartRegisterQueryBuilder();
         countQueryBuilder.SelectInitiateMainTableCounts(tableName);
+        countQueryBuilder.customJoin("INNER JOIN " + CoreConstants.TABLE_NAME.FAMILY_MEMBER + " ON  " + tableName + "." + DBConstants.KEY.BASE_ENTITY_ID + " = " + CoreConstants.TABLE_NAME.FAMILY_MEMBER + "." + DBConstants.KEY.BASE_ENTITY_ID + " COLLATE NOCASE ");
+        countQueryBuilder.customJoin("INNER JOIN " + CoreConstants.TABLE_NAME.FAMILY + " ON  " + CoreConstants.TABLE_NAME.FAMILY_MEMBER + "." + DBConstants.KEY.RELATIONAL_ID + " = " + CoreConstants.TABLE_NAME.FAMILY + "." + DBConstants.KEY.BASE_ENTITY_ID);
         return countQueryBuilder.mainCondition(mainCondition);
     }
 

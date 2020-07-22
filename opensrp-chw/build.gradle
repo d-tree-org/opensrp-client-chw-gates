@@ -384,7 +384,7 @@ repositories {
 }
 
 dependencies {
-    implementation('org.smartregister:opensrp-client-chw-core:1.1.39-DTREE-11-SNAPSHOT@aar') {
+    implementation('org.smartregister:opensrp-client-chw-core:1.1.39-DTREE-12-SNAPSHOT@aar') {
         transitive = true
         exclude group: 'com.android.support', module: 'appcompat-v7'
         exclude group: 'androidx.legacy', module: 'legacy-support-v4'
@@ -437,7 +437,7 @@ dependencies {
     implementation 'com.mcxiaoke.volley:library:1.0.19'
     implementation 'de.hdodenhof:circleimageview:3.1.0'
 
-    implementation ('org.smartregister:opensrp-client-family:1.2.43-DTREE-1-SNAPSHOT@aar'){
+    implementation ('org.smartregister:opensrp-client-family:1.2.43-DTREE-4-SNAPSHOT@aar'){
         transitive = true
         exclude group: 'org.smartregister', module: 'opensrp-client-core'
         exclude group: 'org.smartregister', module: 'opensrp-client-native-form'

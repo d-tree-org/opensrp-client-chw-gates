@@ -3,6 +3,7 @@ package org.smartregister.chw.interactor;
 import android.database.Cursor;
 
 import org.smartregister.chw.contract.AdolescentProfileContract;
+import org.smartregister.chw.core.utils.ChildDBConstants;
 import org.smartregister.chw.core.utils.CoreChildUtils;
 import org.smartregister.chw.core.utils.CoreConstants;
 import org.smartregister.chw.core.utils.Utils;
@@ -12,6 +13,7 @@ import org.smartregister.commonregistry.CommonPersonObject;
 import org.smartregister.commonregistry.CommonPersonObjectClient;
 import org.smartregister.commonregistry.CommonRepository;
 import org.smartregister.family.util.AppExecutors;
+import org.smartregister.family.util.DBConstants;
 
 import timber.log.Timber;
 
@@ -51,7 +53,21 @@ public class AdolescentProfileInteractor implements AdolescentProfileContract.In
                             personObject.getDetails(), "");
                     pClient.setColumnmaps(personObject.getColumnmaps());
 
+                    final String familyID = Utils.getValue(pClient.getColumnmaps(), ChildDBConstants.KEY.RELATIONAL_ID, false);
+                    final String gender = org.smartregister.family.util.Utils.getValue(pClient.getColumnmaps(), DBConstants.KEY.GENDER, true);
+
+                    final CommonPersonObject familyPersonObject = getCommonRepository(Utils.metadata().familyRegister.tableName).findByBaseEntityId(familyID);
+                    final CommonPersonObjectClient client = new CommonPersonObjectClient(familyPersonObject.getCaseId(), familyPersonObject.getDetails(), "");
+                    client.setColumnmaps(familyPersonObject.getColumnmaps());
+
+                    final String familyName = Utils.getValue(client.getColumnmaps(), DBConstants.KEY.FIRST_NAME, false);
+                    final String phoneNumber = org.smartregister.family.util.Utils.getValue(pClient.getColumnmaps(), org.smartregister.chw.util.ChildDBConstants.KEY.FAMILY_MEMBER_PHONENUMBER, true);
+
                     appExecutors.mainThread().execute(() -> {
+                        callback.setAdolescentGender(gender);
+                        callback.setFamilyID(familyID);
+                        callback.setFamilyName(familyName);
+                        callback.setPhoneNumber(phoneNumber);
                         callback.refreshProfileView(pClient);
                         callback.hideProgress();
                     });
@@ -74,5 +90,9 @@ public class AdolescentProfileInteractor implements AdolescentProfileContract.In
     @Override
     public void saveRegistration(String jsonString, AdolescentProfileContract.InteractorCallBack callBack) {
 
+    }
+
+    public CommonPersonObjectClient getcommonPersonObjectClient() {
+        return pClient;
     }
 }

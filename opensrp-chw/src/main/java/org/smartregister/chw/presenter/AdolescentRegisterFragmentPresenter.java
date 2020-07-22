@@ -2,9 +2,11 @@ package org.smartregister.chw.presenter;
 
 import org.apache.commons.lang3.StringUtils;
 import org.smartregister.chw.contract.AdolescentRegisterFragmentContract;
+import org.smartregister.chw.core.utils.CoreConstants;
 import org.smartregister.chw.fragment.AdolescentRegisterFragment;
 import org.smartregister.chw.malaria.contract.MalariaRegisterFragmentContract;
 import org.smartregister.chw.malaria.util.Constants;
+import org.smartregister.chw.malaria.util.DBConstants;
 import org.smartregister.configurableviews.model.RegisterConfiguration;
 import org.smartregister.configurableviews.model.View;
 import org.smartregister.configurableviews.model.ViewConfiguration;
@@ -36,7 +38,8 @@ public class AdolescentRegisterFragmentPresenter implements AdolescentRegisterFr
 
     @Override
     public String getMainCondition() {
-        return "";
+        return " " + CoreConstants.TABLE_NAME.FAMILY_MEMBER + "." + DBConstants.KEY.DATE_REMOVED + " is null " +
+                "AND " + CoreConstants.TABLE_NAME.ADOLESCENT + "." + DBConstants.KEY.IS_CLOSED + " is 0 ";
     }
 
     @Override
@@ -46,7 +49,7 @@ public class AdolescentRegisterFragmentPresenter implements AdolescentRegisterFr
 
     @Override
     public String getMainTable() {
-        return "ec_adolescent";
+        return CoreConstants.TABLE_NAME.ADOLESCENT;
     }
 
     @Override
