@@ -81,7 +81,7 @@ public class FamilyProfilePresenter extends CoreFamilyProfilePresenter {
 
     private boolean isAdolescent(String jsonString) {
         String age = getFieldValue(jsonString, "age_calculated");
-        if (!age.isEmpty()){
+        if (null != age && !age.isEmpty()){
             float clientAge;
             try {
                  clientAge = Float.parseFloat(age);
