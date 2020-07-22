@@ -240,5 +240,6 @@ public class AdolescentProfileActivity extends BaseProfileActivity implements Ad
         familyName = presenter().getFamilyName();
         AncRegisterActivity.startAncRegistrationActivity(AdolescentProfileActivity.this, baseEntityId, PhoneNumber,
                 org.smartregister.chw.util.Constants.JSON_FORM.getAncRegistration(), null, familyBaseEntityId, familyName);
+        this.finish();
     }
 }

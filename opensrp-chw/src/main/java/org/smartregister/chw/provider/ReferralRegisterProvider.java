@@ -2,15 +2,20 @@ package org.smartregister.chw.provider;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.joda.time.DateTime;
+import org.joda.time.Days;
 import org.joda.time.Period;
 import org.smartregister.chw.R;
 import org.smartregister.chw.core.utils.CoreConstants;
@@ -18,6 +23,8 @@ import org.smartregister.chw.referral.fragment.BaseReferralRegisterFragment;
 import org.smartregister.chw.referral.util.DBConstants;
 import org.smartregister.commonregistry.CommonPersonObjectClient;
 import org.smartregister.cursoradapter.RecyclerViewProvider;
+import org.smartregister.util.DateUtil;
+import org.smartregister.util.Log;
 import org.smartregister.util.Utils;
 import org.smartregister.view.contract.SmartRegisterClient;
 import org.smartregister.view.contract.SmartRegisterClients;
@@ -71,15 +78,15 @@ public class ReferralRegisterProvider implements RecyclerViewProvider<ReferralRe
             int age = new Period(new DateTime(dobString), new DateTime()).getYears();
 
             String focus = Utils.getValue(pc.getColumnmaps(), CoreConstants.DB_CONSTANTS.FOCUS, true);
-            String priority = Utils.getValue(pc.getColumnmaps(), "priority", true);
-
+            String priority = Utils.getValue(pc.getColumnmaps(), CoreConstants.DB_CONSTANTS.PRIORITY, true);
+            String status = Utils.getValue(pc.getColumnmaps(), CoreConstants.DB_CONSTANTS.STATUS, true);
+            Long authoredOn = Long.parseLong(Utils.getValue(pc.getColumnmaps(), CoreConstants.DB_CONSTANTS.AUTHORED_ON, true));
 
             String patientName = getName(fname, Utils.getValue(pc.getColumnmaps(), DBConstants.KEY.LAST_NAME, true));
             viewHolder.patientName.setText(String.format(Locale.getDefault(), "%s, %d", patientName, age));
             viewHolder.textViewGender.setText(Utils.getValue(pc.getColumnmaps(), DBConstants.KEY.GENDER, true));
             viewHolder.textViewService.setText(getCategory(focus, priority));
             viewHolder.textViewFacility.setText(Utils.getValue(pc.getColumnmaps(), DBConstants.KEY.REFERRAL_HF, true));
-
 
             viewHolder.patientColumn.setOnClickListener(onClickListener);
             viewHolder.patientColumn.setTag(pc);
@@ -91,8 +98,7 @@ public class ReferralRegisterProvider implements RecyclerViewProvider<ReferralRe
             viewHolder.registerColumns.setOnClickListener(onClickListener);
 
             viewHolder.registerColumns.setOnClickListener(v -> viewHolder.patientColumn.performClick());
-            setReferralStatusColor(context, viewHolder, Utils.getValue(pc.getColumnmaps(), CoreConstants.DB_CONSTANTS.STATUS, true));
-
+            setReferralStatusColor(context, viewHolder, status, priority, authoredOn);
         } catch (Exception e) {
             Timber.e(e);
         }
@@ -147,14 +153,23 @@ public class ReferralRegisterProvider implements RecyclerViewProvider<ReferralRe
         return viewHolder instanceof ReferralRegisterProvider.FooterViewHolder;
     }
 
-    private void setReferralStatusColor(Context context, ReferralRegisterProvider.RegisterViewHolder viewHolder, String status) {
-        viewHolder.textReferralStatus.setText(context.getString(R.string.followup));
+    private void setReferralStatusColor(Context context, ReferralRegisterProvider.RegisterViewHolder
+            viewHolder, String status, String priority, Long authoredOn) {
+
+        int days = Math.abs(Days.daysBetween(DateUtil.getDateTimeFromMillis(authoredOn), DateTime.now()).getDays());
+        if( (days>=1 && priority.equals("1")) || days >= 3 ) {
+            setTasksOverdueStatus(context, viewHolder);
+        }
+        else {
+            setTasksDueStatus(context, viewHolder);
+        }
+
         switch (status) {
             case TASK_STATUS_READY:
-                setTasksDueStatus(context, viewHolder);
+                markTaskReady(context, viewHolder);
                 break;
             case TASK_STATUS_IN_PROGRESS:
-                setTasksOverdueStatus(context, viewHolder);
+                markTaskInProgress(context, viewHolder);
                 break;
             default:
                 break;
@@ -171,6 +186,7 @@ public class ReferralRegisterProvider implements RecyclerViewProvider<ReferralRe
         public TextView textViewFacility;
         public View registerColumns;
         public View dueWrapper;
+        public ImageView doneIcon;
 
         public RegisterViewHolder(View itemView) {
             super(itemView);
@@ -183,6 +199,7 @@ public class ReferralRegisterProvider implements RecyclerViewProvider<ReferralRe
             dueWrapper = itemView.findViewById(org.smartregister.chw.referral.R.id.due_button_wrapper);
             textViewService = itemView.findViewById(org.smartregister.chw.referral.R.id.text_view_service);
             textViewFacility = itemView.findViewById(org.smartregister.chw.referral.R.id.text_view_facility);
+            doneIcon = itemView.findViewById(R.id.done_icon);
         }
     }
 
@@ -222,11 +239,23 @@ public class ReferralRegisterProvider implements RecyclerViewProvider<ReferralRe
 
     private void setTasksOverdueStatus(Context context, ReferralRegisterProvider.RegisterViewHolder viewHolder) {
         viewHolder.textReferralStatus.setTextColor(context.getResources().getColor(org.smartregister.chw.core.R.color.white));
+        viewHolder.doneIcon.setColorFilter(context.getResources().getColor(org.smartregister.chw.core.R.color.white));
         viewHolder.dueWrapper.setBackgroundResource(org.smartregister.chw.core.R.drawable.overdue_red_btn_selector);
     }
 
     private void setTasksDueStatus(Context context, ReferralRegisterProvider.RegisterViewHolder viewHolder) {
         viewHolder.textReferralStatus.setTextColor(context.getResources().getColor(org.smartregister.chw.core.R.color.alert_in_progress_blue));
+        viewHolder.doneIcon.setColorFilter(context.getResources().getColor(org.smartregister.chw.core.R.color.alert_in_progress_blue));
         viewHolder.dueWrapper.setBackgroundResource(org.smartregister.chw.core.R.drawable.blue_btn_selector);
+    }
+
+    private void markTaskReady(Context context, ReferralRegisterProvider.RegisterViewHolder viewHolder) {
+        viewHolder.doneIcon.setVisibility(View.GONE);
+        viewHolder.textReferralStatus.setGravity(Gravity.CENTER);
+    }
+
+    private void markTaskInProgress(Context context, ReferralRegisterProvider.RegisterViewHolder viewHolder) {
+        viewHolder.doneIcon.setVisibility(View.VISIBLE);
+        viewHolder.textReferralStatus.setGravity(Gravity.CENTER_HORIZONTAL);
     }
 }
