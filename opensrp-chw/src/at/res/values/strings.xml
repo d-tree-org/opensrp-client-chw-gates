@@ -19,5 +19,8 @@
 
     <string name="fingerprint_enrolled"> Fingerprint enrolled successfully </string>
 
+    <string name="simprints_production_project_id">8rlGBhsk6371eW2KLZm6</string>
+
+    <string name="training_module_name">mailimojatraining</string>
 
 </resources>
