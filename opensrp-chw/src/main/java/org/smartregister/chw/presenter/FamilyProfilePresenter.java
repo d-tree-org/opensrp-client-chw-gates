@@ -86,6 +86,7 @@ public class FamilyProfilePresenter extends CoreFamilyProfilePresenter {
             try {
                  clientAge = Float.parseFloat(age);
             }catch (Exception e){
+                e.printStackTrace();
                 return  false;
             }
             return (clientAge >= 13 && clientAge <= 19);
