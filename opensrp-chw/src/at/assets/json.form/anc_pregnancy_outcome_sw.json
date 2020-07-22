@@ -204,7 +204,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "5599AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
         "type": "date_picker",
-        "hint": "Tarehe ya kujifungua au mimba kutoka",
+        "hint": "Tarehe ya kujifungua/mimba kutoka",
         "expanded": false,
         "max_date": "today",
         "v_required": {
@@ -282,7 +282,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "toaster_notes",
-        "text": "Register each child as a separate record in the family profile.",
+        "text": "Msajili kila mtoto na rekodi yake katika ukurasa wa familia.",
         "text_color": "#CF0800",
         "toaster_type": "problem",
         "relevance": {

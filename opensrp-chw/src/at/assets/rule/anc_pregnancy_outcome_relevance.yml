@@ -18,7 +18,7 @@ actions:
 name: step1_no_childrendied
 description: no_children relevance
 priority: 1
-condition: "step1_preg_outcome_miscarriage == 'no'"
+condition: "step1_preg_outcome_miscarriage == 'no' || step1_preg_outcome == 'no'"
 actions:
   - "isRelevant = true"
 
@@ -26,7 +26,7 @@ actions:
 name: step1_no_children
 description: no_children relevance
 priority: 1
-condition: "step1_preg_outcome_miscarriage == 'no'"
+condition: "step1_preg_outcome_miscarriage == 'no' || step1_preg_outcome == 'no'"
 actions:
   - "isRelevant = true"
 
