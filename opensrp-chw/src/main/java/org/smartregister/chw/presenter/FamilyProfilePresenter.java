@@ -80,11 +80,19 @@ public class FamilyProfilePresenter extends CoreFamilyProfilePresenter {
     }
 
     private boolean isAdolescent(String jsonString) {
-
         String age = getFieldValue(jsonString, "age_calculated");
-        Float ageInt = Float.parseFloat(age);
-
-        return (ageInt >= 13 && ageInt <= 19);
+        if (null != age && !age.isEmpty()){
+            float clientAge;
+            try {
+                 clientAge = Float.parseFloat(age);
+            }catch (Exception e){
+                e.printStackTrace();
+                return  false;
+            }
+            return (clientAge >= 13 && clientAge <= 19);
+        }else {
+            return false;
+        }
     }
 
     private String updateAdolescentEventType(String jsonString) {
