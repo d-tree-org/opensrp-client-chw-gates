@@ -536,7 +536,7 @@
         ],
         "v_required": {
           "value": "true",
-          "err": "Please enter the sex"
+          "err": "Tafadhali jaza jinsia"
         },
         "relevance": {
           "step2:fam_consent": {
@@ -705,7 +705,7 @@
         },
         "v_required": {
           "value": "true",
-          "err": "Please scan fingerprint"
+          "err": "Tafadhali skani alama za vidole"
         }
       },
       {
