@@ -78,9 +78,9 @@ public class ReferralRegisterProvider implements RecyclerViewProvider<ReferralRe
             int age = new Period(new DateTime(dobString), new DateTime()).getYears();
 
             String focus = Utils.getValue(pc.getColumnmaps(), CoreConstants.DB_CONSTANTS.FOCUS, true);
-            String priority = Utils.getValue(pc.getColumnmaps(), "priority", true);
+            String priority = Utils.getValue(pc.getColumnmaps(), CoreConstants.DB_CONSTANTS.PRIORITY, true);
             String status = Utils.getValue(pc.getColumnmaps(), CoreConstants.DB_CONSTANTS.STATUS, true);
-            Long authoredOn = Long.parseLong(Utils.getValue(pc.getColumnmaps(), "authored_on", true));
+            Long authoredOn = Long.parseLong(Utils.getValue(pc.getColumnmaps(), CoreConstants.DB_CONSTANTS.AUTHORED_ON, true));
 
             String patientName = getName(fname, Utils.getValue(pc.getColumnmaps(), DBConstants.KEY.LAST_NAME, true));
             viewHolder.patientName.setText(String.format(Locale.getDefault(), "%s, %d", patientName, age));
