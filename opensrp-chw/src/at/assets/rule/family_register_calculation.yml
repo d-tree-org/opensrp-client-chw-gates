@@ -2,9 +2,9 @@
 name: step3_surname
 description: surname calculation
 priority: 1
-condition: "step3_surname == ''"
+condition: "true"
 actions:
-  - "calculation = step1_fam_name"
+  - "calculation = step3_same_as_fam_name.contains('same_as_fam_name') ? step1_fam_name : step3_surname"
 ---
 name: step3_age_calculated
 description: Age calculated
@@ -30,6 +30,6 @@ actions:
 name: step3_surname_calculation
 description: Surname calculation
 priority: 1
-condition: "(!step3_same_as_fam_name.isEmpty() && step3_same_as_fam_name.contains('same_as_fam_name'))"
+condition: "true"
 actions:
-  - "calculation = step1_fam_name"
+  - "calculation = (!step3_same_as_fam_name.isEmpty() && step3_same_as_fam_name.contains('same_as_fam_name')) ? step1_fam_name : step3_surname"
