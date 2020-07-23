@@ -192,7 +192,7 @@
         "openmrs_entity": "person",
         "openmrs_entity_id": "birthdate",
         "type": "date_picker",
-        "hint": "Date of birth (DOB)",
+        "hint": "Tarehe ya Kuzaliwa",
         "expanded": false,
         "duration": {
           "label": "Umri"
