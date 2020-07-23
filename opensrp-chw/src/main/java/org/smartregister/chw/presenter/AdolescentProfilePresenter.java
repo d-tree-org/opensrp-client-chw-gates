@@ -1,15 +1,27 @@
 package org.smartregister.chw.presenter;
 
+import android.util.Pair;
+
+import org.apache.commons.lang3.tuple.Triple;
+import org.smartregister.chw.R;
 import org.smartregister.chw.contract.AdolescentProfileContract;
 import org.smartregister.chw.interactor.AdolescentProfileInteractor;
+import org.smartregister.chw.model.AdolescentRegisterModel;
+import org.smartregister.chw.model.ChildRegisterModel;
 import org.smartregister.chw.util.ChildDBConstants;
+import org.smartregister.chw.util.JsonFormUtils;
+import org.smartregister.clientandeventmodel.Client;
+import org.smartregister.clientandeventmodel.Event;
 import org.smartregister.commonregistry.CommonPersonObjectClient;
+import org.smartregister.domain.FetchStatus;
+import org.smartregister.family.contract.FamilyProfileContract;
+import org.smartregister.family.domain.FamilyEventClient;
 import org.smartregister.family.util.DBConstants;
 import org.smartregister.family.util.Utils;
 
 import java.lang.ref.WeakReference;
 
-public class AdolescentProfilePresenter implements AdolescentProfileContract.Presenter, AdolescentProfileContract.InteractorCallBack {
+public class AdolescentProfilePresenter implements AdolescentProfileContract.Presenter, AdolescentProfileContract.InteractorCallBack{
 
     public String adolescentBaseEntityId;
     public String familyID;
@@ -19,6 +31,8 @@ public class AdolescentProfilePresenter implements AdolescentProfileContract.Pre
     private String familyName;
     private String gender;
     private String phoneNumber;
+    private String familyHead;
+    private String familyCareGiver;
     private CommonPersonObjectClient commonPersonObjectClient;
 
     public AdolescentProfilePresenter(AdolescentProfileContract.View adolescentView, String adolescentBaseEntityId) {
@@ -55,6 +69,16 @@ public class AdolescentProfilePresenter implements AdolescentProfileContract.Pre
     }
 
     @Override
+    public void setFamilyHead(String familyHead) {
+        this.familyHead = familyHead;
+    }
+
+    @Override
+    public void setFamilyCareGiver(String familyCareGiver) {
+        this.familyCareGiver = familyCareGiver;
+    }
+
+    @Override
     public void refreshProfileView(CommonPersonObjectClient pClient) {
         if (pClient == null || pClient.getColumnmaps() == null) {
             return;
@@ -77,6 +101,14 @@ public class AdolescentProfilePresenter implements AdolescentProfileContract.Pre
 
     }
 
+    @Override
+    public void onRegistrationSaved(boolean isEditMode) {
+        if (getView() != null) {
+            getView().hideProgressDialog();
+            getView().refreshProfile(FetchStatus.fetched);
+        }
+    }
+
     public String getAdolescentGender() {
         return gender;
     }
@@ -93,6 +125,28 @@ public class AdolescentProfilePresenter implements AdolescentProfileContract.Pre
     @Override
     public String getFamilyName() {
         return familyName;
+    }
+
+    @Override
+    public String getFamilyHead() {
+        return familyHead;
+    }
+
+    @Override
+    public String getPrimaryCareGiver() {
+        return familyCareGiver;
+    }
+
+    @Override
+    public void updateAdolescentProfile(String jsonString) {
+        getView().showProgressDialog(R.string.updating);
+        Pair<Client, Event> pair = new AdolescentRegisterModel().processRegistration(jsonString);
+        if (pair == null) {
+            return;
+        }
+
+        interactor.saveRegistration(pair, jsonString, true, this);
+
     }
 
     @Override
@@ -121,4 +175,5 @@ public class AdolescentProfilePresenter implements AdolescentProfileContract.Pre
     public void hideProgress() {
         getView().showProgressBar(false);
     }
+
 }
