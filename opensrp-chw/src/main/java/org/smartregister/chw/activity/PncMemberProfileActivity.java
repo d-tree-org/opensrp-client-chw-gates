@@ -28,6 +28,9 @@ import org.smartregister.chw.core.utils.CoreConstants;
 import org.smartregister.chw.core.utils.CoreJsonFormUtils;
 import org.smartregister.chw.custom_view.AncFloatingMenu;
 import org.smartregister.chw.dao.MalariaDao;
+import org.smartregister.chw.dataloader.AncMemberDataLoader;
+import org.smartregister.chw.dataloader.FamilyMemberDataLoader;
+import org.smartregister.chw.form_data.NativeFormsDataBinder;
 import org.smartregister.chw.fp.util.FamilyPlanningConstants;
 import org.smartregister.chw.interactor.ChildProfileInteractor;
 import org.smartregister.chw.interactor.FamilyProfileInteractor;
@@ -44,6 +47,7 @@ import org.smartregister.commonregistry.CommonPersonObjectClient;
 import org.smartregister.commonregistry.CommonRepository;
 import org.smartregister.family.contract.FamilyProfileContract;
 import org.smartregister.family.domain.FamilyEventClient;
+import org.smartregister.family.util.DBConstants;
 import org.smartregister.family.util.JsonFormUtils;
 import org.smartregister.family.util.Utils;
 
@@ -62,6 +66,8 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import timber.log.Timber;
 
+import static org.smartregister.family.util.JsonFormUtils.REQUEST_CODE_GET_JSON;
+
 public class PncMemberProfileActivity extends CorePncMemberProfileActivity implements PncMemberProfileContract.View {
 
     private Flavor flavor = new PncMemberProfileActivityFlv();
@@ -71,6 +77,38 @@ public class PncMemberProfileActivity extends CorePncMemberProfileActivity imple
         Intent intent = new Intent(activity, PncMemberProfileActivity.class);
         intent.putExtra(Constants.ANC_MEMBER_OBJECTS.BASE_ENTITY_ID, baseEntityID);
         activity.startActivity(intent);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.action_pnc_member_registration) {
+            startEditMemberJsonForm();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void startEditMemberJsonForm() {
+        try {
+            JSONObject form = null;
+            boolean isPrimaryCareGiver = memberObject.getPrimaryCareGiver().equals(memberObject.getBaseEntityId());
+            String titleString = getResources().getString(R.string.edit_member_form_title);
+
+            String eventName = org.smartregister.chw.util.Utils.metadata().familyMemberRegister.updateEventType;
+
+            String uniqueID = memberObject.getBaseEntityId();
+
+            NativeFormsDataBinder binder = new NativeFormsDataBinder(this, memberObject.getBaseEntityId());
+            binder.setDataLoader(new FamilyMemberDataLoader(memberObject.getFamilyName(), isPrimaryCareGiver, titleString, eventName, uniqueID));
+            form = binder.getPrePopulatedForm(CoreConstants.JSON_FORM.getFamilyMemberEdit());
+
+            if (form != null){
+                startFormActivity(form);
+            }
+
+        } catch (Exception e) {
+            Timber.e(e);
+        }
     }
 
     @Override
@@ -85,7 +123,7 @@ public class PncMemberProfileActivity extends CorePncMemberProfileActivity imple
                 startActivity(intent);
                 finish();
                 break;
-            case JsonFormUtils.REQUEST_CODE_GET_JSON:
+            case REQUEST_CODE_GET_JSON:
                 try {
                     String jsonString = data.getStringExtra(org.smartregister.family.util.Constants.JSON_FORM_EXTRA.JSON);
                     JSONObject form = new JSONObject(jsonString);
@@ -313,7 +351,7 @@ public class PncMemberProfileActivity extends CorePncMemberProfileActivity imple
     @Override
     public void startFormActivity(JSONObject formJson) {
         startActivityForResult(CoreJsonFormUtils.getJsonIntent(this, formJson, Utils.metadata().familyMemberFormActivity),
-                JsonFormUtils.REQUEST_CODE_GET_JSON);
+                REQUEST_CODE_GET_JSON);
     }
 
     @Override
