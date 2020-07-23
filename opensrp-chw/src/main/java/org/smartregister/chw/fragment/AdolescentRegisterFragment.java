@@ -179,6 +179,7 @@ public class AdolescentRegisterFragment extends BaseRegisterFragment implements 
         intent.putExtra(CoreConstants.INTENT_KEY.IS_COMES_FROM_FAMILY, false);
         intent.putExtra(org.smartregister.family.util.Constants.INTENT_KEY.BASE_ENTITY_ID, patient.getCaseId());
         intent.putExtra(org.smartregister.chw.anc.util.Constants.ANC_MEMBER_OBJECTS.MEMBER_PROFILE_OBJECT, new MemberObject(patient));
+        intent.putExtra(CoreConstants.INTENT_KEY.CHILD_COMMON_PERSON, patient);
         startActivity(intent);
     }
 

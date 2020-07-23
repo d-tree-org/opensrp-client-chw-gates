@@ -1,13 +1,17 @@
 package org.smartregister.chw.contract;
 
 import android.content.Context;
+import android.util.Pair;
 
 import org.smartregister.chw.malaria.contract.MalariaProfileContract;
 import org.smartregister.chw.malaria.domain.MemberObject;
+import org.smartregister.clientandeventmodel.Client;
+import org.smartregister.clientandeventmodel.Event;
 import org.smartregister.commonregistry.CommonPersonObjectClient;
+import org.smartregister.domain.FetchStatus;
 import org.smartregister.view.contract.BaseProfileContract;
 
-public interface AdolescentProfileContract {
+public interface AdolescentProfileContract extends BaseProfileContract {
 
     interface View extends BaseProfileContract.View{
 
@@ -22,6 +26,8 @@ public interface AdolescentProfileContract {
         void setVillageLocation(String location);
 
         void setUniqueId(String uniqueId);
+
+        void refreshProfile(final FetchStatus fetchStatus);
 
         void setOverDueColor();
 
@@ -51,6 +57,12 @@ public interface AdolescentProfileContract {
 
         String getFamilyName();
 
+        String getFamilyHead();
+
+        String getPrimaryCareGiver();
+
+        void updateAdolescentProfile(String jsonString);
+
         void fetchVisitStatus(String baseEntityId);
 
         void fetchUpcomingServiceAndFamilyDue(String baseEntityId);
@@ -62,10 +74,10 @@ public interface AdolescentProfileContract {
 
         CommonPersonObjectClient getcommonPersonObjectClient();
 
-        void saveRegistration(String jsonString, final AdolescentProfileContract.InteractorCallBack callBack);
+        void saveRegistration(final Pair<Client, Event> pair, String jsonString, final boolean isEditMode, final AdolescentProfileContract.InteractorCallBack callBack);
 
     }
-    interface InteractorCallBack{
+    interface InteractorCallBack extends BaseProfileContract{
 
         void setFamilyID(String familyID);
 
@@ -75,7 +87,13 @@ public interface AdolescentProfileContract {
 
         void setPhoneNumber(String phoneNumber);
 
+        void setFamilyHead(String familyHead);
+
+        void setFamilyCareGiver(String familyCareGiver);
+
         void refreshProfileView(CommonPersonObjectClient pClient);
+
+        void onRegistrationSaved(boolean isEditMode);
 
         void hideProgress();
     }
