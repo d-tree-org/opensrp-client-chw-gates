@@ -36,11 +36,7 @@ public class PncRegisterActivity extends CorePncRegisterActivity {
 
     @Override
     public void onRegistrationSaved(String encounterType, boolean isEdit, boolean hasChildren) {
-        if (encounterType.equalsIgnoreCase(Constants.EVENT_TYPE.PREGNANCY_OUTCOME)) {
-            Timber.d("We are home - PNC Register");
-        } else {
-            super.onRegistrationSaved(encounterType, isEdit, hasChildren);
-        }
+        // do nothing
     }
 
     @Override
@@ -80,8 +76,8 @@ public class PncRegisterActivity extends CorePncRegisterActivity {
             } catch (Exception e) {
                 Timber.e(e);
             }
-        } else {
-            this.finish();
         }
+
+        this.finish();
     }
 }
