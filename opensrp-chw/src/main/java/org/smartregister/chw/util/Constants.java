@@ -20,5 +20,7 @@ public class Constants extends CoreConstants {
         public static final String SICK_CHILD = "Sick Child Referral";
         public static final String PNC_REFERRAL = "PNC Referral";
         public static final String ANC_REFERRAL = "ANC Referral";
+        public static final String REFERRAL_FOLLOW_UP_VISIT = "Referral Follow-up Visit";
+        public static final String LINKAGE_FOLLOW_UP_VISIT = "Linkage Follow-up Visit";
     }
 }

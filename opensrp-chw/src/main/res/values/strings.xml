@@ -351,4 +351,6 @@
     <string name="return_to_previous_page_adolescent">Return to all adolescents</string>
     <string name="adolescent_fragment_title">Adolescent Clients</string>
 
+    <string name="referral_follow_up_visit">Referral Follow Up Visit</string>
+
 </resources>
