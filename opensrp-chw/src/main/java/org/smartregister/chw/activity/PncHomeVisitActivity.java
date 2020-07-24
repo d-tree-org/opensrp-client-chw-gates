@@ -103,6 +103,10 @@ public class PncHomeVisitActivity extends BasePncHomeVisitActivity {
                             // refer
                             CoreReferralUtils.createReferralEvent(ChwApplication.getInstance().getContext().allSharedPreferences(),
                                     jsonString, CoreConstants.TABLE_NAME.PNC_REFERRAL, entityID);
+
+                            //add referral schedule
+                            ChwScheduleTaskExecutor.getInstance().execute(memberObject.getBaseEntityId(), CoreConstants.EventType.PNC_REFERRAL, new Date());
+
                             Toast.makeText(getContext(), getResources().getString(org.smartregister.chw.R.string.referral_submitted), Toast.LENGTH_LONG).show();
                         }
                     }

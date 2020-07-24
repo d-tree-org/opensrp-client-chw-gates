@@ -16,6 +16,7 @@ import org.smartregister.chw.R;
 import org.smartregister.chw.application.ChwApplication;
 import org.smartregister.chw.core.custom_views.NavigationMenu;
 import org.smartregister.chw.core.utils.CoreConstants;
+import org.smartregister.chw.util.Constants;
 import org.smartregister.domain.Task;
 import org.smartregister.family.util.JsonFormUtils;
 import org.smartregister.family.util.Utils;
@@ -86,7 +87,7 @@ public abstract class BaseReferralFollowupActivity extends CoreReferralFollowupA
                 JSONObject jsonForm = registrationFormParams.getMiddle();
                 String encounter_type = jsonForm.optString(ENCOUNTER_TYPE);
 
-                if ("Referral Follow-up Visit".equals(encounter_type) || "Linkage Follow-up Visit".equals(encounter_type)) {
+                if (Constants.EncounterType.REFERRAL_FOLLOW_UP_VISIT.equals(encounter_type) || Constants.EncounterType.LINKAGE_FOLLOW_UP_VISIT.equals(encounter_type)) {
                     JSONArray fields = registrationFormParams.getRight();
                     JSONObject visit_hf_object = getFieldJSONObject(fields, "visit_hf");
                     JSONObject services_hf_object = getFieldJSONObject(fields, "services_hf");

@@ -17,8 +17,11 @@ import org.smartregister.chw.core.interactor.CoreChildHomeVisitInteractor;
 import org.smartregister.chw.core.utils.CoreConstants;
 import org.smartregister.chw.core.utils.CoreReferralUtils;
 import org.smartregister.chw.interactor.ChildHomeVisitInteractorFlv;
+import org.smartregister.chw.schedulers.ChwScheduleTaskExecutor;
 import org.smartregister.family.util.Constants;
 import org.smartregister.family.util.JsonFormUtils;
+
+import java.util.Date;
 
 import timber.log.Timber;
 
@@ -81,6 +84,10 @@ public class ChildHomeVisitActivity extends CoreChildHomeVisitActivity {
                             //refer
                             CoreReferralUtils.createReferralEvent(ChwApplication.getInstance().getContext().allSharedPreferences(),
                                     jsonString, CoreConstants.TABLE_NAME.CHILD_REFERRAL, entityID);
+
+                            //add referral schedule
+                            ChwScheduleTaskExecutor.getInstance().execute(memberObject.getBaseEntityId(), CoreConstants.EventType.CHILD_REFERRAL, new Date());
+
                             Toast.makeText(getContext(), getResources().getString(org.smartregister.chw.R.string.referral_submitted), Toast.LENGTH_LONG).show();
                         }
                     }
