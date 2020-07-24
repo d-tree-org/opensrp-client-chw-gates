@@ -142,7 +142,9 @@ public class ChwScheduleTaskExecutor extends ScheduleTaskExecutor {
         List<ScheduleService> scheduleServices = new ArrayList<>();
         scheduleServices.add(new ReferralVisitScheduler());
 
-        addToClassifers(Constants.EncounterType.ANC_REFERRAL, classifier, scheduleServices);
+        addToClassifers(CoreConstants.EventType.ANC_REFERRAL, classifier, scheduleServices);
+        addToClassifers(CoreConstants.EventType.PNC_REFERRAL, classifier, scheduleServices);
+        addToClassifers(CoreConstants.EventType.CHILD_REFERRAL, classifier, scheduleServices);
         addToClassifers(Constants.EncounterType.REFERRAL_FOLLOW_UP_VISIT, classifier, scheduleServices);
     }
 }
