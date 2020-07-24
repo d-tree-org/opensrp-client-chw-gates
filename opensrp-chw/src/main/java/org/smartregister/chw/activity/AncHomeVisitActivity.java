@@ -109,6 +109,8 @@ public class AncHomeVisitActivity extends BaseAncHomeVisitActivity {
                             CoreReferralUtils.createReferralEvent(ChwApplication.getInstance().getContext().allSharedPreferences(),
                                     jsonString, CoreConstants.TABLE_NAME.ANC_REFERRAL, baseEntityID);
                             Toast.makeText(getContext(), getResources().getString(org.smartregister.chw.R.string.referral_submitted), Toast.LENGTH_LONG).show();
+
+                            ChwScheduleTaskExecutor.getInstance().execute(memberObject.getBaseEntityId(), CoreConstants.EventType.ANC_REFERRAL, new Date());
                         }
                     }
                     //end of check referral
