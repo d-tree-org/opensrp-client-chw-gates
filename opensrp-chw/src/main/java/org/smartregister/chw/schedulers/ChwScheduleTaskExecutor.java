@@ -10,8 +10,10 @@ import org.smartregister.chw.task.ChildHomeVisitScheduler;
 import org.smartregister.chw.task.FpVisitScheduler;
 import org.smartregister.chw.task.MalariaScheduler;
 import org.smartregister.chw.task.PNCVisitScheduler;
+import org.smartregister.chw.task.ReferralVisitScheduler;
 import org.smartregister.chw.task.RoutineHouseHoldVisitScheduler;
 import org.smartregister.chw.task.WashCheckScheduler;
+import org.smartregister.chw.util.Constants;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -56,6 +58,9 @@ public class ChwScheduleTaskExecutor extends ScheduleTaskExecutor {
 
             if (ChwApplication.getApplicationFlavor().hasRoutineVisit())
                 initializeRoutineHouseholdClassifier(scheduleServiceMap);
+
+            if (ChwApplication.getApplicationFlavor().hasReferrals())
+                initializeReferralClassifier(scheduleServiceMap);
 
         }
         return scheduleServiceMap;
@@ -131,5 +136,13 @@ public class ChwScheduleTaskExecutor extends ScheduleTaskExecutor {
         addToClassifers(CoreConstants.EventType.FAMILY_REGISTRATION, classifier, scheduleServices);
         addToClassifers(CoreConstants.EventType.UPDATE_FAMILY_REGISTRATION, classifier, scheduleServices);
         addToClassifers(CoreConstants.EventType.ROUTINE_HOUSEHOLD_VISIT, classifier, scheduleServices);
+    }
+
+    private void initializeReferralClassifier(Map<String, List<ScheduleService>> classifier) {
+        List<ScheduleService> scheduleServices = new ArrayList<>();
+        scheduleServices.add(new ReferralVisitScheduler());
+
+        addToClassifers(Constants.EncounterType.ANC_REFERRAL, classifier, scheduleServices);
+        addToClassifers(Constants.EncounterType.REFERRAL_FOLLOW_UP_VISIT, classifier, scheduleServices);
     }
 }
