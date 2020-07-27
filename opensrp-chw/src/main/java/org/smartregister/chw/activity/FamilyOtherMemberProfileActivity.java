@@ -2,16 +2,13 @@ package org.smartregister.chw.activity;
 
 import android.app.Activity;
 import android.content.Context;
-import android.util.Log;
 import android.view.Menu;
 
 import androidx.annotation.Nullable;
 import androidx.viewpager.widget.ViewPager;
 
 import org.json.JSONObject;
-import org.smartregister.CoreLibrary;
 import org.smartregister.chw.R;
-import org.smartregister.chw.application.ChwApplication;
 import org.smartregister.chw.core.activity.CoreFamilyOtherMemberProfileActivity;
 import org.smartregister.chw.core.activity.CoreFamilyProfileActivity;
 import org.smartregister.chw.core.listener.OnClickFloatingMenu;
@@ -29,8 +26,6 @@ import org.smartregister.family.fragment.BaseFamilyOtherMemberProfileFragment;
 import org.smartregister.family.model.BaseFamilyOtherMemberProfileActivityModel;
 import org.smartregister.family.util.DBConstants;
 import org.smartregister.view.contract.BaseProfileContract;
-
-import java.util.Locale;
 
 import timber.log.Timber;
 
@@ -65,6 +60,7 @@ public class FamilyOtherMemberProfileActivity extends CoreFamilyOtherMemberProfi
     protected void startAncRegister() {
         AncRegisterActivity.startAncRegistrationActivity(FamilyOtherMemberProfileActivity.this, baseEntityId, PhoneNumber,
                 org.smartregister.chw.util.Constants.JSON_FORM.getAncRegistration(), null, familyBaseEntityId, familyName);
+        this.finish();
     }
 
     @Override
