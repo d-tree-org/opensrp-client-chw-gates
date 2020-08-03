@@ -245,6 +245,7 @@
   },
   "step3": {
     "title": "Mkuu wa kaya",
+    "submit-button": "true",
     "fields": [
       {
         "key": "family_head_label",
