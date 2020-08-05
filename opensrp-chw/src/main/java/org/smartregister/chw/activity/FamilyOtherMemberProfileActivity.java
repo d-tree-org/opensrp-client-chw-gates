@@ -8,6 +8,7 @@ import androidx.annotation.Nullable;
 import androidx.viewpager.widget.ViewPager;
 
 import org.json.JSONObject;
+import org.opensrp.api.constants.Gender;
 import org.smartregister.chw.R;
 import org.smartregister.chw.core.activity.CoreFamilyOtherMemberProfileActivity;
 import org.smartregister.chw.core.activity.CoreFamilyProfileActivity;
@@ -174,4 +175,18 @@ public class FamilyOtherMemberProfileActivity extends CoreFamilyOtherMemberProfi
         MalariaFollowUpVisitActivity.startMalariaFollowUpActivity(this, baseEntityId);
     }
 
+    @Override
+    public void setProfileDetailOne(String detailOne) {
+        super.setProfileDetailOne(getTranslatedGender(detailOne));
+    }
+
+    private String getTranslatedGender(String gender) {
+        if(Gender.MALE.toString().equalsIgnoreCase(gender)) {
+            return getResources().getString(org.smartregister.family.R.string.male);
+        } else if (Gender.FEMALE.toString().equalsIgnoreCase(gender)) {
+            return getResources().getString(org.smartregister.family.R.string.female);
+        } else {
+            return "";
+        }
+    }
 }
