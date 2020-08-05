@@ -181,6 +181,15 @@ public class AdolescentProfileActivity extends BaseProfileActivity implements Ad
         } else if (i == R.id.action_registration) {
             startFormForEdit(R.string.edit_member_form_title);
             return true;
+        } else if (i == R.id.action_remove_member) {
+            CommonRepository commonRepository = Utils.context().commonrepository(Utils.metadata().familyMemberRegister.tableName);
+
+            final CommonPersonObject commonPersonObject = commonRepository.findByBaseEntityId(baseEntityId);
+            final CommonPersonObjectClient client =
+                    new CommonPersonObjectClient(commonPersonObject.getCaseId(), commonPersonObject.getDetails(), "");
+            client.setColumnmaps(commonPersonObject.getColumnmaps());
+            IndividualProfileRemoveActivity.startIndividualProfileActivity(AdolescentProfileActivity.this, client, presenter().getFamilyID(), presenter().getFamilyHead(), presenter().getPrimaryCareGiver(), AdolescentProfileActivity.class.getCanonicalName());
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }
