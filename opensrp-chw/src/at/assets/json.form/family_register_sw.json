@@ -574,37 +574,6 @@
         "values": ""
       },
       {
-        "key": "preg_1yr",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "160692AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-        "type": "spinner",
-        "hint": "Je amejifungua ndani ya mwaka 1?",
-        "values": [
-          "Ndiyo",
-          "Hapana"
-        ],
-        "keys": [
-          "Yes",
-          "No"
-        ],
-        "openmrs_choice_ids": {
-          "Yes": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-          "No": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-        },
-        "v_required": {
-          "value": "true",
-          "err": "Tafadhali chagua kama amejifungua ndani ya mwaka 1 au la."
-        },
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "family_register_relevance.yml"
-            }
-          }
-        }
-      },
-      {
         "key": "phone_number",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
