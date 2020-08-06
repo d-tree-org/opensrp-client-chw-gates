@@ -46,6 +46,8 @@ public class ChwJobCreatorFlv extends DefaultChwJobCreatorFlv {
                 return new ScheduleJob();
             case AfyatekSyncSettingsServiceJob.TAG:
                 return new AfyatekSyncSettingsServiceJob();
+            case UpdateChildToAdolescentJob.TAG:
+                return new UpdateChildToAdolescentJob();
             default:
                 Timber.d("Looks like you tried to create a job " + tag + " that is not declared in the Chw Job Creator");
                 return null;
