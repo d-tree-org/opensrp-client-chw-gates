@@ -160,11 +160,12 @@ public class AdolescentRegisterFragment extends BaseRegisterFragment implements 
             return;
         }
 
-        if (view.getTag() != null && view.getTag(org.smartregister.chw.core.R.id.VIEW_ID) == CLICK_VIEW_NORMAL) {
-            if (view.getTag() instanceof CommonPersonObjectClient) {
-                goToAdolescentDetailActivity((CommonPersonObjectClient) view.getTag(), false);
-            }
-        } else if (view.getId() == org.smartregister.chw.core.R.id.due_only_layout) {
+        if (view.getTag() instanceof CommonPersonObjectClient && view.getTag(org.smartregister.chw.core.R.id.VIEW_ID) == CLICK_VIEW_NORMAL) {
+            goToAdolescentDetailActivity((CommonPersonObjectClient) view.getTag(), false);
+        } else if (view.getTag() instanceof CommonPersonObjectClient && view.getTag(org.smartregister.chw.core.R.id.VIEW_ID) == CLICK_VIEW_DOSAGE_STATUS) {
+            Toast.makeText(this.getActivity(), "Here we clicked the due button, we need to take the client there", Toast.LENGTH_SHORT).show();
+        }
+        else if (view.getId() == org.smartregister.chw.core.R.id.due_only_layout) {
             toggleFilterSelection(view);
         }
 

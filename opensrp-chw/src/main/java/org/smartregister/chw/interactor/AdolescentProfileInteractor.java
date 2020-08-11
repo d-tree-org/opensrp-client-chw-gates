@@ -1,15 +1,19 @@
 package org.smartregister.chw.interactor;
 
+import android.content.Context;
 import android.database.Cursor;
 import android.util.Pair;
 
 import org.json.JSONObject;
 import org.smartregister.chw.contract.AdolescentProfileContract;
+import org.smartregister.chw.core.contract.CoreChildProfileContract;
+import org.smartregister.chw.model.AdolescentVisit;
 import org.smartregister.chw.core.utils.ChildDBConstants;
 import org.smartregister.chw.core.utils.CoreChildUtils;
 import org.smartregister.chw.core.utils.CoreConstants;
 import org.smartregister.chw.core.utils.Utils;
 import org.smartregister.chw.malaria.domain.MemberObject;
+import org.smartregister.chw.util.AdolescentHomeVisit;
 import org.smartregister.chw.util.AdolescentUtils;
 import org.smartregister.clientandeventmodel.Client;
 import org.smartregister.clientandeventmodel.Event;
@@ -28,6 +32,10 @@ import org.smartregister.sync.helper.ECSyncHelper;
 
 import java.util.Date;
 
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 import timber.log.Timber;
 
 public class AdolescentProfileInteractor implements AdolescentProfileContract.Interactor {
@@ -101,6 +109,69 @@ public class AdolescentProfileInteractor implements AdolescentProfileContract.In
 
         appExecutors.diskIO().execute(runnable);
 
+    }
+
+    @Override
+    public void refreshAdolescentVisitBar(Context context, String baseEntityId, AdolescentProfileContract.InteractorCallBack interactorCallBack) {
+        if (pClient == null) {
+            return;
+        }
+        AdolescentHomeVisit adolescentHomeVisit = AdolescentUtils.getAdolescentLastHomeVisit(baseEntityId);
+
+        String dobString = org.smartregister.chw.util.Utils.getValue(pClient.getColumnmaps(), DBConstants.KEY.DOB, false);
+
+        // Simulate the last visit date to check if all conditions work
+/*        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
+        String dateString = "08-08-2020 18:18:32";
+        Date simulatedDate = new Date();
+
+        try {
+            simulatedDate = sdf.parse(dateString);
+        } catch (ParseException e) {
+            Timber.e(e);
+        }*/
+
+        final AdolescentVisit adolescentVisit = AdolescentUtils.getAdolescentVisitStatus(context, dobString, adolescentHomeVisit.getLastHomeVisitDate(),
+                adolescentHomeVisit.getVisitNotDoneDate(), adolescentHomeVisit.getDateCreated());
+        Runnable runnable = () -> appExecutors.mainThread().execute(() -> interactorCallBack.updateAdolescentVisit(adolescentVisit));
+        appExecutors.diskIO().execute(runnable);
+    }
+
+    @Override
+    public void refreshUpcomingServicesAndFamilyDue(Context context, String familyId, String baseEntityId, AdolescentProfileContract.InteractorCallBack callBack) {
+        if (pClient == null) {
+            return;
+        }
+        updateFamilyDueStatus(context, familyId, baseEntityId, callBack);
+
+    }
+
+    private void updateFamilyDueStatus(Context context, String familyId, String baseEntityId, final AdolescentProfileContract.InteractorCallBack callback) {
+        FamilyInteractor familyInteractor = new FamilyInteractor();
+        familyInteractor.updateFamilyDueStatus(context, baseEntityId, familyId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<String>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(String s) {
+                        callback.updateFamilyMemberServiceDue(s);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        callback.hideProgress();
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        callback.hideProgress();
+                    }
+                });
     }
 
     @Override

@@ -3,8 +3,7 @@ package org.smartregister.chw.contract;
 import android.content.Context;
 import android.util.Pair;
 
-import org.smartregister.chw.malaria.contract.MalariaProfileContract;
-import org.smartregister.chw.malaria.domain.MemberObject;
+import org.smartregister.chw.model.AdolescentVisit;
 import org.smartregister.clientandeventmodel.Client;
 import org.smartregister.clientandeventmodel.Event;
 import org.smartregister.commonregistry.CommonPersonObjectClient;
@@ -30,6 +29,27 @@ public interface AdolescentProfileContract extends BaseProfileContract {
         void refreshProfile(final FetchStatus fetchStatus);
 
         void setOverDueColor();
+
+        void setVisitButtonDueStatus();
+
+        void setVisitButtonOverdueStatus();
+
+
+        void setVisitLessTwentyFourView(String monthName);
+
+        void setVisitAboveTwentyFourView();
+
+        void setVisitNotDoneThisMonth();
+
+        void setLastVisitRowView(String days);
+
+        void setFamilyHasNothingDue();
+
+        void setFamilyHasServiceDue();
+
+        void setFamilyHasServiceOverdue();
+
+        void openVisitMonthView();
 
         void openMedicalHistory();
 
@@ -66,11 +86,16 @@ public interface AdolescentProfileContract extends BaseProfileContract {
         void fetchVisitStatus(String baseEntityId);
 
         void fetchUpcomingServiceAndFamilyDue(String baseEntityId);
+
     }
     interface Model{}
     interface Interactor{
 
         void refreshProfileInfo(String baseEntityId, AdolescentProfileContract.InteractorCallBack callback);
+
+        void refreshAdolescentVisitBar(Context context, String baseEntityId, AdolescentProfileContract.InteractorCallBack interactorCallBack);
+
+        void refreshUpcomingServicesAndFamilyDue(Context context, String familyId, String baseEntityId, AdolescentProfileContract.InteractorCallBack callBack);
 
         CommonPersonObjectClient getcommonPersonObjectClient();
 
@@ -78,6 +103,10 @@ public interface AdolescentProfileContract extends BaseProfileContract {
 
     }
     interface InteractorCallBack extends BaseProfileContract{
+
+        void updateAdolescentVisit(AdolescentVisit adolescentVisit);
+
+        void updateFamilyMemberServiceDue(String serviceDueStatus);
 
         void setFamilyID(String familyID);
 
