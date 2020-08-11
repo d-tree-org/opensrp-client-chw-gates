@@ -1,10 +1,20 @@
 package org.smartregister.chw.util;
 
+import android.content.Context;
+
+import org.jeasy.rules.api.Rules;
+import org.smartregister.chw.core.application.CoreChwApplication;
+import org.smartregister.chw.core.dao.VisitDao;
+import org.smartregister.chw.core.domain.VisitSummary;
+import org.smartregister.chw.dao.AdolescentDao;
+import org.smartregister.chw.model.AdolescentVisit;
 import org.smartregister.chw.core.utils.ChildDBConstants;
+import org.smartregister.chw.rule.AdolescentVisitAlertRule;
 import org.smartregister.cursoradapter.SmartRegisterQueryBuilder;
 import org.smartregister.family.util.DBConstants;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 public class AdolescentUtils {
 
@@ -47,6 +57,56 @@ public class AdolescentUtils {
         columnList.add(tableName + "." + org.smartregister.chw.core.utils.ChildDBConstants.KEY.DATE_CREATED);
         columnList.add(tableName + "." + ChildDBConstants.KEY.ILLNESS_ACTION);
         return columnList.toArray(new String[columnList.size()]);
+    }
+
+    public static AdolescentVisit getAdolescentVisitStatus(Context context, String yearOfBirth, long lastVisitDate, long visitNotDate, long dateCreated) {
+        AdolescentVisitAlertRule homeAlertRule = new AdolescentVisitAlertRule(context, yearOfBirth, lastVisitDate, visitNotDate, dateCreated);
+        CoreChwApplication.getInstance().getRulesEngineHelper().getButtonAlertStatus(homeAlertRule, "adolescent-home-visit-rules.yml");
+        return getAdolescentVisitStatus(homeAlertRule, lastVisitDate);
+    }
+
+    public static AdolescentVisit getAdolescentVisitStatus(Context context, Rules rules, String yearOfBirth, long lastVisitDate, long visitNotDate, long dateCreated) {
+        AdolescentVisitAlertRule homeAlertRule = new AdolescentVisitAlertRule(context, yearOfBirth, lastVisitDate, visitNotDate, dateCreated);
+        CoreChwApplication.getInstance().getRulesEngineHelper().getButtonAlertStatus(homeAlertRule, rules);
+        return getAdolescentVisitStatus(homeAlertRule, lastVisitDate);
+    }
+
+    public static AdolescentVisit getAdolescentVisitStatus(AdolescentVisitAlertRule homeAlertRule, long lastVisitDate) {
+        AdolescentVisit adolescentVisit = new AdolescentVisit();
+        adolescentVisit.setVisitStatus(homeAlertRule.buttonStatus);
+        adolescentVisit.setNoOfMonthDue(homeAlertRule.noOfMonthDue);
+        adolescentVisit.setLastVisitDays(homeAlertRule.noOfDayDue);
+        adolescentVisit.setLastVisitMonthName(homeAlertRule.visitMonthName);
+        adolescentVisit.setLastVisitTime(lastVisitDate);
+        return adolescentVisit;
+    }
+
+    public static AdolescentHomeVisit getAdolescentLastHomeVisit(String baseEntityId) {
+        AdolescentHomeVisit adolescentHomeVisit = new AdolescentHomeVisit();
+
+        Map<String, VisitSummary> map = VisitDao.getVisitSummary(baseEntityId);
+        if (map == null) {
+            return adolescentHomeVisit;
+        }
+
+        VisitSummary notDone = map.get(Constants.ADOLESCENT_HOME_VISIT_NOT_DONE);
+        VisitSummary lastVisit = map.get(Constants.ADOLESCENT_HOME_VISIT_DONE);
+
+        if (lastVisit != null) {
+            adolescentHomeVisit.setLastHomeVisitDate(lastVisit.getVisitDate().getTime());
+        }
+
+        if (notDone != null) {
+            adolescentHomeVisit.setVisitNotDoneDate(notDone.getVisitDate().getTime());
+        }
+
+
+        Long datecreated = AdolescentDao.getAdolescentDateCreated(baseEntityId);
+        if (datecreated != null) {
+            adolescentHomeVisit.setDateCreated(datecreated);
+        }
+
+        return adolescentHomeVisit;
     }
 
 }
