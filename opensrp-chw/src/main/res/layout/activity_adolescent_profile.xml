@@ -160,7 +160,7 @@
 
             <include
                 android:id="@+id/record_visit_panel"
-                layout="@layout/view_record_visit" />
+                layout="@layout/view_chw_adolescent_record_visit" />
 
             <include
                 android:id="@+id/profile_layout"
