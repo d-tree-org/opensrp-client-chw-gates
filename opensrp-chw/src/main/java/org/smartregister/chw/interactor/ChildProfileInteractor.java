@@ -178,6 +178,13 @@ public class ChildProfileInteractor extends CoreChildProfileInteractor implement
 
                     processPopulatableFields(client, jsonObject, jsonArray);
 
+                    //Get fingerprint
+                    String key = jsonObject.getString(JsonFormUtils.KEY).toLowerCase();
+                    if (key.equals(org.smartregister.family.util.Constants.JSON_FORM_KEY.FINGER_PRINT)){
+                        org.smartregister.domain.db.Client clientObject = CoreLibrary.getInstance().context().getEventClientRepository().fetchClientByBaseEntityId(client.entityId());
+                        String simprintsId = clientObject.getIdentifier("simprints_guid");
+                        jsonObject.put(JsonFormUtils.VALUE, simprintsId);
+                    }
                 }
 
                 return form;

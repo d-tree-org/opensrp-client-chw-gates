@@ -1,35 +1,45 @@
 package org.smartregister.chw.fragment;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
+import androidx.loader.content.CursorLoader;
+import androidx.loader.content.Loader;
 
+import org.apache.commons.lang3.StringUtils;
 import org.smartregister.chw.R;
 import org.smartregister.chw.activity.AboveFiveChildProfileActivity;
 import org.smartregister.chw.activity.AdolescentProfileActivity;
 import org.smartregister.chw.anc.domain.MemberObject;
+import org.smartregister.chw.anc.util.DBConstants;
 import org.smartregister.chw.contract.AdolescentRegisterFragmentContract;
 import org.smartregister.chw.core.activity.CoreChildProfileActivity;
 import org.smartregister.chw.core.custom_views.NavigationMenu;
 import org.smartregister.chw.core.utils.CoreConstants;
+import org.smartregister.chw.core.utils.QueryBuilder;
 import org.smartregister.chw.core.utils.Utils;
 import org.smartregister.chw.model.AdolescentRegisterFragmentModel;
 import org.smartregister.chw.presenter.AdolescentRegisterFragmentPresenter;
 import org.smartregister.chw.provider.AdolescentRegisterProvider;
 import org.smartregister.commonregistry.CommonPersonObjectClient;
+import org.smartregister.commonregistry.CommonRepository;
 import org.smartregister.configurableviews.model.View;
 import org.smartregister.cursoradapter.RecyclerViewPaginatedAdapter;
-import org.smartregister.family.util.DBConstants;
+import org.smartregister.cursoradapter.SmartRegisterQueryBuilder;
 import org.smartregister.view.activity.BaseRegisterActivity;
 import org.smartregister.view.customcontrols.CustomFontTextView;
 import org.smartregister.view.customcontrols.FontVariant;
 import org.smartregister.view.fragment.BaseRegisterFragment;
 
+import java.text.MessageFormat;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Set;
 
 import timber.log.Timber;
@@ -145,7 +155,7 @@ public class AdolescentRegisterFragment extends BaseRegisterFragment implements 
 
     @Override
     protected String getDefaultSortQuery() {
-        return null;
+        return presenter().getDefaultSortQuery();
     }
 
     @Override
@@ -195,19 +205,19 @@ public class AdolescentRegisterFragment extends BaseRegisterFragment implements 
         }
     }
 
-    protected void dueFilter(android.view.View dueOnlyLayout) {
-        filterDue(searchText(), "", presenter().getDueFilterCondition());
-        dueOnlyLayout.setTag(DUE_FILTER_TAG);
-        switchViews(dueOnlyLayout, true);
-    }
-
     protected void normalFilter(android.view.View dueOnlyLayout) {
-        filterDue(searchText(), "", presenter().getMainCondition());
+        filter(searchText(), "", presenter().getMainCondition());
         dueOnlyLayout.setTag(null);
         switchViews(dueOnlyLayout, false);
     }
 
-    protected void filterDue(String filterString, String joinTableString, String mainConditionString) {
+    protected void dueFilter(android.view.View dueOnlyLayout) {
+        filter(searchText(), "", presenter().getDueFilterCondition());
+        dueOnlyLayout.setTag(DUE_FILTER_TAG);
+        switchViews(dueOnlyLayout, true);
+    }
+
+    protected void filter(String filterString, String joinTableString, String mainConditionString) {
         filters = filterString;
         joinTable = joinTableString;
         mainCondition = mainConditionString;
@@ -233,6 +243,7 @@ public class AdolescentRegisterFragment extends BaseRegisterFragment implements 
 
     }
 
+
     @Override
     protected void updateSearchView() {
         super.updateSearchView();
@@ -250,5 +261,100 @@ public class AdolescentRegisterFragment extends BaseRegisterFragment implements 
         toolbar.setContentInsetStartWithNavigation(0);
 
         NavigationMenu.getInstance(getActivity(), null, toolbar);
+    }
+
+    private String defaultFilterAndSortQuery() {
+        SmartRegisterQueryBuilder sqb = new SmartRegisterQueryBuilder(mainSelect);
+
+        String query = "";
+        String customFilter = getFilterString();
+        try {
+            if (isValidFilterForFts(commonRepository())) {
+
+                String myquery = QueryBuilder.getQuery(joinTables, mainCondition, tablename, customFilter, clientAdapter, Sortqueries);
+                List<String> ids = commonRepository().findSearchIds(myquery);
+                query = sqb.toStringFts(ids, tablename, CommonRepository.ID_COLUMN,
+                        Sortqueries);
+                query = sqb.Endquery(query);
+            } else {
+                sqb.addCondition(customFilter);
+                query = sqb.orderbyCondition(Sortqueries);
+                query = sqb.Endquery(sqb.addlimitandOffset(query, clientAdapter.getCurrentlimit(), clientAdapter.getCurrentoffset()));
+
+            }
+        } catch (Exception e) {
+            Timber.e(e);
+        }
+
+        return query;
+    }
+
+    private String getFilterString() {
+        StringBuilder customFilter = new StringBuilder();
+        if (StringUtils.isNotBlank(filters)) {
+            customFilter.append(MessageFormat.format(" and ( {0}.{1} like ''%{2}%'' ", CoreConstants.TABLE_NAME.FAMILY_MEMBER, DBConstants.KEY.FIRST_NAME, filters));
+            customFilter.append(MessageFormat.format(" or {0}.{1} like ''%{2}%'' ", CoreConstants.TABLE_NAME.FAMILY_MEMBER, DBConstants.KEY.LAST_NAME, filters));
+            customFilter.append(MessageFormat.format(" or {0}.{1} like ''%{2}%'' ", CoreConstants.TABLE_NAME.FAMILY_MEMBER, DBConstants.KEY.MIDDLE_NAME, filters));
+            customFilter.append(MessageFormat.format(" or {0}.{1} like ''%{2}%'' ) ", CoreConstants.TABLE_NAME.FAMILY_MEMBER, DBConstants.KEY.UNIQUE_ID, filters));
+        }
+
+        if (dueFilterActive)
+            customFilter.append(getDueCondition());
+
+        return customFilter.toString();
+    }
+
+    @Override
+    public Loader<Cursor> onCreateLoader(int id, final Bundle args) {
+        if (id == LOADER_ID) {
+            return new CursorLoader(getActivity()) {
+                @Override
+                public Cursor loadInBackground() {
+                    // Count query
+                    final String COUNT = "count_execute";
+                    if (args != null && args.getBoolean(COUNT)) {
+                        countExecute();
+                    }
+                    String query = defaultFilterAndSortQuery();
+                    return commonRepository().rawCustomQueryForAdapter(query);
+                }
+            };
+        }
+        return super.onCreateLoader(id, args);
+    }
+
+    public String getDueCondition() {
+        return " and " + CoreConstants.TABLE_NAME.ANC_MEMBER + ".base_entity_id in (select base_entity_id from schedule_service where strftime('%Y-%m-%d') BETWEEN due_date and expiry_date and schedule_name = '" + CoreConstants.SCHEDULE_TYPES.ANC_VISIT + "' and ifnull(not_done_date,'') = '' and ifnull(completion_date,'') = '' )  ";
+    }
+
+    @Override
+    public void countExecute() {
+        Cursor cursor = null;
+        try {
+
+            String query = "select count(*) from " + presenter().getMainTable() + " inner join " + CoreConstants.TABLE_NAME.FAMILY_MEMBER +
+                    " on " + presenter().getMainTable() + "." + org.smartregister.chw.anc.util.DBConstants.KEY.BASE_ENTITY_ID + " = " +
+                    CoreConstants.TABLE_NAME.FAMILY_MEMBER + "." + DBConstants.KEY.BASE_ENTITY_ID +
+                    " where " + presenter().getMainCondition();
+
+            if (StringUtils.isNotBlank(filters))
+                query = query + getFilterString();
+
+            cursor = commonRepository().rawCustomQueryForAdapter(query);
+            cursor.moveToFirst();
+            clientAdapter.setTotalcount(cursor.getInt(0));
+            Timber.v("total count here %d", clientAdapter.getTotalcount());
+
+            clientAdapter.setCurrentlimit(20);
+            clientAdapter.setCurrentoffset(0);
+
+
+        } catch (Exception e) {
+            Timber.e(e);
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+        }
     }
 }
