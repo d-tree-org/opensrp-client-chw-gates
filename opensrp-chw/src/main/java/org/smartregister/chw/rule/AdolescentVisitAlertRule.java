@@ -28,6 +28,7 @@ public class AdolescentVisitAlertRule implements ICommonRule, RegisterAlert {
     private LocalDate visitNotDoneDate;
     private Integer yearOfBirth;
     private Context context;
+    private boolean visitDoneLessThan24hours = false;
 
 
     public AdolescentVisitAlertRule(Context context, String yearOfBirthString, long lastVisitDateLong, long visitNotDoneValue, long dateCreatedLong) {
@@ -35,10 +36,18 @@ public class AdolescentVisitAlertRule implements ICommonRule, RegisterAlert {
         this.context = context;
 
         this.todayDate = new LocalDate();
-
+        visitDoneLessThan24hours = false;
         if (lastVisitDateLong > 0) {
+            int hoursSinceLastVisit = (int) ((new Date().getTime() - lastVisitDateLong) / (60*60*1000));
             this.lastVisitDate = new LocalDate(lastVisitDateLong);
-            noOfDayDue = dayDifference(lastVisitDate, todayDate) + " " + context.getString(org.smartregister.chw.core.R.string.days);
+            if(hoursSinceLastVisit > 24) {
+                noOfDayDue = dayDifference(lastVisitDate, todayDate) + " " + context.getString(org.smartregister.chw.core.R.string.days);
+            } else {
+                visitDoneLessThan24hours = true;
+                noOfDayDue = context.getString(org.smartregister.chw.core.R.string.less_than_twenty_four);
+            }
+        } else {
+            noOfDayDue = dayDifference(new LocalDate(dateCreatedLong), todayDate) + " "+ context.getString(org.smartregister.chw.core.R.string.days);
         }
 
         if (visitNotDoneValue > 0) {
@@ -96,10 +105,7 @@ public class AdolescentVisitAlertRule implements ICommonRule, RegisterAlert {
 
     public boolean isVisitWithinTwentyFour() {
         visitMonthName = theMonth(todayDate.getMonthOfYear() - 1);
-        if (noOfDayDue == null) {
-            noOfDayDue = context.getString(org.smartregister.chw.core.R.string.less_than_twenty_four);
-        }
-        return (lastVisitDate != null) && !(lastVisitDate.isBefore(todayDate.minusDays(1)) && lastVisitDate.isBefore(todayDate));
+        return visitDoneLessThan24hours;
     }
 
     private String theMonth(int month) {
