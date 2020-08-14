@@ -30,6 +30,8 @@ public interface AdolescentProfileContract extends BaseProfileContract {
 
         void setOverDueColor();
 
+        void enableEdit(boolean enable);
+
         void setVisitButtonDueStatus();
 
         void setVisitButtonOverdueStatus();
@@ -56,6 +58,8 @@ public interface AdolescentProfileContract extends BaseProfileContract {
         void openUpcomingService();
 
         void openFamilyDueServices();
+
+        void showUndoVisitNotDoneView();
 
         void showProgressBar(boolean status);
 
@@ -87,9 +91,13 @@ public interface AdolescentProfileContract extends BaseProfileContract {
 
         void fetchUpcomingServiceAndFamilyDue(String baseEntityId);
 
+        void updateVisitNotDone(long value);
+
     }
     interface Model{}
     interface Interactor{
+
+        void updateVisitNotDone(long value, AdolescentProfileContract.InteractorCallBack callBack);
 
         void refreshProfileInfo(String baseEntityId, AdolescentProfileContract.InteractorCallBack callback);
 
@@ -125,6 +133,10 @@ public interface AdolescentProfileContract extends BaseProfileContract {
         void onRegistrationSaved(boolean isEditMode);
 
         void hideProgress();
+
+        void updateVisitNotDone();
+
+        void undoVisitNotDone();
     }
 
 }

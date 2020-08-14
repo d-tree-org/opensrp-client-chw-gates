@@ -6,15 +6,14 @@ import android.util.Pair;
 
 import org.json.JSONObject;
 import org.smartregister.chw.contract.AdolescentProfileContract;
-import org.smartregister.chw.core.contract.CoreChildProfileContract;
 import org.smartregister.chw.model.AdolescentVisit;
 import org.smartregister.chw.core.utils.ChildDBConstants;
-import org.smartregister.chw.core.utils.CoreChildUtils;
 import org.smartregister.chw.core.utils.CoreConstants;
 import org.smartregister.chw.core.utils.Utils;
-import org.smartregister.chw.malaria.domain.MemberObject;
+import org.smartregister.chw.schedulers.ChwScheduleTaskExecutor;
 import org.smartregister.chw.util.AdolescentHomeVisit;
 import org.smartregister.chw.util.AdolescentUtils;
+import org.smartregister.chw.util.Constants;
 import org.smartregister.clientandeventmodel.Client;
 import org.smartregister.clientandeventmodel.Event;
 import org.smartregister.commonregistry.CommonPersonObject;
@@ -30,8 +29,12 @@ import org.smartregister.repository.UniqueIdRepository;
 import org.smartregister.sync.ClientProcessorForJava;
 import org.smartregister.sync.helper.ECSyncHelper;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
+import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
@@ -121,8 +124,8 @@ public class AdolescentProfileInteractor implements AdolescentProfileContract.In
         String dobString = org.smartregister.chw.util.Utils.getValue(pClient.getColumnmaps(), DBConstants.KEY.DOB, false);
 
         // Simulate the last visit date to check if all conditions work
-/*        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
-        String dateString = "08-08-2020 18:18:32";
+        /*SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss", Locale.getDefault());
+        String dateString = "13-08-2020 01:10:32";
         Date simulatedDate = new Date();
 
         try {
@@ -247,5 +250,48 @@ public class AdolescentProfileInteractor implements AdolescentProfileContract.In
 
     public CommonPersonObjectClient getcommonPersonObjectClient() {
         return pClient;
+    }
+
+    @Override
+    public void updateVisitNotDone(long value, final AdolescentProfileContract.InteractorCallBack callBack) {
+        updateHomeVisitAsEvent(value)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<Object>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+                    }
+
+                    @Override
+                    public void onNext(Object o) {
+                        if (value == 0) {
+                            callBack.undoVisitNotDone();
+                        } else {
+                            callBack.updateVisitNotDone();
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        callBack.hideProgress();
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+                    }
+                });
+    }
+
+    private Observable<Object> updateHomeVisitAsEvent(final long value) {
+        return Observable.create(objectObservableEmitter -> {
+            if (value == 0) {
+                AdolescentUtils.undoVisitNotDone(getcommonPersonObjectClient().entityId());
+            } else {
+                AdolescentUtils.visitNotDone(getcommonPersonObjectClient().entityId());
+            }
+            ChwScheduleTaskExecutor.getInstance().execute(getcommonPersonObjectClient().entityId(), Constants.ADOLESCENT_HOME_VISIT_NOT_DONE, new Date());
+            objectObservableEmitter.onNext("");
+        });
     }
 }

@@ -74,9 +74,9 @@ public class AdolescentProfilePresenter implements AdolescentProfileContract.Pre
             if (adolescentVisit.getLastVisitTime() != 0) {
                 getView().setLastVisitRowView(adolescentVisit.getLastVisitDays());
             }
-/*            if (!adolescentVisit.getVisitStatus().equalsIgnoreCase(CoreConstants.VisitType.NOT_VISIT_THIS_MONTH.name()) && adolescentVisit.getLastVisitTime() != 0) {
-                getView().enableEdit(new Period(new DateTime(childVisit.getLastVisitTime()), DateTime.now()).getHours() <= 24);
-            }*/
+            if (!adolescentVisit.getVisitStatus().equalsIgnoreCase(CoreConstants.VisitType.NOT_VISIT_THIS_MONTH.name()) && adolescentVisit.getLastVisitTime() != 0) {
+                getView().enableEdit(new Period(new DateTime(adolescentVisit.getLastVisitTime()), DateTime.now()).getHours() <= 24);
+            }
 
         }
     }
@@ -223,5 +223,22 @@ public class AdolescentProfilePresenter implements AdolescentProfileContract.Pre
             }
 
         }
+    }
+
+    @Override
+    public void updateVisitNotDone(long value) {
+        interactor.updateVisitNotDone(value, this);
+    }
+
+    @Override
+    public void updateVisitNotDone() {
+        hideProgress();
+        getView().openVisitMonthView();
+    }
+
+    @Override
+    public void undoVisitNotDone() {
+        hideProgress();
+        getView().showUndoVisitNotDoneView();
     }
 }

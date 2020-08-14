@@ -178,6 +178,8 @@ public class AdolescentProfileActivity extends BaseProfileActivity implements Ad
         layoutRecordButtonDone.setOnClickListener(this);
         layoutLastVisitRow.setOnClickListener(this);
         layoutFamilyHasRow.setOnClickListener(this);
+        textViewVisitNot.setOnClickListener(this);
+        textViewUndo.setOnClickListener(this);
         setUpToolbar();
     }
 
@@ -187,13 +189,22 @@ public class AdolescentProfileActivity extends BaseProfileActivity implements Ad
 
         if (i == R.id.textview_record_visit || i == R.id.record_visit_done_bar) {
             openVisitHomeScreen(false);
-            Toast.makeText(this, "Record visit clicked", Toast.LENGTH_SHORT).show();
+        } else if (i == R.id.textview_visit_not) {
+            showProgressBar(true);
+            presenter().updateVisitNotDone(System.currentTimeMillis());
+            tvEdit.setVisibility(View.GONE);
+        } else if (i == R.id.textview_undo) {
+            showProgressBar(true);
+            presenter().updateVisitNotDone(0);
+        } else if (i == R.id.textview_edit) {
+            openVisitHomeScreen(true);
         } else if (i == R.id.most_due_overdue_row) {
             Toast.makeText(this, "Overdue thingy clicked", Toast.LENGTH_SHORT).show();
         } else if(i == R.id.last_visit_row) {
+            openMedicalHistory();
             Toast.makeText(this, "You clicked the last visit thingy", Toast.LENGTH_SHORT).show();
         } else if (i == R.id.family_has_row) {
-            Toast.makeText(this, "You clicked family has thingy", Toast.LENGTH_SHORT).show();
+            openFamilyDueServices();
         }
 
     }
@@ -291,6 +302,11 @@ public class AdolescentProfileActivity extends BaseProfileActivity implements Ad
     }
 
     @Override
+    public void showUndoVisitNotDoneView() {
+        presenter().fetchVisitStatus(baseEntityId);
+    }
+
+    @Override
     public void setAdolescentNameAndAge(String nameAndAge) { textViewName.setText(nameAndAge); }
 
     @Override
@@ -319,7 +335,9 @@ public class AdolescentProfileActivity extends BaseProfileActivity implements Ad
 
     @Override
     public void setVisitButtonDueStatus() {
-
+        openVisitButtonView();
+        textViewRecord.setBackgroundResource(R.drawable.rounded_blue_btn);
+        textViewRecord.setTextColor(getResources().getColor(R.color.white));
     }
 
     @Override
@@ -424,7 +442,15 @@ public class AdolescentProfileActivity extends BaseProfileActivity implements Ad
 
     @Override
     public void openFamilyDueServices() {
+        Intent intent = new Intent(this, FamilyProfileActivity.class);
 
+        intent.putExtra(Constants.INTENT_KEY.FAMILY_BASE_ENTITY_ID, ((AdolescentProfilePresenter) presenter()).getFamilyID());
+        intent.putExtra(Constants.INTENT_KEY.FAMILY_HEAD, ((AdolescentProfilePresenter) presenter()).getFamilyHead());
+        intent.putExtra(Constants.INTENT_KEY.PRIMARY_CAREGIVER, ((AdolescentProfilePresenter) presenter()).getPrimaryCareGiver());
+        intent.putExtra(Constants.INTENT_KEY.FAMILY_NAME, ((AdolescentProfilePresenter) presenter()).getFamilyName());
+
+        intent.putExtra(org.smartregister.chw.util.Constants.INTENT_KEY.SERVICE_DUE, true);
+        startActivity(intent);
     }
 
     @Override
@@ -435,6 +461,17 @@ public class AdolescentProfileActivity extends BaseProfileActivity implements Ad
     @Override
     public void hideView() {
 
+    }
+
+    @Override
+    public void enableEdit(boolean enable) {
+        if (enable) {
+            tvEdit.setVisibility(View.VISIBLE);
+            tvEdit.setOnClickListener(this);
+        } else {
+            tvEdit.setVisibility(View.GONE);
+            tvEdit.setOnClickListener(null);
+        }
     }
 
     @Override
