@@ -2,19 +2,30 @@ package org.smartregister.chw.util;
 
 import android.content.Context;
 
+import com.google.gson.Gson;
+
 import org.jeasy.rules.api.Rules;
+import org.json.JSONException;
+import org.smartregister.chw.anc.AncLibrary;
+import org.smartregister.chw.anc.domain.Visit;
+import org.smartregister.chw.anc.util.JsonFormUtils;
+import org.smartregister.chw.anc.util.NCUtils;
 import org.smartregister.chw.core.application.CoreChwApplication;
 import org.smartregister.chw.core.dao.VisitDao;
 import org.smartregister.chw.core.domain.VisitSummary;
+import org.smartregister.chw.core.utils.CoreConstants;
 import org.smartregister.chw.dao.AdolescentDao;
 import org.smartregister.chw.model.AdolescentVisit;
 import org.smartregister.chw.core.utils.ChildDBConstants;
 import org.smartregister.chw.rule.AdolescentVisitAlertRule;
+import org.smartregister.clientandeventmodel.Event;
 import org.smartregister.cursoradapter.SmartRegisterQueryBuilder;
 import org.smartregister.family.util.DBConstants;
 
 import java.util.ArrayList;
 import java.util.Map;
+
+import timber.log.Timber;
 
 public class AdolescentUtils {
 
@@ -107,6 +118,21 @@ public class AdolescentUtils {
         }
 
         return adolescentHomeVisit;
+    }
+
+    public static void undoVisitNotDone(String entityID) {
+        AdolescentDao.undoAdolescentVisitNotDone(entityID);
+    }
+
+    public static void visitNotDone(String entityId) {
+        try {
+            Event event = org.smartregister.chw.anc.util.JsonFormUtils.createUntaggedEvent(entityId, Constants.ADOLESCENT_HOME_VISIT_NOT_DONE, CoreConstants.TABLE_NAME.ADOLESCENT);
+            Visit visit = NCUtils.eventToVisit(event, JsonFormUtils.generateRandomUUIDString());
+            visit.setPreProcessedJson(new Gson().toJson(event));
+            AncLibrary.getInstance().visitRepository().addVisit(visit);
+        } catch (JSONException e) {
+            Timber.e(e);
+        }
     }
 
 }

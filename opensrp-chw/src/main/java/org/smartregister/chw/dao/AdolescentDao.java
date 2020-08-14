@@ -1,8 +1,11 @@
 package org.smartregister.chw.dao;
 
+import org.smartregister.chw.core.utils.CoreConstants;
+import org.smartregister.chw.util.Constants;
 import org.smartregister.dao.AbstractDao;
 
 import java.text.ParseException;
+import java.util.Calendar;
 import java.util.List;
 
 import timber.log.Timber;
@@ -45,6 +48,17 @@ public class AdolescentDao extends AbstractDao {
             return null;
         }
 
+    }
+
+    public static void undoAdolescentVisitNotDone(String baseEntityID) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.HOUR_OF_DAY, -24);
+
+        long date = calendar.getTime().getTime();
+
+        String sql = "delete from visits where base_entity_id = '" + baseEntityID + "' COLLATE NOCASE and visit_type = '" +
+                Constants.ADOLESCENT_HOME_VISIT_NOT_DONE + "' and visit_date >= " + date + " and created_at >=  " + date + "";
+        updateDB(sql);
     }
 
 }
