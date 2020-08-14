@@ -297,8 +297,10 @@
 
     <!--Adolescent Home Visit -->
     <string name="adolescent_education_counseling">Elimu na Ushauri</string>
-    <string name="education_counseling_provided">Elimu/Ushauri Uliotolewa:</string>
+    <string name="education_counseling_provided">Elimu/Ushauri Uliotolewa</string>
     <string name="adolescent_additional_needs">Tathmini Mahitaji/Hali nyingine</string>
-    <string name="adolescent_additional_needs_requested">Mahitaji mengine yaliyoombwa:</string>
+    <string name="adolescent_additional_needs_requested">Mahitaji mengine yaliyoombwa</string>
+    <string name="chw_remarks_or_comments">Maoni</string>
+    <string name="chw_remarks_or_comments_given">Maoni</string>
 
 </resources>

@@ -1,0 +1,420 @@
+{
+  "validate_on_submit": true,
+  "show_errors_on_submit": true,
+  "count": "1",
+  "encounter_type": "Additional Needs - Adolescent",
+  "entity_id": "",
+  "metadata": {
+    "start": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "start",
+      "openmrs_entity_id": "163137AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "end": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "end",
+      "openmrs_entity_id": "163138AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "today": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "encounter",
+      "openmrs_entity_id": "encounter_date"
+    },
+    "deviceid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "deviceid",
+      "openmrs_entity_id": "163149AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "subscriberid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "subscriberid",
+      "openmrs_entity_id": "163150AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "simserial": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "simserial",
+      "openmrs_entity_id": "163151AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "phonenumber": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "phonenumber",
+      "openmrs_entity_id": "163152AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "encounter_location": ""
+  },
+  "step1": {
+    "title": "Ushauri wa ziada kwa kijana balehe",
+    "submit-button": "true",
+    "fields": [
+      {
+        "key": "additional_counseling",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "159860AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "type": "check_box",
+        "label": "Tathmini kama kijana anahitaji ushauri wa ziada baada ya kutoa elimu na/au ushauri:",
+        "label_text_style": "normal",
+        "text_color": "#C0C0C0",
+        "exclusive": [
+          "none"
+        ],
+        "options": [
+          {
+            "key": "family_planning_methods",
+            "text": "Njia za uzazi wa mpango",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "142373AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          {
+            "key": "reproductive_health_issues",
+            "text": "Ushauri nasaha kuhusu afya ya uzazi",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "164877AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          {
+            "key": "none",
+            "text": "Hahitaji ushauri wa ziada",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "1107AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Tafadhali chagua angalau moja"
+        }
+      },
+      {
+        "key": "condition_management_title",
+        "type": "label",
+        "text": "Magonjwa yahusianayo na afya ya uzazi",
+        "label_text_size": "18sp",
+        "label_text_style": "bold",
+        "text_color": "#000000"
+      },
+      {
+        "key": "adolescent_condition_present",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "159860AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "type": "check_box",
+        "label": "Je, kijana ana dalili zozote kati ya hizi?",
+        "label_text_style": "normal",
+        "text_color": "#C0C0C0",
+        "exclusive": [
+          "none"
+        ],
+        "options": [
+          {
+            "key": "suspected_pregnancy",
+            "text": "Anajishuku na ujauzito",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "pain_lower_abdominal_parts",
+            "text": "Maumivu ya tumbo chini ya kitovu",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "157544AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          {
+            "key": "vaginal_discharge",
+            "text": "Kutokwa na majimaji ukweni",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "123396AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          {
+            "key": "vaginal_bleeding_between_periods",
+            "text": "Kutokwa na damu ukeni bila kuwa katika siku za hedhi",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "147240AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          {
+            "key": "wound_around_genitals",
+            "text": "Kidonda/vidonda sehemu za siri",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "864AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          {
+            "key": "irritation_around_genitals",
+            "text": "Kuwashwa sehemu za siri",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "128315AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          {
+            "key": "swelling_genitals",
+            "text": "Uvimbe sehemu za siri",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "others",
+            "text": "Nyingineyo",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "none",
+            "text": "Hakuna",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "1107AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Tafadhali chagua angalau moja"
+        }
+      },
+      {
+        "key": "adolescent_condition_present_other",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "edit_text",
+        "hint": "Elezea magonjwa/hali nyingine",
+        "v_required": {
+          "value": "true",
+          "err": "Tafadhali elezea hali nyingine"
+        },
+        "relevance": {
+          "step1:adolescent_condition_present": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "others"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "key": "date_of_illness",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "1730AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "type": "date_picker",
+        "hint": "Tarehe kijana alipoanza kujihisi kuumwa",
+        "label_info_text": "Tarehe kijana alipoanza kujihisi kuumwa",
+        "expanded": false,
+        "min_date": "today-1y",
+        "max_date": "today",
+        "v_required": {
+          "value": "true",
+          "err": "Tafadhali ingiza jaza tarehe"
+        },
+        "relevance": {
+          "step1:adolescent_condition_present": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "suspected_pregnancy",
+                  "pain_lower_abdominal_parts",
+                  "vaginal_discharge",
+                  "vaginal_bleeding_between_periods",
+                  "wound_around_genitals",
+                  "irritation_around_genitals",
+                  "swelling_genitals",
+                  "others"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "key": "adolescent_service_option",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "159860AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "type": "check_box",
+        "label": "Unaweza kupata huduma katika duka la dawa muhimu au kituo cha kutolea huduma za afya. Nakushauri utembelee moja kati ya hizo kwa huduma zaidi. Je, ungependa kwenda wapi?",
+        "label_text_style": "normal",
+        "text_color": "#C0C0C0",
+        "exclusive": [
+          "neither"
+        ],
+        "options": [
+          {
+            "key": "addo",
+              "text": "Duka la dawa muhimu",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "1744AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          {
+            "key": "health_facility",
+            "text": "Kituo cha kutolea huduma za afya",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "1537AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          {
+            "key": "neither",
+            "text": "Hajachagua",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Tafadhali chagua angalau moja"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "adolescent_hv_additional_counseling_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "adolescent_service_neither_toaster",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "Nakushauri ufikirie tena juu ya hili na kupata huduma zaidi kutoka kwa mtaalamu wa afya.",
+        "text_color": "#CF0800",
+        "toaster_type": "problem",
+        "relevance": {
+          "step1:adolescent_service_option": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "neither"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "key": "adolescent_hf_referral_toaster",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "Nakushauri utembelee kituo cha kutolea huduma za afya cha karibu ili kupata ushauri na huduma zaidi. Jitahidi kukamilisha rufaa na nitakufuatilia ndani ya masaa 24 ili kuona kama umefanikiwa kupata huduma.",
+        "text_color": "#CF0800",
+        "toaster_type": "problem",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "adolescent_hv_additional_counseling_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "adolescent_addo_linkage_toaster",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "Nakushauri utembelee duka la dawa muhimu kwa ajili ya huduma zaidi. Nitakutembelea tena ndani ya siku 3 ili kuona kama umefanikiwa kupata huduma.",
+        "text_color": "#FFC100",
+        "toaster_type": "warning",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "adolescent_hv_additional_counseling_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "adolescent_contact_me_toaster",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "Usisite kuwasiliana nami ikiwa unahitaji maelezo au ushauri zaidi juu ya afya ya uzazi.",
+        "text_color": "#CF0800",
+        "toaster_type": "problem",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "adolescent_hv_additional_counseling_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "save_n_refer",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "165310AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "type": "button",
+        "hint": "Hifadhi na toa rufaa",
+        "btn_bg_color": "#CF0800",
+        "action": {
+          "behaviour": "refer"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "adolescent_hv_additional_counseling_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "save_n_link",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "165310AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "type": "button",
+        "hint": "Hifadhi na unganisha kwa DLDM",
+        "btn_bg_color": "#CF0800",
+        "action": {
+          "behaviour": "link"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "adolescent_hv_additional_counseling_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "save",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "165310AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "type": "button",
+        "hint": "Hifadhi",
+        "btn_bg_color": "#3596c0",
+        "action": {
+          "behaviour": "save"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "adolescent_hv_additional_counseling_relevance.yml"
+            }
+          }
+        }
+      }
+    ]
+  }
+}

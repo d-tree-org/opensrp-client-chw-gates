@@ -2,7 +2,7 @@
   "validate_on_submit": true,
   "show_errors_on_submit": true,
   "count": "1",
-  "encounter_type": "Additional Needs - Adolescent",
+  "encounter_type": "Remarks or Comments - Adolescent",
   "entity_id": "",
   "metadata": {
     "start": {
@@ -49,48 +49,16 @@
     "encounter_location": ""
   },
   "step1": {
-    "title": "Adolescent Additional Needs",
+    "title": "Maoni",
     "submit-button": "true",
     "fields": [
       {
-        "key": "adolescent_additional_needs",
+        "key": "chw_remarks_comments",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "159860AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-        "type": "check_box",
-        "label": "Evaluate if the adolescent needs additional counseling based on the education and/or counseling you have provided:",
-        "label_text_style": "normal",
-        "text_color": "#C0C0C0",
-        "exclusive": [
-          "none"
-        ],
-        "options": [
-          {
-            "key": "family_planning_methods",
-            "text": "Family planning method(s)",
-            "value": false,
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "142373AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-          },
-          {
-            "key": "reproductive_health_issues",
-            "text": "Further counseling on reproductive health issues",
-            "value": false,
-            "openmrs_entity": "",
-            "openmrs_entity_id": ""
-          },
-          {
-            "key": "none",
-            "text": "None",
-            "value": false,
-            "openmrs_entity": "",
-            "openmrs_entity_id": ""
-          }
-        ],
-        "v_required": {
-          "value": "true",
-          "err": "Please pick at least one"
-        }
+        "openmrs_entity_id": "161011AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "type": "edit_text",
+        "hint": "Toa maoni"
       },
       {
         "key": "save",
@@ -98,7 +66,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "165310AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
         "type": "button",
-        "hint": "Save",
+        "hint": "Hifadhi",
         "btn_bg_color": "#3596c0",
         "action": {
           "behaviour": "save"

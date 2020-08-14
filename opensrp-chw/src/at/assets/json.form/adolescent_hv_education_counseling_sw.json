@@ -49,7 +49,7 @@
     "encounter_location": ""
   },
   "step1": {
-    "title": "Adolescent Education and Counseling",
+    "title": "Ushauri na Elimu kwa kijana balehe",
     "submit-button": "true",
     "fields": [
       {
@@ -58,7 +58,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "159860AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
         "type": "check_box",
-        "label": "Provide education and/or counseling to the adolescent as needed. <br /> <br /> What educational and/or counseling topics haveyou provided?",
+        "label": "Toa elimu na/au ushauri kwa kijana kutokana na mahitaji. <br /> <br /> Je, umempatia elimu na/au ushauri gani? Chagua kati ya hizi:",
         "label_text_style": "normal",
         "text_color": "#C0C0C0",
         "exclusive": [
@@ -67,42 +67,42 @@
         "options": [
           {
             "key": "puberty_sexual_health",
-            "text": "Puberty and sexual health (e.g. female menstruation)",
+            "text": "Kubalehe na Afya ya uzazi",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": ""
           },
           {
             "key": "family_planning",
-            "text": "Family planning",
+            "text": "Uzazi wa Mpango",
             "value": false,
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "156277AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+            "openmrs_entity_id": "142373AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           },
           {
             "key": "sexually_transmitted_illnesses",
-            "text": "Sexually transmitted illnesses (STIs)",
+            "text": "Magonjwa yanayoenezwa kwa njia ya ngono",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "164882AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           },
           {
             "key": "mental_health",
-            "text": "Mental Health",
+            "text": "Afya ya Akili",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": ""
           },
           {
             "key": "other",
-            "text": "Other",
+            "text": "Nyinginezo",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": ""
           },
           {
             "key": "none",
-            "text": "None",
+            "text": "Hakuna ushauri uliotolewa",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "1107AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
@@ -110,7 +110,7 @@
         ],
         "v_required": {
           "value": "true",
-          "err": "Please pick at least one"
+          "err": "Tafadhali chagua angalau moja"
         }
       },
       {
@@ -119,7 +119,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "165310AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
         "type": "button",
-        "hint": "Save",
+        "hint": "Hifadhi",
         "btn_bg_color": "#3596c0",
         "action": {
           "behaviour": "save"

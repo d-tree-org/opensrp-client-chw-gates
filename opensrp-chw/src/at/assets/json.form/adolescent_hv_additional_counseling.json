@@ -1,0 +1,420 @@
+{
+  "validate_on_submit": true,
+  "show_errors_on_submit": true,
+  "count": "1",
+  "encounter_type": "Additional Needs - Adolescent",
+  "entity_id": "",
+  "metadata": {
+    "start": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "start",
+      "openmrs_entity_id": "163137AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "end": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "end",
+      "openmrs_entity_id": "163138AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "today": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "encounter",
+      "openmrs_entity_id": "encounter_date"
+    },
+    "deviceid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "deviceid",
+      "openmrs_entity_id": "163149AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "subscriberid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "subscriberid",
+      "openmrs_entity_id": "163150AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "simserial": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "simserial",
+      "openmrs_entity_id": "163151AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "phonenumber": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "phonenumber",
+      "openmrs_entity_id": "163152AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "encounter_location": ""
+  },
+  "step1": {
+    "title": "Adolescent Additional Counseling",
+    "submit-button": "true",
+    "fields": [
+      {
+        "key": "additional_counseling",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "159860AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "type": "check_box",
+        "label": "Evaluate if the adolescent needs additional counseling based on the education and/or counseling you have provided:",
+        "label_text_style": "normal",
+        "text_color": "#C0C0C0",
+        "exclusive": [
+          "none"
+        ],
+        "options": [
+          {
+            "key": "family_planning_methods",
+            "text": "Family planning method(s)",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "142373AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          {
+            "key": "reproductive_health_issues",
+            "text": "Further counseling on reproductive health issues",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "164877AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          {
+            "key": "none",
+            "text": "None",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "1107AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Please pick at least one"
+        }
+      },
+      {
+        "key": "condition_management_title",
+        "type": "label",
+        "text": "Management of conditions/illnesses related to reproductive health",
+        "label_text_size": "18sp",
+        "label_text_style": "bold",
+        "text_color": "#000000"
+      },
+      {
+        "key": "adolescent_condition_present",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "159860AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "type": "check_box",
+        "label": "Does the adolescent have any of the following conditions?",
+        "label_text_style": "normal",
+        "text_color": "#C0C0C0",
+        "exclusive": [
+          "none"
+        ],
+        "options": [
+          {
+            "key": "suspected_pregnancy",
+            "text": "Suspected pregnancy",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "pain_lower_abdominal_parts",
+            "text": "Pain in the lower abdominal parts",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "157544AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          {
+            "key": "vaginal_discharge",
+            "text": "Vaginal discharge",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "123396AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          {
+            "key": "vaginal_bleeding_between_periods",
+            "text": "Vaginal bleeding between periods",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "147240AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          {
+            "key": "wound_around_genitals",
+            "text": "Wound(s) around genital area",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "864AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          {
+            "key": "irritation_around_genitals",
+            "text": "Irritation around genital areas",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "128315AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          {
+            "key": "swelling_genitals",
+            "text": "Swelling of genital parts",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "others",
+            "text": "Others",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "none",
+            "text": "None",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "1107AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Please pick at least one"
+        }
+      },
+      {
+        "key": "adolescent_condition_present_other",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "edit_text",
+        "hint": "Describe the other conditions",
+        "v_required": {
+          "value": "true",
+          "err": "Describe the other conditions"
+        },
+        "relevance": {
+          "step1:adolescent_condition_present": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "others"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "key": "date_of_illness",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "1730AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "type": "date_picker",
+        "hint": "Date that the adolescent first observed the condition(s):",
+        "label_info_text": "Date that the adolescent first observed the condition(s):",
+        "expanded": false,
+        "min_date": "today-1y",
+        "max_date": "today",
+        "v_required": {
+          "value": "true",
+          "err": "Please enter the date of illness"
+        },
+        "relevance": {
+          "step1:adolescent_condition_present": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "suspected_pregnancy",
+                  "pain_lower_abdominal_parts",
+                  "vaginal_discharge",
+                  "vaginal_bleeding_between_periods",
+                  "wound_around_genitals",
+                  "irritation_around_genitals",
+                  "swelling_genitals",
+                  "others"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "key": "adolescent_service_option",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "159860AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "type": "check_box",
+        "label": "You can receive services either at an ADDO or a health facility. I recommend that you visit one of them for further services. Where would you like to go?",
+        "label_text_style": "normal",
+        "text_color": "#C0C0C0",
+        "exclusive": [
+          "neither"
+        ],
+        "options": [
+          {
+            "key": "addo",
+            "text": "ADDO",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "1744AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          {
+            "key": "health_facility",
+            "text": "Health facility",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "1537AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          {
+            "key": "neither",
+            "text": "Neither",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Please pick at least one"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "adolescent_hv_additional_counseling_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "adolescent_service_neither_toaster",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "I encourage you to still consider this and visit a healthcare professional to receive further services.",
+        "text_color": "#CF0800",
+        "toaster_type": "problem",
+        "relevance": {
+          "step1:adolescent_service_option": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "neither"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "key": "adolescent_hf_referral_toaster",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "I advise you to visit the closest health facility for more counseling and services. Try to complete the referral and I will follow-up in 24 hours to check if you were able to receive the services.",
+        "text_color": "#CF0800",
+        "toaster_type": "problem",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "adolescent_hv_additional_counseling_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "adolescent_addo_linkage_toaster",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "I recommend that you visit a nearby ADDO for further services. I'll follow up with you in 3 days to check if you were able to receive the services.",
+        "text_color": "#FFC100",
+        "toaster_type": "warning",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "adolescent_hv_additional_counseling_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "adolescent_contact_me_toaster",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "Do not hesitate to contact me, especially when you need more information or advise on reproductive health.",
+        "text_color": "#CF0800",
+        "toaster_type": "problem",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "adolescent_hv_additional_counseling_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "save_n_refer",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "165310AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "type": "button",
+        "hint": "Save and Refer to Health Facility",
+        "btn_bg_color": "#CF0800",
+        "action": {
+          "behaviour": "refer"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "adolescent_hv_additional_counseling_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "save_n_link",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "165310AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "type": "button",
+        "hint": "Save and Link to ADDO",
+        "btn_bg_color": "#CF0800",
+        "action": {
+          "behaviour": "link"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "adolescent_hv_additional_counseling_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "save",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "165310AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "type": "button",
+        "hint": "Save",
+        "btn_bg_color": "#3596c0",
+        "action": {
+          "behaviour": "save"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "adolescent_hv_additional_counseling_relevance.yml"
+            }
+          }
+        }
+      }
+    ]
+  }
+}
