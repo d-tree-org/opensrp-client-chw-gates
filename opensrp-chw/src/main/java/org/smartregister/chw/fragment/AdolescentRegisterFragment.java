@@ -10,6 +10,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import org.smartregister.chw.R;
 import org.smartregister.chw.activity.AboveFiveChildProfileActivity;
+import org.smartregister.chw.activity.AdolescentHomeVisitActivity;
 import org.smartregister.chw.activity.AdolescentProfileActivity;
 import org.smartregister.chw.anc.domain.MemberObject;
 import org.smartregister.chw.contract.AdolescentRegisterFragmentContract;
@@ -163,6 +164,8 @@ public class AdolescentRegisterFragment extends BaseRegisterFragment implements 
         if (view.getTag() instanceof CommonPersonObjectClient && view.getTag(org.smartregister.chw.core.R.id.VIEW_ID) == CLICK_VIEW_NORMAL) {
             goToAdolescentDetailActivity((CommonPersonObjectClient) view.getTag(), false);
         } else if (view.getTag() instanceof CommonPersonObjectClient && view.getTag(org.smartregister.chw.core.R.id.VIEW_ID) == CLICK_VIEW_DOSAGE_STATUS) {
+            MemberObject memberObject = new MemberObject((CommonPersonObjectClient) view.getTag());
+            AdolescentHomeVisitActivity.startMe(getActivity(), memberObject, false, AdolescentHomeVisitActivity.class);
             Toast.makeText(this.getActivity(), "Here we clicked the due button, we need to take the client there", Toast.LENGTH_SHORT).show();
         }
         else if (view.getId() == org.smartregister.chw.core.R.id.due_only_layout) {
