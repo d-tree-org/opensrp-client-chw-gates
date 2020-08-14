@@ -20,10 +20,13 @@ import org.smartregister.chw.anc.util.VisitUtils;
 import org.smartregister.chw.core.utils.CoreConstants;
 import org.smartregister.chw.core.utils.Utils;
 import org.smartregister.chw.util.Constants;
+import org.smartregister.clientandeventmodel.Event;
+import org.smartregister.clientandeventmodel.Obs;
 
 import java.text.MessageFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -58,7 +61,7 @@ public class AdolescentHomeVisitInteractor extends BaseAncHomeVisitInteractor {
         this.view = view;
         // get the preloaded data
         if (view.getEditMode()) {
-            Visit lastVisit = getVisitRepository().getLatestVisit(memberObject.getBaseEntityId(), Constants.EventType.CHILD_HOME_VISIT);
+            Visit lastVisit = getVisitRepository().getLatestVisit(memberObject.getBaseEntityId(), Constants.ADOLESCENT_HOME_VISIT_DONE);
             if (lastVisit != null) {
                 details = VisitUtils.getVisitGroups(getVisitDetailsRepository().getVisits(lastVisit.getVisitId()));
             }
@@ -69,6 +72,7 @@ public class AdolescentHomeVisitInteractor extends BaseAncHomeVisitInteractor {
             try {
                 evaluateEducationAndCounseling();
                 evaluateForAdditionalNeeds();
+                evaluateRemarks();
             } catch (BaseAncHomeVisitAction.ValidationException e) {
                 Timber.e(e);
             } catch (Exception e) {
@@ -92,7 +96,7 @@ public class AdolescentHomeVisitInteractor extends BaseAncHomeVisitInteractor {
             public void onPayloadReceived(String jsonPayload) {
                 try {
                     JSONObject jsonObject = new JSONObject(jsonPayload);
-                    adolescent_education_counseling = org.smartregister.chw.util.JsonFormUtils.getCheckBoxValue(jsonObject, "education_counseling_provided");
+                    adolescent_education_counseling = org.smartregister.chw.util.JsonFormUtils.getCheckBoxValue(jsonObject, "adolescent_counseling_given");
                 } catch (JSONException e) {
                     Timber.e(e);
                 }
@@ -132,7 +136,7 @@ public class AdolescentHomeVisitInteractor extends BaseAncHomeVisitInteractor {
             public void onPayloadReceived(String jsonPayload) {
                 try {
                     JSONObject jsonObject = new JSONObject(jsonPayload);
-                    adolescent_additional_needs = org.smartregister.chw.util.JsonFormUtils.getCheckBoxValue(jsonObject, "adolescent_additional_needs");
+                    adolescent_additional_needs = org.smartregister.chw.util.JsonFormUtils.getCheckBoxValue(jsonObject, "additional_counseling");
                 } catch (JSONException e) {
                     Timber.e(e);
                 }
@@ -156,10 +160,50 @@ public class AdolescentHomeVisitInteractor extends BaseAncHomeVisitInteractor {
         BaseAncHomeVisitAction additional_needs = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.adolescent_additional_needs))
                 .withOptional(false)
                 .withDetails(details)
-                .withFormName(Utils.getLocalForm("adolescent_hv_additional_needs", CoreConstants.JSON_FORM.locale, CoreConstants.JSON_FORM.assetManager))
+                .withFormName(Utils.getLocalForm("adolescent_hv_additional_counseling", CoreConstants.JSON_FORM.locale, CoreConstants.JSON_FORM.assetManager))
                 .withHelper(additionalNeedsHelper)
                 .build();
         actionList.put(context.getString(R.string.adolescent_additional_needs), additional_needs);
+    }
+
+    private void evaluateRemarks() throws Exception {
+
+        HomeVisitActionHelper remarksHelper = new HomeVisitActionHelper() {
+
+            private String adolescent_reproductive_health_conditions;
+
+            @Override
+            public void onPayloadReceived(String jsonPayload) {
+                try {
+                    JSONObject jsonObject = new JSONObject(jsonPayload);
+                    adolescent_reproductive_health_conditions = org.smartregister.chw.util.JsonFormUtils.getValue(jsonObject, "chw_remarks_comments");
+                } catch (JSONException e) {
+                    Timber.e(e);
+                }
+            }
+
+            @Override
+            public String evaluateSubTitle() {
+                return MessageFormat.format("{0}: {1}", context.getString(R.string.chw_remarks_or_comments_given), adolescent_reproductive_health_conditions);
+            }
+
+            @Override
+            public BaseAncHomeVisitAction.Status evaluateStatusOnPayload() {
+                if (StringUtils.isNotBlank(adolescent_reproductive_health_conditions)) {
+                    return BaseAncHomeVisitAction.Status.COMPLETED;
+                } else {
+                    return BaseAncHomeVisitAction.Status.PENDING;
+                }
+            }
+        };
+
+        BaseAncHomeVisitAction additional_needs = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.chw_remarks_or_comments))
+                .withOptional(true)
+                .withDetails(details)
+                .withFormName(Utils.getLocalForm("adolescent_hv_remarks", CoreConstants.JSON_FORM.locale, CoreConstants.JSON_FORM.assetManager))
+                .withHelper(remarksHelper)
+                .build();
+        actionList.put(context.getString(R.string.chw_remarks_or_comments), additional_needs);
     }
 
     protected VisitRepository getVisitRepository() {
@@ -168,6 +212,17 @@ public class AdolescentHomeVisitInteractor extends BaseAncHomeVisitInteractor {
 
     protected VisitDetailsRepository getVisitDetailsRepository() {
         return AncLibrary.getInstance().visitDetailsRepository();
+    }
+
+    @Override
+    protected void prepareEvent(Event baseEvent) {
+        if (baseEvent != null) {
+            // add adolescent date obs and last
+            List<Object> list = new ArrayList<>();
+            list.add(new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date()));
+            baseEvent.addObs(new Obs("concept", "text", "adolescent_visit_date", "",
+                    list, new ArrayList<>(), null, "adolescent_visit_date"));
+        }
     }
 
     @Override
