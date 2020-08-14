@@ -77,19 +77,19 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
         try {
             evaluateDangerSignsMother();
             evaluatePNCHealthFacilityVisit();
-            evaluateFamilyPlanning();
+            //evaluateFamilyPlanning();
             evaluateCounselling();
             evaluateMalariaPrevention();
-            evaluateNutritionStatusMother();
+            //evaluateNutritionStatusMother();
 //            evaluateObsIllnessMother();
 
-            for (Person baby : children) {
+            /*for (Person baby : children) {
                 evaluateDangerSignsBaby(baby);
                 evaluateImmunization(baby);
                 evaluateExclusiveBreastFeeding(baby);
                 evaluateNutritionStatusBaby(baby);
 //                evaluateObsIllnessBaby(baby);
-            }
+            }*/
         } catch (BaseAncHomeVisitAction.ValidationException e) {
             throw (e);
         } catch (Exception e) {

@@ -29,7 +29,7 @@ public class PncUpcomingServicesInteractorFlv extends DefaultPncUpcomingServiceI
         this.context = context;
         VaccineScheduleUtil.updateOfflineAlerts(memberObject.getBaseEntityId(), new DateTime(memberObject.getDob()), CoreConstants.SERVICE_GROUPS.CHILD);
         List<BaseUpcomingService> serviceList = new ArrayList<>();
-        evaluateHealthFacility(serviceList);
+        //evaluateHealthFacility(serviceList);
         return serviceList;
     }
 
