@@ -1,5 +1,7 @@
 package org.smartregister.chw.dao;
 
+import org.smartregister.chw.core.utils.CoreConstants;
+import org.smartregister.chw.util.Constants;
 import android.content.ContentValues;
 
 import org.smartregister.chw.core.application.CoreChwApplication;
@@ -16,6 +18,11 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.text.ParseException;
 import java.util.Calendar;
+
+import java.text.ParseException;
+import java.util.Calendar;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -43,7 +50,6 @@ public class AdolescentDao extends AbstractDao {
         String sql = "update ec_adolescent set is_closed = 1 where base_entity_id = '" + baseEntityID + "'";
         updateDB(sql);
     }
-
 
     public static void addAdolescentMember(CommonPersonObject client) {
 

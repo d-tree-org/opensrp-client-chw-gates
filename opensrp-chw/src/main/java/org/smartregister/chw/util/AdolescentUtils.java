@@ -29,6 +29,13 @@ import java.util.concurrent.TimeUnit;
 import java.util.Map;
 
 import timber.log.Timber;
+import java.util.Map;
+
+import timber.log.Timber;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
+
 
 public class AdolescentUtils {
 
@@ -89,6 +96,7 @@ public class AdolescentUtils {
             return 0;
         }
     }
+
     public static AdolescentVisit getAdolescentVisitStatus(Context context, String yearOfBirth, long lastVisitDate, long visitNotDate, long dateCreated) {
         AdolescentVisitAlertRule homeAlertRule = new AdolescentVisitAlertRule(context, yearOfBirth, lastVisitDate, visitNotDate, dateCreated);
         CoreChwApplication.getInstance().getRulesEngineHelper().getButtonAlertStatus(homeAlertRule, "adolescent-home-visit-rules.yml");
