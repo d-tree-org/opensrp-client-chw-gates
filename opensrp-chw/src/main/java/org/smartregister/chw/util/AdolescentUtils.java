@@ -26,6 +26,9 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import timber.log.Timber;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 public class AdolescentUtils {
 
@@ -69,6 +72,7 @@ public class AdolescentUtils {
         columnList.add(tableName + "." + ChildDBConstants.KEY.ILLNESS_ACTION);
         return columnList.toArray(new String[columnList.size()]);
     }
+
 
     public static AdolescentVisit getAdolescentVisitStatus(Context context, String yearOfBirth, long lastVisitDate, long visitNotDate, long dateCreated) {
         AdolescentVisitAlertRule homeAlertRule = new AdolescentVisitAlertRule(context, yearOfBirth, lastVisitDate, visitNotDate, dateCreated);
@@ -132,6 +136,22 @@ public class AdolescentUtils {
             AncLibrary.getInstance().visitRepository().addVisit(visit);
         } catch (JSONException e) {
             Timber.e(e);
+
+    public static float getAgeInYearsAndDecimalPlaces(String dob) {
+
+        return (float) (getDifferenceDays(dob) / 365.25);
+
+    }
+
+    private static long getDifferenceDays(String dateString) {
+        Date date = Utils.dobStringToDate(dateString);
+
+        if (date != null) {
+            long msDiff = Calendar.getInstance().getTimeInMillis() - date.getTime();
+            return Math.abs(TimeUnit.MILLISECONDS.toDays(msDiff));
+        } else {
+            return 0;
+
         }
     }
 
