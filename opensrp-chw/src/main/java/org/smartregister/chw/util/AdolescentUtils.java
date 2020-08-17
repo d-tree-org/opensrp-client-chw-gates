@@ -5,6 +5,9 @@ import org.smartregister.cursoradapter.SmartRegisterQueryBuilder;
 import org.smartregister.family.util.DBConstants;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 public class AdolescentUtils {
 
@@ -47,6 +50,23 @@ public class AdolescentUtils {
         columnList.add(tableName + "." + org.smartregister.chw.core.utils.ChildDBConstants.KEY.DATE_CREATED);
         columnList.add(tableName + "." + ChildDBConstants.KEY.ILLNESS_ACTION);
         return columnList.toArray(new String[columnList.size()]);
+    }
+
+    public static float getAgeInYearsAndDecimalPlaces(String dob) {
+
+        return (float) (getDifferenceDays(dob) / 365.25);
+
+    }
+
+    private static long getDifferenceDays(String dateString) {
+        Date date = Utils.dobStringToDate(dateString);
+
+        if (date != null) {
+            long msDiff = Calendar.getInstance().getTimeInMillis() - date.getTime();
+            return Math.abs(TimeUnit.MILLISECONDS.toDays(msDiff));
+        } else {
+            return 0;
+        }
     }
 
 }
