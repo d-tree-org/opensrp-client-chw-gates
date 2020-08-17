@@ -26,8 +26,11 @@ import androidx.viewpager.widget.ViewPager;
 import com.vijay.jsonwizard.constants.JsonFormConstants;
 import com.vijay.jsonwizard.domain.Form;
 
+import org.apache.commons.lang3.StringUtils;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.opensrp.api.constants.Gender;
+import org.smartregister.CoreLibrary;
 import org.smartregister.chw.R;
 import org.smartregister.chw.anc.domain.MemberObject;
 import org.smartregister.chw.contract.AdolescentProfileContract;
@@ -278,6 +281,24 @@ public class AdolescentProfileActivity extends BaseProfileActivity implements Ad
         //JSONObject jsonObject = binder.getPrePopulatedForm(CoreConstants.JSON_FORM.getFamilyMemberRegister());
         JSONObject jsonObject = binder.getPrePopulatedForm(org.smartregister.chw.core.utils.Utils.getLocalForm
                 ("family_member_edit", CoreConstants.JSON_FORM.locale, CoreConstants.JSON_FORM.assetManager));
+
+        if (jsonObject != null){
+            try {
+                JSONObject stepOne = jsonObject.getJSONObject(JsonFormUtils.STEP1);
+                JSONArray jsonArray = stepOne.getJSONArray(JsonFormUtils.FIELDS);
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    JSONObject object = jsonArray.getJSONObject(i);
+                    String key = object.getString(JsonFormUtils.KEY).toLowerCase();
+                    if (key.equals(org.smartregister.family.util.Constants.JSON_FORM_KEY.FINGER_PRINT)){
+                        org.smartregister.domain.db.Client clientObject = CoreLibrary.getInstance().context().getEventClientRepository().fetchClientByBaseEntityId(client.entityId());
+                        String simprintsId = clientObject.getIdentifier("simprints_guid");
+                        object.put(JsonFormUtils.VALUE, simprintsId);
+                    }
+                }
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
 
         try {
             if (jsonObject != null)

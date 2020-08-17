@@ -3,6 +3,7 @@ package org.smartregister.chw.presenter;
 import android.app.Activity;
 import android.util.Pair;
 
+import org.apache.commons.lang3.StringUtils;
 import org.joda.time.LocalDate;
 import org.joda.time.Months;
 import org.json.JSONObject;
@@ -12,7 +13,10 @@ import org.smartregister.chw.activity.ReferralRegistrationActivity;
 import org.smartregister.chw.contract.ChildProfileContract;
 import org.smartregister.chw.core.contract.CoreChildProfileContract;
 import org.smartregister.chw.core.presenter.CoreChildProfilePresenter;
+import org.smartregister.chw.core.utils.ChildDBConstants;
 import org.smartregister.chw.core.utils.CoreConstants;
+import org.smartregister.chw.dataloader.FamilyMemberDataLoader;
+import org.smartregister.chw.form_data.NativeFormsDataBinder;
 import org.smartregister.chw.interactor.ChildProfileInteractor;
 import org.smartregister.chw.interactor.FamilyProfileInteractor;
 import org.smartregister.chw.model.ChildRegisterModel;
@@ -104,6 +108,27 @@ public class ChildProfilePresenter extends CoreChildProfilePresenter implements 
                     getChildBaseEntityId(), formJson, null);
         } catch (Exception e) {
             Timber.e(e);
+        }
+    }
+
+    @Override
+    public void startFormForEdit(String title, CommonPersonObjectClient client) {
+        JSONObject form = getInteractor().getAutoPopulatedJsonEditFormString(CoreConstants.JSON_FORM.getChildRegister(), title, getView().getApplicationContext(), client);
+        try {
+
+
+            if (!StringUtils.isBlank(client.getColumnmaps().get(ChildDBConstants.KEY.RELATIONAL_ID))) {
+                JSONObject metaDataJson = form.getJSONObject("metadata");
+                JSONObject lookup = metaDataJson.getJSONObject("look_up");
+                lookup.put("entity_id", "family");
+                lookup.put("value", client.getColumnmaps().get(ChildDBConstants.KEY.RELATIONAL_ID));
+            }
+
+            //TODO Check if fingerprint value was captured successfully, if not fetch it manually from the client object
+
+            getView().startFormActivity(form);
+        } catch (Exception e) {
+            Timber.e(e, "CoreChildProfilePresenter --> startFormForEdit");
         }
     }
 
