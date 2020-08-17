@@ -229,6 +229,11 @@ public class ReferralRegisterProvider implements RecyclerViewProvider<ReferralRe
                 return "ANC - HF Referral";
             }
             return "ANC - ADDO Linkage";
+        } else if (problem.equalsIgnoreCase(CoreConstants.TASKS_FOCUS.ADOLESCENT_DANGER_SIGNS)) {
+            if (referralType == 1) {
+                return "Adolescent - HF Referral";
+            }
+            return "Adolescent - ADDO Linkage";
         } else {
             if(referralType == 1) {
                 return "PNC - HF Referral";

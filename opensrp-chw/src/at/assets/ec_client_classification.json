@@ -201,6 +201,20 @@
               "ec_adolescent",
               "ec_family_member"
             ]
+          },
+          {
+            "field": "eventType",
+            "field_value": "Adolescent Home Visit",
+            "creates_case": [
+              "ec_adolescent"
+            ]
+          },
+          {
+            "field": "eventType",
+            "field_value": "Adolescent Referral",
+            "creates_case": [
+              "ec_referral"
+            ]
           }
         ]
       }

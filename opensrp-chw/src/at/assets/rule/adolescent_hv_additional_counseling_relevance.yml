@@ -1,0 +1,90 @@
+---
+name: step1_adolescent_hf_referral_toaster
+description: Referral toaster message relevance
+priority: 1
+condition: "step1_additional_counseling.contains('reproductive_health_issues') ||
+            step1_adolescent_service_option.contains('health_facility') ||
+            step1_adolescent_condition_present.contains('suspected_pregnancy') ||
+            step1_adolescent_condition_present.contains('wound_around_genitals') ||
+            step1_adolescent_condition_present.contains('vaginal_bleeding_between_periods') ||
+            step1_adolescent_condition_present.contains('others')"
+actions:
+  - "isRelevant = true"
+
+---
+name: step1_save_n_refer
+description: Referral toaster message relevance
+priority: 1
+condition: "step1_additional_counseling.contains('reproductive_health_issues') ||
+            step1_adolescent_service_option.contains('health_facility') ||
+            step1_adolescent_condition_present.contains('suspected_pregnancy') ||
+            step1_adolescent_condition_present.contains('wound_around_genitals') ||
+            step1_adolescent_condition_present.contains('vaginal_bleeding_between_periods') ||
+            step1_adolescent_condition_present.contains('others')"
+actions:
+  - "isRelevant = true"
+
+---
+name: step1_adolescent_service_option
+description: Service options relevance
+priority: 1
+condition: "(step1_additional_counseling.contains('family_planning_methods') ||
+            step1_adolescent_condition_present.contains('pain_lower_abdominal_parts') ||
+            step1_adolescent_condition_present.contains('vaginal_discharge') ||
+            step1_adolescent_condition_present.contains('swelling_genitals')) &&
+            !(step1_additional_counseling.contains('reproductive_health_issues') ||
+                          step1_adolescent_condition_present.contains('suspected_pregnancy') ||
+                          step1_adolescent_condition_present.contains('wound_around_genitals') ||
+                          step1_adolescent_condition_present.contains('vaginal_bleeding_between_periods') ||
+                          step1_adolescent_condition_present.contains('others')
+            )"
+actions:
+  - "isRelevant = true"
+
+---
+name: step1_adolescent_addo_linkage_toaster
+description: Addo Linkage toaster
+priority: 1
+condition: "(step1_adolescent_condition_present.contains('irritation_around_genitals') ||
+            step1_adolescent_service_option.contains('addo')) &&
+            !(step1_additional_counseling.contains('reproductive_health_issues') ||
+                          step1_adolescent_service_option.contains('health_facility') ||
+                          step1_adolescent_service_option.contains('neither') ||
+                          step1_adolescent_condition_present.contains('suspected_pregnancy') ||
+                          step1_adolescent_condition_present.contains('wound_around_genitals') ||
+                          step1_adolescent_condition_present.contains('vaginal_bleeding_between_periods') ||
+                          step1_adolescent_condition_present.contains('others'))"
+actions:
+  - "isRelevant = true"
+
+---
+name: step1_save_n_link
+description: Addo Linkage toaster
+priority: 1
+condition: "(step1_adolescent_condition_present.contains('irritation_around_genitals') ||
+            step1_adolescent_service_option.contains('addo')) &&
+            !(step1_additional_counseling.contains('reproductive_health_issues') ||
+                          step1_adolescent_service_option.contains('health_facility') ||
+                          step1_adolescent_service_option.contains('neither') ||
+                          step1_adolescent_condition_present.contains('suspected_pregnancy') ||
+                          step1_adolescent_condition_present.contains('wound_around_genitals') ||
+                          step1_adolescent_condition_present.contains('vaginal_bleeding_between_periods') ||
+                          step1_adolescent_condition_present.contains('others'))"
+actions:
+  - "isRelevant = true"
+
+---
+name: step1_save
+description: Save relevance
+priority: 1
+condition: "(step1_additional_counseling.contains('none') && step1_adolescent_condition_present.contains('none')) || step1_adolescent_service_option.contains('neither') "
+actions:
+  - "isRelevant = true"
+
+---
+name: step1_adolescent_contact_me_toaster
+description: Contact me relevance
+priority: 1
+condition: "(step1_additional_counseling.contains('none') && step1_adolescent_condition_present.contains('none')) || step1_adolescent_service_option.contains('neither') "
+actions:
+  - "isRelevant = true"

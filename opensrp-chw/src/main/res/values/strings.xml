@@ -353,4 +353,12 @@
 
     <string name="referral_follow_up_visit">Referral Follow Up Visit</string>
 
+    <!--Adolescent Home Visit -->
+    <string name="adolescent_education_counseling">Education and Counseling</string>
+    <string name="education_counseling_provided">Education/Counseling Provided</string>
+    <string name="adolescent_additional_needs">Evaluate for additional needs or conditions</string>
+    <string name="adolescent_additional_needs_requested">Additional Needs Provided</string>
+    <string name="chw_remarks_or_comments">Remarks/Comments</string>
+    <string name="chw_remarks_or_comments_given">Remarks/Comments</string>
+
 </resources>

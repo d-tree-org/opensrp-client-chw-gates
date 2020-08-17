@@ -1,6 +1,24 @@
 package org.smartregister.chw.util;
 
+import android.content.Context;
+
+import com.google.gson.Gson;
+
+import org.jeasy.rules.api.Rules;
+import org.json.JSONException;
+import org.smartregister.chw.anc.AncLibrary;
+import org.smartregister.chw.anc.domain.Visit;
+import org.smartregister.chw.anc.util.JsonFormUtils;
+import org.smartregister.chw.anc.util.NCUtils;
+import org.smartregister.chw.core.application.CoreChwApplication;
+import org.smartregister.chw.core.dao.VisitDao;
+import org.smartregister.chw.core.domain.VisitSummary;
+import org.smartregister.chw.core.utils.CoreConstants;
+import org.smartregister.chw.dao.AdolescentDao;
+import org.smartregister.chw.model.AdolescentVisit;
 import org.smartregister.chw.core.utils.ChildDBConstants;
+import org.smartregister.chw.rule.AdolescentVisitAlertRule;
+import org.smartregister.clientandeventmodel.Event;
 import org.smartregister.cursoradapter.SmartRegisterQueryBuilder;
 import org.smartregister.family.util.DBConstants;
 
@@ -8,6 +26,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
+import java.util.Map;
+
+import timber.log.Timber;
 
 public class AdolescentUtils {
 
@@ -66,6 +87,70 @@ public class AdolescentUtils {
             return Math.abs(TimeUnit.MILLISECONDS.toDays(msDiff));
         } else {
             return 0;
+        }
+    }
+    public static AdolescentVisit getAdolescentVisitStatus(Context context, String yearOfBirth, long lastVisitDate, long visitNotDate, long dateCreated) {
+        AdolescentVisitAlertRule homeAlertRule = new AdolescentVisitAlertRule(context, yearOfBirth, lastVisitDate, visitNotDate, dateCreated);
+        CoreChwApplication.getInstance().getRulesEngineHelper().getButtonAlertStatus(homeAlertRule, "adolescent-home-visit-rules.yml");
+        return getAdolescentVisitStatus(homeAlertRule, lastVisitDate);
+    }
+
+    public static AdolescentVisit getAdolescentVisitStatus(Context context, Rules rules, String yearOfBirth, long lastVisitDate, long visitNotDate, long dateCreated) {
+        AdolescentVisitAlertRule homeAlertRule = new AdolescentVisitAlertRule(context, yearOfBirth, lastVisitDate, visitNotDate, dateCreated);
+        CoreChwApplication.getInstance().getRulesEngineHelper().getButtonAlertStatus(homeAlertRule, rules);
+        return getAdolescentVisitStatus(homeAlertRule, lastVisitDate);
+    }
+
+    public static AdolescentVisit getAdolescentVisitStatus(AdolescentVisitAlertRule homeAlertRule, long lastVisitDate) {
+        AdolescentVisit adolescentVisit = new AdolescentVisit();
+        adolescentVisit.setVisitStatus(homeAlertRule.buttonStatus);
+        adolescentVisit.setNoOfMonthDue(homeAlertRule.noOfMonthDue);
+        adolescentVisit.setLastVisitDays(homeAlertRule.noOfDayDue);
+        adolescentVisit.setLastVisitMonthName(homeAlertRule.visitMonthName);
+        adolescentVisit.setLastVisitTime(lastVisitDate);
+        return adolescentVisit;
+    }
+
+    public static AdolescentHomeVisit getAdolescentLastHomeVisit(String baseEntityId) {
+        AdolescentHomeVisit adolescentHomeVisit = new AdolescentHomeVisit();
+
+        Map<String, VisitSummary> map = VisitDao.getVisitSummary(baseEntityId);
+        if (map == null) {
+            return adolescentHomeVisit;
+        }
+
+        VisitSummary notDone = map.get(Constants.ADOLESCENT_HOME_VISIT_NOT_DONE);
+        VisitSummary lastVisit = map.get(Constants.ADOLESCENT_HOME_VISIT_DONE);
+
+        if (lastVisit != null) {
+            adolescentHomeVisit.setLastHomeVisitDate(lastVisit.getVisitDate().getTime());
+        }
+
+        if (notDone != null) {
+            adolescentHomeVisit.setVisitNotDoneDate(notDone.getVisitDate().getTime());
+        }
+
+
+        Long datecreated = AdolescentDao.getAdolescentDateCreated(baseEntityId);
+        if (datecreated != null) {
+            adolescentHomeVisit.setDateCreated(datecreated);
+        }
+
+        return adolescentHomeVisit;
+    }
+
+    public static void undoVisitNotDone(String entityID) {
+        AdolescentDao.undoAdolescentVisitNotDone(entityID);
+    }
+
+    public static void visitNotDone(String entityId) {
+        try {
+            Event event = org.smartregister.chw.anc.util.JsonFormUtils.createUntaggedEvent(entityId, Constants.ADOLESCENT_HOME_VISIT_NOT_DONE, CoreConstants.TABLE_NAME.ADOLESCENT);
+            Visit visit = NCUtils.eventToVisit(event, JsonFormUtils.generateRandomUUIDString());
+            visit.setPreProcessedJson(new Gson().toJson(event));
+            AncLibrary.getInstance().visitRepository().addVisit(visit);
+        } catch (JSONException e) {
+            Timber.e(e);
         }
     }
 

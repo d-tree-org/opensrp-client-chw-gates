@@ -12,20 +12,19 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.apache.commons.lang3.StringUtils;
 import org.jeasy.rules.api.Rules;
-import org.joda.time.DateTime;
-import org.joda.time.LocalDate;
-import org.joda.time.Period;
 import org.smartregister.chw.R;
-import org.smartregister.chw.anc.provider.AncRegisterProvider;
 import org.smartregister.chw.core.application.CoreChwApplication;
-import org.smartregister.chw.core.holders.RegisterViewHolder;
+import org.smartregister.chw.core.dao.VisitDao;
+import org.smartregister.chw.core.domain.VisitSummary;
 import org.smartregister.chw.core.interactor.CoreChildProfileInteractor;
-import org.smartregister.chw.core.utils.ChildDBConstants;
+import org.smartregister.chw.model.AdolescentVisit;
+import org.smartregister.chw.core.utils.ChwDBConstants;
 import org.smartregister.chw.core.utils.CoreConstants;
-import org.smartregister.chw.core.utils.VisitSummary;
-import org.smartregister.chw.referral.fragment.BaseReferralRegisterFragment;
 import org.smartregister.chw.referral.util.DBConstants;
+import org.smartregister.chw.util.AdolescentUtils;
+import org.smartregister.chw.util.Constants;
 import org.smartregister.commonregistry.CommonPersonObjectClient;
 import org.smartregister.cursoradapter.RecyclerViewProvider;
 import org.smartregister.util.Utils;
@@ -39,6 +38,7 @@ import org.smartregister.view.viewholder.OnClickFormLauncher;
 import java.text.MessageFormat;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Set;
 
 import timber.log.Timber;
@@ -89,14 +89,23 @@ public class AdolescentRegisterProvider implements RecyclerViewProvider<Adolesce
 
             setAddressAndGender(pc, viewHolder);
 
-
+            // add patient listener
             viewHolder.patientColumn.setOnClickListener(onClickListener);
             viewHolder.patientColumn.setTag(pc);
             viewHolder.patientColumn.setTag(R.id.VIEW_ID, CLICK_VIEW_NORMAL);
-
             viewHolder.registerColumns.setOnClickListener(onClickListener);
-
             viewHolder.registerColumns.setOnClickListener(v -> viewHolder.patientColumn.performClick());
+
+            // add due listener
+            viewHolder.dueButton.setOnClickListener(onClickListener);
+            viewHolder.dueButton.setTag(pc);
+            viewHolder.dueButton.setTag(R.id.VIEW_ID, CLICK_VIEW_DOSAGE_STATUS);
+            viewHolder.dueWrapper.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    viewHolder.dueButton.performClick();
+                }
+            });
 
         } catch (Exception e) {
             Timber.e(e);
@@ -175,7 +184,7 @@ public class AdolescentRegisterProvider implements RecyclerViewProvider<Adolesce
         return viewHolder instanceof AdolescentRegisterProvider.FooterViewHolder;
     }
 
-    private void updateDueColumn(Context context, AdolescentRegisterProvider.RegisterViewHolder viewHolder, VisitSummary visitSummary) {
+    private void updateDueColumn(Context context, AdolescentRegisterProvider.RegisterViewHolder viewHolder, AdolescentVisit visitSummary) {
         viewHolder.dueButton.setVisibility(View.VISIBLE);
         if (visitSummary.getVisitStatus().equalsIgnoreCase(CoreChildProfileInteractor.VisitType.DUE.name())) {
             setVisitButtonDueStatus(context, viewHolder.dueButton);
@@ -269,40 +278,59 @@ public class AdolescentRegisterProvider implements RecyclerViewProvider<Adolesce
         private final Context context;
         private View.OnClickListener onClickListener;
         private final Rules rules;
-        private VisitSummary visitSummary;
+        private AdolescentVisit adolescentVisit;
+        private SimpleDateFormat ISO8601DATEFORMAT = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
 
         public UpdateAsyncTaskAdolescent( Context context, RegisterViewHolder viewHolder, CommonPersonObjectClient pc, View.OnClickListener onClickListener) {
             this.viewHolder = viewHolder;
             this.pc = pc;
             this.context = context;
             this.onClickListener = onClickListener;
-            this.rules = CoreChwApplication.getInstance().getRulesEngineHelper().rules(CoreConstants.RULE_FILE.HOME_VISIT);
+            this.rules = CoreChwApplication.getInstance().getRulesEngineHelper().rules("adolescent-home-visit-rules.yml");
         }
 
         @Override
         protected Void doInBackground(Void... voids) {
-            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
 
             String baseEntityID = org.smartregister.util.Utils.getValue(pc.getColumnmaps(), org.smartregister.chw.anc.util.DBConstants.KEY.BASE_ENTITY_ID, false);
-
-            LocalDate dateCreated = (new DateTime(org.smartregister.util.Utils.getValue(pc.getColumnmaps(), org.smartregister.chw.anc.util.DBConstants.KEY.DATE_CREATED, false))).toLocalDate();
 
             //ToDo: Implement Visit Rule for Adolescent client
 
             // Placeholder for the implementation of visitSummary reference to HomeVisit.getANCVisitRule or Child Provider
-            visitSummary = new VisitSummary();
-            visitSummary.setVisitStatus("DUE");
-            visitSummary.setNoOfMonthDue(null);
-            visitSummary.setNoOfDaysDue("less than 24 hrs");
-            visitSummary.setLastVisitDays("less than 24 hrs");
-            visitSummary.setLastVisitMonthName("June");
+
+            Map<String, VisitSummary> map = VisitDao.getVisitSummary(baseEntityID);
+
+            if (map != null) {
+                VisitSummary notDoneSummary = map.get(Constants.ADOLESCENT_HOME_VISIT_NOT_DONE);
+                VisitSummary lastVisitSummary = map.get(Constants.ADOLESCENT_HOME_VISIT_DONE);
+
+                long lastVisit = 0;
+                long visitNot = 0;
+                long dateCreated = 0;
+                try {
+                    String createVal = org.smartregister.family.util.Utils.getValue(pc.getColumnmaps(), ChwDBConstants.DATE_CREATED, false);
+                    if (StringUtils.isNotBlank(createVal))
+                        dateCreated = ISO8601DATEFORMAT.parse(createVal).getTime();
+
+                } catch (Exception e) {
+                    Timber.e(e);
+                }
+                if (lastVisitSummary != null)
+                    lastVisit = lastVisitSummary.getVisitDate().getTime();
+
+                if (notDoneSummary != null)
+                    visitNot = notDoneSummary.getVisitDate().getTime();
+
+                String dobString = org.smartregister.family.util.Utils.getValue(pc.getColumnmaps(), org.smartregister.family.util.DBConstants.KEY.DOB, false);
+                adolescentVisit = AdolescentUtils.getAdolescentVisitStatus(context, rules, dobString, lastVisit, visitNot, dateCreated);
+            }
 
             return null;
         }
 
         @Override
         protected void onPostExecute(Void aVoid) {
-            updateDueColumn(context, viewHolder, visitSummary);
+            updateDueColumn(context, viewHolder, adolescentVisit);
         }
     }
 }
