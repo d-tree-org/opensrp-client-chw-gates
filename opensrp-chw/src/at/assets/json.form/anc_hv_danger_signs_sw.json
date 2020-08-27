@@ -95,7 +95,7 @@
           },
           {
             "key": "ds_convulsions",
-            "text": "Degedege / Mtukutiko wa mwili",
+            "text": "Mtukutiko wa mwili/Degedege",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "164483AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
@@ -225,6 +225,30 @@
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "136443AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          {
+            "key": "mi_cough",
+            "text": "Kukohoa",
+            "value": false,
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "mi_running_nose_code",
+            "text": "Mafua",
+            "value": false,
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "mi_sore_throat",
+            "text": "Mkwaruzo wa koo",
+            "value": false,
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "",
+            "openmrs_entity_id": ""
           },
           {
             "key": "mi_refill_medicine",

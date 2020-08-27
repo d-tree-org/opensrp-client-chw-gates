@@ -95,7 +95,7 @@
           },
           {
             "key": "ds_convulsions",
-            "text": "Convulsions/Seizures",
+            "text": "Seizures/Convulsions",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "164483AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
@@ -130,7 +130,7 @@
           },
           {
             "key": "ds_early_labour",
-            "text": "Early labour pains before 9 months",
+            "text": "Early labor pains before 9 months",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "151687AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
@@ -225,6 +225,30 @@
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "136443AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          {
+            "key": "mi_cough",
+            "text": "Cough",
+            "value": false,
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "mi_running_nose_code",
+            "text": "Running nose/Cold",
+            "value": false,
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "mi_sore_throat",
+            "text": "Sore Throat",
+            "value": false,
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "",
+            "openmrs_entity_id": ""
           },
           {
             "key": "mi_refill_medicine",
