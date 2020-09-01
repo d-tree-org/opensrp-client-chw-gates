@@ -163,44 +163,6 @@
         }
       },
       {
-        "key": "date_of_illness",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "1730AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-        "type": "date_picker",
-        "hint": "Tarehe mama alipoanza kuumwa",
-        "label_info_text": "Tarehe mama alipoanza kuumwa",
-        "expanded": false,
-        "min_date": "today-1y",
-        "max_date": "today",
-        "v_required": {
-          "value": "true",
-          "err": "Tafadhali jaza tarehe"
-        },
-        "relevance": {
-          "step1:danger_signs_present_mama": {
-            "ex-checkbox": [
-              {
-                "or": [
-                  "chk_fever",
-                  "chk_bleeding_vaginally",
-                  "chk_server_headache",
-                  "chk_convulsions",
-                  "chk_difficulty_breathing",
-                  "chk_severe_leg_pain",
-                  "chk_unusual_behaviour",
-                  "chk_severe_abdominal_pain",
-                  "chk_vaginal_discharge",
-                  "chk_blurred_vision",
-                  "chk_loss_conscioueness",
-                  "chk_urination"
-                ]
-              }
-            ]
-          }
-        }
-      },
-      {
         "key": "danger_signs_captured_sw",
         "openmrs_entity_parent": "",
         "openmrs_entity": "",
@@ -409,39 +371,6 @@
             "ex-checkbox": [
               {
                 "or": [
-                  "chk_other_needs"
-                ]
-              }
-            ]
-          }
-        }
-      },
-      {
-        "key": "date_of_minor_illness",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "1730AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-        "type": "date_picker",
-        "hint": "Tarehe mama alipoanza kujihisi kuumwa",
-        "label_info_text": "Tarehe mama alipoanza kujihisi kuumwa",
-        "expanded": false,
-        "min_date": "today-1y",
-        "max_date": "today",
-        "v_required": {
-          "value": "true",
-          "err": "Tafadhali jaza tarehe mama alipoanza kujihisi kuumwa"
-        },
-        "relevance": {
-          "step1:minor_illness_present_mama": {
-            "ex-checkbox": [
-              {
-                "or": [
-                  "chk_mild_pain",
-                  "chk_mild_fever",
-                  "chk_cough",
-                  "chk_running_nose",
-                  "chk_sore_throat",
-                  "chk_refill_commodities",
                   "chk_other_needs"
                 ]
               }
