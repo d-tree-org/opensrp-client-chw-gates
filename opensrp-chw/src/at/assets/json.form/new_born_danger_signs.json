@@ -2,7 +2,7 @@
   "validate_on_submit": true,
   "show_errors_on_submit": true,
   "count": "1",
-  "encounter_type": "Danger signs - Child",
+  "encounter_type": "Danger signs - New Born",
   "entity_id": "",
   "metadata": {
     "start": {
@@ -49,7 +49,7 @@
     "encounter_location": ""
   },
   "step1": {
-    "title": "Under 30 days Child danger signs and minor illnesses",
+    "title": "New born danger signs",
     "submit-button": "true",
     "fields": [
       {
@@ -65,48 +65,7 @@
           "chk_none"
         ],
         "options": [
-          {
-            "key": "chk_difficult_drinking",
-            "text": "Has Difficulties in suckling/drinking",
-            "value": false,
-            "openmrs_entity": "",
-            "openmrs_entity_id": ""
-          },
-          {
-            "key": "chk_difficult_breathing",
-            "text": "Has Difficulty breathing",
-            "value": false,
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "142373AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-          },
-          {
-            "key": "chk_weak",
-            "text": "Very weak/unconscious",
-            "value": false,
-            "openmrs_entity": "",
-            "openmrs_entity_id":""
-          },
-          {
-            "key": "chk_diarrhea",
-            "text": "Diarrhea",
-            "value": false,
-            "openmrs_entity": "",
-            "openmrs_entity_id":""
-          },
-          {
-            "key": "chk_sunk_eyes",
-            "text": "Sunk Eyes",
-            "value": false,
-            "openmrs_entity": "",
-            "openmrs_entity_id":""
-          },
-          {
-            "key": "chk_none",
-            "text": "None",
-            "value": false,
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "1107AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-          }
+
         ],
         "v_required": {
           "value": "true",
@@ -228,200 +187,6 @@
                   "chk_weak",
                   "chk_diarrhea",
                   "chk_sunk_eyes"
-                ]
-              }
-            ]
-          }
-        }
-      },
-      {
-        "key": "minor_illnesses_title",
-        "type": "label",
-        "text": "Child Minor Illnesses",
-        "label_text_size": "18sp",
-        "label_text_style": "bold",
-        "relevance": {
-          "step1:danger_signs_present_child": {
-            "ex-checkbox": [
-              {
-                "or": [
-                  "chk_none"
-                ]
-              }
-            ]
-          }
-        }
-      },
-      {
-        "key": "minor_illness_present_child",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "160939AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-        "type": "check_box",
-        "label": "Does the child have any of the following minor illnesses or needs?",
-        "label_text_style": "normal",
-        "text_color": "#C0C0C0",
-        "exclusive": [
-          "mi_none"
-        ],
-        "options": [
-
-          {
-            "key": "chk_fever",
-            "text": "Fever",
-            "value": false,
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": ""
-          },
-          {
-            "key": "chk_cough_cold",
-            "text": "Cough or cold/flu",
-            "value": false,
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": ""
-          },
-          {
-            "key": "chk_mild_diarrhea",
-            "text": "Mild diarrhea without blood (less than 3 times in 24 hrs)",
-            "value": false,
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": ""
-          },
-          {
-            "key": "chk_skin_infections",
-            "text": "Minor skin infections",
-            "value": false,
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": ""
-          },
-          {
-            "key": "chk_minor_wound",
-            "text": "Minor wounds or cuts",
-            "value": false,
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": ""
-          },
-          {
-            "key": "chk_other_needs",
-            "text": "Other",
-            "value": false,
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": ""
-          },
-          {
-            "key": "mi_none",
-            "text": "None",
-            "value": false,
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": ""
-          }
-        ],
-        "relevance": {
-          "step1:danger_signs_present_child": {
-            "ex-checkbox": [
-              {
-                "or": [
-                  "chk_none"
-                ]
-              }
-            ]
-          }
-        }
-      },
-      {
-        "key": "minorillness_description",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "",
-        "openmrs_entity_id": "",
-        "type": "edit_text",
-        "hint": "Describe the other needs",
-        "v_required": {
-          "value": "true",
-          "err": "Describe the other needs"
-        },
-        "relevance": {
-          "step1:minor_illness_present_child": {
-            "ex-checkbox": [
-              {
-                "or": [
-                  "chk_other_needs"
-                ]
-              }
-            ]
-          }
-        }
-      },
-      {
-        "key": "minor_illness_present_toaster",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "",
-        "type": "toaster_notes",
-        "text": "Recommend that the client visits a nearby ADDO. Tell them that you'll follow up with them in 3 days.",
-        "text_color": "#FFC100",
-        "toaster_type": "warning",
-        "relevance": {
-          "step1:minor_illness_present_child": {
-            "ex-checkbox": [
-              {
-                "or": [
-                  "chk_fever",
-                  "chk_cough_cold",
-                  "chk_mild_diarrhea",
-                  "chk_skin_infections",
-                  "chk_minor_wound",
-                  "chk_other_needs"
-                ]
-              }
-            ]
-          }
-        }
-      },
-      {
-        "key": "save_n_link",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "165310AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-        "type": "button",
-        "hint": "Save and Link to ADDO",
-        "btn_bg_color": "#CF0800",
-        "action": {
-          "behaviour": "link"
-        },
-        "relevance": {
-          "step1:minor_illness_present_child": {
-            "ex-checkbox": [
-              {
-                "or": [
-                  "chk_fever",
-                  "chk_cough_cold",
-                  "chk_mild_diarrhea",
-                  "chk_skin_infections",
-                  "chk_minor_wound",
-                  "chk_other_needs"
-                ]
-              }
-            ]
-          }
-        }
-      },
-      {
-        "key": "save",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "165310AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-        "type": "button",
-        "hint": "Save",
-        "btn_bg_color": "#3596c0",
-        "action": {
-          "behaviour": "save"
-        },
-        "relevance": {
-          "step1:minor_illness_present_child": {
-            "ex-checkbox": [
-              {
-                "or": [
-                  "mi_none"
                 ]
               }
             ]
