@@ -80,6 +80,13 @@
             "openmrs_entity_id": "142373AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           },
           {
+            "key": "chk_fast_breathing",
+            "text": "Kuhema kwa haraka",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": ""
+          },
+          {
             "key": "chk_chest_indrawing",
             "text": "Kifua kubonyea sana",
             "value": false,
@@ -109,14 +116,14 @@
           },
           {
             "key": "chk_redness_around_umbilical",
-            "text": "Kitovu chekundu au kinachotoa usaha",
+            "text": "Kitovu chekundu au kinachotoa usaha au damu",
             "value": false,
             "openmrs_entity": "",
             "openmrs_entity_id": ""
           },
           {
             "key": "chk_body_rashes",
-            "text": "Vipele vyenye usaha mwilini",
+            "text": "Vipele mwilini vinavyotoa usaha",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "512AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
@@ -151,7 +158,7 @@
           },
           {
             "key": "chk_severe_vomit",
-            "text": "Anatapika kila kitu",
+            "text": "Anatapika hawezi kuweka kitu tumboni",
             "value": false,
             "openmrs_entity": "",
             "openmrs_entity_id":""
@@ -164,8 +171,36 @@
             "openmrs_entity_id":""
           },
           {
-            "key": "chk_diarrhea",
-            "text": "Kuharisha",
+            "key": "chk_blue_lips",
+            "text": "Lips za bluu",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id":""
+          },
+          {
+            "key": "chk_constipation",
+            "text": "Kuvimbiwa au kukojoa kwa shida",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id":""
+          },
+          {
+            "key": "chk_watery_stool_day",
+            "text": "Smooth/watery stool 3 or more times a day",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id":""
+          },
+          {
+            "key": "chk_watery_stool_weekly",
+            "text": "Smooth/watery stool for 14 or more days ",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id":""
+          },
+          {
+            "key": "chk_blood_stool",
+            "text": "Blood Stool",
             "value": false,
             "openmrs_entity": "",
             "openmrs_entity_id":""
@@ -173,6 +208,13 @@
           {
             "key": "chk_sunk_eyes",
             "text": "Macho kuingia ndani",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id":""
+          },
+          {
+            "key": "chk_excessive_crying",
+            "text": "Kulia sana na kuhangaika",
             "value": false,
             "openmrs_entity": "",
             "openmrs_entity_id":""
@@ -221,12 +263,18 @@
                   "chk_eye_discharge",
                   "chk_severe_abdominal_pain",
                   "chk_lethargy",
+                  "chk_severe_vomit",
+                  "chk_blue_lips",
+                  "chk_constipation",
+                  "chk_watery_stool_day",
+                  "chk_watery_stool_weekly",
+                  "chk_blood_stool",
+                  "chk_excessive_crying",
                   "chk_grunting_voice",
                   "chk_malnutrition",
                   "chk_severe_vomit",
                   "chk_not_getting_better",
                   "chk_weak",
-                  "chk_diarrhea",
                   "chk_sunk_eyes"
                 ]
               }
@@ -280,6 +328,13 @@
                   "chk_eye_discharge",
                   "chk_severe_abdominal_pain",
                   "chk_lethargy",
+                  "chk_severe_vomit",
+                  "chk_blue_lips",
+                  "chk_constipation",
+                  "chk_watery_stool_day",
+                  "chk_watery_stool_weekly",
+                  "chk_blood_stool",
+                  "chk_excessive_crying",
                   "chk_grunting_voice",
                   "chk_malnutrition",
                   "chk_severe_vomit",
@@ -320,6 +375,13 @@
                   "chk_eye_discharge",
                   "chk_severe_abdominal_pain",
                   "chk_lethargy",
+                  "chk_severe_vomit",
+                  "chk_blue_lips",
+                  "chk_constipation",
+                  "chk_watery_stool_day",
+                  "chk_watery_stool_weekly",
+                  "chk_blood_stool",
+                  "chk_excessive_crying",
                   "chk_grunting_voice",
                   "chk_malnutrition",
                   "chk_severe_vomit",
@@ -365,6 +427,41 @@
         ],
         "options": [
           {
+            "key": "chk_cough",
+            "text": "Kukohoa",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_runny_nose",
+            "text": "Mafua",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_sore_throat",
+            "text": "Kukereketwa koo",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_sneezing",
+            "text": "Kupiga chafya",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_headache",
+            "text": "kuumwa kichwa",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
             "key": "chk_fever",
             "text": "Homa",
             "value": false,
@@ -372,8 +469,29 @@
             "openmrs_entity_id": ""
           },
           {
-            "key": "chk_cough_cold",
-            "text": "Kikohozi au mafua",
+            "key": "chk_weak",
+            "text": "Kuishiwa nguvu",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_body_chills_shivering",
+            "text": "Vipele mwilini/anatetemeka",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_lack_of_appetite",
+            "text": "Anakosa hamu ya kula",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_feels_thirsty",
+            "text": "Anasikia kiu",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": ""
@@ -469,6 +587,15 @@
             "ex-checkbox": [
               {
                 "or": [
+                  "chk_feels_thirsty",
+                  "chk_lack_of_appetite",
+                  "chk_body_chills_shivering",
+                  "chk_weak",
+                  "chk_headache",
+                  "chk_sneezing",
+                  "chk_sore_throat",
+                  "chk_runny_nose",
+                  "chk_cough",
                   "chk_fever",
                   "chk_cough_cold",
                   "chk_mild_diarrhea",
@@ -495,6 +622,15 @@
             "ex-checkbox": [
               {
                 "or": [
+                  "chk_feels_thirsty",
+                  "chk_lack_of_appetite",
+                  "chk_body_chills_shivering",
+                  "chk_weak",
+                  "chk_headache",
+                  "chk_sneezing",
+                  "chk_sore_throat",
+                  "chk_runny_nose",
+                  "chk_cough",
                   "chk_fever",
                   "chk_cough_cold",
                   "chk_mild_diarrhea",
@@ -523,6 +659,15 @@
             "ex-checkbox": [
               {
                 "or": [
+                  "chk_feels_thirsty",
+                  "chk_lack_of_appetite",
+                  "chk_body_chills_shivering",
+                  "chk_weak",
+                  "chk_headache",
+                  "chk_sneezing",
+                  "chk_sore_throat",
+                  "chk_runny_nose",
+                  "chk_cough",
                   "chk_fever",
                   "chk_cough_cold",
                   "chk_mild_diarrhea",
