@@ -67,14 +67,14 @@
         "options": [
           {
             "key": "chk_fever",
-            "text": "High Fever and general body weakness",
+            "text": "High fever and general body weakness",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "140238AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           },
           {
             "key": "chk_bleeding_vaginally",
-            "text": "Severe vaginal bleeding",
+            "text": "Severe vaginal bleeding, non-stop bleeding (using one pad every 5 minutes)",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "150802AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
@@ -88,7 +88,7 @@
           },
           {
             "key": "chk_convulsions",
-            "text": "Unconscious/Seizure",
+            "text": "Seizures/Convulsions",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "164483AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
@@ -109,24 +109,10 @@
           },
           {
             "key": "chk_unusual_behaviour",
-            "text": "Abnormal behaviour (stress, confusion)",
+            "text": "Abnormal behavior/confusion",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "152376AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-          },
-          {
-            "key": "chk_swelling_of_breast",
-            "text": "Breast engorgement",
-            "value": false,
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "125212AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-          },
-          {
-            "key": "chk_severe_abdominal_pain",
-            "text": "Severe abdominal pain",
-            "value": false,
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "165271AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           },
           {
             "key": "chk_vaginal_discharge",
@@ -134,6 +120,13 @@
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "123395AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          {
+            "key": "chk_severe_abdominal_pain",
+            "text": "Severe abdominal pain",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "165271AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           },
           {
             "key": "chk_blurred_vision",
@@ -151,7 +144,7 @@
           },
           {
             "key": "chk_urination",
-            "text": "Urinate a little or no urine",
+            "text": "Little or no urination",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "118982AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
@@ -196,7 +189,6 @@
                   "chk_difficulty_breathing",
                   "chk_severe_leg_pain",
                   "chk_unusual_behaviour",
-                  "chk_swelling_of_breast",
                   "chk_severe_abdominal_pain",
                   "chk_vaginal_discharge",
                   "chk_blurred_vision",
@@ -350,6 +342,27 @@
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "150802AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          {
+            "key": "chk_cough",
+            "text": "Cough",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_running_nose",
+            "text": "Running nose / Cold",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_sore_throat",
+            "text": "Sore throat",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": ""
           },
           {
             "key": "chk_refill_commodities",
