@@ -67,7 +67,7 @@
         "options": [
           {
             "key": "chk_difficult_drinking",
-            "text": "Kushindwa kunyonya/kunywa",
+            "text": "Kushindwa kunyonya",
             "value": false,
             "openmrs_entity": "",
             "openmrs_entity_id": ""
@@ -123,7 +123,7 @@
           },
           {
             "key": "chk_body_rashes",
-            "text": "Vipele mwilini vinavyotoa usaha",
+            "text": "Vipele mwilini",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "512AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
@@ -206,15 +206,99 @@
             "openmrs_entity_id":""
           },
           {
-            "key": "chk_sunk_eyes",
-            "text": "Macho kuingia ndani",
+            "key": "chk_excessive_crying",
+            "text": "Kulia sana",
             "value": false,
             "openmrs_entity": "",
             "openmrs_entity_id":""
           },
           {
-            "key": "chk_excessive_crying",
-            "text": "Kulia sana na kuhangaika",
+            "key": "chk_no_movement",
+            "text": "Kutosogea",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id":""
+          },
+          {
+            "key": "chk_pale",
+            "text": "Pale or jaundiced",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id":""
+          },
+          {
+            "key": "chk_cough",
+            "text": "Kukohoa",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id":""
+          },
+          {
+            "key": "chk_running_nose",
+            "text": "Mafua",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id":""
+          },
+          {
+            "key": "chk_sore_throat",
+            "text": "Kukereketwa koo",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id":""
+          },
+          {
+            "key": "chk_sneezing",
+            "text": "Kupiga chafya",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id":""
+          },
+          {
+            "key": "chk_headache",
+            "text": "Kuumwa kichwa",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id":""
+          },
+          {
+            "key": "chk_body_chills_shivering",
+            "text": "Vipele mwilini/Kutetemeka",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id":""
+          },
+          {
+            "key": "chk_lack_of_appetite",
+            "text": "Kukosa hamu ya kula",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id":""
+          },
+          {
+            "key": "chk_thirsty",
+            "text": "Anasikia kiu sana",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id":""
+          },
+          {
+            "key": "chk_diarhea",
+            "text": "Kuharisha kidogo bila damu (chini ya mara 3 ndani ya saa 24) ",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id":""
+          },
+          {
+            "key": "chk_skin_infections",
+            "text": "Ngozi kuathirika",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id":""
+          },
+          {
+            "key": "chk_wounds_and_cuts",
+            "text": "Vidonga vidogo",
             "value": false,
             "openmrs_entity": "",
             "openmrs_entity_id":""
@@ -275,7 +359,20 @@
                   "chk_severe_vomit",
                   "chk_not_getting_better",
                   "chk_weak",
-                  "chk_sunk_eyes"
+                  "chk_sunk_eyes",
+                  "chk_running_nose",
+                  "chk_sore_throat",
+                  "chk_sneezing",
+                  "chk_headache",
+                  "chk_body_chills_shivering",
+                  "chk_lack_of_appetite",
+                  "chk_thirsty",
+                  "chk_diarhea",
+                  "chk_skin_infections",
+                  "chk_wounds_and_cuts",
+                  "chk_no_movement",
+                  "chk_pale",
+                  "chk_cough"
                 ]
               }
             ]
@@ -341,7 +438,20 @@
                   "chk_not_getting_better",
                   "chk_weak",
                   "chk_diarrhea",
-                  "chk_sunk_eyes"
+                  "chk_sunk_eyes",
+                  "chk_running_nose",
+                  "chk_sore_throat",
+                  "chk_sneezing",
+                  "chk_headache",
+                  "chk_body_chills_shivering",
+                  "chk_lack_of_appetite",
+                  "chk_thirsty",
+                  "chk_diarhea",
+                  "chk_skin_infections",
+                  "chk_wounds_and_cuts",
+                  "chk_no_movement",
+                  "chk_pale",
+                  "chk_cough"
                 ]
               }
             ]
@@ -388,7 +498,20 @@
                   "chk_not_getting_better",
                   "chk_weak",
                   "chk_diarrhea",
-                  "chk_sunk_eyes"
+                  "chk_sunk_eyes",
+                  "chk_running_nose",
+                  "chk_sore_throat",
+                  "chk_sneezing",
+                  "chk_headache",
+                  "chk_body_chills_shivering",
+                  "chk_lack_of_appetite",
+                  "chk_thirsty",
+                  "chk_diarhea",
+                  "chk_skin_infections",
+                  "chk_wounds_and_cuts",
+                  "chk_no_movement",
+                  "chk_pale",
+                  "chk_cough"
                 ]
               }
             ]
