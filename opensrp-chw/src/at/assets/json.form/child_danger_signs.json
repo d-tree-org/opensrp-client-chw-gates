@@ -67,17 +67,24 @@
         "options": [
           {
             "key": "chk_difficult_drinking",
-            "text": "Has Difficulties in suckling/drinking",
+            "text": "Difficulty suckling/drinking",
             "value": false,
             "openmrs_entity": "",
             "openmrs_entity_id": ""
           },
           {
             "key": "chk_difficult_breathing",
-            "text": "Has Difficulty breathing",
+            "text": "Difficulty breathing",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "142373AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          {
+            "key": "chk_fast_breathing",
+            "text": "Fast breathing",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": ""
           },
           {
             "key": "chk_chest_indrawing",
@@ -88,7 +95,7 @@
           },
           {
             "key": "chk_convulsions",
-            "text": "Has convulsions/fits",
+            "text": "Seizures/Convulsions",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "164483AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
@@ -109,7 +116,7 @@
           },
           {
             "key": "chk_redness_around_umbilical",
-            "text": "Redness around/discharge from umbilical cord",
+            "text": "Redness around/discharge of blood/pus from umbilical cord",
             "value": false,
             "openmrs_entity": "",
             "openmrs_entity_id": ""
@@ -151,7 +158,7 @@
           },
           {
             "key": "chk_severe_vomit",
-            "text": "Severe vomiting",
+            "text": "Vomiting/Can't keep anything down",
             "value": false,
             "openmrs_entity": "",
             "openmrs_entity_id":""
@@ -164,15 +171,50 @@
             "openmrs_entity_id":""
           },
           {
-            "key": "chk_diarrhea",
-            "text": "Diarrhea",
+            "key": "chk_blue_lips",
+            "text": "Blue lips",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id":""
+          },
+          {
+            "key": "chk_constipation",
+            "text": "Constipation or difficulty urinating",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id":""
+          },
+          {
+            "key": "chk_watery_stool_day",
+            "text": "Smooth/watery stool 3 or more times a day",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id":""
+          },
+          {
+            "key": "chk_watery_stool_weekly",
+            "text": "Smooth/watery stool for 14 or more days ",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id":""
+          },
+          {
+            "key": "chk_blood_stool",
+            "text": "Blood Stool",
             "value": false,
             "openmrs_entity": "",
             "openmrs_entity_id":""
           },
           {
             "key": "chk_sunk_eyes",
-            "text": "Sunk Eyes",
+            "text": "Sunken eyes",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id":""
+          },
+          {
+            "key": "chk_excessive_crying",
+            "text": "Excessive crying and discomfort",
             "value": false,
             "openmrs_entity": "",
             "openmrs_entity_id":""
@@ -221,12 +263,18 @@
                   "chk_eye_discharge",
                   "chk_severe_abdominal_pain",
                   "chk_lethargy",
+                  "chk_severe_vomit",
+                  "chk_blue_lips",
+                  "chk_constipation",
+                  "chk_watery_stool_day",
+                  "chk_watery_stool_weekly",
+                  "chk_blood_stool",
+                  "chk_excessive_crying",
                   "chk_grunting_voice",
                   "chk_malnutrition",
                   "chk_severe_vomit",
                   "chk_not_getting_better",
                   "chk_weak",
-                  "chk_diarrhea",
                   "chk_sunk_eyes"
                 ]
               }
@@ -280,12 +328,18 @@
                   "chk_eye_discharge",
                   "chk_severe_abdominal_pain",
                   "chk_lethargy",
+                  "chk_severe_vomit",
+                  "chk_blue_lips",
+                  "chk_constipation",
+                  "chk_watery_stool_day",
+                  "chk_watery_stool_weekly",
+                  "chk_blood_stool",
+                  "chk_excessive_crying",
                   "chk_grunting_voice",
                   "chk_malnutrition",
                   "chk_severe_vomit",
                   "chk_not_getting_better",
                   "chk_weak",
-                  "chk_diarrhea",
                   "chk_sunk_eyes"
                 ]
               }
@@ -320,12 +374,18 @@
                   "chk_eye_discharge",
                   "chk_severe_abdominal_pain",
                   "chk_lethargy",
+                  "chk_severe_vomit",
+                  "chk_blue_lips",
+                  "chk_constipation",
+                  "chk_watery_stool_day",
+                  "chk_watery_stool_weekly",
+                  "chk_blood_stool",
+                  "chk_excessive_crying",
                   "chk_grunting_voice",
                   "chk_malnutrition",
                   "chk_severe_vomit",
                   "chk_not_getting_better",
                   "chk_weak",
-                  "chk_diarrhea",
                   "chk_sunk_eyes"
                 ]
               }
@@ -366,15 +426,71 @@
         "options": [
 
           {
-            "key": "chk_fever",
-            "text": "Fever",
+            "key": "chk_cough",
+            "text": "Cough",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": ""
           },
           {
-            "key": "chk_cough_cold",
-            "text": "Cough or cold/flu",
+            "key": "chk_runny_nose",
+            "text": "Runny nose/Cold",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_sore_throat",
+            "text": "Sore throat",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_sneezing",
+            "text": "Sneezing",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_headache",
+            "text": "Headache",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_fever",
+            "text": "Mild fever",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_weak",
+            "text": "Weak",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_body_chills_shivering",
+            "text": "Body chills/shivering",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_lack_of_appetite",
+            "text": "Lack of appetite",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_feels_thirsty",
+            "text": "Lack of appetite",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": ""
