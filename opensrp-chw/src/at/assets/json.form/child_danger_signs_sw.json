@@ -233,56 +233,6 @@
         }
       },
       {
-        "key": "date_of_illness_1m5yr",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "1730AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-        "type": "date_picker",
-        "hint": "Tarehe mtoto alipoanza anaumwa",
-        "label_info_text": "Tarehe mtoto alipoanza anaumwa",
-        "expanded": false,
-        "min_date": "today-1y",
-        "max_date": "today",
-        "v_required": {
-          "value": "true",
-          "err": "Tafadhali jaza tarehe"
-        },
-        "relevance": {
-          "step1:danger_signs_present_child": {
-            "ex-checkbox": [
-              {
-                "or": [
-                  "chk_extreme_cold_or_hot",
-                  "chk_convulsions",
-                  "chk_chest_indrawing",
-                  "chk_difficult_breathing",
-                  "chk_difficult_drinking",
-                  "chk_oversleeping",
-                  "chk_redness_around_umbilical",
-                  "chk_body_rashes",
-                  "chk_eye_discharge",
-                  "chk_severe_abdominal_pain",
-                  "chk_lethargy",
-                  "chk_severe_vomit",
-                  "chk_blue_lips",
-                  "chk_constipation",
-                  "chk_watery_stool_day",
-                  "chk_watery_stool_weekly",
-                  "chk_blood_stool",
-                  "chk_excessive_crying",
-                  "chk_grunting_voice",
-                  "chk_malnutrition",
-                  "chk_severe_vomit",
-                  "chk_not_getting_better",
-                  "chk_weak",
-                  "chk_sunk_eyes"
-                ]
-              }
-            ]
-          }
-        }
-      },
-      {
         "key": "danger_signs_captured_sw",
         "openmrs_entity_parent": "",
         "openmrs_entity": "",
@@ -560,47 +510,6 @@
             "ex-checkbox": [
               {
                 "or": [
-                  "chk_other_needs"
-                ]
-              }
-            ]
-          }
-        }
-      },
-      {
-        "key": "date_of_minor_illness_1m5yr",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "1730AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-        "type": "date_picker",
-        "hint": "Tarehe mtoto alipogundulika anaumwa",
-        "label_info_text": "Tarehe mtoto alipogundulika anaumwa",
-        "expanded": false,
-        "min_date": "today-1y",
-        "max_date": "today",
-        "v_required": {
-          "value": "true",
-          "err": "Tafadhali jaza tarehe"
-        },
-        "relevance": {
-          "step1:minor_illness_present_child": {
-            "ex-checkbox": [
-              {
-                "or": [
-                  "chk_feels_thirsty",
-                  "chk_lack_of_appetite",
-                  "chk_body_chills_shivering",
-                  "chk_weak",
-                  "chk_headache",
-                  "chk_sneezing",
-                  "chk_sore_throat",
-                  "chk_runny_nose",
-                  "chk_cough",
-                  "chk_fever",
-                  "chk_cough_cold",
-                  "chk_mild_diarrhea",
-                  "chk_skin_infections",
-                  "chk_minor_wound",
                   "chk_other_needs"
                 ]
               }
