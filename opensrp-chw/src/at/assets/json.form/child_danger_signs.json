@@ -339,7 +339,7 @@
       {
         "key": "minor_illnesses_title",
         "type": "label",
-        "text": "Child Minor Illnesses",
+        "text": "Management of Minor Illness",
         "label_text_size": "18sp",
         "label_text_style": "bold",
         "relevance": {
