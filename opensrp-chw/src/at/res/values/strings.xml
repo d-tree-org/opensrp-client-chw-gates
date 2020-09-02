@@ -23,4 +23,10 @@
 
     <string name="training_module_name">mailimojatraining</string>
 
+    <string name="edit_pregnancy_outcome">Edit Pregnancy Outcome</string>
+
+    <string name="updated_successfully">Updated Successfully</string>
+
+    <string name="updated_unsuccessfully">Failed to update</string>
+
 </resources>

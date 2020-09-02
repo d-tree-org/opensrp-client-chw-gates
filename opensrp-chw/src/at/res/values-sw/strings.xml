@@ -39,4 +39,10 @@
 
     <string name="fingerprint_enrolled"> Alama za vidole zimechukuliwa </string>
 
+    <string name="edit_pregnancy_outcome">Hariri matokeo ya mimba</string>
+
+    <string name="updated_successfully">Imemaliza kuhariri</string>
+
+    <string name="updated_unsuccessfully">Imeshindwa kuhariri</string>
+
 </resources>
