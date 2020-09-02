@@ -115,6 +115,13 @@
             "openmrs_entity_id": "152376AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           },
           {
+            "key": "chk_pain_breast_engorgement",
+            "text": "Pain due to breast engorgement",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": ""
+          },
+          {
             "key": "chk_vaginal_discharge",
             "text": "Foul smelling vaginal discharge",
             "value": false,
@@ -182,7 +189,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "toaster_notes",
-        "text": "Danger sign! \nI have identified an urgent danger sign. You need to go to the closest health facility immediately. It is important that you complete the referral. I will follow-up with you within 24 hours to check if you have completed your referral.",
+        "text": "Danger sign! \nI I have identified an urgent danger sign. You need to go to the closest health facility immediately. It is important that you complete the referral. I will follow-up with you within 24 hours to check if you have completed your referral.",
         "text_color": "#CF0800",
         "toaster_type": "problem",
         "calculation": {
@@ -206,6 +213,7 @@
                   "chk_unusual_behaviour",
                   "chk_swelling of breast",
                   "chk_severe_abdominal_pain",
+                  "chk_pain_breast_engorgement",
                   "chk_vaginal_discharge",
                   "chk_blurred_vision",
                   "chk_loss_conscioueness",
@@ -249,6 +257,7 @@
                   "chk_unusual_behaviour",
                   "chk_swelling of breast",
                   "chk_severe_abdominal_pain",
+                  "chk_pain_breast_engorgement",
                   "chk_vaginal_discharge",
                   "chk_blurred_vision",
                   "chk_loss_conscioueness",

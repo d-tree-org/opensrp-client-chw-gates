@@ -67,21 +67,21 @@
         "options": [
           {
             "key": "chk_fever",
-            "text": "Homa",
+            "text": "Homa kali na mwili kuwa dhaifu",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "140238AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           },
           {
             "key": "chk_bleeding_vaginally",
-            "text": "Damu kutoka ukeni, damu kutoacha kutoka (anatumia pedi moja kila dakika 5)",
+            "text": "Kutokwa na damu nyingi ukeni, damu isiyokoma (kutumia pedi moja ndani ya dakika tano)",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "150802AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           },
           {
             "key": "chk_server_headache",
-            "text": "Maumivu ya kichwa",
+            "text": "Maumivu ya kichwa / kizunguzungu",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "139081AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
@@ -120,6 +120,13 @@
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "165271AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          {
+            "key": "chk_pain_breast_engorgement",
+            "text": "Maumivu yatokanayo na kujaa/kuvimba kwa matiti au chuchu zilizochanika",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": ""
           },
           {
             "key": "chk_vaginal_discharge",
@@ -206,6 +213,7 @@
                   "chk_unusual_behaviour",
                   "chk_swelling of breast",
                   "chk_severe_abdominal_pain",
+                  "chk_pain_breast_engorgement",
                   "chk_vaginal_discharge",
                   "chk_blurred_vision",
                   "chk_loss_conscioueness",
@@ -240,6 +248,7 @@
                   "chk_severe_leg_pain",
                   "chk_unusual_behaviour",
                   "chk_severe_abdominal_pain",
+                  "chk_pain_breast_engorgement",
                   "chk_vaginal_discharge",
                   "chk_blurred_vision",
                   "chk_loss_conscioueness",
