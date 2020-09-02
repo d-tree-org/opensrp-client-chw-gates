@@ -22,7 +22,7 @@ import java.util.List;
 import timber.log.Timber;
 
 public class PncMemberProfilePresenter extends BaseAncMemberProfilePresenter implements
-        PncMemberProfileContract.Presenter, FamilyProfileContract.InteractorCallBack {
+        PncMemberProfileContract.Presenter, FamilyProfileContract.InteractorCallBack, PncMemberProfileContract.InteractorCallBack {
 
     private FormUtils formUtils;
     private String entityId;
@@ -90,6 +90,16 @@ public class PncMemberProfilePresenter extends BaseAncMemberProfilePresenter imp
     @Override
     public void createReferralEvent(AllSharedPreferences allSharedPreferences, String jsonString) throws Exception {
         ((PncMemberProfileContract.Interactor) interactor).createReferralEvent(allSharedPreferences, jsonString, getEntityId());
+    }
+
+    @Override
+    public void saveForm(String json, String table) {
+        ((PncMemberProfileContract.Interactor)interactor).updatePregnancyOutcome(json, this, table);
+    }
+
+    @Override
+    public void onSaved(boolean result) {
+        getView().onPregnancyOutcomeUpdated(true);
     }
 
     private FormUtils getFormUtils() {
