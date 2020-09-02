@@ -523,7 +523,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "toaster_notes",
-        "text": "Mtoto apelekwe duka la dawa\nMwambie kwamba utafuatilia baada ya siku 3",
+        "text": "Nakushauri umpeleke mtoto kwenye duka la dawa muhimu kwa ajili ya huduma zaidi. Nitakutembelea tena ndani ya siku 3 ili kuona kama umefanikiwa kupata huduma.",
         "text_color": "#FFC100",
         "toaster_type": "warning",
         "relevance": {
