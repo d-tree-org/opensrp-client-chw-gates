@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import org.apache.commons.lang3.StringUtils;
 import org.joda.time.DateTime;
@@ -30,6 +31,7 @@ import org.smartregister.chw.custom_view.AncFloatingMenu;
 import org.smartregister.chw.dao.MalariaDao;
 import org.smartregister.chw.dataloader.AncMemberDataLoader;
 import org.smartregister.chw.dataloader.FamilyMemberDataLoader;
+import org.smartregister.chw.dataloader.PncMemberDataLoader;
 import org.smartregister.chw.form_data.NativeFormsDataBinder;
 import org.smartregister.chw.fp.util.FamilyPlanningConstants;
 import org.smartregister.chw.interactor.ChildProfileInteractor;
@@ -85,7 +87,30 @@ public class PncMemberProfileActivity extends CorePncMemberProfileActivity imple
             startEditMemberJsonForm();
             return true;
         }
+
+        if (item.getTitle().equals(getString(R.string.edit_pregnancy_outcome))){
+            startEditingPregnancyOutcome();
+        }
+
         return super.onOptionsItemSelected(item);
+    }
+
+    private void startEditingPregnancyOutcome(){
+        try{
+            JSONObject form = null;
+            String titleString = getResources().getString(R.string.edit_pregnancy_outcome);
+
+            String formName = CoreConstants.JSON_FORM.getPregnancyOutcome();
+
+            NativeFormsDataBinder binder = new NativeFormsDataBinder(this, memberObject.getBaseEntityId());
+            binder.setDataLoader(new PncMemberDataLoader(titleString));
+            form = binder.getPrePopulatedForm(formName);
+
+            startActivityForResult(org.smartregister.chw.util.JsonFormUtils.getAncPncStartFormIntent(form, this), JsonFormUtils.REQUEST_CODE_GET_JSON);
+
+        }catch (Exception e){
+            Timber.e(e);
+        }
     }
 
     private void startEditMemberJsonForm() {
@@ -132,6 +157,10 @@ public class PncMemberProfileActivity extends CorePncMemberProfileActivity imple
                         FamilyEventClient familyEventClient =
                                 new FamilyProfileModel(memberObject.getFamilyName()).processUpdateMemberRegistration(jsonString, memberObject.getBaseEntityId());
                         new FamilyProfileInteractor().saveRegistration(familyEventClient, jsonString, true, (FamilyProfileContract.InteractorCallBack) pncMemberProfilePresenter());
+                    }
+
+                    if (form.getString(JsonFormUtils.ENCOUNTER_TYPE).equals("Pregnancy Outcome")){
+                        ((PncMemberProfileContract.Presenter)presenter).saveForm(jsonString, "ec_pregnancy_outcome");
                     }
 
                     if (org.smartregister.chw.util.Constants.EventType.UPDATE_CHILD_REGISTRATION.equals(form.getString(JsonFormUtils.ENCOUNTER_TYPE))) {
@@ -251,6 +280,15 @@ public class PncMemberProfileActivity extends CorePncMemberProfileActivity imple
         super.onCreation();
         if (((ChwApplication) ChwApplication.getInstance()).hasReferrals()) {
             addPncReferralTypes();
+        }
+    }
+
+    @Override
+    public void onPregnancyOutcomeUpdated(boolean successful) {
+        if (successful){
+            Toast.makeText(this, getString(R.string.updated_successfully), Toast.LENGTH_LONG).show();
+        }else {
+            Toast.makeText(this, getString(R.string.updated_unsuccessfully), Toast.LENGTH_LONG).show();
         }
     }
 
