@@ -284,7 +284,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "160939AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
         "type": "check_box",
-        "label": "Je, mama ana yoyote kati ya magojwa na mahitaji madogo madogo kama yafuatayo?",
+        "label": "Je, mama ana magonjwa yoyote madogo madogo?",
         "label_text_style": "normal",
         "text_color": "#C0C0C0",
         "exclusive": [
@@ -393,7 +393,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "toaster_notes",
-        "text": "Mshauri mteja atembelee duka la dawa muhimu. Mwambie utamtembelea tena ndani ya siku 3.",
+        "text": "Nakushauri utembelee duka la dawa muhimu kwa ajili ya huduma zaidi. Nitakutembelea tena ndani ya siku 3 ili kuona kama umefanikiwa kupata huduma.",
         "text_color": "#FFC100",
         "toaster_type": "warning",
         "relevance": {
