@@ -252,7 +252,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "toaster_notes",
-        "text": "Viashiria vya hatari!\nNimegundua viashiria vya hatari vinavyohitaji kushughulikiwa haraka. Mshauri mama au mlezi ampeleke mtoto kwenye dula la dawa muhimu. Mwambie utamtembelea tena ndani ya siku tatu.",
+        "text": "Viashiria vya hatari!\n Nimegundua viashiria vya hatari vinavyohitaji kushughulikiwa haraka. Wewe pamoja na mtoto mnahitaji kwenda kwenye kituo cha karibu cha afya mara moja. Ni muhimu ukamilishe rufaa. Nitakufuatilia ndani ya masaa 24 ili kuona kama umefanikiwa kukamilisha rufaa yako.",
         "text_color": "#CF0800",
         "toaster_type": "problem",
         "calculation": {
