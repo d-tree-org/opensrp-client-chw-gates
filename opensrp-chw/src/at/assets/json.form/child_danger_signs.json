@@ -58,7 +58,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "159860AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
         "type": "check_box",
-        "label": "Does the child have any danger signs?",
+        "label": "Does the child have any of the following danger signs?",
         "label_text_style": "normal",
         "text_color": "#C0C0C0",
         "exclusive": [
