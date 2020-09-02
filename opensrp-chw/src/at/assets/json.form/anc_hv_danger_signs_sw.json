@@ -203,7 +203,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "5219AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
         "type": "check_box",
-        "label": "Magojwa madogo madogo",
+        "label": "Je, mama ana magonjwa yoyote madogo madogo?",
         "label_text_style": "bold",
         "text_color": "#000000",
         "exclusive": [
@@ -252,7 +252,7 @@
           },
           {
             "key": "mi_refill_medicine",
-            "text": "Nyongeza ya dawa kama madini ya chuma, vidonge vya folic, na SP kwa ajili ya malaria",
+            "text": "Nyongeza ya dawa kama madini ya chuma, folic, na SP kwa ajili ya malaria",
             "value": false,
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
@@ -260,7 +260,7 @@
           },
           {
             "key": "mi_refill_commodities",
-            "text": "Nyongeza ya vitu vingine kama antiseptiki/sabuni, kisanduku cha vitu vya kujifungulia",
+            "text": "Nyongeza ya vitu vingine kama antiseptics/sabuni, delivery kit",
             "value": false,
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
@@ -321,47 +321,6 @@
         }
       },
       {
-        "key": "date_of_illness",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "1730AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-        "type": "date_picker",
-        "hint": "Tarehe mama alipoanza kuumwa",
-        "label_info_text": "Tarehe mama alipoanza kuumwa",
-        "expanded": false,
-        "min_date": "today-1y",
-        "max_date": "today",
-        "v_required": {
-          "value": "true",
-          "err": "Tafadhali jaza tarehe mama mjamzito alipoanza kujihisi kuumwa"
-        },
-        "relevance": {
-          "step1:danger_signs_present": {
-            "ex-checkbox": [
-              {
-                "or": [
-                  "ds_fever",
-                  "ds_bleeding_vaginally",
-                  "ds_server_headache",
-                  "ds_blurred_vision",
-                  "ds_convulsions",
-                  "ds_difficulty_breathing",
-                  "ds_severe_abdominal_pain",
-                  "ds_loss_consciousness",
-                  "ds_swelling",
-                  "ds_early_labour",
-                  "ds_vaginal_discharge",
-                  "ds_unusual_movement",
-                  "ds_water_broke",
-                  "ds_vomiting",
-                  "ds_anemia"
-                ]
-              }
-            ]
-          }
-        }
-      },
-      {
         "key": "danger_signs_present_toaster_sw",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
@@ -409,7 +368,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "toaster_notes",
-        "text": "Mshauri mama aende duka la dawa (DLDM)\nMwambie kwamba utafuatilia baada ya siku 3",
+        "text": "Nakushauri utembelee duka la dawa muhimu kwa ajili ya huduma zaidi. Nitakutembelea tena ndani ya siku 3 ili kuona kama umefanikiwa kupata huduma.",
         "text_color": "#FFC100",
         "toaster_type": "warning",
         "relevance": {
@@ -417,11 +376,14 @@
             "ex-checkbox": [
               {
                 "or": [
-                  "mi_mild_pain",
-                  "mi_mild_fever",
-                  "mi_refill_medicine",
+                  "mi_other_needs",
                   "mi_refill_commodities",
-                  "mi_other_needs"
+                  "mi_refill_medicine",
+                  "mi_sore_throat",
+                  "mi_running_nose_code",
+                  "mi_cough",
+                  "mi_mild_fever",
+                  "mi_mild_pain"
                 ]
               }
             ]
@@ -489,11 +451,14 @@
             "ex-checkbox": [
               {
                 "or": [
-                  "mi_mild_pain",
-                  "mi_mild_fever",
-                  "mi_refill_medicine",
+                  "mi_other_needs",
                   "mi_refill_commodities",
-                  "mi_other_needs"
+                  "mi_refill_medicine",
+                  "mi_sore_throat",
+                  "mi_running_nose_code",
+                  "mi_cough",
+                  "mi_mild_fever",
+                  "mi_mild_pain"
                 ]
               }
             ]
