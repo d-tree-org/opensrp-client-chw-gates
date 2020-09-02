@@ -522,7 +522,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "toaster_notes",
-        "text": "Recommend that the client visits a nearby ADDO. Tell them that you'll follow up with them in 3 days.",
+        "text": "I recommend that you and the child visit a nearby ADDO for further services. I'll follow up with you in 3 days to check if you were able to receive the services.",
         "text_color": "#FFC100",
         "toaster_type": "warning",
         "relevance": {
@@ -530,12 +530,20 @@
             "ex-checkbox": [
               {
                 "or": [
+                  "chk_feels_thirsty",
+                  "chk_lack_of_appetite",
+                  "chk_body_chills_shivering",
+                  "chk_weak",
                   "chk_fever",
-                  "chk_cough_cold",
-                  "chk_mild_diarrhea",
-                  "chk_skin_infections",
+                  "chk_headache",
+                  "chk_sneezing",
+                  "chk_sore_throat",
+                  "chk_runny_nose",
+                  "chk_cough",
+                  "chk_other_needs",
                   "chk_minor_wound",
-                  "chk_other_needs"
+                  "chk_skin_infections",
+                  "chk_mild_diarrhea"
                 ]
               }
             ]
@@ -558,12 +566,20 @@
             "ex-checkbox": [
               {
                 "or": [
+                  "chk_feels_thirsty",
+                  "chk_lack_of_appetite",
+                  "chk_body_chills_shivering",
+                  "chk_weak",
                   "chk_fever",
-                  "chk_cough_cold",
-                  "chk_mild_diarrhea",
-                  "chk_skin_infections",
+                  "chk_headache",
+                  "chk_sneezing",
+                  "chk_sore_throat",
+                  "chk_runny_nose",
+                  "chk_cough",
+                  "chk_other_needs",
                   "chk_minor_wound",
-                  "chk_other_needs"
+                  "chk_skin_infections",
+                  "chk_mild_diarrhea"
                 ]
               }
             ]
