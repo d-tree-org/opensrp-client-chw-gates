@@ -81,7 +81,7 @@
           },
           {
             "key": "chk_fast_breathing",
-            "text": "Kuhema kwa haraka",
+            "text": "Kupumua kwa haraka",
             "value": false,
             "openmrs_entity": "",
             "openmrs_entity_id": ""
@@ -116,7 +116,7 @@
           },
           {
             "key": "chk_redness_around_umbilical",
-            "text": "Kitovu chekundu au kinachotoa usaha au damu",
+            "text": "Kitovu chekundu au kinachotoa usaha",
             "value": false,
             "openmrs_entity": "",
             "openmrs_entity_id": ""
@@ -172,42 +172,35 @@
           },
           {
             "key": "chk_blue_lips",
-            "text": "Lips za bluu",
+            "text": "Midomo kubadilika rangi na kuwa ya bluu",
             "value": false,
             "openmrs_entity": "",
             "openmrs_entity_id":""
           },
           {
             "key": "chk_constipation",
-            "text": "Kuvimbiwa au kukojoa kwa shida",
+            "text": "Kushindwa kupata haja kubwa na ndogo",
             "value": false,
             "openmrs_entity": "",
             "openmrs_entity_id":""
           },
           {
             "key": "chk_watery_stool_day",
-            "text": "Smooth/watery stool 3 or more times a day",
+            "text": "Kupata choo laini/cha majimaji mara 3 au zaidi kwa siku",
             "value": false,
             "openmrs_entity": "",
             "openmrs_entity_id":""
           },
           {
             "key": "chk_watery_stool_weekly",
-            "text": "Smooth/watery stool for 14 or more days ",
+            "text": "Kupata choo laini/cha majimaji kwa siku 14 au zaidi",
             "value": false,
             "openmrs_entity": "",
             "openmrs_entity_id":""
           },
           {
             "key": "chk_blood_stool",
-            "text": "Blood Stool",
-            "value": false,
-            "openmrs_entity": "",
-            "openmrs_entity_id":""
-          },
-          {
-            "key": "chk_sunk_eyes",
-            "text": "Macho kuingia ndani",
+            "text": "Kupata choo chenye damu",
             "value": false,
             "openmrs_entity": "",
             "openmrs_entity_id":""
