@@ -9,13 +9,6 @@
         app:showAsAction="ifRoom" />
 
     <item
-        android:id="@+id/action_scan_fingerprint"
-        android:enabled="true"
-        android:icon="@mipmap/ic_fingerprint"
-        android:title="@string/scan_fingerprint"
-        app:showAsAction="ifRoom" />
-
-    <item
         android:id="@+id/action_register"
         android:enabled="true"
         android:icon="@mipmap/ic_add_family"

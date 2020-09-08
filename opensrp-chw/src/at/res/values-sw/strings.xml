@@ -38,5 +38,6 @@
     <string name="fingerprint_verification_terminated"> Verification Terminated </string>
 
     <string name="fingerprint_enrolled"> Alama za vidole zimechukuliwa </string>
+    <string name="has_referral">Ana Rufaa</string>
 
 </resources>

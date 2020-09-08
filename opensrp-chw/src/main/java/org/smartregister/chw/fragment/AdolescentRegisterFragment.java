@@ -14,13 +14,11 @@ import androidx.loader.content.Loader;
 
 import org.apache.commons.lang3.StringUtils;
 import org.smartregister.chw.R;
-import org.smartregister.chw.activity.AboveFiveChildProfileActivity;
 import org.smartregister.chw.activity.AdolescentHomeVisitActivity;
 import org.smartregister.chw.activity.AdolescentProfileActivity;
 import org.smartregister.chw.anc.domain.MemberObject;
 import org.smartregister.chw.anc.util.DBConstants;
 import org.smartregister.chw.contract.AdolescentRegisterFragmentContract;
-import org.smartregister.chw.core.activity.CoreChildProfileActivity;
 import org.smartregister.chw.core.custom_views.NavigationMenu;
 import org.smartregister.chw.core.utils.CoreConstants;
 import org.smartregister.chw.core.utils.QueryBuilder;
@@ -45,7 +43,6 @@ import java.util.Set;
 
 import timber.log.Timber;
 
-import static org.smartregister.chw.R.color.primary_color;
 import static org.smartregister.chw.R.color.white;
 
 public class AdolescentRegisterFragment extends BaseRegisterFragment implements AdolescentRegisterFragmentContract.View {
