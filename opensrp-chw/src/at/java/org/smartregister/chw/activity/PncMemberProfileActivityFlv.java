@@ -10,6 +10,7 @@ public class PncMemberProfileActivityFlv implements PncMemberProfileActivity.Fla
     @Override
     public Boolean onCreateOptionsMenu(Menu menu, String baseEntityId) {
         UtilsFlv.updateMalariaMenuItems(baseEntityId, menu);
+        menu.add(R.string.edit_pregnancy_outcome);
         menu.findItem(R.id.action_fp_initiation).setVisible(false);
         return true;
     }

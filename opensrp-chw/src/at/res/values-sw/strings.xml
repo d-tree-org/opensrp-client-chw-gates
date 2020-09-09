@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">CHW - Training</string>
+    <string name="app_name">CHW</string>
     <string name="login_title">Botnar Afya-Tek CHV App</string>
     <string name="nav_logo">Botnar Afya-Tek</string>
     <string name="menu_anc">Wajawazito</string>
@@ -39,5 +39,11 @@
 
     <string name="fingerprint_enrolled"> Alama za vidole zimechukuliwa </string>
     <string name="has_referral">Ana Rufaa</string>
+
+    <string name="edit_pregnancy_outcome">Hariri matokeo ya mimba</string>
+
+    <string name="updated_successfully">Imemaliza kuhariri</string>
+
+    <string name="updated_unsuccessfully">Imeshindwa kuhariri</string>
 
 </resources>

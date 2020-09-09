@@ -26,4 +26,9 @@ public class Constants extends CoreConstants {
         public static final String REFERRAL_FOLLOW_UP_VISIT = "Referral Follow-up Visit";
         public static final String LINKAGE_FOLLOW_UP_VISIT = "Linkage Follow-up Visit";
     }
+
+    public class EventsType {
+        public static final String UPDATE_PNC_REGISTRATION = "Update Pnc Registration";
+    }
+
 }
