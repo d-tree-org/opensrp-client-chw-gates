@@ -2,7 +2,7 @@
   "validate_on_submit": true,
   "show_errors_on_submit": true,
   "count": "1",
-  "encounter_type": "Danger signs - Child",
+  "encounter_type": "Danger signs - New Born",
   "entity_id": "",
   "metadata": {
     "start": {
@@ -49,7 +49,7 @@
     "encounter_location": ""
   },
   "step1": {
-    "title": "Child danger signs and minor illnesses",
+    "title": "New born danger signs",
     "submit-button": "true",
     "fields": [
       {
@@ -58,7 +58,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "159860AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
         "type": "check_box",
-        "label": "Does the child have any of the following danger signs?",
+        "label": "Does the child have any danger signs?",
         "label_text_style": "normal",
         "text_color": "#C0C0C0",
         "exclusive": [
@@ -67,7 +67,7 @@
         "options": [
           {
             "key": "chk_difficult_drinking",
-            "text": "Difficulty suckling/drinking",
+            "text": "Difficulty suckling",
             "value": false,
             "openmrs_entity": "",
             "openmrs_entity_id": ""
@@ -123,7 +123,7 @@
           },
           {
             "key": "chk_body_rashes",
-            "text": "Body rashes discharging pus",
+            "text": "Skin rashes",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "512AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
@@ -207,7 +207,96 @@
           },
           {
             "key": "chk_excessive_crying",
-            "text": "Excessive crying and discomfort",
+            "text": "Excessive crying",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id":""
+          },
+          {
+            "key": "chk_no_movement",
+            "text": "No movement",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id":""
+          },
+          {
+            "key": "chk_pale",
+            "text": "Pale or jaundiced",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id":""
+          },
+          {
+            "key": "chk_cough",
+            "text": "Cough",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id":""
+          },
+          {
+            "key": "chk_running_nose",
+            "text": "Running nose/cold",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id":""
+          },
+          {
+            "key": "chk_sore_throat",
+            "text": "Sore throat",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id":""
+          },
+          {
+            "key": "chk_sneezing",
+            "text": "Sneezing",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id":""
+          },
+          {
+            "key": "chk_headache",
+            "text": "Headache",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id":""
+          },
+          {
+            "key": "chk_body_chills_shivering",
+            "text": "Body chills/shivering",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id":""
+          },{
+            "key": "chk_lack_of_appetite",
+            "text": "Lack of appetite",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id":""
+          },{
+            "key": "chk_thirsty",
+            "text": "Feels thirsty",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id":""
+          },
+          {
+            "key": "chk_diarhea",
+            "text": "Mild diarrhea without blood (fewer than 3 times in 24 hrs) ",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id":""
+          },
+          {
+            "key": "chk_skin_infections",
+            "text": "Minor skin infections ",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id":""
+          },
+          {
+            "key": "chk_wounds_and_cuts",
+            "text": "Minor wounds or cuts",
             "value": false,
             "openmrs_entity": "",
             "openmrs_entity_id":""
@@ -245,7 +334,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "toaster_notes",
-        "text": "Danger sign! \n I have identified an urgent danger sign. You and the child need to go to the closest health facility immediately. It is important that you complete the referral. I will follow-up with you within 24 hours to check if you have completed your referral.",
+        "text": "Danger sign! \n I have identified an urgent danger sign. You and the baby need to go to the closest health facility immediately. It is important that you complete the referral. I will follow-up with you within 24 hours to check if you have completed your referral.",
         "text_color": "#CF0800",
         "toaster_type": "problem",
         "calculation": {
@@ -283,7 +372,21 @@
                   "chk_severe_vomit",
                   "chk_not_getting_better",
                   "chk_weak",
-                  "chk_sunk_eyes"
+                  "chk_diarrhea",
+                  "chk_sunk_eyes",
+                  "chk_running_nose",
+                  "chk_sore_throat",
+                  "chk_sneezing",
+                  "chk_headache",
+                  "chk_body_chills_shivering",
+                  "chk_lack_of_appetite",
+                  "chk_thirsty",
+                  "chk_diarhea",
+                  "chk_skin_infections",
+                  "chk_wounds_and_cuts",
+                  "chk_no_movement",
+                  "chk_pale",
+                  "chk_cough"
                 ]
               }
             ]
@@ -329,250 +432,21 @@
                   "chk_severe_vomit",
                   "chk_not_getting_better",
                   "chk_weak",
-                  "chk_sunk_eyes"
-                ]
-              }
-            ]
-          }
-        }
-      },
-      {
-        "key": "minor_illnesses_title",
-        "type": "label",
-        "text": "Management of Minor Illness",
-        "label_text_size": "18sp",
-        "label_text_style": "bold",
-        "relevance": {
-          "step1:danger_signs_present_child": {
-            "ex-checkbox": [
-              {
-                "or": [
-                  "chk_none"
-                ]
-              }
-            ]
-          }
-        }
-      },
-      {
-        "key": "minor_illness_present_child",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "160939AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-        "type": "check_box",
-        "label": "Does the child have any of the following minor illnesses or needs?",
-        "label_text_style": "normal",
-        "text_color": "#C0C0C0",
-        "exclusive": [
-          "mi_none"
-        ],
-        "options": [
-
-          {
-            "key": "chk_cough",
-            "text": "Cough",
-            "value": false,
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": ""
-          },
-          {
-            "key": "chk_runny_nose",
-            "text": "Runny nose/Cold",
-            "value": false,
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": ""
-          },
-          {
-            "key": "chk_sore_throat",
-            "text": "Sore throat",
-            "value": false,
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": ""
-          },
-          {
-            "key": "chk_sneezing",
-            "text": "Sneezing",
-            "value": false,
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": ""
-          },
-          {
-            "key": "chk_headache",
-            "text": "Headache",
-            "value": false,
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": ""
-          },
-          {
-            "key": "chk_fever",
-            "text": "Mild fever",
-            "value": false,
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": ""
-          },
-          {
-            "key": "chk_weak",
-            "text": "Weak",
-            "value": false,
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": ""
-          },
-          {
-            "key": "chk_body_chills_shivering",
-            "text": "Body chills/shivering",
-            "value": false,
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": ""
-          },
-          {
-            "key": "chk_lack_of_appetite",
-            "text": "Lack of appetite",
-            "value": false,
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": ""
-          },
-          {
-            "key": "chk_feels_thirsty",
-            "text": "Lack of appetite",
-            "value": false,
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": ""
-          },
-          {
-            "key": "chk_mild_diarrhea",
-            "text": "Mild diarrhea without blood (less than 3 times in 24 hrs)",
-            "value": false,
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": ""
-          },
-          {
-            "key": "chk_skin_infections",
-            "text": "Minor skin infections",
-            "value": false,
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": ""
-          },
-          {
-            "key": "chk_minor_wound",
-            "text": "Minor wounds or cuts",
-            "value": false,
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": ""
-          },
-          {
-            "key": "chk_other_needs",
-            "text": "Other",
-            "value": false,
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": ""
-          },
-          {
-            "key": "mi_none",
-            "text": "None",
-            "value": false,
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": ""
-          }
-        ],
-        "relevance": {
-          "step1:danger_signs_present_child": {
-            "ex-checkbox": [
-              {
-                "or": [
-                  "chk_none"
-                ]
-              }
-            ]
-          }
-        }
-      },
-      {
-        "key": "minorillness_description",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "",
-        "openmrs_entity_id": "",
-        "type": "edit_text",
-        "hint": "Describe the other needs",
-        "v_required": {
-          "value": "true",
-          "err": "Describe the other needs"
-        },
-        "relevance": {
-          "step1:minor_illness_present_child": {
-            "ex-checkbox": [
-              {
-                "or": [
-                  "chk_other_needs"
-                ]
-              }
-            ]
-          }
-        }
-      },
-      {
-        "key": "minor_illness_present_toaster",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "",
-        "type": "toaster_notes",
-        "text": "I recommend that you and the child visit a nearby ADDO for further services. I'll follow up with you in 3 days to check if you were able to receive the services.",
-        "text_color": "#FFC100",
-        "toaster_type": "warning",
-        "relevance": {
-          "step1:minor_illness_present_child": {
-            "ex-checkbox": [
-              {
-                "or": [
-                  "chk_feels_thirsty",
-                  "chk_lack_of_appetite",
-                  "chk_body_chills_shivering",
-                  "chk_weak",
-                  "chk_fever",
-                  "chk_headache",
-                  "chk_sneezing",
+                  "chk_diarrhea",
+                  "chk_sunk_eyes",
+                  "chk_running_nose",
                   "chk_sore_throat",
-                  "chk_runny_nose",
-                  "chk_cough",
-                  "chk_other_needs",
-                  "chk_minor_wound",
-                  "chk_skin_infections",
-                  "chk_mild_diarrhea"
-                ]
-              }
-            ]
-          }
-        }
-      },
-      {
-        "key": "save_n_link",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "165310AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-        "type": "button",
-        "hint": "Save and Link to ADDO",
-        "btn_bg_color": "#CF0800",
-        "action": {
-          "behaviour": "link"
-        },
-        "relevance": {
-          "step1:minor_illness_present_child": {
-            "ex-checkbox": [
-              {
-                "or": [
-                  "chk_feels_thirsty",
-                  "chk_lack_of_appetite",
-                  "chk_body_chills_shivering",
-                  "chk_weak",
-                  "chk_fever",
-                  "chk_headache",
                   "chk_sneezing",
-                  "chk_sore_throat",
-                  "chk_runny_nose",
-                  "chk_cough",
-                  "chk_other_needs",
-                  "chk_minor_wound",
+                  "chk_headache",
+                  "chk_body_chills_shivering",
+                  "chk_lack_of_appetite",
+                  "chk_thirsty",
+                  "chk_diarhea",
                   "chk_skin_infections",
-                  "chk_mild_diarrhea"
+                  "chk_wounds_and_cuts",
+                  "chk_no_movement",
+                  "chk_pale",
+                  "chk_cough"
                 ]
               }
             ]
@@ -591,11 +465,11 @@
           "behaviour": "save"
         },
         "relevance": {
-          "step1:minor_illness_present_child": {
+          "step1:danger_signs_present_child": {
             "ex-checkbox": [
               {
                 "or": [
-                  "mi_none"
+                  "chk_none"
                 ]
               }
             ]
