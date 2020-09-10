@@ -13,7 +13,7 @@ public class AncUpcomingServicesInteractorFlv extends DefaultAncUpcomingServices
     @Override
     public List<BaseUpcomingService> getMemberServices(Context context, MemberObject memberObject) {
         List<BaseUpcomingService> services = new ArrayList<>();
-        evaluateHealthFacility(services, memberObject, context);
+        //evaluateHealthFacility(services, memberObject, context);
         return services;
     }
 }

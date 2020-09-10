@@ -3,14 +3,11 @@ package org.smartregister.chw.activity;
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
-import org.apache.commons.lang3.StringUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.smartregister.chw.R;
@@ -24,10 +21,8 @@ import org.smartregister.chw.application.ChwApplication;
 import org.smartregister.chw.contract.AncMemberProfileContract;
 import org.smartregister.chw.core.activity.CoreAncMemberProfileActivity;
 import org.smartregister.chw.core.application.CoreChwApplication;
-import org.smartregister.chw.core.listener.OnClickFloatingMenu;
 import org.smartregister.chw.core.utils.CoreConstants;
 import org.smartregister.chw.core.utils.CoreJsonFormUtils;
-import org.smartregister.chw.custom_view.AncFloatingMenu;
 import org.smartregister.chw.dao.MalariaDao;
 import org.smartregister.chw.dataloader.AncMemberDataLoader;
 import org.smartregister.chw.dataloader.FamilyMemberDataLoader;
@@ -112,6 +107,7 @@ public class AncMemberProfileActivity extends CoreAncMemberProfileActivity imple
             return true;
         } else if (itemId == R.id.action_pregnancy_out_come) {
             PncRegisterActivity.startPncRegistrationActivity(AncMemberProfileActivity.this, memberObject.getBaseEntityId(), null, CoreConstants.JSON_FORM.getPregnancyOutcome(), AncLibrary.getInstance().getUniqueIdRepository().getNextUniqueId().getOpenmrsId(), memberObject.getFamilyBaseEntityId(), memberObject.getFamilyName());
+            this.finish();
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -190,7 +186,7 @@ public class AncMemberProfileActivity extends CoreAncMemberProfileActivity imple
                 NativeFormsDataBinder binder = new NativeFormsDataBinder(this, memberObject.getBaseEntityId());
                 binder.setDataLoader(new FamilyMemberDataLoader(memberObject.getFamilyName(), isPrimaryCareGiver, titleString, eventName, memberObject.getChwMemberId()));
 
-                form = binder.getPrePopulatedForm(CoreConstants.JSON_FORM.getFamilyMemberRegister());
+                form = binder.getPrePopulatedForm(CoreConstants.JSON_FORM.getFamilyMemberEdit());
             }
 
             startActivityForResult(org.smartregister.chw.util.JsonFormUtils.getAncPncStartFormIntent(form, this), JsonFormUtils.REQUEST_CODE_GET_JSON);

@@ -67,14 +67,14 @@
         "options": [
           {
             "key": "chk_fever",
-            "text": "High Fever and general body weakness",
+            "text": "High fever and general body weakness",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "140238AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           },
           {
             "key": "chk_bleeding_vaginally",
-            "text": "Severe vaginal bleeding",
+            "text": "Severe vaginal bleeding, non-stop bleeding (using one pad every 5 minutes)",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "150802AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
@@ -88,7 +88,7 @@
           },
           {
             "key": "chk_convulsions",
-            "text": "Unconscious/Seizure",
+            "text": "Seizures/Convulsions",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "164483AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
@@ -109,24 +109,17 @@
           },
           {
             "key": "chk_unusual_behaviour",
-            "text": "Abnormal behaviour (stress, confusion)",
+            "text": "Abnormal behavior/confusion",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "152376AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           },
           {
-            "key": "chk_swelling_of_breast",
-            "text": "Breast engorgement",
+            "key": "chk_pain_breast_engorgement",
+            "text": "Pain due to breast engorgement",
             "value": false,
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "125212AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-          },
-          {
-            "key": "chk_severe_abdominal_pain",
-            "text": "Severe abdominal pain",
-            "value": false,
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "165271AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+            "openmrs_entity": "",
+            "openmrs_entity_id": ""
           },
           {
             "key": "chk_vaginal_discharge",
@@ -134,6 +127,13 @@
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "123395AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          {
+            "key": "chk_severe_abdominal_pain",
+            "text": "Severe abdominal pain",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "165271AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           },
           {
             "key": "chk_blurred_vision",
@@ -151,7 +151,7 @@
           },
           {
             "key": "chk_urination",
-            "text": "Urinate a little or no urine",
+            "text": "Little or no urination",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "118982AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
@@ -167,45 +167,6 @@
         "v_required": {
           "value": "true",
           "err": "Please pick at least one"
-        }
-      },
-      {
-        "key": "date_of_illness",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "1730AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-        "type": "date_picker",
-        "hint": "Date mother started to be ill",
-        "label_info_text": "Date mother started to be ill",
-        "expanded": false,
-        "min_date": "today-1y",
-        "max_date": "today",
-        "v_required": {
-          "value": "true",
-          "err": "Please enter the date of illness"
-        },
-        "relevance": {
-          "step1:danger_signs_present_mama": {
-            "ex-checkbox": [
-              {
-                "or": [
-                  "chk_fever",
-                  "chk_bleeding_vaginally",
-                  "chk_server_headache",
-                  "chk_convulsions",
-                  "chk_difficulty_breathing",
-                  "chk_severe_leg_pain",
-                  "chk_unusual_behaviour",
-                  "chk_swelling_of_breast",
-                  "chk_severe_abdominal_pain",
-                  "chk_vaginal_discharge",
-                  "chk_blurred_vision",
-                  "chk_loss_conscioueness",
-                  "chk_urination"
-                ]
-              }
-            ]
-          }
         }
       },
       {
@@ -228,7 +189,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "toaster_notes",
-        "text": "Danger sign! \nI have identified an urgent danger sign. You need to go to the closest health facility immediately. It is important that you complete the referral. I will follow-up with you within 24 hours to check if you have completed your referral.",
+        "text": "Danger sign! \nI I have identified an urgent danger sign. You need to go to the closest health facility immediately. It is important that you complete the referral. I will follow-up with you within 24 hours to check if you have completed your referral.",
         "text_color": "#CF0800",
         "toaster_type": "problem",
         "calculation": {
@@ -252,6 +213,7 @@
                   "chk_unusual_behaviour",
                   "chk_swelling of breast",
                   "chk_severe_abdominal_pain",
+                  "chk_pain_breast_engorgement",
                   "chk_vaginal_discharge",
                   "chk_blurred_vision",
                   "chk_loss_conscioueness",
@@ -295,6 +257,7 @@
                   "chk_unusual_behaviour",
                   "chk_swelling of breast",
                   "chk_severe_abdominal_pain",
+                  "chk_pain_breast_engorgement",
                   "chk_vaginal_discharge",
                   "chk_blurred_vision",
                   "chk_loss_conscioueness",
@@ -330,7 +293,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "160939AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
         "type": "check_box",
-        "label": "Does the mother have any of the following minor illnesses or needs?",
+        "label": "Does the mother have any minor illnesses?",
         "label_text_style": "normal",
         "text_color": "#C0C0C0",
         "exclusive": [
@@ -350,6 +313,27 @@
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "150802AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          {
+            "key": "chk_cough",
+            "text": "Cough",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_running_nose",
+            "text": "Running nose / Cold",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_sore_throat",
+            "text": "Sore throat",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": ""
           },
           {
             "key": "chk_refill_commodities",
@@ -413,42 +397,12 @@
         }
       },
       {
-        "key": "date_of_minor_illness",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "1730AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-        "type": "date_picker",
-        "hint": "Date that the pregnant mother was first observed to be ill",
-        "label_info_text": "Date that the pregnant mother was first observed to be ill",
-        "expanded": false,
-        "min_date": "today-1y",
-        "max_date": "today",
-        "v_required": {
-          "value": "true",
-          "err": "Please enter the date of illness"
-        },
-        "relevance": {
-          "step1:minor_illness_present_mama": {
-            "ex-checkbox": [
-              {
-                "or": [
-                  "chk_mild_pain",
-                  "chk_mild_fever",
-                  "chk_refill_commodities",
-                  "chk_other_needs"
-                ]
-              }
-            ]
-          }
-        }
-      },
-      {
         "key": "minor_illness_present_toaster",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "toaster_notes",
-        "text": "Recommend that the client visits a nearby ADDO. Tell them that you'll follow up with them in 3 days.",
+        "text": "I recommend that you visit a nearby ADDO for further services. I'll follow up with you in 3 days to check if you were able to receive the services.",
         "text_color": "#FFC100",
         "toaster_type": "warning",
         "relevance": {
@@ -458,6 +412,9 @@
                 "or": [
                   "chk_mild_pain",
                   "chk_mild_fever",
+                  "chk_cough",
+                  "chk_running_nose",
+                  "chk_sore_throat",
                   "chk_refill_commodities",
                   "chk_other_needs"
                 ]
@@ -492,6 +449,9 @@
                 "or": [
                   "chk_mild_pain",
                   "chk_mild_fever",
+                  "chk_cough",
+                  "chk_running_nose",
+                  "chk_sore_throat",
                   "chk_refill_commodities",
                   "chk_other_needs"
                 ]

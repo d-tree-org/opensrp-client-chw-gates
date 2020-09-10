@@ -10,13 +10,17 @@ import org.smartregister.chw.core.domain.FamilyMember;
 import org.smartregister.chw.core.model.CoreChildRegisterModel;
 import org.smartregister.chw.core.presenter.CoreFamilyProfilePresenter;
 import org.smartregister.chw.core.utils.CoreJsonFormUtils;
+import org.smartregister.chw.dao.AdolescentDao;
 import org.smartregister.chw.interactor.FamilyChangeContractInteractor;
 import org.smartregister.chw.interactor.FamilyProfileInteractor;
 import org.smartregister.chw.model.ChildRegisterModel;
+import org.smartregister.dao.AbstractDao;
 import org.smartregister.family.contract.FamilyProfileContract;
 import org.smartregister.family.domain.FamilyEventClient;
 import org.smartregister.location.helper.LocationHelper;
 import org.smartregister.view.LocationPickerView;
+
+import java.util.List;
 
 import timber.log.Timber;
 
@@ -79,12 +83,24 @@ public class FamilyProfilePresenter extends CoreFamilyProfilePresenter {
         return null;
     }
 
+    public boolean isAdolescentMember(String baseEntityId){
+        return AdolescentDao.isAdolescentMember(baseEntityId);
+    }
+
     private boolean isAdolescent(String jsonString) {
-
         String age = getFieldValue(jsonString, "age_calculated");
-        Float ageInt = Float.parseFloat(age);
-
-        return (ageInt >= 13 && ageInt <= 19);
+        if (null != age && !age.isEmpty()){
+            float clientAge;
+            try {
+                 clientAge = Float.parseFloat(age);
+            }catch (Exception e){
+                e.printStackTrace();
+                return  false;
+            }
+            return (clientAge >= 13 && clientAge <= 19);
+        }else {
+            return false;
+        }
     }
 
     private String updateAdolescentEventType(String jsonString) {

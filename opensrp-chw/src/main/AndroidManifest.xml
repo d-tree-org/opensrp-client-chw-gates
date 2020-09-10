@@ -204,6 +204,10 @@
             android:name=".activity.AdolescentProfileActivity"
             android:theme="@style/ChwTheme.NoActionBar" />
 
+        <activity
+            android:name=".activity.AdolescentHomeVisitActivity"
+            android:theme="@style/ChwTheme.NoActionBar" />
+
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="3f94f9c3caeff331b3a2bd8c2182b663ad6a955a" />
@@ -234,6 +238,7 @@
         <service android:name="org.smartregister.chw.sync.ChwSyncIntentService" />
         <service android:name="org.smartregister.sync.intent.SettingsSyncIntentService" />
         <service android:name=".sync.AfyatekSettingsSyncIntentService" />
+        <service android:name=".service.UpdateChildToAdolescentService" />
 
         <uses-library
             android:name="org.apache.http.legacy"

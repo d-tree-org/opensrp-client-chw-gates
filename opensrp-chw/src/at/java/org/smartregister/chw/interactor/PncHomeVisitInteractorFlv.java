@@ -77,19 +77,20 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
         try {
             evaluateDangerSignsMother();
             evaluatePNCHealthFacilityVisit();
-            evaluateFamilyPlanning();
+            //evaluateFamilyPlanning();
             evaluateCounselling();
             evaluateMalariaPrevention();
-            evaluateNutritionStatusMother();
+            //evaluateNutritionStatusMother();
 //            evaluateObsIllnessMother();
 
-            for (Person baby : children) {
+            /*for (Person baby : children) {
                 evaluateDangerSignsBaby(baby);
                 evaluateImmunization(baby);
                 evaluateExclusiveBreastFeeding(baby);
                 evaluateNutritionStatusBaby(baby);
 //                evaluateObsIllnessBaby(baby);
-            }
+            }*/
+            evaluateRemarks(actionList, details, context);
         } catch (BaseAncHomeVisitAction.ValidationException e) {
             throw (e);
         } catch (Exception e) {
@@ -764,6 +765,18 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
         }
     }
 
+    private void evaluateRemarks(LinkedHashMap<String, BaseAncHomeVisitAction> actionList,
+                                 Map<String, List<VisitDetail>> details,
+                                 final Context context) throws BaseAncHomeVisitAction.ValidationException {
+        BaseAncHomeVisitAction remark_ba = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.anc_home_visit_remarks_and_comments))
+                .withOptional(true)
+                .withDetails(details)
+                .withFormName(Constants.JSON_FORM.ANC_HOME_VISIT.getRemarksAndComments())
+                .withHelper(new PncHomeVisitInteractorFlv.RemarksAction())
+                .build();
+        actionList.put(context.getString(R.string.anc_home_visit_remarks_and_comments), remark_ba);
+    }
+
     private class PNCHealthFacilityVisitHelper implements BaseAncHomeVisitAction.AncHomeVisitActionHelper {
         private Context context;
         private String jsonPayload;
@@ -940,6 +953,67 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
         @Override
         public void onPayloadReceived(BaseAncHomeVisitAction baseAncHomeVisitAction) {
             Timber.d("onPayloadReceived");
+        }
+    }
+
+
+    private class RemarksAction implements BaseAncHomeVisitAction.AncHomeVisitActionHelper {
+        private String chw_comment_anc;
+        private Context context;
+
+        @Override
+        public void onJsonFormLoaded(String s, Context context, Map<String, List<VisitDetail>> map) {
+            this.context = context;
+        }
+
+        @Override
+        public String getPreProcessed() {
+            return null;
+        }
+
+        @Override
+        public void onPayloadReceived(String jsonPayload) {
+            try {
+                JSONObject jsonObject = new JSONObject(jsonPayload);
+                chw_comment_anc = org.smartregister.chw.util.JsonFormUtils.getValue(jsonObject, "chw_comment_anc");
+            } catch (JSONException e) {
+                Timber.e(e);
+            }
+        }
+
+        @Override
+        public BaseAncHomeVisitAction.ScheduleStatus getPreProcessedStatus() {
+            return null;
+        }
+
+        @Override
+        public String getPreProcessedSubTitle() {
+            return null;
+        }
+
+        @Override
+        public String postProcess(String s) {
+            return null;
+        }
+
+        @Override
+        public String evaluateSubTitle() {
+            return MessageFormat.format("{0}: {1}",
+                    context.getString(R.string.remarks_and__comments), StringUtils.capitalize(chw_comment_anc));
+        }
+
+        @Override
+        public BaseAncHomeVisitAction.Status evaluateStatusOnPayload() {
+            if (StringUtils.isBlank(chw_comment_anc)) {
+                return BaseAncHomeVisitAction.Status.PENDING;
+            }
+
+            return BaseAncHomeVisitAction.Status.COMPLETED;
+        }
+
+        @Override
+        public void onPayloadReceived(BaseAncHomeVisitAction baseAncHomeVisitAction) {
+            Timber.v("onPayloadReceived");
         }
     }
 

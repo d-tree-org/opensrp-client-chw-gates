@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">CHW - Training</string>
+    <string name="app_name">CHW</string>
     <string name="login_title">Botnar Afya-Tek CHV App</string>
     <string name="nav_logo">Botnar Afya-Tek</string>
     <string name="menu_anc">Wajawazito</string>
     <string name="menu_pnc">Waliojifungua</string>
     <string name="pnc">Waliojifungua</string>
     <string name="anc">Wajawazito</string>
+
+    <string name="nav_sync">Oanisha</string>
 
     <string name="scan_fingerprint"> Scan </string>
 
@@ -18,6 +20,8 @@
     <string name="pnc_home_visit_danger_signs">Dalili za hatari na magonjwa madogo madogo</string>
 
     <string name="issued_referrals">Rufaa</string>
+
+    <string name="save">Hifadhi</string>
 
     <string name="record_anc_visit">Rekodi tembeleo la mjamzito</string>
 
@@ -34,5 +38,12 @@
     <string name="fingerprint_verification_terminated"> Verification Terminated </string>
 
     <string name="fingerprint_enrolled"> Alama za vidole zimechukuliwa </string>
+    <string name="has_referral">Ana Rufaa</string>
+
+    <string name="edit_pregnancy_outcome">Hariri matokeo ya mimba</string>
+
+    <string name="updated_successfully">Imemaliza kuhariri</string>
+
+    <string name="updated_unsuccessfully">Imeshindwa kuhariri</string>
 
 </resources>

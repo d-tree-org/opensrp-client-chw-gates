@@ -17,7 +17,7 @@ public class NavigationMenuFlv implements NavigationMenu.Flavour {
     public HashMap<String, String> getTableMapValues(){
         HashMap<String, String> mp = new HashMap<>();
         mp.put(CoreConstants.DrawerMenu.REFERRALS, CoreConstants.TABLE_NAME.TASK);
-        mp.put(CoreConstants.DrawerMenu.ADOLESCENT, "ec_adolescent");
+        mp.put(CoreConstants.DrawerMenu.ADOLESCENT, CoreConstants.TABLE_NAME.ADOLESCENT);
         return mp;
     }
 

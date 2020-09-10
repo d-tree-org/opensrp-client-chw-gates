@@ -1,13 +1,16 @@
 package org.smartregister.chw.contract;
 
 import android.content.Context;
+import android.util.Pair;
 
-import org.smartregister.chw.malaria.contract.MalariaProfileContract;
-import org.smartregister.chw.malaria.domain.MemberObject;
+import org.smartregister.chw.model.AdolescentVisit;
+import org.smartregister.clientandeventmodel.Client;
+import org.smartregister.clientandeventmodel.Event;
 import org.smartregister.commonregistry.CommonPersonObjectClient;
+import org.smartregister.domain.FetchStatus;
 import org.smartregister.view.contract.BaseProfileContract;
 
-public interface AdolescentProfileContract {
+public interface AdolescentProfileContract extends BaseProfileContract {
 
     interface View extends BaseProfileContract.View{
 
@@ -23,13 +26,40 @@ public interface AdolescentProfileContract {
 
         void setUniqueId(String uniqueId);
 
+        void refreshProfile(final FetchStatus fetchStatus);
+
         void setOverDueColor();
+
+        void enableEdit(boolean enable);
+
+        void setVisitButtonDueStatus();
+
+        void setVisitButtonOverdueStatus();
+
+
+        void setVisitLessTwentyFourView(String monthName);
+
+        void setVisitAboveTwentyFourView();
+
+        void setVisitNotDoneThisMonth();
+
+        void setLastVisitRowView(String days);
+
+        void setFamilyHasNothingDue();
+
+        void setFamilyHasServiceDue();
+
+        void setFamilyHasServiceOverdue();
+
+        void openVisitMonthView();
 
         void openMedicalHistory();
 
         void openUpcomingService();
 
         void openFamilyDueServices();
+
+        void showUndoVisitNotDoneView();
 
         void showProgressBar(boolean status);
 
@@ -43,24 +73,70 @@ public interface AdolescentProfileContract {
 
         void fetchProfileData();
 
+        String getAdolescentGender();
+
+        String getPhoneNumber();
+
+        String getFamilyID();
+
+        String getFamilyName();
+
+        String getFamilyHead();
+
+        String getPrimaryCareGiver();
+
+        void updateAdolescentProfile(String jsonString);
 
         void fetchVisitStatus(String baseEntityId);
 
         void fetchUpcomingServiceAndFamilyDue(String baseEntityId);
+
+        void updateVisitNotDone(long value);
+
     }
     interface Model{}
     interface Interactor{
 
+        void updateVisitNotDone(long value, AdolescentProfileContract.InteractorCallBack callBack);
+
         void refreshProfileInfo(String baseEntityId, AdolescentProfileContract.InteractorCallBack callback);
 
-        void saveRegistration(String jsonString, final AdolescentProfileContract.InteractorCallBack callBack);
+        void refreshAdolescentVisitBar(Context context, String baseEntityId, AdolescentProfileContract.InteractorCallBack interactorCallBack);
+
+        void refreshUpcomingServicesAndFamilyDue(Context context, String familyId, String baseEntityId, AdolescentProfileContract.InteractorCallBack callBack);
+
+        CommonPersonObjectClient getcommonPersonObjectClient();
+
+        void saveRegistration(final Pair<Client, Event> pair, String jsonString, final boolean isEditMode, final AdolescentProfileContract.InteractorCallBack callBack);
 
     }
-    interface InteractorCallBack{
+    interface InteractorCallBack extends BaseProfileContract{
+
+        void updateAdolescentVisit(AdolescentVisit adolescentVisit);
+
+        void updateFamilyMemberServiceDue(String serviceDueStatus);
+
+        void setFamilyID(String familyID);
+
+        void setFamilyName(String familyName);
+
+        void setAdolescentGender(String gender);
+
+        void setPhoneNumber(String phoneNumber);
+
+        void setFamilyHead(String familyHead);
+
+        void setFamilyCareGiver(String familyCareGiver);
 
         void refreshProfileView(CommonPersonObjectClient pClient);
 
+        void onRegistrationSaved(boolean isEditMode);
+
         void hideProgress();
+
+        void updateVisitNotDone();
+
+        void undoVisitNotDone();
     }
 
 }

@@ -1,6 +1,10 @@
 package org.smartregister.chw.contract;
 
+import android.util.Pair;
+
 import org.json.JSONObject;
+import org.smartregister.clientandeventmodel.Client;
+import org.smartregister.clientandeventmodel.Event;
 import org.smartregister.view.contract.BaseRegisterContract;
 
 public interface AdolescentRegisterContract {
@@ -19,6 +23,8 @@ public interface AdolescentRegisterContract {
 
     interface Model {
         JSONObject getFormAsJson(String formName, String entityId, String currentLocationId) throws Exception;
+
+        Pair<Client, Event> processRegistration(String jsonString);
     }
 
     interface Interactor {

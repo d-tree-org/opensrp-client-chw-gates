@@ -12,6 +12,8 @@ import android.widget.RelativeLayout;
 
 import org.apache.commons.lang3.StringUtils;
 import org.jeasy.rules.api.Rules;
+import org.joda.time.DateTime;
+import org.joda.time.Days;
 import org.smartregister.chw.R;
 import org.smartregister.chw.application.ChwApplication;
 import org.smartregister.chw.core.dao.AncDao;
@@ -28,6 +30,7 @@ import org.smartregister.commonregistry.CommonFtsObject;
 import org.smartregister.commonregistry.CommonPersonObjectClient;
 import org.smartregister.commonregistry.CommonRepository;
 import org.smartregister.cursoradapter.SmartRegisterQueryBuilder;
+import org.smartregister.domain.Task;
 import org.smartregister.family.fragment.BaseFamilyProfileMemberFragment;
 import org.smartregister.family.helper.ImageRenderHelper;
 import org.smartregister.family.provider.FamilyMemberRegisterProvider;
@@ -145,8 +148,19 @@ public class ChwMemberRegisterProvider extends FamilyMemberRegisterProvider {
         updateDueColumn(viewHolder, baseEntityId);
 
         // indicate if anc has referral
-        if(CoreReferralUtils.hasAnyReferralTask(((CommonPersonObjectClient) client).getCaseId())) {
-            viewHolder.textViewHasReferral.setVisibility(View.VISIBLE);
+        Task recentTask = CoreReferralUtils.getRecentTask(((CommonPersonObjectClient) client).getCaseId());
+        if (recentTask != null ) {
+            int days = Math.abs(Days.daysBetween(recentTask.getAuthoredOn(), DateTime.now()).getDays());
+            if( (days>=1 && recentTask.getPriority() == 1) || days >= 3 ) {
+                viewHolder.textViewHasReferral.setTextColor(context.getResources().getColor(org.smartregister.chw.core.R.color.alert_urgent_red));
+                viewHolder.textViewHasReferral.setVisibility(View.VISIBLE);
+            }
+            else {
+                viewHolder.textViewHasReferral.setTextColor(context.getResources().getColor(org.smartregister.chw.core.R.color.alert_in_progress_blue));
+                viewHolder.textViewHasReferral.setVisibility(View.VISIBLE);
+            }
+        } else {
+            viewHolder.textViewHasReferral.setVisibility(View.GONE);
         }
     }
 

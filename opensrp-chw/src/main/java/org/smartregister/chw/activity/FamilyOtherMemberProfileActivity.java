@@ -8,6 +8,7 @@ import androidx.annotation.Nullable;
 import androidx.viewpager.widget.ViewPager;
 
 import org.json.JSONObject;
+import org.opensrp.api.constants.Gender;
 import org.smartregister.chw.R;
 import org.smartregister.chw.core.activity.CoreFamilyOtherMemberProfileActivity;
 import org.smartregister.chw.core.activity.CoreFamilyProfileActivity;
@@ -60,6 +61,7 @@ public class FamilyOtherMemberProfileActivity extends CoreFamilyOtherMemberProfi
     protected void startAncRegister() {
         AncRegisterActivity.startAncRegistrationActivity(FamilyOtherMemberProfileActivity.this, baseEntityId, PhoneNumber,
                 org.smartregister.chw.util.Constants.JSON_FORM.getAncRegistration(), null, familyBaseEntityId, familyName);
+        this.finish();
     }
 
     @Override
@@ -96,8 +98,7 @@ public class FamilyOtherMemberProfileActivity extends CoreFamilyOtherMemberProfi
 
         NativeFormsDataBinder binder = new NativeFormsDataBinder(this, client.getCaseId());
         binder.setDataLoader(new FamilyMemberDataLoader(familyName, isPrimaryCareGiver, titleString, eventName, uniqueID));
-        //JSONObject jsonObject = binder.getPrePopulatedForm(CoreConstants.JSON_FORM.getFamilyMemberRegister());
-        JSONObject jsonObject = binder.getPrePopulatedForm("family_member_edit");
+        JSONObject jsonObject = binder.getPrePopulatedForm(CoreConstants.JSON_FORM.getFamilyMemberEdit());
 
         try {
             if (jsonObject != null)
@@ -174,4 +175,18 @@ public class FamilyOtherMemberProfileActivity extends CoreFamilyOtherMemberProfi
         MalariaFollowUpVisitActivity.startMalariaFollowUpActivity(this, baseEntityId);
     }
 
+    @Override
+    public void setProfileDetailOne(String detailOne) {
+        super.setProfileDetailOne(getTranslatedGender(detailOne));
+    }
+
+    private String getTranslatedGender(String gender) {
+        if(Gender.MALE.toString().equalsIgnoreCase(gender)) {
+            return getResources().getString(org.smartregister.family.R.string.male);
+        } else if (Gender.FEMALE.toString().equalsIgnoreCase(gender)) {
+            return getResources().getString(org.smartregister.family.R.string.female);
+        } else {
+            return "";
+        }
+    }
 }

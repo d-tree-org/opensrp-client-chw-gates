@@ -5,14 +5,22 @@ import android.util.Pair;
 
 import androidx.annotation.Nullable;
 
+import org.apache.commons.lang3.StringUtils;
 import org.jeasy.rules.api.Rules;
 import org.joda.time.LocalDate;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.smartregister.chw.anc.AncLibrary;
 import org.smartregister.chw.anc.contract.BaseAncMemberProfileContract;
 import org.smartregister.chw.anc.domain.MemberObject;
 import org.smartregister.chw.anc.domain.Visit;
 import org.smartregister.chw.anc.model.BaseUpcomingService;
 import org.smartregister.chw.anc.util.Constants;
+import org.smartregister.chw.anc.util.DBConstants;
+import org.smartregister.chw.anc.util.JsonFormUtils;
+import org.smartregister.chw.anc.util.NCUtils;
 import org.smartregister.chw.application.ChwApplication;
 import org.smartregister.chw.contract.PncMemberProfileContract;
 import org.smartregister.chw.core.contract.CoreChildProfileContract;
@@ -37,6 +45,7 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import timber.log.Timber;
 
@@ -168,5 +177,36 @@ public class PncMemberProfileInteractor extends CorePncMemberProfileInteractor i
     @Override
     public void createReferralEvent(AllSharedPreferences allSharedPreferences, String jsonString, String entityID) throws Exception {
         CoreReferralUtils.createReferralEvent(allSharedPreferences, jsonString, CoreConstants.TABLE_NAME.PNC_REFERRAL, entityID);
+    }
+
+    @Override
+    public void updatePregnancyOutcome(final String jsonString, final PncMemberProfileContract.InteractorCallBack callBack, final String table) {
+
+        Runnable runnable = () -> {
+
+            // save it
+            try {
+                JSONObject form = new JSONObject(jsonString);
+
+                AllSharedPreferences allSharedPreferences = AncLibrary.getInstance().context().allSharedPreferences();
+                Event baseEvent = JsonFormUtils.processJsonForm(allSharedPreferences, jsonString, table);
+
+                NCUtils.addEvent(allSharedPreferences, baseEvent);
+                NCUtils.startClientProcessing();
+
+            } catch (Exception e) {
+                Timber.e(e);
+            }
+
+            appExecutors.mainThread().execute(() -> {
+                try {
+                    callBack.onSaved( true /*finalEncounterType, isEditMode, finalHasChildren*/);
+                } catch (Exception e) {
+                    callBack.onSaved(false);
+                    e.printStackTrace();
+                }
+            });
+        };
+        appExecutors.diskIO().execute(runnable);
     }
 }

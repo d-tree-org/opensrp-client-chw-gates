@@ -1,0 +1,483 @@
+{
+  "validate_on_submit": true,
+  "show_errors_on_submit": true,
+  "count": "1",
+  "encounter_type": "Danger signs - Child",
+  "entity_id": "",
+  "metadata": {
+    "start": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "start",
+      "openmrs_entity_id": "163137AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "end": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "end",
+      "openmrs_entity_id": "163138AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "today": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "encounter",
+      "openmrs_entity_id": "encounter_date"
+    },
+    "deviceid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "deviceid",
+      "openmrs_entity_id": "163149AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "subscriberid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "subscriberid",
+      "openmrs_entity_id": "163150AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "simserial": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "simserial",
+      "openmrs_entity_id": "163151AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "phonenumber": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "phonenumber",
+      "openmrs_entity_id": "163152AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "encounter_location": ""
+  },
+  "step1": {
+    "title": "Dalili za hatari kwa mtoto aliyezaliwa ndani ya siku 30",
+    "submit-button": "true",
+    "fields": [
+      {
+        "key": "danger_signs_present_child",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "159860AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "type": "check_box",
+        "label": "Je, mtoto ana dalili zozote za hatari kati ya hizi?",
+        "label_text_style": "normal",
+        "text_color": "#C0C0C0",
+        "exclusive": [
+          "chk_none"
+        ],
+        "options": [
+          {
+            "key": "chk_difficult_drinking",
+            "text": "Kushindwa kunyonya",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_difficult_breathing",
+            "text": "Kushindwa kupumua",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "142373AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          {
+            "key": "chk_fast_breathing",
+            "text": "Kupumua haraka",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_chest_indrawing",
+            "text": "Kifua kubonyea sana",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_convulsions",
+            "text": "Degedege / Mtukutiko wa mwili",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "164483AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          {
+            "key": "chk_extreme_cold_or_hot",
+            "text": "Mwili kuwa baridi au joto sana",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_oversleeping",
+            "text": "Kulala sana/vigumu kuamka",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_redness_around_umbilical",
+            "text": "Kitovu chekundu au kinachotoa damu au usaha",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_body_rashes",
+            "text": "Vipele mwilini",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "512AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          {
+            "key": "chk_eye_discharge",
+            "text": "Macho yanayotoa usaha",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "142246AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          {
+            "key": "chk_grunting_voice",
+            "text": "Sauti ya mtoto kuugulia",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id":""
+          },
+          {
+            "key": "chk_malnutrition",
+            "text": "Utapiamlo",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id":""
+          },
+          {
+            "key": "chk_not_getting_better",
+            "text": "Kutopata nafuu hata baada ya kupata tiba",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id":""
+          },
+          {
+            "key": "chk_severe_vomit",
+            "text": "Anatapika kila kitu",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id":""
+          },
+          {
+            "key": "chk_weak",
+            "text": "Amelegea sana/hana fahamu",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id":""
+          },
+          {
+            "key": "chk_blue_lips",
+            "text": "Midomo kubadilika rangi na kuwa ya buu",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id":""
+          },
+          {
+            "key": "chk_constipation",
+            "text": "Kushindwa kupata haja kubwa au ndogo",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id":""
+          },
+          {
+            "key": "chk_watery_stool_day",
+            "text": "Smooth/watery stool 3 or more times a day",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id":""
+          },
+          {
+            "key": "chk_watery_stool_weekly",
+            "text": "Smooth/watery stool for 14 or more days ",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id":""
+          },
+          {
+            "key": "chk_blood_stool",
+            "text": "Blood Stool",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id":""
+          },
+          {
+            "key": "chk_excessive_crying",
+            "text": "Kulia sana",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id":""
+          },
+          {
+            "key": "chk_no_movement",
+            "text": "Hajitikisi",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id":""
+          },
+          {
+            "key": "chk_pale",
+            "text": "Kupauka au kuwa wanjano",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id":""
+          },
+          {
+            "key": "chk_cough",
+            "text": "Kukohoa",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id":""
+          },
+          {
+            "key": "chk_running_nose",
+            "text": "Mafua",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id":""
+          },
+          {
+            "key": "chk_sore_throat",
+            "text": "Koo kuwasha au kuuma",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id":""
+          },
+          {
+            "key": "chk_sneezing",
+            "text": "Kupiga chafya",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id":""
+          },
+          {
+            "key": "chk_headache",
+            "text": "Kuumwa kichwa",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id":""
+          },
+          {
+            "key": "chk_body_chills_shivering",
+            "text": "Miwili kuhisi baridi au kutetemeka",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id":""
+          },
+          {
+            "key": "chk_lack_of_appetite",
+            "text": "Kutokuwa na hamu ya kula",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id":""
+          },
+          {
+            "key": "chk_thirsty",
+            "text": "Kusikia kiu",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id":""
+          },
+          {
+            "key": "chk_diarhea",
+            "text": "Kuhara bila damu (chini ya mara 3 katika masaa 24) ",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id":""
+          },
+          {
+            "key": "chk_skin_infections",
+            "text": "Maambukizi adogomadogo ya ngozi",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id":""
+          },
+          {
+            "key": "chk_wounds_and_cuts",
+            "text": "Vidonda",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id":""
+          },
+          {
+            "key": "chk_none",
+            "text": "Hakuna",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "1107AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Tafadhali changua moja"
+        }
+      },
+      {
+        "key": "danger_signs_captured_sw",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "type": "hidden",
+        "calculation": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "child_danger_sign_calculation.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "danger_signs_present_toaster_sw",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "Viashiria vya hatari!\nNimegundua viashiria vya hatari vinavyohitaji kushughulikiwa haraka. Mshauri mama au mlezi ampeleke mtoto kwenye dula la dawa muhimu. Mwambie utamtembelea tena ndani ya siku tatu.",
+        "text_color": "#CF0800",
+        "toaster_type": "problem",
+        "calculation": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "child_danger_sign_calculation.yml"
+            }
+          }
+        },
+        "relevance": {
+          "step1:danger_signs_present_child": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "chk_extreme_cold_or_hot",
+                  "chk_convulsions",
+                  "chk_chest_indrawing",
+                  "chk_difficult_breathing",
+                  "chk_difficult_drinking",
+                  "chk_oversleeping",
+                  "chk_redness_around_umbilical",
+                  "chk_body_rashes",
+                  "chk_eye_discharge",
+                  "chk_severe_abdominal_pain",
+                  "chk_lethargy",
+                  "chk_severe_vomit",
+                  "chk_blue_lips",
+                  "chk_constipation",
+                  "chk_watery_stool_day",
+                  "chk_watery_stool_weekly",
+                  "chk_blood_stool",
+                  "chk_excessive_crying",
+                  "chk_grunting_voice",
+                  "chk_malnutrition",
+                  "chk_severe_vomit",
+                  "chk_not_getting_better",
+                  "chk_weak",
+                  "chk_diarrhea",
+                  "chk_sunk_eyes",
+                  "chk_running_nose",
+                  "chk_sore_throat",
+                  "chk_sneezing",
+                  "chk_headache",
+                  "chk_body_chills_shivering",
+                  "chk_lack_of_appetite",
+                  "chk_thirsty",
+                  "chk_diarhea",
+                  "chk_skin_infections",
+                  "chk_wounds_and_cuts",
+                  "chk_no_movement",
+                  "chk_pale",
+                  "chk_cough"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "key": "save_n_refer",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "165310AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "type": "button",
+        "hint": "Hifadhi na Toa rufaa",
+        "btn_bg_color": "#CF0800",
+        "action": {
+          "behaviour": "refer"
+        },
+        "relevance": {
+          "step1:danger_signs_present_child": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "chk_extreme_cold_or_hot",
+                  "chk_convulsions",
+                  "chk_chest_indrawing",
+                  "chk_difficult_breathing",
+                  "chk_difficult_drinking",
+                  "chk_oversleeping",
+                  "chk_redness_around_umbilical",
+                  "chk_body_rashes",
+                  "chk_eye_discharge",
+                  "chk_severe_abdominal_pain",
+                  "chk_lethargy",
+                  "chk_severe_vomit",
+                  "chk_blue_lips",
+                  "chk_constipation",
+                  "chk_watery_stool_day",
+                  "chk_watery_stool_weekly",
+                  "chk_blood_stool",
+                  "chk_excessive_crying",
+                  "chk_grunting_voice",
+                  "chk_malnutrition",
+                  "chk_severe_vomit",
+                  "chk_not_getting_better",
+                  "chk_weak",
+                  "chk_diarrhea",
+                  "chk_sunk_eyes",
+                  "chk_running_nose",
+                  "chk_sore_throat",
+                  "chk_sneezing",
+                  "chk_headache",
+                  "chk_body_chills_shivering",
+                  "chk_lack_of_appetite",
+                  "chk_thirsty",
+                  "chk_diarhea",
+                  "chk_skin_infections",
+                  "chk_wounds_and_cuts",
+                  "chk_no_movement",
+                  "chk_pale",
+                  "chk_cough"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "key": "save",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "165310AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "type": "button",
+        "hint": "Save",
+        "btn_bg_color": "#3596c0",
+        "action": {
+          "behaviour": "save"
+        },
+        "relevance": {
+          "step1:danger_signs_present_child": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "chk_none"
+                ]
+              }
+            ]
+          }
+        }
+      }
+    ]
+  }
+}

@@ -8,6 +8,7 @@ import org.smartregister.chw.R;
 import org.smartregister.chw.anc.util.Constants;
 import org.smartregister.chw.core.activity.CoreAncRegisterActivity;
 import org.smartregister.chw.core.utils.CoreConstants;
+import org.smartregister.chw.dao.AdolescentDao;
 import org.smartregister.chw.fragment.AncRegisterFragment;
 import org.smartregister.chw.schedulers.ChwScheduleTaskExecutor;
 import org.smartregister.helper.BottomNavigationHelper;
@@ -84,5 +85,15 @@ public class AncRegisterActivity extends CoreAncRegisterActivity {
                 Timber.e(e);
             }
         }
+        this.finish();
+    }
+
+    @Override
+    public void onRegistrationSaved(String register, boolean isEdit, boolean hasChildren) {
+        // Check if the client is an adolescent and close them from that that list
+        if (AdolescentDao.isAdolescentMember(BASE_ENTITY_ID)) {
+            AdolescentDao.closeAdolescentMember(BASE_ENTITY_ID);
+        }
+
     }
 }
