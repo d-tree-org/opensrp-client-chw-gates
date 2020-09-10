@@ -22,6 +22,12 @@ public class BottomNavigationListenerFlv extends DefaultBottomNavigationListener
 
         BaseRegisterActivity baseRegisterActivity = (BaseRegisterActivity) context;
 
+        if (item.getItemId() == R.id.action_scan_fingerprint){
+            if (context instanceof FamilyRegisterActivity){
+                FamilyRegisterActivity activity = (FamilyRegisterActivity) context;
+                activity.startFingerprintScan(activity);
+            }
+        }
         if (item.getItemId() == R.id.action_register){
             if (context instanceof FamilyRegisterActivity){
                 baseRegisterActivity.startRegistration();

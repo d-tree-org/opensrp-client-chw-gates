@@ -62,6 +62,12 @@ public class FamilyRegisterActivity extends CoreFamilyRegisterActivity {
         if (!BuildConfig.SUPPORT_REPORT)
             bottomNavigationView.getMenu().removeItem(org.smartregister.family.R.id.action_job_aids);
 
+        if (activity instanceof PncRegisterActivity ||
+                activity instanceof ChildRegisterActivity ||
+                activity instanceof AdolescentRegisterActivity ||
+                activity instanceof AncRegisterActivity)
+            bottomNavigationView.getMenu().removeItem(R.id.action_scan_fingerprint);
+
     }
 
     @Override
