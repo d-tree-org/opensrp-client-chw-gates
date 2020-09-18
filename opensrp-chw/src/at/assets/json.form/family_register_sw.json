@@ -145,7 +145,7 @@
       {
         "key": "consent_message",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "",
+        "openmrs_entity": "concept",
         "openmrs_entity_id": "toaster_notes",
         "type": "toaster_notes",
         "text": "Ridhaa! \nTambua mkuu wa kaya au mwakilishi wake. Soma fomu ya ridhaa na nukuu ridhaa ya kaya.",
@@ -170,7 +170,7 @@
       {
         "key": "fam_consent",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "",
+        "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "check_box",
         "exclusive": [
@@ -204,7 +204,7 @@
           "value": true
         },
         "openmrs_entity_parent": "",
-        "openmrs_entity": "",
+        "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "relevance": {
           "step2:fam_consent": {
@@ -221,7 +221,7 @@
       {
         "key": "consent_photo",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "",
+        "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "choose_image",
         "uploadButtonText": "Piga Picha",
@@ -252,7 +252,7 @@
         "type": "label",
         "text": "Mkuu wa kaya",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "",
+        "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "relevance": {
           "rules-engine": {
@@ -650,7 +650,7 @@
       {
         "key": "finger_print",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "",
+        "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "finger_print",
         "project_id":"fUBnpzDdbsCsMp0egCHB",
