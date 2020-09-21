@@ -1,0 +1,192 @@
+{
+  "count": "1",
+  "encounter_type": "Child Home Visit Counselling",
+  "entity_id": "",
+  "metadata": {
+    "start": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "start",
+      "openmrs_entity_id": "163137AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "end": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "end",
+      "openmrs_entity_id": "163138AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "today": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "encounter",
+      "openmrs_entity_id": "encounter_date"
+    },
+    "deviceid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "deviceid",
+      "openmrs_entity_id": "163149AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "subscriberid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "subscriberid",
+      "openmrs_entity_id": "163150AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "simserial": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "simserial",
+      "openmrs_entity_id": "163151AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "phonenumber": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "phonenumber",
+      "openmrs_entity_id": "163152AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "encounter_location": ""
+  },
+  "step1": {
+    "title": "Counselling",
+    "fields": [
+      {
+        "key": "couselling_child",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "1379AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "type": "check_box",
+        "label": "Counseling provided to the child and family members (check all that apply):",
+        "label_text_style": "normal",
+        "text_color": "#C0C0C0",
+        "exclusive": [
+          "chk_none"
+        ],
+        "options": [
+          {
+            "key": "chk_maternal_nutrition",
+            "text": "Maternal nutrition during breastfeeding",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "1380AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          {
+            "key": "chk_hiv_aids",
+            "text": "HIV/AIDS general information",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "1914AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          {
+            "key": "chk_pmtct",
+            "text": "Prevention of mother-to-child transmission of HIV",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "160538AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          {
+            "key": "chk_care_of_infant_after_birth",
+            "text": "Infant care",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "159839AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          {
+            "key": "chk_new_born_danger_signs",
+            "text": "Infant danger signs",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "161071AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          {
+            "key": "chk_care_of_premature_baby",
+            "text": "Care of a premature or underweight baby",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_hiv_exposed_infant",
+            "text": "Follow-up for the HIV-exposed infant",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "164818AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          {
+            "key": "chk_breastfeeding",
+            "text": "Breastfeeding",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "1910AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          {
+            "key": "chk_complementary_feeding",
+            "text": "Complementary feeding",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "159854AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          {
+            "key": "chk_birth_registration",
+            "text": "Birth registration",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "165406AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          {
+            "key": "chk_immunisation",
+            "text": "Immunisation",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "1914AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          {
+            "key": "chk_growth_and_development",
+            "text": "Growth and development",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "159883AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          {
+            "key": "chk_gender_issues",
+            "text": "Gender issues",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "161072AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          {
+            "key": "chk_malaria_prevention",
+            "text": "Malaria prevention for children under 5",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "164884AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          {
+            "key": "chk_infection_prevention",
+            "text": "Infection prevention and control",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "1906AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          {
+            "key": "chk_prevention_of_accidents",
+            "text": "Prevention of accidents",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "164872AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          {
+            "key": "chk_none",
+            "text": "No counseling provided",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "1107AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Please pick at least one"
+        }
+      }
+    ]
+  }
+}
