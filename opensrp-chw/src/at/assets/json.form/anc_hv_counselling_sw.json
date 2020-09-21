@@ -84,11 +84,11 @@
             "openmrs_entity_id": "1380AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           },
           {
-            "key": "chk_personal_delivery",
-            "text": "Mpango binafsi wa kujifungua",
+            "key": "chk_preventing_malaria",
+            "text": "Kuzuia malaria kwa wajawazito",
             "value": false,
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "5630AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+            "openmrs_entity_id": "164884AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           },
           {
             "key": "chk_hiv_aids",
@@ -105,11 +105,11 @@
             "openmrs_entity_id": "160538AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           },
           {
-            "key": "chk_preventing_malaria",
-            "text": "Kuzuia malaria kwa wajawazito",
+            "key": "chk_personal_delivery",
+            "text": "Mpango binafsi wa kujifungua",
             "value": false,
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "164884AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+            "openmrs_entity_id": "5630AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           },
           {
             "key": "chk_physical_changes",
@@ -120,7 +120,7 @@
           },
           {
             "key": "chk_pnc_danger_signs",
-            "text": "10. Dalili za hatari mara baada ya kujifungua hadi arobaini ya uzazi",
+            "text": "Dalili za hatari mara baada ya kujifungua hadi arobaini ya uzazi",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "161541AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
@@ -154,18 +154,18 @@
             "openmrs_entity_id": "1910AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           },
           {
-            "key": "chk_exclusive_breast_feeding ",
-            "text": "Njia ya uzazi wa mpango ya unyonyeshaji maziwa ya mama pekee kwa kipindi cha miezi sita baada ya kujifungua (LAM)",
-            "value": false,
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "161096AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-          },
-          {
             "key": "chk_family_planning",
             "text": "Uzazi wa mpango",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "1382AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          {
+            "key": "chk_exclusive_breast_feeding ",
+            "text": "Njia ya uzazi wa mpango ya unyonyeshaji maziwa ya mama pekee kwa kipindi cha miezi sita baada ya kujifungua (LAM)",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "161096AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           },
           {
             "key": "chk_infection_prevention",
@@ -176,7 +176,7 @@
           },
           {
             "key": "chk_none",
-            "text": "Hajatoa ushauri",
+            "text": "Ushauri haujatolewa",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "1107AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
