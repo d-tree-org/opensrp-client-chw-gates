@@ -1,6 +1,6 @@
 {
   "count": "1",
-  "encounter_type": "Child Home Visit Counselling",
+  "encounter_type": "PNC Home Visit Counselling",
   "entity_id": "",
   "metadata": {
     "start": {
@@ -164,7 +164,7 @@
             "key": "chk_gender_issues",
             "text": "Maswala ya kijinsia",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": ""
           },
           {
