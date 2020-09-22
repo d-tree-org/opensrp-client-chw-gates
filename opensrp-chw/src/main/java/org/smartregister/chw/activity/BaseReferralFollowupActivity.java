@@ -29,6 +29,7 @@ import timber.log.Timber;
 
 import static com.vijay.jsonwizard.constants.JsonFormConstants.JSON_FORM_KEY.JSON;
 import static org.smartregister.chw.core.utils.CoreConstants.ENTITY_ID;
+import static org.smartregister.chw.core.utils.CoreConstants.JSON_FORM.getReferralFollowupForm;
 import static org.smartregister.chw.core.utils.CoreConstants.JSON_FORM.isMultiPartForm;
 import static org.smartregister.chw.malaria.util.JsonFormUtils.validateParameters;
 import static org.smartregister.chw.util.JsonFormUtils.ENCOUNTER_TYPE;
@@ -37,6 +38,7 @@ import static org.smartregister.util.JsonFormUtils.VALUE;
 import static org.smartregister.util.JsonFormUtils.getFieldJSONObject;
 
 public abstract class BaseReferralFollowupActivity extends CoreReferralFollowupActivity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,37 +83,13 @@ public abstract class BaseReferralFollowupActivity extends CoreReferralFollowupA
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_CODE_GET_JSON) {
             String jsonString = data.getStringExtra(JSON);
-            try {
-                JSONObject form = new JSONObject(jsonString);
-                Triple<Boolean, JSONObject, JSONArray> registrationFormParams = validateParameters(form.toString());
-                JSONObject jsonForm = registrationFormParams.getMiddle();
-                String encounter_type = jsonForm.optString(ENCOUNTER_TYPE);
-
-                if (Constants.EncounterType.REFERRAL_FOLLOW_UP_VISIT.equals(encounter_type) || Constants.EncounterType.LINKAGE_FOLLOW_UP_VISIT.equals(encounter_type)) {
-                    JSONArray fields = registrationFormParams.getRight();
-                    JSONObject visit_hf_object = getFieldJSONObject(fields, "visit_hf");
-                    JSONObject services_hf_object = getFieldJSONObject(fields, "services_hf");
-                    if (visit_hf_object != null && "Yes".equalsIgnoreCase(visit_hf_object.optString(VALUE)) &&
-                            services_hf_object != null && "Yes".equalsIgnoreCase(services_hf_object.optString(VALUE)) ) {
-                        // update task
-                        TaskRepository taskRepository = ChwApplication.getInstance().getTaskRepository();
-                        Task task = taskRepository.getTaskByIdentifier(jsonForm.optString(ENTITY_ID));
-                        task.setStatus(Task.TaskStatus.COMPLETED);
-                        taskRepository.addOrUpdate(task);
-                    }
-                }
-
-                finish();
-
-            } catch (JSONException e) {
-                Timber.e(e);
-            }
-
+            completeReferralTask(jsonString);
         } else {
             finish();
         }
-
     }
+
+    protected abstract void completeReferralTask(String jsonString);
 
     @Override
     protected void onResumption() {
