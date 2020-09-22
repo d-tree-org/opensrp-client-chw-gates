@@ -13,7 +13,7 @@ import androidx.loader.content.Loader;
 
 import org.apache.commons.lang3.StringUtils;
 import org.smartregister.chw.R;
-import org.smartregister.chw.activity.FamilyProfileActivity;
+import org.smartregister.chw.activity.AtReferralDetailsViewActivity;
 import org.smartregister.chw.activity.ReferralFollowupActivity;
 import org.smartregister.chw.anc.util.DBConstants;
 import org.smartregister.chw.core.custom_views.NavigationMenu;
@@ -30,7 +30,6 @@ import org.smartregister.commonregistry.CommonPersonObjectClient;
 import org.smartregister.commonregistry.CommonRepository;
 import org.smartregister.cursoradapter.RecyclerViewPaginatedAdapter;
 import org.smartregister.cursoradapter.SmartRegisterQueryBuilder;
-import org.smartregister.family.fragment.BaseFamilyProfileDueFragment;
 import org.smartregister.view.activity.BaseRegisterActivity;
 import org.smartregister.view.customcontrols.CustomFontTextView;
 
@@ -132,10 +131,7 @@ public class ReferralRegisterFragment extends BaseReferralRegisterFragment {
 
     @Override
     protected void onViewClicked(View view) {
-        //super.onViewClicked(view);
-        if (view.getTag() instanceof CommonPersonObjectClient && view.getTag(org.smartregister.chw.referral.R.id.VIEW_ID) == "click_view_normal") {
-            new FamilyProfileActivity().goToProfileActivity(view, getArguments());
-        }
+        super.onViewClicked(view);
 
         if (view.getId() == R.id.due_only_layout) {
             //toggleFilterSelection(view);
@@ -173,7 +169,7 @@ public class ReferralRegisterFragment extends BaseReferralRegisterFragment {
 
     @Override
     protected void openProfile(CommonPersonObjectClient client) {
-        //ReferralDetailsViewActivity.startReferralDetailsViewActivity(getActivity(), new MemberObject(client));
+        AtReferralDetailsViewActivity.startReferralDetailsViewActivity(getActivity(), new MemberObject(client), client);
     }
 
     @Override
