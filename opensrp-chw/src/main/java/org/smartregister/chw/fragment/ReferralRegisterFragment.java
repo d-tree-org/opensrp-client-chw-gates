@@ -13,6 +13,7 @@ import androidx.loader.content.Loader;
 
 import org.apache.commons.lang3.StringUtils;
 import org.smartregister.chw.R;
+import org.smartregister.chw.activity.FamilyProfileActivity;
 import org.smartregister.chw.activity.ReferralFollowupActivity;
 import org.smartregister.chw.anc.util.DBConstants;
 import org.smartregister.chw.core.custom_views.NavigationMenu;
@@ -20,6 +21,8 @@ import org.smartregister.chw.core.utils.QueryBuilder;
 import org.smartregister.chw.model.ReferralRegisterFragmentModel;
 import org.smartregister.chw.presenter.ReferralRegisterFragmentPresenter;
 import org.smartregister.chw.provider.ReferralRegisterProvider;
+import org.smartregister.chw.referral.activity.ReferralDetailsViewActivity;
+import org.smartregister.chw.referral.domain.MemberObject;
 import org.smartregister.chw.referral.fragment.BaseReferralRegisterFragment;
 import org.smartregister.chw.util.Constants;
 import org.smartregister.chw.util.Utils;
@@ -27,6 +30,7 @@ import org.smartregister.commonregistry.CommonPersonObjectClient;
 import org.smartregister.commonregistry.CommonRepository;
 import org.smartregister.cursoradapter.RecyclerViewPaginatedAdapter;
 import org.smartregister.cursoradapter.SmartRegisterQueryBuilder;
+import org.smartregister.family.fragment.BaseFamilyProfileDueFragment;
 import org.smartregister.view.activity.BaseRegisterActivity;
 import org.smartregister.view.customcontrols.CustomFontTextView;
 
@@ -43,6 +47,16 @@ public class ReferralRegisterFragment extends BaseReferralRegisterFragment {
     private View view;
     private View dueOnlyLayout;
     private boolean dueFilterActive = false;
+
+    public static BaseReferralRegisterFragment newInstance(Bundle bundle) {
+        Bundle args = bundle;
+        BaseReferralRegisterFragment fragment = new ReferralRegisterFragment();
+        if (args == null) {
+            args = new Bundle();
+        }
+        fragment.setArguments(args);
+        return fragment;
+    }
 
     @Override
     public void initializeAdapter(Set<org.smartregister.configurableviews.model.View> visibleColumns) {
@@ -118,7 +132,10 @@ public class ReferralRegisterFragment extends BaseReferralRegisterFragment {
 
     @Override
     protected void onViewClicked(View view) {
-        super.onViewClicked(view);
+        //super.onViewClicked(view);
+        if (view.getTag() instanceof CommonPersonObjectClient && view.getTag(org.smartregister.chw.referral.R.id.VIEW_ID) == "click_view_normal") {
+            new FamilyProfileActivity().goToProfileActivity(view, getArguments());
+        }
 
         if (view.getId() == R.id.due_only_layout) {
             //toggleFilterSelection(view);

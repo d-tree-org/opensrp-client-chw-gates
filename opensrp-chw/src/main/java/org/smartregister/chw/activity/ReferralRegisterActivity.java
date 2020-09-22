@@ -77,7 +77,7 @@ public class ReferralRegisterActivity extends BaseReferralRegisterActivity {
 
     @Override
     protected BaseRegisterFragment getRegisterFragment() {
-        return new ReferralRegisterFragment();
+        return ReferralRegisterFragment.newInstance(this.getIntent().getExtras());
     }
 
     @Override
