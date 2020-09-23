@@ -144,7 +144,7 @@
       {
         "key": "fam_consent",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "",
+        "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "check_box",
         "exclusive": [
@@ -171,7 +171,7 @@
         "type": "label",
         "text": "Take a picture of the consent form",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "",
+        "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "relevance": {
           "step2:fam_consent": {
@@ -188,7 +188,7 @@
       {
         "key": "consent_photo",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "",
+        "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "choose_image",
         "uploadButtonText": "Take Photo",
@@ -218,7 +218,7 @@
         "type": "label",
         "text": "Family Head",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "",
+        "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "relevance": {
           "step2:fam_consent": {
@@ -235,7 +235,7 @@
       {
         "key": "spacer",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "",
+        "openmrs_entity": "concept",
         "openmrs_entity_id": "spacer",
         "type": "spacer",
         "spacer_height": "10sp"
@@ -243,7 +243,7 @@
       {
         "key": "finger_print",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "",
+        "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "finger_print",
         "project_id":"fUBnpzDdbsCsMp0egCHB",

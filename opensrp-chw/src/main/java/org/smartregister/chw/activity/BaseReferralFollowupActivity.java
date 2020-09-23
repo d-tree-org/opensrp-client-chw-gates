@@ -14,6 +14,7 @@ import org.json.JSONObject;
 import org.smartregister.chw.CoreReferralFollowupActivity;
 import org.smartregister.chw.R;
 import org.smartregister.chw.application.ChwApplication;
+import org.smartregister.chw.core.application.CoreChwApplication;
 import org.smartregister.chw.core.custom_views.NavigationMenu;
 import org.smartregister.chw.core.utils.CoreConstants;
 import org.smartregister.chw.util.Constants;
@@ -24,11 +25,13 @@ import org.smartregister.repository.TaskRepository;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 
 import timber.log.Timber;
 
 import static com.vijay.jsonwizard.constants.JsonFormConstants.JSON_FORM_KEY.JSON;
 import static org.smartregister.chw.core.utils.CoreConstants.ENTITY_ID;
+import static org.smartregister.chw.core.utils.CoreConstants.JSON_FORM.getReferralFollowupForm;
 import static org.smartregister.chw.core.utils.CoreConstants.JSON_FORM.isMultiPartForm;
 import static org.smartregister.chw.malaria.util.JsonFormUtils.validateParameters;
 import static org.smartregister.chw.util.JsonFormUtils.ENCOUNTER_TYPE;
@@ -37,6 +40,7 @@ import static org.smartregister.util.JsonFormUtils.VALUE;
 import static org.smartregister.util.JsonFormUtils.getFieldJSONObject;
 
 public abstract class BaseReferralFollowupActivity extends CoreReferralFollowupActivity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,17 +92,7 @@ public abstract class BaseReferralFollowupActivity extends CoreReferralFollowupA
                 String encounter_type = jsonForm.optString(ENCOUNTER_TYPE);
 
                 if (Constants.EncounterType.REFERRAL_FOLLOW_UP_VISIT.equals(encounter_type) || Constants.EncounterType.LINKAGE_FOLLOW_UP_VISIT.equals(encounter_type)) {
-                    JSONArray fields = registrationFormParams.getRight();
-                    JSONObject visit_hf_object = getFieldJSONObject(fields, "visit_hf");
-                    JSONObject services_hf_object = getFieldJSONObject(fields, "services_hf");
-                    if (visit_hf_object != null && "Yes".equalsIgnoreCase(visit_hf_object.optString(VALUE)) &&
-                            services_hf_object != null && "Yes".equalsIgnoreCase(services_hf_object.optString(VALUE)) ) {
-                        // update task
-                        TaskRepository taskRepository = ChwApplication.getInstance().getTaskRepository();
-                        Task task = taskRepository.getTaskByIdentifier(jsonForm.optString(ENTITY_ID));
-                        task.setStatus(Task.TaskStatus.COMPLETED);
-                        taskRepository.addOrUpdate(task);
-                    }
+                    completeReferralTask(jsonString);
                 }
 
                 finish();
@@ -106,12 +100,12 @@ public abstract class BaseReferralFollowupActivity extends CoreReferralFollowupA
             } catch (JSONException e) {
                 Timber.e(e);
             }
-
         } else {
             finish();
         }
-
     }
+
+    protected abstract void completeReferralTask(String jsonString);
 
     @Override
     protected void onResumption() {

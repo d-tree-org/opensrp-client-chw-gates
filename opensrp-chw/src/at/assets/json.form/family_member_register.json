@@ -68,7 +68,7 @@
       {
         "key": "consent_message",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "",
+        "openmrs_entity": "concept",
         "openmrs_entity_id": "toaster_notes",
         "type": "toaster_notes",
         "text": "The Afya-Tek program goal is to coordinate care to ensure prompt access to care among families in Kibaha.\n\nAs part of improving access to care and referral coordination, we need to register all household members in Kibaha so that we are able to follow specific individuals (children, adolescents, pregnant and post-partum mothers) as they navigate through multiple points of care and ensure that they receive respective and better care. Household members’ registration will involve scanning your fingerprints so that the program is able to identify you and match you to your health records. Your fingerprints and related information collected will be treated as strictly confidential and handled in accordance with relevant data protection standards.\n\nIndividuals who are ANC, PNC, adolescents or children under 5 will be visited by a CHV during and after pregnancy, counseled and evaluated for danger signs. The individual will then be referred, as needed, to the health facility or linked to an ADDO and followed up by the CHV to ensure continuity and quality of care. \n\nDo you consent to participate in the program? ",
@@ -78,7 +78,7 @@
       {
         "key": "member_consent",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "",
+        "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "check_box",
         "exclusive": [
@@ -594,7 +594,7 @@
        {
          "key": "finger_print",
          "openmrs_entity_parent": "",
-         "openmrs_entity": "",
+         "openmrs_entity": "concept",
          "openmrs_entity_id": "",
          "type": "finger_print",
          "project_id":"fUBnpzDdbsCsMp0egCHB",

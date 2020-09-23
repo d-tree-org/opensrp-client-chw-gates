@@ -76,7 +76,7 @@
       {
         "key": "same_as_fam_name",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "",
+        "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "openmrs_data_type": "text",
         "type": "check_box",
@@ -96,7 +96,7 @@
       {
         "key": "surname",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "",
+        "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "edit_text",
         "hint": "Jina la Familia",
@@ -120,7 +120,7 @@
       {
         "key": "fam_name",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "",
+        "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "label",
         "hidden": "true"
@@ -299,7 +299,7 @@
       {
         "key": "finger_print",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "",
+        "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "finger_print",
         "project_id":"fUBnpzDdbsCsMp0egCHB",

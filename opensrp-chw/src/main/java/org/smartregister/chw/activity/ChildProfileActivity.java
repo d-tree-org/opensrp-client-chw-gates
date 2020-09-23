@@ -112,7 +112,7 @@ public class ChildProfileActivity extends CoreChildProfileActivity implements Ch
             presenter().updateVisitNotDone(0);
         } else if(i == R.id.referral_row) {
             Task task = (Task) view.getTag();
-            ReferralFollowupActivity.startReferralFollowupActivity(this, task.getIdentifier());
+            ReferralFollowupActivity.startReferralFollowupActivity(this, task.getIdentifier(), childBaseEntityId);
         }else if (i == R.id.textview_verify_fingerprint){
             //Call out verification
             org.smartregister.chw.presenter.ChildProfilePresenter presenter = (org.smartregister.chw.presenter.ChildProfilePresenter) presenter();

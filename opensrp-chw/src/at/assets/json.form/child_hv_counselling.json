@@ -1,6 +1,6 @@
 {
   "count": "1",
-  "encounter_type": "ANC Counselling",
+  "encounter_type": "Child Home Visit Counselling",
   "entity_id": "",
   "metadata": {
     "start": {
@@ -47,15 +47,15 @@
     "encounter_location": ""
   },
   "step1": {
-    "title": "Ushauri",
+    "title": "Counselling",
     "fields": [
       {
-        "key": "counselling_given",
+        "key": "couselling_child",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "1379AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
         "type": "check_box",
-        "label": "Ushauri nasaa uliotolewa kwa mama na wanafamilia",
+        "label": "Counseling provided to the child and family members (check all that apply):",
         "label_text_style": "normal",
         "text_color": "#C0C0C0",
         "exclusive": [
@@ -63,120 +63,120 @@
         ],
         "options": [
           {
-            "key": "chk_attended_anc_contacts",
-            "text": "Kuhudhuria kliniki ya wajawazito mapema",
-            "value": false,
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "161013AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-          },
-          {
-            "key": "chk_anc_danger_signs",
-            "text": "Dalili za hatari wakati wa ujauzito",
-            "value": false,
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "161050AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-          },
-          {
             "key": "chk_maternal_nutrition",
-            "text": "Lishe kwa mama wakati wa ujauzito na kunyonyesha",
+            "text": "Maternal nutrition during breastfeeding",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "1380AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           },
           {
-            "key": "chk_preventing_malaria",
-            "text": "Kuzuia malaria kwa wajawazito",
-            "value": false,
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "164884AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-          },
-          {
             "key": "chk_hiv_aids",
-            "text": "Umuhimu wa kupata ushauri nasaha na kupima VVU",
+            "text": "HIV/AIDS general information",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "1914AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           },
           {
-            "key": "chk_pmtct_for_mother",
-            "text": "Kuzuia mambukizi ya VVU kutoka kwa mama kwenda kwa mtoto",
+            "key": "chk_pmtct",
+            "text": "Prevention of mother-to-child transmission of HIV",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "160538AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           },
           {
-            "key": "chk_personal_delivery",
-            "text": "Mpango binafsi wa kujifungua",
+            "key": "chk_care_of_infant_after_birth",
+            "text": "Infant care",
             "value": false,
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "5630AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+            "openmrs_entity_id": "159839AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           },
           {
-            "key": "chk_physical_changes",
-            "text": "Mabadiliko ya kimwili kwa mama aliyejifungua",
-            "value": false,
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "162093AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-          },
-          {
-            "key": "chk_pnc_danger_signs",
-            "text": "Dalili za hatari mara baada ya kujifungua hadi arobaini ya uzazi",
-            "value": false,
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "161541AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-          },
-          {
-            "key": "chk_care_of_infant",
-            "text": "Huduma kwa mtoto mchanga mara baada ya kuzaliwa",
-            "value": false,
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "160413AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-          },
-          {
-            "key": "chk_infant_danger_signs",
-            "text": "Dalili za hatari kwa mtoto mchanga",
+            "key": "chk_new_born_danger_signs",
+            "text": "Infant danger signs",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "161071AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           },
           {
+            "key": "chk_care_of_premature_baby",
+            "text": "Care of a premature or underweight baby",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
             "key": "chk_hiv_exposed_infant",
-            "text": "Ufuatiliaji wa mtoto aliyezaliwa na mama mwenye VVU",
+            "text": "Follow-up for the HIV-exposed infant",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "164818AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           },
           {
             "key": "chk_breastfeeding",
-            "text": "Unyonyeshaji wa maziwa ya mama",
+            "text": "Breastfeeding",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "1910AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           },
           {
-            "key": "chk_family_planning",
-            "text": "Uzazi wa mpango",
+            "key": "chk_complementary_feeding",
+            "text": "Complementary feeding",
             "value": false,
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "1382AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+            "openmrs_entity_id": "159854AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           },
           {
-            "key": "chk_exclusive_breast_feeding ",
-            "text": "Njia ya uzazi wa mpango ya unyonyeshaji maziwa ya mama pekee kwa kipindi cha miezi sita baada ya kujifungua (LAM)",
+            "key": "chk_birth_registration",
+            "text": "Birth registration",
             "value": false,
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "161096AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+            "openmrs_entity_id": "165406AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          {
+            "key": "chk_immunisation",
+            "text": "Immunisation",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "1914AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          {
+            "key": "chk_growth_and_development",
+            "text": "Growth and development",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "159883AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          {
+            "key": "chk_gender_issues",
+            "text": "Gender issues",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "161072AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          {
+            "key": "chk_malaria_prevention",
+            "text": "Malaria prevention for children under 5",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "164884AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           },
           {
             "key": "chk_infection_prevention",
-            "text": "Kuzuia maambukizi katika jamii",
+            "text": "Infection prevention and control",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "1906AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           },
           {
+            "key": "chk_prevention_of_accidents",
+            "text": "Prevention of accidents",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "164872AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          {
             "key": "chk_none",
-            "text": "Ushauri haujatolewa",
+            "text": "No counseling provided",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "1107AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
@@ -184,7 +184,7 @@
         ],
         "v_required": {
           "value": "true",
-          "err": "Tafadhali chagua angalau moja"
+          "err": "Please pick at least one"
         }
       }
     ]

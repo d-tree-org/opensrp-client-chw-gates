@@ -6,7 +6,8 @@ import android.view.View;
 
 import org.smartregister.chw.core.holders.RegisterViewHolder;
 import org.smartregister.chw.core.provider.CoreChildRegisterProvider;
-import org.smartregister.chw.core.task.UpdateLastAsyncTask;
+import org.smartregister.chw.task.UpdateLastAsyncTask;
+import org.smartregister.chw.core.utils.CoreReferralUtils;
 import org.smartregister.commonregistry.CommonPersonObjectClient;
 import org.smartregister.commonregistry.CommonRepository;
 import org.smartregister.family.util.Utils;
@@ -52,4 +53,13 @@ public class ChildRegisterProvider extends CoreChildRegisterProvider {
         Utils.startAsyncTask(new UpdateLastAsyncTask(context, commonRepository, viewHolder, pc.entityId(), onClickListener), null);
     }
 
+    @Override
+    protected void populatePatientColumn(CommonPersonObjectClient pc, SmartRegisterClient client, RegisterViewHolder viewHolder) {
+        super.populatePatientColumn(pc, client, viewHolder);
+        if(CoreReferralUtils.hasAnyReferralTask(pc.getCaseId())) {
+            viewHolder.textViewHasReferral.setVisibility(View.VISIBLE);
+        }else{
+            viewHolder.textViewHasReferral.setVisibility(View.GONE);
+        }
+    }
 }
