@@ -52,7 +52,7 @@
       {
         "key": "fam_llin",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "",
+        "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "openmrs_data_type": "select one",
         "type": "spinner",
@@ -77,7 +77,7 @@
       {
         "key": "llin_2days",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "",
+        "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "openmrs_data_type": "select one",
         "type": "spinner",
@@ -108,7 +108,7 @@
       {
         "key": "llin_condition",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "",
+        "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "openmrs_data_type": "select one",
         "type": "spinner",

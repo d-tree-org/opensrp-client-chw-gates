@@ -161,7 +161,9 @@ public class ReferralRegisterFragment extends BaseReferralRegisterFragment {
 
     @Override
     protected void openFollowUpVisit(CommonPersonObjectClient client) {
-        ReferralFollowupActivity.startReferralFollowupActivity(getActivity(), client.getCaseId());
+        if (client != null) {
+            ReferralFollowupActivity.startReferralFollowupActivity(getActivity(), client.getCaseId(), Utils.getValue(client.getColumnmaps(), Constants.DB_CONSTANTS.FOR, false));
+        }
     }
 
     @Override
