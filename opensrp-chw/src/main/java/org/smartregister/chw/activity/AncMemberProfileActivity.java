@@ -233,7 +233,7 @@ public class AncMemberProfileActivity extends CoreAncMemberProfileActivity imple
             AncHomeVisitActivity.startMe(this, memberObject.getBaseEntityId(), true);
         } else if (id == R.id.referral_row) {
             Task task = (Task) view.getTag();
-            ReferralFollowupActivity.startReferralFollowupActivity(this, task.getIdentifier());
+            ReferralFollowupActivity.startReferralFollowupActivity(this, task.getIdentifier(), memberObject.getBaseEntityId());
         }
     }
 

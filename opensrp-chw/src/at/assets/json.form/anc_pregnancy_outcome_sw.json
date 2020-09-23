@@ -260,7 +260,7 @@
       {
         "key": "other_delivery_place_description",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "",
+        "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "edit_text",
         "hint": "Elezea mahali pengine alipojifungulia",

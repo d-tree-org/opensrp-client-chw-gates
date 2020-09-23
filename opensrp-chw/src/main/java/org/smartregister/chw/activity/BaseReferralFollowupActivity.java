@@ -29,6 +29,7 @@ import timber.log.Timber;
 
 import static com.vijay.jsonwizard.constants.JsonFormConstants.JSON_FORM_KEY.JSON;
 import static org.smartregister.chw.core.utils.CoreConstants.ENTITY_ID;
+import static org.smartregister.chw.core.utils.CoreConstants.JSON_FORM.getReferralFollowupForm;
 import static org.smartregister.chw.core.utils.CoreConstants.JSON_FORM.isMultiPartForm;
 import static org.smartregister.chw.malaria.util.JsonFormUtils.validateParameters;
 import static org.smartregister.chw.util.JsonFormUtils.ENCOUNTER_TYPE;
@@ -37,6 +38,7 @@ import static org.smartregister.util.JsonFormUtils.VALUE;
 import static org.smartregister.util.JsonFormUtils.getFieldJSONObject;
 
 public abstract class BaseReferralFollowupActivity extends CoreReferralFollowupActivity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -106,12 +108,12 @@ public abstract class BaseReferralFollowupActivity extends CoreReferralFollowupA
             } catch (JSONException e) {
                 Timber.e(e);
             }
-
         } else {
             finish();
         }
-
     }
+
+    protected abstract void completeReferralTask(String jsonString);
 
     @Override
     protected void onResumption() {

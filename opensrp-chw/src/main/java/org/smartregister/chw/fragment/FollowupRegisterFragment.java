@@ -17,6 +17,7 @@ import org.smartregister.chw.activity.MalariaFollowUpVisitActivity;
 import org.smartregister.chw.activity.ReferralFollowupActivity;
 import org.smartregister.chw.anc.util.DBConstants;
 import org.smartregister.chw.core.custom_views.NavigationMenu;
+import org.smartregister.chw.core.utils.CoreConstants;
 import org.smartregister.chw.core.utils.QueryBuilder;
 import org.smartregister.chw.model.ReferralRegisterFragmentModel;
 import org.smartregister.chw.presenter.ReferralFollowupFragmentPresenter;
@@ -154,7 +155,9 @@ public class FollowupRegisterFragment extends BaseFollowupRegisterFragment {
 
     @Override
     protected void openProfile(CommonPersonObjectClient client) {
-        ReferralFollowupActivity.startReferralFollowupActivity(getActivity(), client.getCaseId());
+        if (client != null) {
+            ReferralFollowupActivity.startReferralFollowupActivity(getActivity(), client.getCaseId(), Utils.getValue(client.getColumnmaps(), Constants.DB_CONSTANTS.FOR, false));
+        }
     }
 
     @Override

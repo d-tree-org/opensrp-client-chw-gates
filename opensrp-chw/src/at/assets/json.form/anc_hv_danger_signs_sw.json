@@ -164,7 +164,7 @@
             "openmrs_entity_id": ""
           },
           {
-            "key": "chk_anemia",
+            "key": "ds_anemia",
             "text": "Upungufu wa damu unajionyesha kwa weupe mkubwa kwenye viganja vya mkono na ulimi, kulegea au uchovu.",
             "value": false,
             "openmrs_entity": "concept",
@@ -186,7 +186,7 @@
       {
         "key": "danger_signs_captured_sw",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "",
+        "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "hidden",
         "calculation": {
@@ -231,7 +231,7 @@
             "text": "Kukohoa",
             "value": false,
             "openmrs_entity_parent": "",
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": ""
           },
           {
@@ -239,7 +239,7 @@
             "text": "Mafua",
             "value": false,
             "openmrs_entity_parent": "",
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": ""
           },
           {
@@ -247,7 +247,7 @@
             "text": "Mkwaruzo wa koo",
             "value": false,
             "openmrs_entity_parent": "",
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": ""
           },
           {
@@ -270,7 +270,7 @@
             "key": "mi_other_needs",
             "text": "Mahitaji mengine",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": ""
           },
           {
@@ -300,7 +300,7 @@
       {
         "key": "minorillness_description",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "",
+        "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "edit_text",
         "hint": "Elezea mahitaji/magojwa mengine",
@@ -393,7 +393,7 @@
       {
         "key": "spacer",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "",
+        "openmrs_entity": "concept",
         "openmrs_entity_id": "spacer",
         "type": "spacer",
         "spacer_height": "20dp"
