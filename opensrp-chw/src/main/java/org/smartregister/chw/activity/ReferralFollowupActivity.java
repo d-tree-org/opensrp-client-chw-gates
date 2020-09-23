@@ -79,10 +79,11 @@ public class ReferralFollowupActivity extends BaseReferralFollowupActivity {
 
             if (org.smartregister.chw.util.Constants.EncounterType.REFERRAL_FOLLOW_UP_VISIT.equals(encounter_type) || org.smartregister.chw.util.Constants.EncounterType.LINKAGE_FOLLOW_UP_VISIT.equals(encounter_type)) {
                 JSONArray fields = registrationFormParams.getRight();
+
+                JSONObject wantToComplete = getFieldJSONObject(fields, "complete_referral");
                 JSONObject visit_hf_object = getFieldJSONObject(fields, "visit_hf");
-                JSONObject services_hf_object = getFieldJSONObject(fields, "services_hf");
-                if (visit_hf_object != null && "Yes".equalsIgnoreCase(visit_hf_object.optString(VALUE)) &&
-                        services_hf_object != null && "Yes".equalsIgnoreCase(services_hf_object.optString(VALUE)) ) {
+                if (visit_hf_object != null && "Yes".equalsIgnoreCase(visit_hf_object.optString(VALUE)) ||
+                        wantToComplete != null && "No".equalsIgnoreCase(wantToComplete.optString(VALUE)) ) {
                     // update task
                     TaskRepository taskRepository = ChwApplication.getInstance().getTaskRepository();
                     Task task = taskRepository.getTaskByIdentifier(getTaskIdentifier());

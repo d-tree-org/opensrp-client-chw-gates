@@ -14,6 +14,7 @@ import org.json.JSONObject;
 import org.smartregister.chw.CoreReferralFollowupActivity;
 import org.smartregister.chw.R;
 import org.smartregister.chw.application.ChwApplication;
+import org.smartregister.chw.core.application.CoreChwApplication;
 import org.smartregister.chw.core.custom_views.NavigationMenu;
 import org.smartregister.chw.core.utils.CoreConstants;
 import org.smartregister.chw.util.Constants;
@@ -24,6 +25,7 @@ import org.smartregister.repository.TaskRepository;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 
 import timber.log.Timber;
 
@@ -90,17 +92,7 @@ public abstract class BaseReferralFollowupActivity extends CoreReferralFollowupA
                 String encounter_type = jsonForm.optString(ENCOUNTER_TYPE);
 
                 if (Constants.EncounterType.REFERRAL_FOLLOW_UP_VISIT.equals(encounter_type) || Constants.EncounterType.LINKAGE_FOLLOW_UP_VISIT.equals(encounter_type)) {
-                    JSONArray fields = registrationFormParams.getRight();
-                    JSONObject visit_hf_object = getFieldJSONObject(fields, "visit_hf");
-                    JSONObject wantToComplete = getFieldJSONObject(fields, "complete_referral");
-                    if (visit_hf_object != null && "Yes".equalsIgnoreCase(visit_hf_object.optString(VALUE)) ||
-                            wantToComplete != null && "No".equalsIgnoreCase(wantToComplete.optString(VALUE)) ) {
-                        // update task
-                        TaskRepository taskRepository = ChwApplication.getInstance().getTaskRepository();
-                        Task task = taskRepository.getTaskByIdentifier(jsonForm.optString(ENTITY_ID));
-                        task.setStatus(Task.TaskStatus.COMPLETED);
-                        taskRepository.addOrUpdate(task);
-                    }
+                    completeReferralTask(jsonString);
                 }
 
                 finish();
