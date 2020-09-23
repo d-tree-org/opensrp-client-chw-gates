@@ -59,21 +59,21 @@
       {
         "key": "visit_hf",
         "type": "native_radio",
-        "openmrs_entity": "",
+        "openmrs_entity": "concept",
         "openmrs_entity_id": "1889AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
         "openmrs_entity_parent": "",
         "label": "Did the client visit an ADDO?",
         "options": [
           {
             "key": "Yes",
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
             "openmrs_entity_parent": "",
             "text": "Yes"
           },
           {
             "key": "No",
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
             "openmrs_entity_parent": "",
             "text": "No"
@@ -87,21 +87,21 @@
 	  {
         "key": "services_hf",
         "type": "native_radio",
-        "openmrs_entity": "",
+        "openmrs_entity": "concept",
         "openmrs_entity_id": "1889AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
         "openmrs_entity_parent": "",
         "label": "Did they receive the services or attended to at the ADDO?",
         "options": [
           {
             "key": "Yes",
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
             "openmrs_entity_parent": "",
             "text": "Yes"
           },
           {
             "key": "No",
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
             "openmrs_entity_parent": "",
             "text": "No"
@@ -183,7 +183,7 @@
             "key": "chk_other_reason",
             "text": "Other",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": ""
           }
         ],
@@ -202,7 +202,7 @@
 	  {
         "key": "other_reason",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "",
+        "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "edit_text",
         "hint": "What other reason?",
@@ -270,7 +270,7 @@
             "key": "chk_other_visit_reason",
             "text": "Other",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": ""
           }
         ],
@@ -289,7 +289,7 @@
 	  {
         "key": "other_reason_novisit",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "",
+        "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "edit_text",
         "hint": "What other reason?",
@@ -328,21 +328,21 @@
 	  {
         "key": "complete_referral",
         "type": "native_radio",
-        "openmrs_entity": "",
+        "openmrs_entity": "concept",
         "openmrs_entity_id": "1889AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
         "openmrs_entity_parent": "",
         "label": "Would they like to try to complete the linkage at an ADDO?",
         "options": [
           {
             "key": "Yes",
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
             "openmrs_entity_parent": "",
             "text": "Yes"
           },
           {
             "key": "No",
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
             "openmrs_entity_parent": "",
             "text": "No"

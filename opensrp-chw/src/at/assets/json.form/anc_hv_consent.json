@@ -52,7 +52,7 @@
       {
         "key": "consent_from_client",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "",
+        "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "check_box",
         "label": "Does the client consent to participate in the program",
@@ -66,14 +66,14 @@
             "key": "chk_consent_yes",
             "text": "Yes",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": ""
           },
           {
             "key": "chk_consent_no",
             "text": "No",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": ""
           }
         ],

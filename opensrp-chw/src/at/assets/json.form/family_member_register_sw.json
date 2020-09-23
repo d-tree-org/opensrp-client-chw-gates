@@ -68,7 +68,7 @@
       {
         "key": "consent_message",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "",
+        "openmrs_entity": "concept",
         "openmrs_entity_id": "toaster_notes",
         "type": "toaster_notes",
         "text": "Lengo la programu ya Afya-Tek ni kuimarisha utaratibu wa kupata huduma ili kuhakikisha familia za Kibaha zinapata huduma za afya kwa wakati.\n\nKama sehemu ya kuboresha upatikanaji wa huduma za afya na uratibu wa rufaa, tunahitaji kusajili wanakaya wote wa Kibaha ili tuweze kuwafuatilia wale waliopo kwenye makundi maalumu (watoto, vijana balehe, mama mjamzito na aliyejifungua) pindi wanapotafuta huduma za afya sehemu mbalimbali na kuhakikisha wanapata huduma husika zenye ubora. Usajili wa wanakaya utajumuisha kuchukua wa alama zako za vidole ili programu iweze kukutambua na kuoanisha taarifa zako za afya. Alama zako za vidole pamoja na taarifa zitakazokusanywa zitahifadhiwa kwa usiri mkubwa na kutunzwa kwa kuzingatia viwango husika vya kulinda taarifa.\n\n\nWajawazito, Waliojifungua, Vijana balehe, au Watoto wenye miaka mitano kwenda chini watatembelewa na mhudumu wa afya katika jamii ili kupewa ushauri na kutathminiwa kwa ajili ya viashiria vya hatari. Kisha, kama itahitajika, watapewa rufaa ya kwenda kwenye kituo cha kutolea huduma za afya au utaunganishwa na duka la dawa muhimu na kufuatiliwa na mhudumu huyo ili kuhakikisha mwendelezo wa huduma zilizo bora.\n\nJe, unakubali kushiriki katika programu hii?",
@@ -78,7 +78,7 @@
       {
         "key": "member_consent",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "",
+        "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "check_box",
         "exclusive": [
@@ -595,7 +595,7 @@
       {
         "key": "finger_print",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "",
+        "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "finger_print",
         "project_id":"fUBnpzDdbsCsMp0egCHB",

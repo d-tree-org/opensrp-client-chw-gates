@@ -423,7 +423,7 @@ dependencies {
     implementation 'com.github.ybq:Android-SpinKit:1.4.0'
     implementation 'org.apache.httpcomponents:httpcore:4.4.10'
 
-    implementation('org.smartregister:opensrp-client-core:1.8.31-DTREE-1-SNAPSHOT') {
+    implementation('org.smartregister:opensrp-client-core:1.8.31-DTREE-2-SNAPSHOT') {
         transitive = true
         exclude group: 'com.github.bmelnychuk', module: 'atv'
         exclude group: 'com.google.guava', module: 'guava'
