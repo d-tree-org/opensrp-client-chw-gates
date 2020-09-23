@@ -83,7 +83,31 @@ public abstract class BaseReferralFollowupActivity extends CoreReferralFollowupA
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_CODE_GET_JSON) {
             String jsonString = data.getStringExtra(JSON);
-            completeReferralTask(jsonString);
+            try {
+                JSONObject form = new JSONObject(jsonString);
+                Triple<Boolean, JSONObject, JSONArray> registrationFormParams = validateParameters(form.toString());
+                JSONObject jsonForm = registrationFormParams.getMiddle();
+                String encounter_type = jsonForm.optString(ENCOUNTER_TYPE);
+
+                if (Constants.EncounterType.REFERRAL_FOLLOW_UP_VISIT.equals(encounter_type) || Constants.EncounterType.LINKAGE_FOLLOW_UP_VISIT.equals(encounter_type)) {
+                    JSONArray fields = registrationFormParams.getRight();
+                    JSONObject visit_hf_object = getFieldJSONObject(fields, "visit_hf");
+                    JSONObject wantToComplete = getFieldJSONObject(fields, "complete_referral");
+                    if (visit_hf_object != null && "Yes".equalsIgnoreCase(visit_hf_object.optString(VALUE)) ||
+                            wantToComplete != null && "No".equalsIgnoreCase(wantToComplete.optString(VALUE)) ) {
+                        // update task
+                        TaskRepository taskRepository = ChwApplication.getInstance().getTaskRepository();
+                        Task task = taskRepository.getTaskByIdentifier(jsonForm.optString(ENTITY_ID));
+                        task.setStatus(Task.TaskStatus.COMPLETED);
+                        taskRepository.addOrUpdate(task);
+                    }
+                }
+
+                finish();
+
+            } catch (JSONException e) {
+                Timber.e(e);
+            }
         } else {
             finish();
         }
