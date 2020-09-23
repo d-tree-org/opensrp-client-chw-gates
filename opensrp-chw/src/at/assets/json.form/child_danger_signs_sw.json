@@ -69,7 +69,7 @@
             "key": "chk_difficult_drinking",
             "text": "Kushindwa kunyonya/kunywa",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": ""
           },
           {
@@ -83,14 +83,14 @@
             "key": "chk_fast_breathing",
             "text": "Kupumua kwa haraka",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": ""
           },
           {
             "key": "chk_chest_indrawing",
             "text": "Kifua kubonyea sana",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": ""
           },
           {
@@ -104,21 +104,21 @@
             "key": "chk_extreme_cold_or_hot",
             "text": "Mwili kuwa baridi au joto sana",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": ""
           },
           {
             "key": "chk_oversleeping",
             "text": "Kulala sana/vigumu kuamka",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": ""
           },
           {
             "key": "chk_redness_around_umbilical",
             "text": "Kitovu chekundu au kinachotoa usaha",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": ""
           },
           {
@@ -139,77 +139,77 @@
             "key": "chk_grunting_voice",
             "text": "Sauti ya mtoto kuugulia",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id":""
           },
           {
             "key": "chk_malnutrition",
             "text": "Utapiamlo",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id":""
           },
           {
             "key": "chk_not_getting_better",
             "text": "Kutopata nafuu hata baada ya kupata tiba",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id":""
           },
           {
             "key": "chk_severe_vomit",
             "text": "Anatapika hawezi kuweka kitu tumboni",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id":""
           },
           {
             "key": "chk_weak",
             "text": "Amelegea sana/hana fahamu",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id":""
           },
           {
             "key": "chk_blue_lips",
             "text": "Midomo kubadilika rangi na kuwa ya bluu",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id":""
           },
           {
             "key": "chk_constipation",
             "text": "Kushindwa kupata haja kubwa na ndogo",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id":""
           },
           {
             "key": "chk_watery_stool_day",
             "text": "Kupata choo laini/cha majimaji mara 3 au zaidi kwa siku",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id":""
           },
           {
             "key": "chk_watery_stool_weekly",
             "text": "Kupata choo laini/cha majimaji kwa siku 14 au zaidi",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id":""
           },
           {
             "key": "chk_blood_stool",
             "text": "Kupata choo chenye damu",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id":""
           },
           {
             "key": "chk_excessive_crying",
             "text": "Kulia sana na kuhangaika",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id":""
           },
           {
@@ -228,7 +228,7 @@
       {
         "key": "danger_signs_captured_sw",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "",
+        "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "hidden",
         "calculation": {
@@ -264,6 +264,7 @@
                   "chk_convulsions",
                   "chk_chest_indrawing",
                   "chk_difficult_breathing",
+                  "chk_fast_breathing",
                   "chk_difficult_drinking",
                   "chk_oversleeping",
                   "chk_redness_around_umbilical",
@@ -312,6 +313,7 @@
                   "chk_chest_indrawing",
                   "chk_difficult_breathing",
                   "chk_difficult_drinking",
+                  "chk_fast_breathing",
                   "chk_oversleeping",
                   "chk_redness_around_umbilical",
                   "chk_body_rashes",
@@ -490,7 +492,7 @@
       {
         "key": "minorillness_description",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "",
+        "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "edit_text",
         "hint": "Elezea mahitaji/magojwa mengine",

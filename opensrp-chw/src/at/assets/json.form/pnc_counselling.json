@@ -192,7 +192,7 @@
             "key": "chk_gender_issues",
             "text": "26. Gender issues",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": ""
           },
           {

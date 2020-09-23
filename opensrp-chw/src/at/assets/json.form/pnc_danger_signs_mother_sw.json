@@ -125,7 +125,7 @@
             "key": "chk_pain_breast_engorgement",
             "text": "Maumivu yatokanayo na kujaa/kuvimba kwa matiti au chuchu zilizochanika",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": ""
           },
           {
@@ -172,7 +172,7 @@
       {
         "key": "danger_signs_captured_sw",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "",
+        "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "hidden",
         "calculation": {
@@ -309,21 +309,21 @@
             "key": "chk_cough",
             "text": "Kukohoa",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": ""
           },
           {
             "key": "chk_running_nose",
             "text": "Kuumwa mafua",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": ""
           },
           {
             "key": "chk_sore_throat",
             "text": "Kukereketwa koo",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": ""
           },
           {
@@ -367,7 +367,7 @@
       {
         "key": "minorillness_description",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "",
+        "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "edit_text",
         "hint": "Elezea mahitaji/magonjwa mengine",
