@@ -4,10 +4,10 @@ import org.smartregister.chw.application.ChwApplication;
 import org.smartregister.chw.core.application.CoreChwApplication;
 import org.smartregister.chw.core.contract.ScheduleTask;
 import org.smartregister.chw.core.domain.BaseScheduleTask;
-import org.smartregister.chw.core.rule.HomeAlertRule;
 import org.smartregister.chw.core.utils.ChildHomeVisit;
 import org.smartregister.chw.core.utils.CoreConstants;
 import org.smartregister.chw.dao.PersonDao;
+import org.smartregister.chw.rule.ChildVisitAlertRule;
 import org.smartregister.chw.util.ChildUtils;
 import org.smartregister.chw.util.Constants;
 
@@ -29,9 +29,9 @@ public class ChildHomeVisitScheduler extends BaseTaskExecutor {
         ChildHomeVisit childHomeVisit = ChildUtils.getLastHomeVisit(Constants.TABLE_NAME.CHILD, baseEntityID);
         String yearOfBirth = PersonDao.getDob(baseEntityID);
 
-        HomeAlertRule alertRule = new HomeAlertRule(
+        ChildVisitAlertRule alertRule = new ChildVisitAlertRule(
                 ChwApplication.getInstance().getApplicationContext(), yearOfBirth, childHomeVisit.getLastHomeVisitDate(), childHomeVisit.getVisitNotDoneDate(), childHomeVisit.getDateCreated());
-        CoreChwApplication.getInstance().getRulesEngineHelper().getButtonAlertStatus(alertRule, CoreConstants.RULE_FILE.HOME_VISIT);
+        CoreChwApplication.getInstance().getRulesEngineHelper().getButtonAlertStatus(alertRule, "child-home-visit-rules.yml");
 
 
         baseScheduleTask.setScheduleDueDate(alertRule.getDueDate());
