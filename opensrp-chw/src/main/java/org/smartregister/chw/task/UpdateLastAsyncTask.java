@@ -44,7 +44,7 @@ public class UpdateLastAsyncTask extends AsyncTask<Void, Void, Void> {
         this.viewHolder = viewHolder;
         this.baseEntityId = baseEntityId;
         this.onClickListener = onClickListener;
-        this.rules = CoreChwApplication.getInstance().getRulesEngineHelper().rules("child-home-visit-rules.yml");
+        this.rules = CoreChwApplication.getInstance().getRulesEngineHelper().rules(CoreConstants.RULE_FILE.CHILD_HOME_VISIT);
     }
 
     @Override

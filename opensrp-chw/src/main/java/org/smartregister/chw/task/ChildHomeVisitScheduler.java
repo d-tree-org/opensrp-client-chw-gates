@@ -31,7 +31,7 @@ public class ChildHomeVisitScheduler extends BaseTaskExecutor {
 
         ChildVisitAlertRule alertRule = new ChildVisitAlertRule(
                 ChwApplication.getInstance().getApplicationContext(), yearOfBirth, childHomeVisit.getLastHomeVisitDate(), childHomeVisit.getVisitNotDoneDate(), childHomeVisit.getDateCreated());
-        CoreChwApplication.getInstance().getRulesEngineHelper().getButtonAlertStatus(alertRule, "child-home-visit-rules.yml");
+        CoreChwApplication.getInstance().getRulesEngineHelper().getButtonAlertStatus(alertRule, CoreConstants.RULE_FILE.CHILD_HOME_VISIT);
 
 
         baseScheduleTask.setScheduleDueDate(alertRule.getDueDate());
