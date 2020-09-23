@@ -441,7 +441,7 @@
           },
           {
             "key": "chk_mild_diarrhea",
-            "text": "Kuhara kali bila damu (chini ya mara 3 katika masaa 24)",
+            "text": "Kuhara bila damu (chini ya mara 3 katika ya masaa 24)",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": ""
