@@ -4,10 +4,16 @@ import android.content.Context;
 
 import com.google.gson.reflect.TypeToken;
 
+import org.jeasy.rules.api.Rules;
 import org.smartregister.chw.R;
+import org.smartregister.chw.application.ChwApplication;
+import org.smartregister.chw.core.application.CoreChwApplication;
+import org.smartregister.chw.core.model.ChildVisit;
 import org.smartregister.chw.core.utils.ChildDBConstants;
 import org.smartregister.chw.core.utils.CoreChildUtils;
+import org.smartregister.chw.core.utils.CoreConstants;
 import org.smartregister.chw.core.utils.ServiceTask;
+import org.smartregister.chw.rule.ChildVisitAlertRule;
 import org.smartregister.family.util.DBConstants;
 import org.smartregister.util.DateUtil;
 
@@ -149,4 +155,42 @@ public class ChildUtils extends CoreChildUtils {
 
     }
 
+    /**
+     * Same thread to retrive rules and also updateFamilyRelations in fts
+     *
+     * @param yearOfBirth
+     * @param lastVisitDate
+     * @param visitNotDate
+     * @return
+     */
+    public static ChildVisit getChildVisitStatus(Context context, String yearOfBirth, long lastVisitDate, long visitNotDate, long dateCreated) {
+        ChildVisitAlertRule homeAlertRule = new ChildVisitAlertRule(context, yearOfBirth, lastVisitDate, visitNotDate, dateCreated);
+        CoreChwApplication.getInstance().getRulesEngineHelper().getButtonAlertStatus(homeAlertRule, CoreConstants.RULE_FILE.HOME_VISIT);
+        return getChildVisitStatus(homeAlertRule, lastVisitDate);
+    }
+
+    public static ChildVisit getChildVisitStatus(ChildVisitAlertRule homeAlertRule, long lastVisitDate) {
+        ChildVisit childVisit = new ChildVisit();
+        childVisit.setVisitStatus(homeAlertRule.buttonStatus);
+        childVisit.setNoOfMonthDue(homeAlertRule.noOfMonthDue);
+        childVisit.setLastVisitDays(homeAlertRule.noOfDayDue);
+        childVisit.setLastVisitMonthName(homeAlertRule.visitMonthName);
+        childVisit.setLastVisitTime(lastVisitDate);
+        return childVisit;
+    }
+
+    /**
+     * Rules can be retrieved separately so that the background thread is used here
+     *
+     * @param rules
+     * @param yearOfBirth
+     * @param lastVisitDate
+     * @param visitNotDate
+     * @return
+     */
+    public static ChildVisit getChildVisitStatus(Context context, Rules rules, String yearOfBirth, long lastVisitDate, long visitNotDate, long dateCreated) {
+        ChildVisitAlertRule homeAlertRule = new ChildVisitAlertRule(context, yearOfBirth, lastVisitDate, visitNotDate, dateCreated);
+        ChwApplication.getInstance().getRulesEngineHelper().getButtonAlertStatus(homeAlertRule, rules);
+        return getChildVisitStatus(homeAlertRule, lastVisitDate);
+    }
 }
