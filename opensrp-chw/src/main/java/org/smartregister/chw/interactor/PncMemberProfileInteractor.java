@@ -210,6 +210,9 @@ public class PncMemberProfileInteractor extends CorePncMemberProfileInteractor i
 
     public void getClientTasks(String planId, String baseEntityId, @NotNull PncMemberProfileContract.InteractorCallBack callback) {
         Set<Task> taskList = CoreChwApplication.getInstance().getTaskRepository().getTasksByEntityAndStatus(planId, baseEntityId, Task.TaskStatus.READY);
+        Set<Task> inProgressTasks = CoreChwApplication.getInstance().getTaskRepository().getTasksByEntityAndStatus(planId, baseEntityId, Task.TaskStatus.IN_PROGRESS);
+        taskList.addAll(inProgressTasks);
+
         callback.setClientTasks(taskList);
     }
 }
