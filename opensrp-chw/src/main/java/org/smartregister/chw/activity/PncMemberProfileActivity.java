@@ -330,6 +330,10 @@ public class PncMemberProfileActivity extends CorePncMemberProfileActivity imple
             case R.id.textview_edit:
                 PncHomeVisitActivity.startMe(this, memberObject, true);
                 break;
+            case R.id.referral_row:
+                Task task = (Task) view.getTag();
+                ReferralFollowupActivity.startReferralFollowupActivity(this, task.getIdentifier(), memberObject.getBaseEntityId());
+                break;
             default:
                 break;
         }
