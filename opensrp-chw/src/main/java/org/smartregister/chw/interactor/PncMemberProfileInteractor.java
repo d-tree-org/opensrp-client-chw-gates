@@ -5,12 +5,9 @@ import android.util.Pair;
 
 import androidx.annotation.Nullable;
 
-import org.apache.commons.lang3.StringUtils;
 import org.jeasy.rules.api.Rules;
+import org.jetbrains.annotations.NotNull;
 import org.joda.time.LocalDate;
-import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
-import org.json.JSONArray;
 import org.json.JSONObject;
 import org.smartregister.chw.anc.AncLibrary;
 import org.smartregister.chw.anc.contract.BaseAncMemberProfileContract;
@@ -18,11 +15,11 @@ import org.smartregister.chw.anc.domain.MemberObject;
 import org.smartregister.chw.anc.domain.Visit;
 import org.smartregister.chw.anc.model.BaseUpcomingService;
 import org.smartregister.chw.anc.util.Constants;
-import org.smartregister.chw.anc.util.DBConstants;
 import org.smartregister.chw.anc.util.JsonFormUtils;
 import org.smartregister.chw.anc.util.NCUtils;
 import org.smartregister.chw.application.ChwApplication;
 import org.smartregister.chw.contract.PncMemberProfileContract;
+import org.smartregister.chw.core.application.CoreChwApplication;
 import org.smartregister.chw.core.contract.CoreChildProfileContract;
 import org.smartregister.chw.core.interactor.CorePncMemberProfileInteractor;
 import org.smartregister.chw.core.rule.PncVisitAlertRule;
@@ -36,6 +33,7 @@ import org.smartregister.clientandeventmodel.Event;
 import org.smartregister.dao.AbstractDao;
 import org.smartregister.domain.Alert;
 import org.smartregister.domain.AlertStatus;
+import org.smartregister.domain.Task;
 import org.smartregister.repository.AllSharedPreferences;
 
 import java.text.ParseException;
@@ -45,7 +43,7 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
+import java.util.Set;
 
 import timber.log.Timber;
 
@@ -208,5 +206,10 @@ public class PncMemberProfileInteractor extends CorePncMemberProfileInteractor i
             });
         };
         appExecutors.diskIO().execute(runnable);
+    }
+
+    public void getClientTasks(String planId, String baseEntityId, @NotNull PncMemberProfileContract.InteractorCallBack callback) {
+        Set<Task> taskList = CoreChwApplication.getInstance().getTaskRepository().getTasksByEntityAndStatus(planId, baseEntityId, Task.TaskStatus.READY);
+        callback.setClientTasks(taskList);
     }
 }
