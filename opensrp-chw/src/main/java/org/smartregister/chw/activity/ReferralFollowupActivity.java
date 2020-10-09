@@ -10,7 +10,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.smartregister.chw.application.ChwApplication;
+import org.smartregister.chw.core.utils.CoreConstants;
+import org.smartregister.chw.core.utils.CoreReferralUtils;
 import org.smartregister.chw.referral.util.Constants;
+import org.smartregister.chw.schedulers.ChwScheduleTaskExecutor;
 import org.smartregister.domain.Task;
 import org.smartregister.repository.TaskRepository;
 import org.smartregister.util.LangUtils;
@@ -92,10 +95,24 @@ public class ReferralFollowupActivity extends BaseReferralFollowupActivity {
                 }
             }
 
+            // update schedule
+            String baseEntityId = jsonForm.optString(CoreConstants.ENTITY_ID);
+            updateReferralFollowUpVisitSchedule(baseEntityId);
+
             finish();
 
         } catch (JSONException e) {
             Timber.e(e);
+        }
+    }
+
+    private void updateReferralFollowUpVisitSchedule(String baseEntityId){
+        ChwApplication.getInstance().getScheduleRepository().deleteScheduleByName(CoreConstants.SCHEDULE_TYPES.REFERRAL_FOLLOWUP_VISIT, baseEntityId);
+
+        // check if there is any task ready/pending
+        Task oldestTask = CoreReferralUtils.getTaskForEntity(baseEntityId, false);
+        if(oldestTask != null)  {
+            ChwScheduleTaskExecutor.getInstance().execute(baseEntityId, CoreConstants.EventType.CHILD_REFERRAL, oldestTask.getAuthoredOn().toDate());
         }
     }
 }
