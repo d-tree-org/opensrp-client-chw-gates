@@ -453,12 +453,26 @@ public class PncMemberProfileActivity extends CorePncMemberProfileActivity imple
     }
 
     public void setClientTasks(Set<Task> taskList) {
-        if (taskList.size() > 0) {
-            RelativeLayout layoutReferralRow = findViewById(R.id.referral_row);
+        boolean isReferralFollowDue = false;
+
+        for(Task task : taskList) {
+            int days = Math.abs(Days.daysBetween(task.getAuthoredOn(), DateTime.now()).getDays());
+            if( (days>=1 && task.getPriority() == 1) || days >= 3 ) {
+                isReferralFollowDue = true;
+                break;
+            }
+        }
+
+        RelativeLayout layoutReferralRow = findViewById(R.id.referral_row);
+
+        if (isReferralFollowDue) {
             layoutReferralRow.setOnClickListener(this);
             layoutReferralRow.setVisibility(View.VISIBLE);
             findViewById(R.id.view_referral_row).setVisibility(View.VISIBLE);
             layoutReferralRow.setTag(taskList.iterator().next());
+        } else {
+            layoutReferralRow.setVisibility(View.GONE);
+            findViewById(R.id.view_referral_row).setVisibility(View.GONE);
         }
     }
 }
