@@ -112,7 +112,7 @@ public class ReferralFollowupActivity extends BaseReferralFollowupActivity {
         // check if there is any task ready/pending
         Task oldestTask = CoreReferralUtils.getTaskForEntity(baseEntityId, false);
         if(oldestTask != null)  {
-            ChwScheduleTaskExecutor.getInstance().execute(baseEntityId, CoreConstants.EventType.CHILD_REFERRAL, oldestTask.getAuthoredOn().toDate());
+            ChwScheduleTaskExecutor.getInstance().execute(baseEntityId, org.smartregister.chw.util.Constants.EncounterType.REFERRAL_FOLLOW_UP_VISIT, oldestTask.getAuthoredOn().toDate());
         }
     }
 }
