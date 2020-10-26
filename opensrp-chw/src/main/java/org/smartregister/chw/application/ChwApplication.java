@@ -27,6 +27,7 @@ import org.smartregister.chw.activity.FamilyRegisterActivity;
 import org.smartregister.chw.activity.FpRegisterActivity;
 import org.smartregister.chw.activity.LoginActivity;
 import org.smartregister.chw.activity.MalariaRegisterActivity;
+import org.smartregister.chw.activity.MonthlyActivitiesRegisterActivity;
 import org.smartregister.chw.activity.PncRegisterActivity;
 import org.smartregister.chw.activity.ReferralRegisterActivity;
 import org.smartregister.chw.anc.AncLibrary;
@@ -242,6 +243,7 @@ public class ChwApplication extends CoreChwApplication {
         registeredActivities.put(CoreConstants.REGISTERED_ACTIVITIES.MALARIA_REGISTER_ACTIVITY, MalariaRegisterActivity.class);
         registeredActivities.put(CoreConstants.REGISTERED_ACTIVITIES.FP_REGISTER_ACTIVITY, FpRegisterActivity.class);
         registeredActivities.put(CoreConstants.REGISTERED_ACTIVITIES.REFERRALS_REGISTER_ACTIVITY, ReferralRegisterActivity.class);
+        registeredActivities.put(CoreConstants.REGISTERED_ACTIVITIES.MONTHLY_ACTIVITIES_ACTIVITY, MonthlyActivitiesRegisterActivity.class);
         return registeredActivities;
     }
 
