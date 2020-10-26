@@ -163,6 +163,10 @@
             android:label="@string/malaria"
             android:theme="@style/ChwTheme.NoActionBar" />
         <activity
+            android:name=".activity.MonthlyActivitiesRegisterActivity"
+            android:label="@string/monthly_activity"
+            android:theme="@style/ChwTheme.NoActionBar" />
+        <activity
             android:name=".core.activity.CoreAncRegisterActivity"
             android:label="@string/anc_register"
             android:theme="@style/ChwTheme.NoActionBar" />
