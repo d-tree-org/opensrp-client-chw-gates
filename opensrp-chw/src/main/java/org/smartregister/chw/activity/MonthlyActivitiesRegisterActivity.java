@@ -10,10 +10,13 @@ import com.google.android.material.bottomnavigation.LabelVisibilityMode;
 import org.json.JSONObject;
 import org.smartregister.chw.fragment.MonthlyActivitiesRegisterFragment;
 import org.smartregister.chw.presenter.MonthlyActivitiesRegisterPresenter;
+import org.smartregister.chw.referral.fragment.BaseReferralRegisterFragment;
+import org.smartregister.chw.util.Utils;
 import org.smartregister.helper.BottomNavigationHelper;
 import org.smartregister.view.activity.BaseRegisterActivity;
 import org.smartregister.view.fragment.BaseRegisterFragment;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class MonthlyActivitiesRegisterActivity extends BaseRegisterActivity {
@@ -51,7 +54,8 @@ public class MonthlyActivitiesRegisterActivity extends BaseRegisterActivity {
 
     @Override
     protected Fragment[] getOtherFragments() {
-        return new Fragment[0];
+        Fragment fg  = new MonthlyActivitiesRegisterFragment();
+        return new Fragment[]{fg};
     }
 
     @Override
@@ -71,7 +75,7 @@ public class MonthlyActivitiesRegisterActivity extends BaseRegisterActivity {
 
     @Override
     public List<String> getViewIdentifiers() {
-        return null;
+        return Arrays.asList(Utils.metadata().familyRegister.config);
     }
 
     @Override
