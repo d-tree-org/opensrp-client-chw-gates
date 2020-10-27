@@ -29,4 +29,20 @@
 
     <string name="updated_unsuccessfully">Failed to update</string>
 
+    <string name="child_hf_referral_text">Child - HF Referral</string>
+
+    <string name="child_addo_linkage_text">Child - ADDO Linkage</string>
+
+    <string name="anc_hf_referral_text">ANC - HF Referral</string>
+
+    <string name="anc_addo_linkage_text">ANC - ADDO Linkage</string>
+
+    <string name="adolescent_hf_referral_text">Adolescent - HF Referral</string>
+
+    <string name="adolescent_addo_linkage_text">Adolescent - ADDO Linkage</string>
+
+    <string name="pnc_hf_referral_text">PNC - HF Referral</string>
+
+    <string name="pnc_addo_linkage_text">PNC - ADDO Linkage</string>
+
 </resources>
