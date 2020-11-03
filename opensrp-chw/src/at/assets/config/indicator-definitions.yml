@@ -8,3 +8,12 @@ indicators:
     description: "Registration in the current month"
     indicatorQuery: " select count(distinct baseEntityId) from event where eventType in ('Child Registration',
                       'Adolescent Registration', 'Family Member Registration') and date(eventDate) >= date('now', '-1 month') "
+
+  - key: "S_IND_003"
+    description: "Visits conducted in the last month"
+    indicatorQuery: " select count(*) from visit where date(visit_date) >= date('now', '-2 month') "
+
+  - key: "S_IND_004"
+    description: "Visits conducted in the current month"
+    indicatorQuery: " select count(*) from visit where date(visit_date) >= date('now', '-1 month') "
+
