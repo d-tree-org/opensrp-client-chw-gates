@@ -33,4 +33,13 @@
 
     <string name="updated_unsuccessfully">Failed to update</string>
 
+    <string name="num_of_lieterate_children_0_60_label">Number of literate children 0 &#8211; 60 months</string>
+    <string name="current_month_visits">Current Month Visits</string>
+    <string name="float_count">10% of the indicator count</string>
+    <string name="yes_slice_label">Yes</string>
+    <string name="no_slice_label">No</string>
+    <string name="sample_note">All under 5</string>
+
+    <string name="u5_registered_last_month"> U5 Children registered in the last month </string>
+
 </resources>
