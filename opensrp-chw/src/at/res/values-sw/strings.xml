@@ -51,4 +51,8 @@
 
     <string name="u5_registered_last_month"> U5 Children registered in the last month </string>
 
+    <!--  Monthly Activities Indicators  -->
+    <string name="current_month_registrations"> Masajili ya mwezi huu </string>
+    <string name="last_month_registrations"> Masajili ya mwezi ulio pita </string>
+
 </resources>
