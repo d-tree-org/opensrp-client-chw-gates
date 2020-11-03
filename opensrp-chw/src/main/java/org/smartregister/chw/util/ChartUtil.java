@@ -12,7 +12,7 @@ public class ChartUtil {
     // Sample indicator keys
     public static String numericIndicatorKey = "S_IND_001";
     public static String pieChartYesIndicatorKey = "S_IND_002";
-    public static String pieChartNoIndicatorKey = "S_IND_003";
+    public static String pieChartNoIndicatorKey = "S_IND_001";
 
     public static String currentMonthRegistrationsIndicatorKey = "S_IND_002";
     public static String lastMonthRegistrationsIndicatorKey = "S_IND_001";
