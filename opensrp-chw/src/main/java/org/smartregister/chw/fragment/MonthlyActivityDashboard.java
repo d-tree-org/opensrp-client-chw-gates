@@ -109,12 +109,16 @@ public class MonthlyActivityDashboard extends Fragment implements ReportContract
         NumericDisplayModel lastMonthRegistrations = getIndicatorDisplayModel(TOTAL_COUNT, ChartUtil.lastMonthRegistrationsIndicatorKey, R.string.last_month_registrations, indicatorTallies);
         mainLayout.addView(new NumericIndicatorView(getContext(), lastMonthRegistrations).createView());
 
-        PieChartSlice indicator2_1 = getPieChartSlice(LATEST_COUNT, ChartUtil.pieChartYesIndicatorKey, getResources().getString(R.string.yes_slice_label), getResources().getColor(R.color.primary), indicatorTallies);
-        PieChartSlice indicator2_2 = getPieChartSlice(LATEST_COUNT, ChartUtil.pieChartNoIndicatorKey, getResources().getString(R.string.no_button_label), getResources().getColor(R.color.green_overlay), indicatorTallies);
-        mainLayout.addView(new PieChartIndicatorView(getContext(), getPieChartDisplayModel(addPieChartSlices(indicator2_1, indicator2_2), R.string.num_of_lieterate_children_0_60_label, R.string.sample_note)).createView());
+        NumericDisplayModel currentMonthVisits = getIndicatorDisplayModel(TOTAL_COUNT, ChartUtil.currentMonthVisitsIndicatorKey, R.string.current_month_visits_tallies, indicatorTallies);
+        mainLayout.addView(new NumericIndicatorView(getContext(), currentMonthVisits).createView());
 
-        NumericDisplayModel floatIndicatorCount = getIndicatorDisplayModel(TOTAL_COUNT, "S_IND_005", R.string.float_count, indicatorTallies);
-        mainLayout.addView(new NumericIndicatorView(getContext(), floatIndicatorCount).createView());
+        NumericDisplayModel lastMonthVisits = getIndicatorDisplayModel(TOTAL_COUNT, ChartUtil.lastsMonthVisitsIndicatorKey, R.string.last_month_visits, indicatorTallies);
+        mainLayout.addView(new NumericIndicatorView(getContext(), lastMonthVisits).createView());
+
+        PieChartSlice indicator2_1 = getPieChartSlice(LATEST_COUNT, ChartUtil.pieChartYesIndicatorKey, getResources().getString(R.string.target_not_reached), getResources().getColor(android.R.color.holo_red_light), indicatorTallies);
+        PieChartSlice indicator2_2 = getPieChartSlice(LATEST_COUNT, ChartUtil.pieChartNoIndicatorKey, getResources().getString(R.string.target_reached), getResources().getColor(R.color.green_overlay), indicatorTallies);
+        mainLayout.addView(new PieChartIndicatorView(getContext(), getPieChartDisplayModel(addPieChartSlices(indicator2_1, indicator2_2), R.string.monthly_target, R.string.visits_and_registrations)).createView());
+
     }
 
     @NonNull
