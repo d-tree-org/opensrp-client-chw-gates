@@ -1,0 +1,4 @@
+indicators:
+  - key: "S_IND_001"
+    description: "Total number of children"
+    indicatorQuery: "select count(*) from ec_child"
