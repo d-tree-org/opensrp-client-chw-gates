@@ -88,7 +88,7 @@ public class MonthlyActivityDashboard extends Fragment implements ReportContract
     @Override
     public void buildVisualization(ViewGroup mainLayout) {
         mainLayout.removeAllViews();
-        createSampleReportViews(mainLayout);
+        createReportViews(mainLayout);
     }
 
     @Override
@@ -101,9 +101,13 @@ public class MonthlyActivityDashboard extends Fragment implements ReportContract
         this.indicatorTallies = indicatorTallies;
     }
 
-    private void createSampleReportViews(ViewGroup mainLayout) {
-        NumericDisplayModel indicator1 = getIndicatorDisplayModel(TOTAL_COUNT, ChartUtil.numericIndicatorKey, R.string.u5_registered_last_month, indicatorTallies);
-        mainLayout.addView(new NumericIndicatorView(getContext(), indicator1).createView());
+    private void createReportViews(ViewGroup mainLayout) {
+
+        NumericDisplayModel currentMonthRegistrations = getIndicatorDisplayModel(TOTAL_COUNT, ChartUtil.currentMonthRegistrationsIndicatorKey, R.string.current_month_registrations, indicatorTallies);
+        mainLayout.addView(new NumericIndicatorView(getContext(), currentMonthRegistrations).createView());
+
+        NumericDisplayModel lastMonthRegistrations = getIndicatorDisplayModel(TOTAL_COUNT, ChartUtil.lastMonthRegistrationsIndicatorKey, R.string.last_month_registrations, indicatorTallies);
+        mainLayout.addView(new NumericIndicatorView(getContext(), lastMonthRegistrations).createView());
 
         PieChartSlice indicator2_1 = getPieChartSlice(LATEST_COUNT, ChartUtil.pieChartYesIndicatorKey, getResources().getString(R.string.yes_slice_label), getResources().getColor(R.color.primary), indicatorTallies);
         PieChartSlice indicator2_2 = getPieChartSlice(LATEST_COUNT, ChartUtil.pieChartNoIndicatorKey, getResources().getString(R.string.no_button_label), getResources().getColor(R.color.green_overlay), indicatorTallies);
