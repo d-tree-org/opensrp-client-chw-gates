@@ -14,6 +14,7 @@ import androidx.loader.content.AsyncTaskLoader;
 import androidx.loader.content.Loader;
 
 import org.smartregister.chw.R;
+import org.smartregister.chw.application.ChwApplication;
 import org.smartregister.chw.presenter.MonthlyActivityDashboardPresenter;
 import org.smartregister.chw.util.ChartUtil;
 import org.smartregister.reporting.contract.ReportContract;
@@ -23,6 +24,7 @@ import org.smartregister.reporting.model.NumericDisplayModel;
 import org.smartregister.reporting.view.NumericIndicatorView;
 import org.smartregister.reporting.view.PieChartIndicatorView;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -38,6 +40,10 @@ public class MonthlyActivityDashboard extends Fragment implements ReportContract
     private static ReportContract.Presenter presenter;
     private ViewGroup visualizationsViewGroup;
     private List<Map<String, IndicatorTally>> indicatorTallies;
+
+    private static final String HAS_LOADED_SAMPLE_DATA = "has_loaded_sample_data";
+    private boolean activityStarted = false;
+    private boolean hasLoadedSampleData = true;
 
     MonthlyActivityDashboard(){}
 
@@ -103,28 +109,35 @@ public class MonthlyActivityDashboard extends Fragment implements ReportContract
 
     private void createReportViews(ViewGroup mainLayout) {
 
-        NumericDisplayModel currentMonthRegistrations = getIndicatorDisplayModel(TOTAL_COUNT, ChartUtil.currentMonthRegistrationsIndicatorKey, R.string.current_month_registrations, indicatorTallies);
+        NumericDisplayModel currentMonthRegistrations = getIndicatorDisplayModel(LATEST_COUNT, ChartUtil.currentMonthRegistrationsIndicatorKey, R.string.current_month_registrations, indicatorTallies);
         mainLayout.addView(new NumericIndicatorView(getContext(), currentMonthRegistrations).createView());
 
-        NumericDisplayModel lastMonthRegistrations = getIndicatorDisplayModel(TOTAL_COUNT, ChartUtil.lastMonthRegistrationsIndicatorKey, R.string.last_month_registrations, indicatorTallies);
+        NumericDisplayModel lastMonthRegistrations = getIndicatorDisplayModel(LATEST_COUNT, ChartUtil.lastMonthRegistrationsIndicatorKey, R.string.last_month_registrations, indicatorTallies);
         mainLayout.addView(new NumericIndicatorView(getContext(), lastMonthRegistrations).createView());
 
-        NumericDisplayModel currentMonthVisits = getIndicatorDisplayModel(TOTAL_COUNT, ChartUtil.currentMonthVisitsIndicatorKey, R.string.current_month_visits_tallies, indicatorTallies);
+        NumericDisplayModel currentMonthVisits = getIndicatorDisplayModel(LATEST_COUNT, ChartUtil.currentMonthVisitsIndicatorKey, R.string.current_month_visits_tallies, indicatorTallies);
         mainLayout.addView(new NumericIndicatorView(getContext(), currentMonthVisits).createView());
 
-        NumericDisplayModel lastMonthVisits = getIndicatorDisplayModel(TOTAL_COUNT, ChartUtil.lastsMonthVisitsIndicatorKey, R.string.last_month_visits, indicatorTallies);
+        NumericDisplayModel lastMonthVisits = getIndicatorDisplayModel(LATEST_COUNT, ChartUtil.lastsMonthVisitsIndicatorKey, R.string.last_month_visits, indicatorTallies);
         mainLayout.addView(new NumericIndicatorView(getContext(), lastMonthVisits).createView());
 
         PieChartSlice indicator2_1 = getPieChartSlice(LATEST_COUNT, ChartUtil.pieChartYesIndicatorKey, getResources().getString(R.string.target_not_reached), getResources().getColor(android.R.color.holo_red_light), indicatorTallies);
         PieChartSlice indicator2_2 = getPieChartSlice(LATEST_COUNT, ChartUtil.pieChartNoIndicatorKey, getResources().getString(R.string.target_reached), getResources().getColor(R.color.green_overlay), indicatorTallies);
-        mainLayout.addView(new PieChartIndicatorView(getContext(), getPieChartDisplayModel(addPieChartSlices(indicator2_1, indicator2_2), R.string.monthly_target, R.string.visits_and_registrations)).createView());
+
+        //mainLayout.addView(new PieChartIndicatorView(getContext(), getPieChartDisplayModel(addPieChartSlices(indicator2_1, indicator2_2), R.string.monthly_target, R.string.visits_and_registrations)).createView());
 
     }
 
     @NonNull
     @Override
     public Loader<List<Map<String, IndicatorTally>>> onCreateLoader(int id, @Nullable Bundle args) {
-        return new ReportIndicatorsLoader(getContext());
+        hasLoadedSampleData = Boolean.parseBoolean(ChwApplication.getInstance().getContext().allSharedPreferences().getPreference(HAS_LOADED_SAMPLE_DATA));
+        if (!activityStarted){
+            activityStarted = true;
+            return new ReportIndicatorsLoader(getContext(), false);
+        }else{
+            return new ReportIndicatorsLoader(getContext(), true);
+        }
     }
 
     @Override
@@ -140,14 +153,23 @@ public class MonthlyActivityDashboard extends Fragment implements ReportContract
 
     private static class ReportIndicatorsLoader extends AsyncTaskLoader<List<Map<String, IndicatorTally>>> {
 
-        public ReportIndicatorsLoader(Context context) {
+        boolean loadedIndicators;
+
+        public ReportIndicatorsLoader(Context context, boolean alreadyLoaded) {
             super(context);
+            this.loadedIndicators = alreadyLoaded;
         }
 
         @Nullable
         @Override
         public List<Map<String, IndicatorTally>> loadInBackground() {
-            return presenter.fetchIndicatorsDailytallies();
+            List<Map<String, IndicatorTally>> empty = new ArrayList<>();
+            if (!loadedIndicators) {
+                ChwApplication.getInstance().getContext().allSharedPreferences().savePreference(HAS_LOADED_SAMPLE_DATA, "true");
+                return presenter.fetchIndicatorsDailytallies();
+            }else{
+                return empty;
+            }
         }
     }
 
