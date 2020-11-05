@@ -20,6 +20,7 @@ import org.smartregister.chw.util.Utils;
 import org.smartregister.helper.BottomNavigationHelper;
 import org.smartregister.reporting.ReportingLibrary;
 import org.smartregister.reporting.domain.CompositeIndicatorTally;
+import org.smartregister.reporting.job.RecurringIndicatorGeneratingJob;
 import org.smartregister.reporting.repository.DailyIndicatorCountRepository;
 import org.smartregister.view.activity.BaseRegisterActivity;
 import org.smartregister.view.fragment.BaseRegisterFragment;
@@ -40,30 +41,11 @@ public class MonthlyActivitiesRegisterActivity extends BaseRegisterActivity {
         super.onCreate(savedInstanceState);
         NavigationMenu.getInstance(this, null, null);
 
-        ReportingLibrary reportingLibrary = ReportingLibrary.getInstance();
         String indicatorsConfigFile = "config/indicator-definitions.yml";
-        reportingLibrary.initIndicatorData(indicatorsConfigFile, ChwApplication.getInstance().getRepository().getReadableDatabase(ChwApplication.getInstance().getPassword()));
+        ReportingLibrary.getInstance().initIndicatorData(indicatorsConfigFile, ChwApplication.getInstance().getRepository().getReadableDatabase(ChwApplication.getInstance().getPassword()));
 
-        //addSampleIndicatorDailyTally();
-
+        RecurringIndicatorGeneratingJob.scheduleJobImmediately(RecurringIndicatorGeneratingJob.TAG);
     }
-
-    public void addSampleIndicatorDailyTally() {
-        DailyIndicatorCountRepository dailyIndicatorCountRepository = ReportingLibrary.getInstance().dailyIndicatorCountRepository();
-        String eventDateFormat = "E MMM dd hh:mm:ss z yyyy";
-        Date dateCreated = null;
-        try {
-            dateCreated = new SimpleDateFormat(eventDateFormat, Locale.getDefault()).parse(new Date().toString());
-        } catch (ParseException pe) {
-            Timber.e(pe.toString());
-        }
-        dailyIndicatorCountRepository.add(new CompositeIndicatorTally(null, 80, ChartUtil.numericIndicatorKey, dateCreated));
-        dailyIndicatorCountRepository.add(new CompositeIndicatorTally(null, 60, ChartUtil.pieChartYesIndicatorKey, dateCreated));
-        dailyIndicatorCountRepository.add(new CompositeIndicatorTally(null, 20, ChartUtil.pieChartNoIndicatorKey, dateCreated));
-
-
-    }
-
 
     @Override
     protected void setupViews() {
