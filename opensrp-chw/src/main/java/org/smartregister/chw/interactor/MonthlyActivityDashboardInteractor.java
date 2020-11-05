@@ -12,8 +12,7 @@ public class MonthlyActivityDashboardInteractor implements ReportContract.Intera
 
     @Override
     public void scheduleDailyTallyJob() {
-        RecurringIndicatorGeneratingJob.scheduleJobImmediately(RecurringIndicatorGeneratingJob.TAG);
-//        RecurringIndicatorGeneratingJob.scheduleJob(RecurringIndicatorGeneratingJob.TAG,
-//                TimeUnit.MINUTES.toMillis(1), TimeUnit.MINUTES.toMillis(1));
+        RecurringIndicatorGeneratingJob.scheduleJob(RecurringIndicatorGeneratingJob.TAG,
+                TimeUnit.MINUTES.toMillis(1), TimeUnit.MINUTES.toMillis(1));
     }
 }
