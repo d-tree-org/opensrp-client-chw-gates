@@ -64,6 +64,7 @@ import org.smartregister.location.helper.LocationHelper;
 import org.smartregister.receiver.SyncStatusBroadcastReceiver;
 import org.smartregister.reporting.ReportingLibrary;
 import org.smartregister.reporting.domain.CompositeIndicatorTally;
+import org.smartregister.reporting.job.RecurringIndicatorGeneratingJob;
 import org.smartregister.reporting.repository.DailyIndicatorCountRepository;
 import org.smartregister.repository.AllSharedPreferences;
 import org.smartregister.repository.Repository;
