@@ -452,7 +452,7 @@ public class AdolescentProfileActivity extends BaseProfileActivity implements Ad
 
     @Override
     public void openMedicalHistory() {
-
+        AdolescentMedicalHistoryActivity.startMe(this, memberObject);
     }
 
     @Override
