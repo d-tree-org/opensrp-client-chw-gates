@@ -1,16 +1,18 @@
 indicators:
-  - key: "LAST_MONTH_VISITS"
-    description: "Visits conducted in the last 2 months"
-    indicatorQuery: " select count(*) from visits where STRFTIME('%Y-%m-%d', datetime(visit_date/1000,'unixepoch')) >= date('now', '-2 months') "
+  - key: "S_IND_004"
+    description: "Visits conducted in the current month"
+    indicatorQuery: " select count(base_entity_id) from visits where visit_date >= (strftime('%s', date('now', 'start of month'))*1000) "
 
-  - key: "CURR_MONTH_VISITS"
+  - key: "S_IND_003"
     description: "Visits conducted in the last month"
-    indicatorQuery: " select count(*) from visits where STRFTIME('%Y-%m-%d', datetime(visit_date/1000,'unixepoch')) >= date('now', '-1 months') "
+    indicatorQuery: " select count(base_entity_id) from visits where visit_date >= (strftime('%s', date('now', 'start of month', '-1 months'))*1000) "
 
-  - key: "LAST_MONTH_REG"
-    description: "Registrations done in the last month"
-    indicatorQuery: "select count(distinct baseEntityId) from event where eventType in ('Child Registration', 'Adolescent Registration', 'Family Member Registration') and date(eventDate) >= date('now', '-2 month')"
+  - key: "S_IND_001"
+    description: "Registration in the last Month"
+    indicatorQuery: " select count(distinct baseEntityId) from event where eventType in ('Child Registration',
+                      'Adolescent Registration', 'Family Member Registration') and date(eventDate) >= date('now', '-2 month') "
 
-  - key: "CURR_MONTH_REG"
-    description: "Registrations done in the last 30 days"
-    indicatorQuery: " select count(distinct baseEntityId) from event where eventType in ('Child Registration', 'Adolescent Registration', 'Family Member Registration') and date(eventDate) >= date('now', '-1 month') "
+  - key: "S_IND_002"
+    description: "Registration in the current month"
+    indicatorQuery: " select count(distinct baseEntityId) from event where eventType in ('Child Registration',
+                      'Adolescent Registration', 'Family Member Registration') and date(eventDate) >= date('now', '-1 month') "
