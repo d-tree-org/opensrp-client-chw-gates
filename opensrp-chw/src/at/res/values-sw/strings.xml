@@ -53,7 +53,7 @@
 
     <!--  Monthly Activities Indicators  -->
     <string name="current_month"> Mwezi huu </string>
-    <string name="last_month"> Mwezi ulio pita </string>
+    <string name="last_month"> Mwezi uliopita </string>
 
     <string name="target_not_reached">Target Not Reached</string>
     <string name="target_reached">Target Reached</string>
