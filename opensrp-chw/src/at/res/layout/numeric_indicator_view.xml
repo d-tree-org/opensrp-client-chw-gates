@@ -20,12 +20,12 @@
             android:layout_marginRight="100dp"
             android:text="This is a sample label that exposes just how terrible the view is rendered"
             android:fontFamily="@font/google_sans_regular"
-            android:textColor="@color/black"
+            android:textColor="@color/primary"
             android:textSize="18sp"/>
 
         <TextView
             android:id="@+id/numeric_indicator_value"
-            android:textColor="@color/black"
+            android:textColor="@color/primary"
             android:textSize="24sp"
             android:layout_centerVertical="true"
             android:fontFamily="@font/google_sans_bold"
@@ -40,8 +40,10 @@
     <View
         android:id="@+id/numeric_display_split_line"
         android:layout_width="match_parent"
-        android:layout_height="2dp"
+        android:layout_height="1dp"
         android:layout_below="@+id/details"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
         android:background="@color/indicatorSplitLine" />
 
 </RelativeLayout>
