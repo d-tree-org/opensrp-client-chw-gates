@@ -100,7 +100,7 @@ public class MonthlyActivityDashboard extends Fragment implements ReportContract
         lastMonthVisitsIndicatorQuery.setIndicatorCode("S_IND_003");
         lastMonthVisitsIndicatorQuery.setDbVersion(0);
         lastMonthVisitsIndicatorQuery.setId(null);
-        lastMonthVisitsIndicatorQuery.setQuery("  select count(base_entity_id) from visits where datetime(visit_date/1000, 'unixepoch') >= date('now', 'start of month', '-1 month') ");
+        lastMonthVisitsIndicatorQuery.setQuery("  select count(base_entity_id) from visits where datetime(visit_date/1000, 'unixepoch') between date('now', 'start of month') and date('now', 'start of month', '-1 month') ");
         indicatorQueries.add(lastMonthVisitsIndicatorQuery);
 
         presenter.addIndicators(reportIndicators);
