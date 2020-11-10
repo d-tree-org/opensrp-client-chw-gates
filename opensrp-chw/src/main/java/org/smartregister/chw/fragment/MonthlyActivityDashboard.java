@@ -18,8 +18,10 @@ import org.smartregister.chw.application.ChwApplication;
 import org.smartregister.chw.presenter.MonthlyActivityDashboardPresenter;
 import org.smartregister.chw.util.ChartUtil;
 import org.smartregister.reporting.contract.ReportContract;
+import org.smartregister.reporting.domain.IndicatorQuery;
 import org.smartregister.reporting.domain.IndicatorTally;
 import org.smartregister.reporting.domain.PieChartSlice;
+import org.smartregister.reporting.domain.ReportIndicator;
 import org.smartregister.reporting.model.NumericDisplayModel;
 import org.smartregister.reporting.view.NumericIndicatorView;
 import org.smartregister.reporting.view.PieChartIndicatorView;
@@ -45,6 +47,8 @@ public class MonthlyActivityDashboard extends Fragment implements ReportContract
     private boolean activityStarted = false;
     private boolean hasLoadedSampleData = true;
 
+    private View spacerView;
+
     MonthlyActivityDashboard(){}
 
     public static MonthlyActivityDashboard newInstance(){
@@ -64,14 +68,51 @@ public class MonthlyActivityDashboard extends Fragment implements ReportContract
         super.onCreate(savedInstanceState);
 
         presenter = new MonthlyActivityDashboardPresenter(this);
+
+        addIndicators();
+
         presenter.scheduleRecurringTallyJob();
         getLoaderManager().initLoader(0, null, this).forceLoad();
+    }
+
+    private void addIndicators(){
+        List<ReportIndicator> reportIndicators = new ArrayList<>();
+        List<IndicatorQuery> indicatorQueries = new ArrayList<>();
+
+        ReportIndicator currentMonthVisitsIndicator = new ReportIndicator();
+        currentMonthVisitsIndicator.setKey("S_IND_004");
+        currentMonthVisitsIndicator.setDescription("Visits conducted in the current month");
+        reportIndicators.add(currentMonthVisitsIndicator);
+
+        ReportIndicator lastMonthVisitsIndicator = new ReportIndicator();
+        lastMonthVisitsIndicator.setKey("S_IND_003");
+        lastMonthVisitsIndicator.setDescription("Visits conducted in the last month");
+        reportIndicators.add(lastMonthVisitsIndicator);
+
+        IndicatorQuery currentMonthVisitsIndicatorQuery = new IndicatorQuery();
+        currentMonthVisitsIndicatorQuery.setIndicatorCode("S_IND_004");
+        currentMonthVisitsIndicatorQuery.setDbVersion(0);
+        currentMonthVisitsIndicatorQuery.setId(null);
+        currentMonthVisitsIndicatorQuery.setQuery(" select count(base_entity_id) from visits where datetime(visit_date/1000, 'unixepoch') >= date('now', 'start of month') ");
+        indicatorQueries.add(currentMonthVisitsIndicatorQuery);
+
+        IndicatorQuery lastMonthVisitsIndicatorQuery = new IndicatorQuery();
+        lastMonthVisitsIndicatorQuery.setIndicatorCode("S_IND_003");
+        lastMonthVisitsIndicatorQuery.setDbVersion(0);
+        lastMonthVisitsIndicatorQuery.setId(null);
+        lastMonthVisitsIndicatorQuery.setQuery("  select count(base_entity_id) from visits where datetime(visit_date/1000, 'unixepoch') >= date('now', 'start of month', '-1 month') ");
+        indicatorQueries.add(lastMonthVisitsIndicatorQuery);
+
+        presenter.addIndicators(reportIndicators);
+        presenter.addIndicatorQueries(indicatorQueries);
+
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
+        spacerView = inflater.inflate(R.layout.report_spacer_view, container, false);
         return inflater.inflate(R.layout.monthly_activities_dashboard_fragment, container, false);
     }
 
@@ -114,6 +155,9 @@ public class MonthlyActivityDashboard extends Fragment implements ReportContract
 
         NumericDisplayModel lastMonthRegistrations = getIndicatorDisplayModel(LATEST_COUNT, ChartUtil.lastMonthRegistrationsIndicatorKey, R.string.last_month_registrations, indicatorTallies);
         mainLayout.addView(new NumericIndicatorView(getContext(), lastMonthRegistrations).createView());
+
+        //Add Space between indicators
+        mainLayout.addView(spacerView);
 
         NumericDisplayModel currentMonthVisits = getIndicatorDisplayModel(LATEST_COUNT, ChartUtil.currentMonthVisitsIndicatorKey, R.string.current_month_visits_tallies, indicatorTallies);
         mainLayout.addView(new NumericIndicatorView(getContext(), currentMonthVisits).createView());
