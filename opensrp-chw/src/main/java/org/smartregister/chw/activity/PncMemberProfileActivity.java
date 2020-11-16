@@ -3,11 +3,10 @@ package org.smartregister.chw.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.util.Pair;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import org.apache.commons.lang3.StringUtils;
@@ -15,6 +14,7 @@ import org.joda.time.DateTime;
 import org.joda.time.Days;
 import org.json.JSONObject;
 import org.smartregister.chw.R;
+import org.smartregister.chw.anc.domain.MemberObject;
 import org.smartregister.chw.anc.domain.Visit;
 import org.smartregister.chw.anc.util.Constants;
 import org.smartregister.chw.application.ChwApplication;
@@ -23,13 +23,11 @@ import org.smartregister.chw.core.activity.CoreFamilyProfileActivity;
 import org.smartregister.chw.core.activity.CorePncMemberProfileActivity;
 import org.smartregister.chw.core.activity.CorePncRegisterActivity;
 import org.smartregister.chw.core.interactor.CorePncMemberProfileInteractor;
-import org.smartregister.chw.core.listener.OnClickFloatingMenu;
 import org.smartregister.chw.core.rule.PncVisitAlertRule;
 import org.smartregister.chw.core.utils.CoreConstants;
 import org.smartregister.chw.core.utils.CoreJsonFormUtils;
 import org.smartregister.chw.custom_view.AncFloatingMenu;
 import org.smartregister.chw.dao.MalariaDao;
-import org.smartregister.chw.dataloader.AncMemberDataLoader;
 import org.smartregister.chw.dataloader.FamilyMemberDataLoader;
 import org.smartregister.chw.dataloader.PncMemberDataLoader;
 import org.smartregister.chw.form_data.NativeFormsDataBinder;
@@ -47,9 +45,9 @@ import org.smartregister.clientandeventmodel.Event;
 import org.smartregister.commonregistry.CommonPersonObject;
 import org.smartregister.commonregistry.CommonPersonObjectClient;
 import org.smartregister.commonregistry.CommonRepository;
+import org.smartregister.domain.Task;
 import org.smartregister.family.contract.FamilyProfileContract;
 import org.smartregister.family.domain.FamilyEventClient;
-import org.smartregister.family.util.DBConstants;
 import org.smartregister.family.util.JsonFormUtils;
 import org.smartregister.family.util.Utils;
 
@@ -59,6 +57,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import io.reactivex.Observable;
 import io.reactivex.Observer;
@@ -331,6 +330,10 @@ public class PncMemberProfileActivity extends CorePncMemberProfileActivity imple
             case R.id.textview_edit:
                 PncHomeVisitActivity.startMe(this, memberObject, true);
                 break;
+            case R.id.referral_row:
+                Task task = (Task) view.getTag();
+                ReferralFollowupActivity.startReferralFollowupActivity(this, task.getIdentifier(), memberObject.getBaseEntityId());
+                break;
             default:
                 break;
         }
@@ -441,5 +444,35 @@ public class PncMemberProfileActivity extends CorePncMemberProfileActivity imple
 
     public interface Flavor {
         Boolean onCreateOptionsMenu(@Nullable Menu menu, @Nullable String baseEntityId);
+    }
+
+    @Override
+    public void onMemberDetailsReloaded(MemberObject memberObject) {
+        super.onMemberDetailsReloaded(memberObject);
+        ((PncMemberProfileContract.Presenter)presenter).fetchTasks();
+    }
+
+    public void setClientTasks(Set<Task> taskList) {
+        boolean isReferralFollowDue = false;
+
+        for(Task task : taskList) {
+            int days = Math.abs(Days.daysBetween(task.getAuthoredOn(), DateTime.now()).getDays());
+            if( (days>=1 && task.getPriority() == 1) || days >= 3 ) {
+                isReferralFollowDue = true;
+                break;
+            }
+        }
+
+        RelativeLayout layoutReferralRow = findViewById(R.id.referral_row);
+
+        if (isReferralFollowDue) {
+            layoutReferralRow.setOnClickListener(this);
+            layoutReferralRow.setVisibility(View.VISIBLE);
+            findViewById(R.id.view_referral_row).setVisibility(View.VISIBLE);
+            layoutReferralRow.setTag(taskList.iterator().next());
+        } else {
+            layoutReferralRow.setVisibility(View.GONE);
+            findViewById(R.id.view_referral_row).setVisibility(View.GONE);
+        }
     }
 }

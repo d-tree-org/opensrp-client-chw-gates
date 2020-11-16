@@ -148,7 +148,7 @@ public class ChwMemberRegisterProvider extends FamilyMemberRegisterProvider {
         updateDueColumn(viewHolder, baseEntityId);
 
         // indicate if anc has referral
-        Task recentTask = CoreReferralUtils.getRecentTask(((CommonPersonObjectClient) client).getCaseId());
+        Task recentTask = CoreReferralUtils.getTaskForEntity(((CommonPersonObjectClient) client).getCaseId(), true);
         if (recentTask != null ) {
             int days = Math.abs(Days.daysBetween(recentTask.getAuthoredOn(), DateTime.now()).getDays());
             if( (days>=1 && recentTask.getPriority() == 1) || days >= 3 ) {

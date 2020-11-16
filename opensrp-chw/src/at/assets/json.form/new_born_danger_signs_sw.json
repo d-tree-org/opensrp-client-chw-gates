@@ -172,7 +172,7 @@
           },
           {
             "key": "chk_blue_lips",
-            "text": "Midomo kubadilika rangi na kuwa ya buu",
+            "text": "Midomo kubadilika rangi na kuwa ya bluu",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id":""
@@ -180,27 +180,6 @@
           {
             "key": "chk_constipation",
             "text": "Kushindwa kupata haja kubwa au ndogo",
-            "value": false,
-            "openmrs_entity": "concept",
-            "openmrs_entity_id":""
-          },
-          {
-            "key": "chk_watery_stool_day",
-            "text": "Smooth/watery stool 3 or more times a day",
-            "value": false,
-            "openmrs_entity": "concept",
-            "openmrs_entity_id":""
-          },
-          {
-            "key": "chk_watery_stool_weekly",
-            "text": "Smooth/watery stool for 14 or more days ",
-            "value": false,
-            "openmrs_entity": "concept",
-            "openmrs_entity_id":""
-          },
-          {
-            "key": "chk_blood_stool",
-            "text": "Blood Stool",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id":""
@@ -283,7 +262,7 @@
             "openmrs_entity_id":""
           },
           {
-            "key": "chk_diarhea",
+            "key": "chk_diarrhea",
             "text": "Kuhara bila damu (chini ya mara 3 katika masaa 24) ",
             "value": false,
             "openmrs_entity": "concept",
@@ -304,6 +283,13 @@
             "openmrs_entity_id":""
           },
           {
+            "key": "chk_other",
+            "text": "Nyingine",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          {
             "key": "chk_none",
             "text": "Hakuna",
             "value": false,
@@ -314,6 +300,29 @@
         "v_required": {
           "value": "true",
           "err": "Tafadhali changua moja"
+        }
+      },
+      {
+        "key": "illness_description_baby",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "edit_text",
+        "hint": "Elezea dalili na viashiria vya ugonjwa",
+        "v_required": {
+          "value": "true",
+          "err": "Tafadhali elezea dalili na viashiria vya ugonjwa"
+        },
+        "relevance": {
+          "step1:danger_signs_present_child": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "chk_other"
+                ]
+              }
+            ]
+          }
         }
       },
       {
@@ -351,31 +360,27 @@
             "ex-checkbox": [
               {
                 "or": [
-                  "chk_extreme_cold_or_hot",
-                  "chk_convulsions",
-                  "chk_chest_indrawing",
-                  "chk_difficult_breathing",
                   "chk_difficult_drinking",
+                  "chk_difficult_breathing",
+                  "chk_fast_breathing",
+                  "chk_chest_indrawing",
+                  "chk_convulsions",
+                  "chk_extreme_cold_or_hot",
                   "chk_oversleeping",
                   "chk_redness_around_umbilical",
                   "chk_body_rashes",
                   "chk_eye_discharge",
-                  "chk_severe_abdominal_pain",
-                  "chk_lethargy",
-                  "chk_severe_vomit",
-                  "chk_blue_lips",
-                  "chk_constipation",
-                  "chk_watery_stool_day",
-                  "chk_watery_stool_weekly",
-                  "chk_blood_stool",
-                  "chk_excessive_crying",
                   "chk_grunting_voice",
                   "chk_malnutrition",
-                  "chk_severe_vomit",
                   "chk_not_getting_better",
+                  "chk_severe_vomit",
                   "chk_weak",
-                  "chk_diarrhea",
-                  "chk_sunk_eyes",
+                  "chk_blue_lips",
+                  "chk_constipation",
+                  "chk_excessive_crying",
+                  "chk_no_movement",
+                  "chk_pale",
+                  "chk_cough",
                   "chk_running_nose",
                   "chk_sore_throat",
                   "chk_sneezing",
@@ -383,12 +388,10 @@
                   "chk_body_chills_shivering",
                   "chk_lack_of_appetite",
                   "chk_thirsty",
-                  "chk_diarhea",
+                  "chk_diarrhea",
                   "chk_skin_infections",
                   "chk_wounds_and_cuts",
-                  "chk_no_movement",
-                  "chk_pale",
-                  "chk_cough"
+                  "chk_other"
                 ]
               }
             ]
@@ -411,31 +414,27 @@
             "ex-checkbox": [
               {
                 "or": [
-                  "chk_extreme_cold_or_hot",
-                  "chk_convulsions",
-                  "chk_chest_indrawing",
-                  "chk_difficult_breathing",
                   "chk_difficult_drinking",
+                  "chk_difficult_breathing",
+                  "chk_fast_breathing",
+                  "chk_chest_indrawing",
+                  "chk_convulsions",
+                  "chk_extreme_cold_or_hot",
                   "chk_oversleeping",
                   "chk_redness_around_umbilical",
                   "chk_body_rashes",
                   "chk_eye_discharge",
-                  "chk_severe_abdominal_pain",
-                  "chk_lethargy",
-                  "chk_severe_vomit",
-                  "chk_blue_lips",
-                  "chk_constipation",
-                  "chk_watery_stool_day",
-                  "chk_watery_stool_weekly",
-                  "chk_blood_stool",
-                  "chk_excessive_crying",
                   "chk_grunting_voice",
                   "chk_malnutrition",
-                  "chk_severe_vomit",
                   "chk_not_getting_better",
+                  "chk_severe_vomit",
                   "chk_weak",
-                  "chk_diarrhea",
-                  "chk_sunk_eyes",
+                  "chk_blue_lips",
+                  "chk_constipation",
+                  "chk_excessive_crying",
+                  "chk_no_movement",
+                  "chk_pale",
+                  "chk_cough",
                   "chk_running_nose",
                   "chk_sore_throat",
                   "chk_sneezing",
@@ -443,12 +442,10 @@
                   "chk_body_chills_shivering",
                   "chk_lack_of_appetite",
                   "chk_thirsty",
-                  "chk_diarhea",
+                  "chk_diarrhea",
                   "chk_skin_infections",
                   "chk_wounds_and_cuts",
-                  "chk_no_movement",
-                  "chk_pale",
-                  "chk_cough"
+                  "chk_other"
                 ]
               }
             ]

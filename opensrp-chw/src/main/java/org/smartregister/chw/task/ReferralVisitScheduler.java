@@ -1,6 +1,7 @@
 package org.smartregister.chw.task;
 
 import org.joda.time.LocalDate;
+import org.smartregister.chw.application.ChwApplication;
 import org.smartregister.chw.core.contract.ScheduleTask;
 import org.smartregister.chw.core.domain.BaseScheduleTask;
 import org.smartregister.chw.core.utils.CoreConstants;
@@ -13,10 +14,16 @@ import java.util.List;
 public class ReferralVisitScheduler extends BaseTaskExecutor {
 
     @Override
+    public void resetSchedule(String baseEntityID, String scheduleName) {
+        super.resetSchedule(baseEntityID, scheduleName);
+        ChwApplication.getInstance().getScheduleRepository().deleteScheduleByGroup(getScheduleGroup(), baseEntityID);
+    }
+
+    @Override
     public List<ScheduleTask> generateTasks(String baseEntityID, String eventName, Date eventDate) {
         BaseScheduleTask baseScheduleTask = prepareNewTaskObject(baseEntityID);
 
-        Task recentTask = CoreReferralUtils.getRecentTask(baseEntityID);
+        Task recentTask = CoreReferralUtils.getTaskForEntity(baseEntityID, true);
 
         if(recentTask!=null) {
             LocalDate localDate = new LocalDate(recentTask.getAuthoredOn());

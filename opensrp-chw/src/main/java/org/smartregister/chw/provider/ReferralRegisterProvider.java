@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.joda.time.DateTime;
 import org.joda.time.Days;
 import org.joda.time.Period;
+import org.opensrp.api.constants.Gender;
 import org.smartregister.chw.R;
 import org.smartregister.chw.core.utils.CoreConstants;
 import org.smartregister.chw.referral.fragment.BaseReferralRegisterFragment;
@@ -84,8 +85,8 @@ public class ReferralRegisterProvider implements RecyclerViewProvider<ReferralRe
 
             String patientName = getName(fname, Utils.getValue(pc.getColumnmaps(), DBConstants.KEY.LAST_NAME, true));
             viewHolder.patientName.setText(String.format(Locale.getDefault(), "%s, %d", patientName, age));
-            viewHolder.textViewGender.setText(Utils.getValue(pc.getColumnmaps(), DBConstants.KEY.GENDER, true));
-            viewHolder.textViewService.setText(getCategory(focus, priority));
+            viewHolder.textViewGender.setText(getTranslatedGender(Utils.getValue(pc.getColumnmaps(), DBConstants.KEY.GENDER, false)));
+            viewHolder.textViewService.setText(getCategory(context, focus, priority));
             viewHolder.textViewFacility.setText(Utils.getValue(pc.getColumnmaps(), DBConstants.KEY.REFERRAL_HF, true));
 
             viewHolder.patientColumn.setOnClickListener(onClickListener);
@@ -102,6 +103,10 @@ public class ReferralRegisterProvider implements RecyclerViewProvider<ReferralRe
         } catch (Exception e) {
             Timber.e(e);
         }
+    }
+
+    private String getTranslatedGender(String gender) {
+        return gender.equalsIgnoreCase(Gender.FEMALE.toString()) ? context.getResources().getString(org.smartregister.family.R.string.female) : context.getResources().getString(org.smartregister.family.R.string.male);
     }
 
     @Override
@@ -217,28 +222,28 @@ public class ReferralRegisterProvider implements RecyclerViewProvider<ReferralRe
         }
     }
 
-    private static String getCategory(String problem, String referralTypeArg) {
+    private static String getCategory(Context context, String problem, String referralTypeArg) {
         int referralType = Integer.parseInt(referralTypeArg);
         if (problem.equalsIgnoreCase(CoreConstants.TASKS_FOCUS.SICK_CHILD)) {
             if(referralType == 1) {
-                return "Child - HF Referral";
+                return context.getString(R.string.child_hf_referral_text);
             }
-            return "Child - ADDO Linkage";
+            return context.getString(R.string.child_addo_linkage_text);
         } else if (problem.equalsIgnoreCase(CoreConstants.TASKS_FOCUS.ANC_DANGER_SIGNS)){
             if(referralType == 1) {
-                return "ANC - HF Referral";
+                return context.getString(R.string.anc_hf_referral_text);
             }
-            return "ANC - ADDO Linkage";
+            return context.getString(R.string.anc_addo_linkage_text);
         } else if (problem.equalsIgnoreCase(CoreConstants.TASKS_FOCUS.ADOLESCENT_DANGER_SIGNS)) {
             if (referralType == 1) {
-                return "Adolescent - HF Referral";
+                return context.getString(R.string.adolescent_hf_referral_text);
             }
-            return "Adolescent - ADDO Linkage";
+            return context.getString(R.string.adolescent_addo_linkage_text);
         } else {
             if(referralType == 1) {
-                return "PNC - HF Referral";
+                return context.getString(R.string.pnc_hf_referral_text);
             }
-            return "PNC - ADDO Linkage";
+            return context.getString(R.string.pnc_addo_linkage_text);
         }
     }
 

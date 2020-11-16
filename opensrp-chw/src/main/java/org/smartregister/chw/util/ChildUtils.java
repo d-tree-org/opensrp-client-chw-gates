@@ -165,7 +165,7 @@ public class ChildUtils extends CoreChildUtils {
      */
     public static ChildVisit getChildVisitStatus(Context context, String yearOfBirth, long lastVisitDate, long visitNotDate, long dateCreated) {
         ChildVisitAlertRule homeAlertRule = new ChildVisitAlertRule(context, yearOfBirth, lastVisitDate, visitNotDate, dateCreated);
-        CoreChwApplication.getInstance().getRulesEngineHelper().getButtonAlertStatus(homeAlertRule, CoreConstants.RULE_FILE.HOME_VISIT);
+        CoreChwApplication.getInstance().getRulesEngineHelper().getButtonAlertStatus(homeAlertRule, CoreConstants.RULE_FILE.CHILD_HOME_VISIT);
         return getChildVisitStatus(homeAlertRule, lastVisitDate);
     }
 
