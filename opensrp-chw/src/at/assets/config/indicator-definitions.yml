@@ -11,7 +11,7 @@ indicators:
   - key: "S_IND_001"
     description: "Registration in the last Month"
     indicatorQuery: " select count(distinct baseEntityId) from event where eventType in ('Child Registration',
-                      'Adolescent Registration', 'Family Member Registration') and date(eventDate) >= date('now', 'start of month', '-1 months') "
+                      'Adolescent Registration', 'Family Member Registration') and date(eventDate) < date('now', 'start of month') and date(eventDate) >= date('now', 'start of month', '-1 months') "
 
   - key: "S_IND_002"
     description: "Registration in the current month"
