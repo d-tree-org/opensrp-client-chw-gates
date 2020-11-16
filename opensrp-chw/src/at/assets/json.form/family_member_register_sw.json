@@ -90,7 +90,7 @@
             "key": "chk_consent_yes",
             "text": "Ndio",
             "text_size": "18px",
-            "value": "true"
+            "value": "false"
           },
           {
             "key": "chk_consent_no",

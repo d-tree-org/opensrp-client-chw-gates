@@ -11,6 +11,7 @@ import org.smartregister.chw.contract.PncMemberProfileContract;
 import org.smartregister.chw.core.utils.CoreConstants;
 import org.smartregister.chw.model.ReferralTypeModel;
 import org.smartregister.commonregistry.CommonPersonObjectClient;
+import org.smartregister.domain.Task;
 import org.smartregister.family.contract.FamilyProfileContract;
 import org.smartregister.family.domain.FamilyEventClient;
 import org.smartregister.family.util.Utils;
@@ -18,6 +19,7 @@ import org.smartregister.repository.AllSharedPreferences;
 import org.smartregister.util.FormUtils;
 
 import java.util.List;
+import java.util.Set;
 
 import timber.log.Timber;
 
@@ -119,6 +121,17 @@ public class PncMemberProfilePresenter extends BaseAncMemberProfilePresenter imp
 
     private void setEntityId(String entityId) {
         this.entityId = entityId;
+    }
+
+    public void fetchTasks(){
+        ((PncMemberProfileContract.Interactor)interactor).getClientTasks(CoreConstants.REFERRAL_PLAN_ID, getEntityId(), this);
+    }
+
+    @Override
+    public void setClientTasks(Set<Task> taskList) {
+        if (getView() != null) {
+            getView().setClientTasks(taskList);
+        }
     }
 }
 

@@ -30,13 +30,13 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         try {
 
             String formName = "child_danger_signs";
+            int daysInteger = 0;
 
             String ageString = Utils.getDuration(memberObject.getDob());
             if (ageString.contains("w") && !ageString.contains("m") && !ageString.contains("y")){
                 //Has weeks
                 String weeks = ageString.contains("w") ? ageString.substring(0, ageString.indexOf("w")) : "";
                 int weeksInteger = Integer.parseInt(weeks);
-                int daysInteger = 0;
 
                 if (ageString.contains("d")){
                     String days = ageString.contains("d") ? ageString.substring(ageString.indexOf("w")+2, ageString.indexOf("d")) : "";
@@ -46,6 +46,13 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
                 int totalDays = (weeksInteger * 7) + daysInteger;
 
                 if (totalDays <= 30 ){
+                    formName = "new_born_danger_signs";
+                }
+            } else if (ageString.contains("d")){
+                String days = ageString.contains("d") ? ageString.substring(0, ageString.indexOf("d")) : "";
+                daysInteger = Integer.parseInt(days);
+
+                if (daysInteger <= 30) {
                     formName = "new_born_danger_signs";
                 }
             }

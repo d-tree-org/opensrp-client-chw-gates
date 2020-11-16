@@ -97,7 +97,7 @@ public class FamilyProfilePresenter extends CoreFamilyProfilePresenter {
                 e.printStackTrace();
                 return  false;
             }
-            return (clientAge >= 13 && clientAge <= 19);
+            return (clientAge >= 13 && clientAge < 20);
         }else {
             return false;
         }

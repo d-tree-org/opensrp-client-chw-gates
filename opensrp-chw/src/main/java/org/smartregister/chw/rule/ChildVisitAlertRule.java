@@ -15,19 +15,28 @@ public class ChildVisitAlertRule extends HomeAlertRule {
     }
 
     /* duration is 1->monthly, 3-quaterly, 6-semi-annualy */
-    public boolean isVisitWithinThisPeriod(int duration) {
-        return (getLastVisitDate() != null) && isVisitThisPeriod(getLastVisitDate(), getTodayDate(), duration);
-    }
-
-    private boolean isVisitThisPeriod(LocalDate lastVisit, LocalDate todayDate, int duration) {
-        return getMonthsDifference(lastVisit, todayDate) < duration;
+    private boolean IsGreaterThanPeriod(LocalDate lastVisit, LocalDate todayDate, int duration) {
+        return getMonthsDifference(lastVisit, todayDate) > duration;
     }
 
     public boolean isDueWithinPeriod(int duration) {
         if (getLastVisitDate() == null) {
-            return !isVisitThisPeriod(getDateCreated(), getTodayDate(), duration);
+            return true;
         }
+        return IsGreaterThanPeriod(getLastVisitDate(), getTodayDate(), duration);
+    }
 
-        return !isVisitThisPeriod(getLastVisitDate(), getTodayDate(), duration);
+    public boolean isOverdueWithinMonth(Integer duration) {
+        if (getLastVisitDate() == null) {
+            return IsGreaterThanPeriod(getDateCreated(), getTodayDate(), duration);
+        }
+        return IsGreaterThanPeriod(getLastVisitDate(), getTodayDate(), duration);
+    }
+
+    public boolean isVisitDone(Integer duration) {
+        if (getLastVisitDate() == null) {
+            return false;
+        }
+        return !IsGreaterThanPeriod(getLastVisitDate(), getTodayDate(), duration);
     }
 }
