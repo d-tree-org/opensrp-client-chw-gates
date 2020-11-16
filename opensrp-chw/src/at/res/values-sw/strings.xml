@@ -31,6 +31,8 @@
     <string name="gestation_age_initial">Umri wa Mimba</string>
     <string name="pnc_day">Siku baada ya kuzaa</string>
 
+    <string name="monthly_activity">Malengo ya mwezi</string>
+
     <string name="fingerprint_matched"> Alama za vidole ziko sawa </string>
 
     <string name="fingerprint_did_not_match"> Fingerprint Did not match </string>
@@ -38,6 +40,7 @@
     <string name="fingerprint_verification_terminated"> Verification Terminated </string>
 
     <string name="fingerprint_enrolled"> Alama za vidole zimechukuliwa </string>
+
     <string name="has_referral">Ana Rufaa</string>
 
     <string name="edit_pregnancy_outcome">Hariri matokeo ya mimba</string>
@@ -45,6 +48,25 @@
     <string name="updated_successfully">Imemaliza kuhariri</string>
 
     <string name="updated_unsuccessfully">Imeshindwa kuhariri</string>
+
+    <string name="u5_registered_last_month"> U5 Children registered in the last month </string>
+
+    <!--  Monthly Activities Indicators  -->
+    <string name="current_month"> Mwezi huu </string>
+    
+    <string name="last_month"> Mwezi uliopita </string>
+
+    <string name="target_not_reached">Target Not Reached</string>
+    
+    <string name="target_reached">Target Reached</string>
+    
+    <string name="monthly_target"> Monthly Target Reached and Remained</string>
+    
+    <string name="visits_and_registrations">Visits and Registrations</string>
+
+    <string name="registrations_indicator"> Masajili </string>
+    
+    <string name="visits_indicator"> Matembeleo </string>
 
     <string name="child_hf_referral_text">Mtoto - Rufaa kwenda kituoni</string>
 

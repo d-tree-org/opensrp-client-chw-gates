@@ -23,7 +23,8 @@ public class NavigationModelFlv implements NavigationModel.Flavor {
             NavigationOption op4 = new NavigationOption(R.mipmap.sidemenu_pnc, R.mipmap.sidemenu_pnc_active, R.string.menu_pnc, Constants.DrawerMenu.PNC, 0);
             NavigationOption op5 = new NavigationOption(R.mipmap.side_menu_adolescent, R.mipmap.side_menu_adolescent_active, R.string.menu_adolescent, Constants.DrawerMenu.ADOLESCENT, 0);
             NavigationOption op6 = new NavigationOption(R.mipmap.sidemenu_referrals, R.mipmap.sidemenu_referrals_active, R.string.menu_referrals, Constants.DrawerMenu.REFERRALS, 0);
-            navigationOptions.addAll(Arrays.asList(op1, op3, op2, op4, op5, op6));
+            NavigationOption op7 = new NavigationOption(R.drawable.ic_chart, R.mipmap.ic_chart_active, R.string.monthly_activity, Constants.DrawerMenu.MONTHLY_ACTIVITY, 0);
+            navigationOptions.addAll(Arrays.asList(op1, op3, op2, op4, op5, op6, op7));
         }
 
         return navigationOptions;

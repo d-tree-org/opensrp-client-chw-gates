@@ -11,6 +11,8 @@
     <string name="danger_signs">Danger signs and minor illnesess</string>
     <string name="anc_home_visit_danger_signs">Danger signs and minor illnesess</string>
 
+    <string name="monthly_activity">Monthly Activity</string>
+
     <string name="fingerprint_matched"> Fingerprint Matched </string>
 
     <string name="fingerprint_did_not_match"> Fingerprint Did not match </string>
@@ -18,6 +20,8 @@
     <string name="fingerprint_verification_terminated"> Verification Terminated </string>
 
     <string name="fingerprint_enrolled"> Fingerprint enrolled successfully </string>
+
+    <string name="has_referral">Has Referral</string>
 
     <string name="simprints_production_project_id">8rlGBhsk6371eW2KLZm6</string>
 
@@ -28,6 +32,37 @@
     <string name="updated_successfully">Updated Successfully</string>
 
     <string name="updated_unsuccessfully">Failed to update</string>
+
+    <string name="num_of_lieterate_children_0_60_label">Number of literate children 0 &#8211; 60 months</string>
+
+    <string name="current_month_visits">Current Month Visits</string>
+
+    <string name="float_count">10% of the indicator count</string>
+
+    <string name="yes_slice_label">Yes</string>
+
+    <string name="no_slice_label">No</string>
+
+    <string name="sample_note">All under 5</string>
+
+    <string name="u5_registered_last_month"> U5 Children registered in the last month </string>
+
+    <!--  Monthly Activities Indicators  -->
+    <string name="current_month"> Current Month </string>
+
+    <string name="last_month"> Last Month</string>
+
+    <string name="target_not_reached">Target Not Reached</string>
+
+    <string name="target_reached">Target Reached</string>
+
+    <string name="monthly_target"> Monthly Target Reached and Remained</string>
+
+    <string name="visits_and_registrations">Visits and Registrations</string>
+
+    <string name="registrations_indicator"> Registrations </string>
+    
+    <string name="visits_indicator"> Visits </string>
 
     <string name="child_hf_referral_text">Child - HF Referral</string>
 

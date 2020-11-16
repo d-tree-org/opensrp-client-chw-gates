@@ -384,7 +384,7 @@ repositories {
 }
 
 dependencies {
-    implementation('org.smartregister:opensrp-client-chw-core:1.1.39-DTREE-22-SNAPSHOT@aar') {
+    implementation('org.smartregister:opensrp-client-chw-core:1.1.39-DTREE-24-SNAPSHOT@aar') {
         transitive = true
         exclude group: 'com.android.support', module: 'appcompat-v7'
         exclude group: 'androidx.legacy', module: 'legacy-support-v4'
@@ -461,6 +461,7 @@ dependencies {
         exclude group: 'com.android.support', module: 'design'
         exclude group: 'io.ona.rdt-capture', module: 'lib'
         exclude group: 'org.smartregister', module: 'opensrp-client-simprints'
+        exclude group: 'com.google.android.gms', module: 'play-services-vision-common'
     }
 
     implementation('org.smartregister:opensrp-chw-family-planning:1.0.18-SNAPSHOT') {
