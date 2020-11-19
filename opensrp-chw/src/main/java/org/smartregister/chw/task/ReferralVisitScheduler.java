@@ -32,7 +32,7 @@ public class ReferralVisitScheduler extends BaseTaskExecutor {
             baseScheduleTask.setScheduleDueDate(localDate.toDate());
 
             // expiry date
-            baseScheduleTask.setScheduleExpiryDate(localDate.plusDays(30).toDate());
+            baseScheduleTask.setScheduleExpiryDate(localDate.plusYears(5).toDate());
 
             // completion date
             baseScheduleTask.setScheduleExpiryDate(localDate.plusDays(30).toDate());
