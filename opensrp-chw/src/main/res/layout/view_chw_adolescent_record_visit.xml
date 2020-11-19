@@ -13,6 +13,8 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:padding="10dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
         android:visibility="visible"
         android:weightSum="2">
 
