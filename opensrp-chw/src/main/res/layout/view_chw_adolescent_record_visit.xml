@@ -16,9 +16,9 @@
         android:visibility="visible"
         android:weightSum="2">
 
-        <org.smartregister.view.customcontrols.CustomFontTextView
+        <TextView
             android:id="@+id/textview_record_visit"
-            style="@style/CustomFontTextViewStyle.ListView.Normal.MultipleLines"
+            android:fontFamily="@font/google_sans_regular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
@@ -33,9 +33,9 @@
             android:textColor="@color/white" />
 
 
-        <org.smartregister.view.customcontrols.CustomFontTextView
+        <TextView
             android:id="@+id/textview_visit_not"
-            style="@style/CustomFontTextViewStyle.ListView.Normal.MultipleLines"
+            android:fontFamily="@font/google_sans_regular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
