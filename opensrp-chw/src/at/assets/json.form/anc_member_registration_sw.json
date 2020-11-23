@@ -62,9 +62,9 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "1427AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
         "type": "date_picker",
-        "hint": "Tarehe ya kwanza ya hedhi ya kawaida ya mwisho (LNMP)",
+        "hint": "Tarehe ya kwanza ya hedhi ya mwisho (LNMP)",
         "label_info_title": "LMP",
-        "label_info_text": "LNMP = Siku ya kwanza ya mwisho ya hedhi (LNMP). Kama tarehe halisi haijulikani, lakini kipindi cha mwezi kinajulikana; \n ∙ tumia tarehe 5 kwa mwanzo wa mwezi \n ∙ tumia tarehe 15 kwa katikati ya mwezi \n ∙ tumia tarehe 25 kwa mwisho wa mwezi.",
+        "label_info_text": "LNMP = Siku ya kwanza ya hedhi ya mwisho. Kama tarehe halisi haijulikani, lakini kipindi cha mwezi kinajulikana; \n ∙ tumia tarehe 5 kwa mwanzo wa mwezi \n ∙ tumia tarehe 15 kwa katikati ya mwezi \n ∙ tumia tarehe 25 kwa mwisho wa mwezi.",
         "expanded": false,
         "max_date": "today",
         "min_date": "today-50w",
@@ -97,7 +97,7 @@
         "options": [
           {
             "key": "lmp_unknown",
-            "text": "Tarehe ya kwanza ya hedhi ya kawaida ya mwisho (LNMP) haijulikani?",
+            "text": "Je siku ya kwanza ya hedhi ya mwisho (LNMP) haijulikani?",
             "text_size": "18px",
             "value": "false"
           }
@@ -109,7 +109,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "5596AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
         "type": "date_picker",
-        "hint": "Tarehe ya kutarijia kujifungua (EDD)",
+        "hint": "Tarehe anayotarajia kujifungua (EDD)",
         "max_date": "today+50w",
         "min_date": "today",
         "calculation": {
@@ -153,7 +153,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "edit_text",
-        "hint": "Tarehe ya kutarijia kujifungua (EDD)",
+        "hint": "Tarehe anayotarajia kujifungua (EDD)",
         "read_only": true,
         "calculation": {
           "rules-engine": {
