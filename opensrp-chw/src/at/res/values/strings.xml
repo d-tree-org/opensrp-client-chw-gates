@@ -80,4 +80,14 @@
 
     <string name="pnc_addo_linkage_text">PNC - ADDO Linkage</string>
 
+    <string name="back_to_referrals">Back to referrals</string>
+
+    <string name="referral_date">Referral date</string>
+
+    <string name="problem">Problem</string>
+
+    <string name="phone">Phone</string>
+
+    <string name="referral_type">Referral Type</string>
+
 </resources>

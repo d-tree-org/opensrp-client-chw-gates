@@ -1,12 +1,14 @@
 package org.smartregister.chw.activity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.view.View;
 import android.view.ViewOutlineProvider;
+import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.widget.Toolbar;
@@ -20,6 +22,7 @@ import org.smartregister.chw.R;
 import org.smartregister.chw.core.utils.CoreConstants;
 import org.smartregister.chw.referral.activity.ReferralDetailsViewActivity;
 import org.smartregister.chw.referral.domain.MemberObject;
+import org.smartregister.chw.util.Constants;
 import org.smartregister.commonregistry.CommonPersonObjectClient;
 import org.smartregister.util.Utils;
 import org.smartregister.view.customcontrols.CustomFontTextView;
@@ -32,7 +35,7 @@ import java.util.Locale;
 
 import timber.log.Timber;
 
-public class AtReferralDetailsViewActivity extends ReferralDetailsViewActivity {
+public class AtReferralDetailsViewActivity extends ReferralDetailsViewActivity implements View.OnClickListener {
 
     private CustomFontTextView clientName;
     private CustomFontTextView careGiverName;
@@ -40,6 +43,7 @@ public class AtReferralDetailsViewActivity extends ReferralDetailsViewActivity {
     private CustomFontTextView clientReferralProblem;
     private CustomFontTextView referralDate;
     private CustomFontTextView referralFacility;
+    private CustomFontTextView recordFollowup;
     private CustomFontTextView preReferralManagement;
     private CustomFontTextView referralType;
     private MemberObject memberObject;
@@ -100,6 +104,8 @@ public class AtReferralDetailsViewActivity extends ReferralDetailsViewActivity {
         this.referralFacility = (CustomFontTextView)this.findViewById(R.id.referral_facility);
         this.preReferralManagement = (CustomFontTextView)this.findViewById(R.id.pre_referral_management);
         this.referralType = (CustomFontTextView)this.findViewById(R.id.referral_type);
+        this.recordFollowup = (CustomFontTextView) this.findViewById(R.id.record_followup_visit);
+        this.recordFollowup.setOnClickListener(this);
         this.getReferralDetails();
 
     }
@@ -118,7 +124,7 @@ public class AtReferralDetailsViewActivity extends ReferralDetailsViewActivity {
             if (pClient != null) {
                 String focus = Utils.getValue(pClient.getColumnmaps(), CoreConstants.DB_CONSTANTS.FOCUS, true);
                 String priority = Utils.getValue(pClient.getColumnmaps(), CoreConstants.DB_CONSTANTS.PRIORITY, true);
-                this.referralType.setText(getCategory(focus, priority));
+                this.referralType.setText(getCategory(this, focus, priority));
             }
             if (this.memberObject.getPrimaryCareGiver() == null) {
                 this.careGiverName.setVisibility(View.GONE);
@@ -171,28 +177,41 @@ public class AtReferralDetailsViewActivity extends ReferralDetailsViewActivity {
         return phoneNumber;
     }
 
-    private static String getCategory(String problem, String referralTypeArg) {
+    private static String getCategory(Context context, String problem, String referralTypeArg) {
         int referralType = Integer.parseInt(referralTypeArg);
         if (problem.equalsIgnoreCase(CoreConstants.TASKS_FOCUS.SICK_CHILD)) {
             if(referralType == 1) {
-                return "Child - HF Referral";
+                return  context.getString(R.string.child_hf_referral_text);
             }
-            return "Child - ADDO Linkage";
+            return context.getString(R.string.child_addo_linkage_text);
         } else if (problem.equalsIgnoreCase(CoreConstants.TASKS_FOCUS.ANC_DANGER_SIGNS)){
             if(referralType == 1) {
-                return "ANC - HF Referral";
+                return context.getString(R.string.anc_hf_referral_text);
             }
-            return "ANC - ADDO Linkage";
+            return context.getString(R.string.anc_addo_linkage_text);
         } else if (problem.equalsIgnoreCase(CoreConstants.TASKS_FOCUS.ADOLESCENT_DANGER_SIGNS)) {
             if (referralType == 1) {
-                return "Adolescent - HF Referral";
+                return context.getString(R.string.adolescent_hf_referral_text);
             }
-            return "Adolescent - ADDO Linkage";
+            return context.getString(R.string.adolescent_addo_linkage_text);
         } else {
             if(referralType == 1) {
-                return "PNC - HF Referral";
+                return context.getString(R.string.pnc_hf_referral_text);
             }
-            return "PNC - ADDO Linkage";
+            return context.getString(R.string.pnc_addo_linkage_text);
         }
+    }
+
+    @Override
+    public void onClick(View view) {
+        if (view.getId() == R.id.record_followup_visit) {
+            if (pClient != null) {
+                openReferralFollowUp(pClient);
+            }
+        }
+    }
+
+    private void openReferralFollowUp(CommonPersonObjectClient pClient) {
+        ReferralFollowupActivity.startReferralFollowupActivity(this, pClient.getCaseId(), Utils.getValue(pClient.getColumnmaps(), CoreConstants.DB_CONSTANTS.FOR, false));
     }
 }
