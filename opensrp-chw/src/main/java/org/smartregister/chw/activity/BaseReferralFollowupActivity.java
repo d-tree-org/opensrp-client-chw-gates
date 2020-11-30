@@ -14,6 +14,7 @@ import org.json.JSONObject;
 import org.smartregister.chw.CoreReferralFollowupActivity;
 import org.smartregister.chw.R;
 import org.smartregister.chw.application.ChwApplication;
+import org.smartregister.chw.core.application.CoreChwApplication;
 import org.smartregister.chw.core.custom_views.NavigationMenu;
 import org.smartregister.chw.core.utils.CoreConstants;
 import org.smartregister.chw.util.Constants;
@@ -24,6 +25,7 @@ import org.smartregister.repository.TaskRepository;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 
 import timber.log.Timber;
 
@@ -83,7 +85,21 @@ public abstract class BaseReferralFollowupActivity extends CoreReferralFollowupA
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_CODE_GET_JSON) {
             String jsonString = data.getStringExtra(JSON);
-            completeReferralTask(jsonString);
+            try {
+                JSONObject form = new JSONObject(jsonString);
+                Triple<Boolean, JSONObject, JSONArray> registrationFormParams = validateParameters(form.toString());
+                JSONObject jsonForm = registrationFormParams.getMiddle();
+                String encounter_type = jsonForm.optString(ENCOUNTER_TYPE);
+
+                if (Constants.EncounterType.REFERRAL_FOLLOW_UP_VISIT.equals(encounter_type) || Constants.EncounterType.LINKAGE_FOLLOW_UP_VISIT.equals(encounter_type)) {
+                    completeReferralTask(jsonString);
+                }
+
+                finish();
+
+            } catch (JSONException e) {
+                Timber.e(e);
+            }
         } else {
             finish();
         }

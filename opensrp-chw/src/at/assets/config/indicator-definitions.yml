@@ -1,0 +1,19 @@
+indicators:
+  - key: "S_IND_004"
+    description: "Visits conducted in the current month"
+    indicatorQuery: " select count(base_entity_id) from visits where datetime(visit_date/1000, 'unixepoch') between date('now') and date('now', 'start of month') "
+
+  - key: "S_IND_003"
+    description: "Visits conducted in the last month"
+    indicatorQuery: " select count(base_entity_id) from visits where datetime(visit_date/1000, 'unixepoch') between date('now', 'start of month')
+          and date('now', 'start of month', '-1 months') "
+
+  - key: "S_IND_001"
+    description: "Registration in the last Month"
+    indicatorQuery: " select count(distinct baseEntityId) from event where eventType in ('Child Registration',
+                      'Adolescent Registration', 'Family Member Registration') and date(eventDate) < date('now', 'start of month') and date(eventDate) >= date('now', 'start of month', '-1 months') "
+
+  - key: "S_IND_002"
+    description: "Registration in the current month"
+    indicatorQuery: " select count(distinct baseEntityId) from event where eventType in ('Child Registration',
+                      'Adolescent Registration', 'Family Member Registration') and date(eventDate) >= date('now', 'start of month') "

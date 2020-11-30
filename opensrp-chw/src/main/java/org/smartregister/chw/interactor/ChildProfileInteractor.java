@@ -6,10 +6,12 @@ import android.util.Pair;
 import androidx.annotation.VisibleForTesting;
 
 import org.apache.commons.lang3.StringUtils;
+import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.smartregister.CoreLibrary;
 import org.smartregister.chw.contract.ChildProfileContract;
+import org.smartregister.chw.core.application.CoreChwApplication;
 import org.smartregister.chw.core.contract.CoreChildProfileContract;
 import org.smartregister.chw.core.interactor.CoreChildProfileInteractor;
 import org.smartregister.chw.core.model.ChildVisit;
@@ -23,8 +25,8 @@ import org.smartregister.chw.util.Constants;
 import org.smartregister.chw.util.Utils;
 import org.smartregister.clientandeventmodel.Client;
 import org.smartregister.clientandeventmodel.Event;
-import org.smartregister.commonregistry.CommonPersonObject;
 import org.smartregister.commonregistry.CommonPersonObjectClient;
+import org.smartregister.domain.Task;
 import org.smartregister.family.util.AppExecutors;
 import org.smartregister.family.util.DBConstants;
 import org.smartregister.family.util.JsonFormUtils;
@@ -35,6 +37,7 @@ import org.smartregister.view.LocationPickerView;
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Set;
 
 import io.reactivex.Observable;
 import io.reactivex.Observer;
@@ -274,5 +277,14 @@ public class ChildProfileInteractor extends CoreChildProfileInteractor implement
             ChwScheduleTaskExecutor.getInstance().execute(getpClient().entityId(), CoreConstants.EventType.CHILD_VISIT_NOT_DONE, new Date());
             objectObservableEmitter.onNext("");
         });
+    }
+
+    @Override
+    public void getClientTasks(String planId, String baseEntityId, @NotNull CoreChildProfileContract.InteractorCallBack callback) {
+        Set<Task> taskList = CoreChwApplication.getInstance().getTaskRepository().getTasksByEntityAndStatus(planId, baseEntityId, Task.TaskStatus.READY);
+        Set<Task> inProgressTasks = CoreChwApplication.getInstance().getTaskRepository().getTasksByEntityAndStatus(planId, baseEntityId, Task.TaskStatus.IN_PROGRESS);
+        taskList.addAll(inProgressTasks);
+
+        callback.setClientTasks(taskList);
     }
 }

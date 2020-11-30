@@ -2,6 +2,7 @@ package org.smartregister.chw.interactor;
 
 import android.content.Context;
 
+import org.jetbrains.annotations.NotNull;
 import org.joda.time.LocalDate;
 import org.smartregister.chw.anc.AncLibrary;
 import org.smartregister.chw.anc.contract.BaseAncMemberProfileContract;
@@ -9,16 +10,20 @@ import org.smartregister.chw.anc.domain.MemberObject;
 import org.smartregister.chw.anc.domain.Visit;
 import org.smartregister.chw.anc.model.BaseUpcomingService;
 import org.smartregister.chw.anc.util.Constants;
+import org.smartregister.chw.core.application.CoreChwApplication;
+import org.smartregister.chw.core.contract.AncMemberProfileContract;
 import org.smartregister.chw.core.interactor.CoreAncMemberProfileInteractor;
 import org.smartregister.chw.dao.FamilyDao;
 import org.smartregister.dao.AbstractDao;
 import org.smartregister.domain.Alert;
 import org.smartregister.domain.AlertStatus;
+import org.smartregister.domain.Task;
 
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import timber.log.Timber;
 
@@ -93,5 +98,14 @@ public class AncMemberProfileInteractor extends CoreAncMemberProfileInteractor {
         }
 
         return lastVisitDate;
+    }
+
+    @Override
+    public void getClientTasks(String planId, String baseEntityId, AncMemberProfileContract.@NotNull InteractorCallBack callback) {
+        Set<Task> taskList = CoreChwApplication.getInstance().getTaskRepository().getTasksByEntityAndStatus(planId, baseEntityId, Task.TaskStatus.READY);
+        Set<Task> inProgressTasks = CoreChwApplication.getInstance().getTaskRepository().getTasksByEntityAndStatus(planId, baseEntityId, Task.TaskStatus.IN_PROGRESS);
+        taskList.addAll(inProgressTasks);
+
+        callback.setClientTasks(taskList);
     }
 }

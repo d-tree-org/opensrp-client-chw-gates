@@ -10,7 +10,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.smartregister.chw.application.ChwApplication;
+import org.smartregister.chw.core.utils.CoreConstants;
+import org.smartregister.chw.core.utils.CoreReferralUtils;
 import org.smartregister.chw.referral.util.Constants;
+import org.smartregister.chw.schedulers.ChwScheduleTaskExecutor;
 import org.smartregister.domain.Task;
 import org.smartregister.repository.TaskRepository;
 import org.smartregister.util.LangUtils;
@@ -79,10 +82,11 @@ public class ReferralFollowupActivity extends BaseReferralFollowupActivity {
 
             if (org.smartregister.chw.util.Constants.EncounterType.REFERRAL_FOLLOW_UP_VISIT.equals(encounter_type) || org.smartregister.chw.util.Constants.EncounterType.LINKAGE_FOLLOW_UP_VISIT.equals(encounter_type)) {
                 JSONArray fields = registrationFormParams.getRight();
+
+                JSONObject wantToComplete = getFieldJSONObject(fields, "complete_referral");
                 JSONObject visit_hf_object = getFieldJSONObject(fields, "visit_hf");
-                JSONObject services_hf_object = getFieldJSONObject(fields, "services_hf");
-                if (visit_hf_object != null && "Yes".equalsIgnoreCase(visit_hf_object.optString(VALUE)) &&
-                        services_hf_object != null && "Yes".equalsIgnoreCase(services_hf_object.optString(VALUE)) ) {
+                if (visit_hf_object != null && "Yes".equalsIgnoreCase(visit_hf_object.optString(VALUE)) ||
+                        wantToComplete != null && "No".equalsIgnoreCase(wantToComplete.optString(VALUE)) ) {
                     // update task
                     TaskRepository taskRepository = ChwApplication.getInstance().getTaskRepository();
                     Task task = taskRepository.getTaskByIdentifier(getTaskIdentifier());
@@ -91,10 +95,24 @@ public class ReferralFollowupActivity extends BaseReferralFollowupActivity {
                 }
             }
 
+            // update schedule
+            String baseEntityId = jsonForm.optString(CoreConstants.ENTITY_ID);
+            updateReferralFollowUpVisitSchedule(baseEntityId);
+
             finish();
 
         } catch (JSONException e) {
             Timber.e(e);
+        }
+    }
+
+    private void updateReferralFollowUpVisitSchedule(String baseEntityId){
+        ChwApplication.getInstance().getScheduleRepository().deleteScheduleByName(CoreConstants.SCHEDULE_TYPES.REFERRAL_FOLLOWUP_VISIT, baseEntityId);
+
+        // check if there is any task ready/pending
+        Task oldestTask = CoreReferralUtils.getTaskForEntity(baseEntityId, false);
+        if(oldestTask != null)  {
+            ChwScheduleTaskExecutor.getInstance().execute(baseEntityId, org.smartregister.chw.util.Constants.EncounterType.REFERRAL_FOLLOW_UP_VISIT, oldestTask.getAuthoredOn().toDate());
         }
     }
 }

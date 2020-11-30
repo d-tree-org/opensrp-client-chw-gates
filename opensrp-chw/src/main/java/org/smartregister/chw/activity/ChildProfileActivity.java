@@ -1,19 +1,13 @@
 package org.smartregister.chw.activity;
 
 import android.app.Activity;
-import android.content.ContentValues;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import androidx.room.util.StringUtil;
 
 import com.google.android.material.snackbar.Snackbar;
-
-import net.sqlcipher.database.SQLiteDatabase;
 
 import org.joda.time.DateTime;
 import org.json.JSONObject;
@@ -33,23 +27,15 @@ import org.smartregister.chw.dao.MalariaDao;
 import org.smartregister.chw.model.ReferralTypeModel;
 import org.smartregister.chw.presenter.ChildProfilePresenter;
 import org.smartregister.chw.schedulers.ChwScheduleTaskExecutor;
-import org.smartregister.commonregistry.CommonRepository;
 import org.smartregister.domain.Task;
 import org.smartregister.domain.db.Client;
 import org.smartregister.family.util.Constants;
-import org.smartregister.repository.BaseRepository;
-import org.smartregister.repository.ClientRepository;
-import org.smartregister.repository.EventClientRepository;
 import org.smartregister.simprint.SimPrintsConstantHelper;
-import org.smartregister.simprint.SimPrintsHelper;
-import org.smartregister.simprint.SimPrintsHelperResearch;
-import org.smartregister.simprint.SimPrintsIdentifyActivity;
 import org.smartregister.simprint.SimPrintsRegisterActivity;
 import org.smartregister.simprint.SimPrintsRegistration;
 import org.smartregister.simprint.SimPrintsVerification;
 import org.smartregister.simprint.SimPrintsVerifyActivity;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -57,7 +43,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static org.smartregister.AllConstants.ROWID;
 import static org.smartregister.chw.anc.util.Constants.ANC_MEMBER_OBJECTS.MEMBER_PROFILE_OBJECT;
 
 public class ChildProfileActivity extends CoreChildProfileActivity implements ChildProfileContract.View {
@@ -143,15 +128,6 @@ public class ChildProfileActivity extends CoreChildProfileActivity implements Ch
         if (familyFloatingMenu != null) {
             familyFloatingMenu.reDraw(hasPhone);
         }
-    }
-
-    @Override
-    public void setVisitAboveTwentyFourView() {
-        super.setVisitAboveTwentyFourView();
-        findViewById(R.id.textview_visit_not).setVisibility(View.GONE);
-        findViewById(R.id.textview_record_visit).setBackgroundResource(R.drawable.btn_drawable_primary);
-        TextView tv = (TextView)findViewById(R.id.textview_record_visit);
-        tv.setTextColor(this.getResources().getColor(R.color.light_grey_text));
     }
 
     @Override
