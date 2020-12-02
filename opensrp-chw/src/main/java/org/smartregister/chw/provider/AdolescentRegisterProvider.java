@@ -19,6 +19,7 @@ import org.smartregister.chw.core.application.CoreChwApplication;
 import org.smartregister.chw.core.dao.VisitDao;
 import org.smartregister.chw.core.domain.VisitSummary;
 import org.smartregister.chw.core.interactor.CoreChildProfileInteractor;
+import org.smartregister.chw.core.utils.CoreReferralUtils;
 import org.smartregister.chw.model.AdolescentVisit;
 import org.smartregister.chw.core.utils.ChwDBConstants;
 import org.smartregister.chw.core.utils.CoreConstants;
@@ -107,6 +108,12 @@ public class AdolescentRegisterProvider implements RecyclerViewProvider<Adolesce
                 }
             });
 
+            // indicate if adolescent has referral
+            if(CoreReferralUtils.hasAnyReferralTask(pc.getCaseId())) {
+                viewHolder.textViewHasReferral.setVisibility(View.VISIBLE);
+            } else {
+                viewHolder.textViewHasReferral.setVisibility(View.GONE);
+            }
         } catch (Exception e) {
             Timber.e(e);
         }
@@ -239,6 +246,7 @@ public class AdolescentRegisterProvider implements RecyclerViewProvider<Adolesce
         public TextView patientName;
         public TextView textViewAge;
         public TextView textViewAddressAndGender;
+        public TextView textViewHasReferral;
         public View patientColumn;
         public View registerColumns;
         public View dueWrapper;
@@ -250,6 +258,7 @@ public class AdolescentRegisterProvider implements RecyclerViewProvider<Adolesce
             patientName = itemView.findViewById(R.id.textview_adolescent_name_age);
             textViewAge = itemView.findViewById(R.id.text_adolescent_age);
             textViewAddressAndGender = itemView.findViewById(R.id.text_view_address_gender);
+            textViewHasReferral = itemView.findViewById(R.id.has_referral);
             patientColumn = itemView.findViewById(R.id.adolescent_column);
             registerColumns = itemView.findViewById(R.id.register_columns);
             dueWrapper = itemView.findViewById(R.id.due_button_wrapper);
