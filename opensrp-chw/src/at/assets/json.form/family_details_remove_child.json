@@ -95,13 +95,15 @@
         "type": "spinner",
         "hint": "Reason",
         "values": [
-          "Died",
+          "Death",
           "Moved away",
+          "Revoked consent",
           "Other"
         ],
         "keys": [
           "Died",
           "Moved away",
+          "Revoked consent",
           "Other"
         ],
         "v_required": {

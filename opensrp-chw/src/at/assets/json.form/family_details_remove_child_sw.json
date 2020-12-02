@@ -97,11 +97,13 @@
         "values": [
           "Kifo",
           "Amehama",
+          "Ameondoa ridhaa",
           "Sababu nyingine"
         ],
         "keys": [
           "Died",
           "Moved away",
+          "Revoked consent",
           "Other"
         ],
         "v_required": {
