@@ -39,7 +39,13 @@ public class AdolescentRegisterFragmentPresenter implements AdolescentRegisterFr
     @Override
     public String getMainCondition() {
         return " " + CoreConstants.TABLE_NAME.FAMILY_MEMBER + "." + DBConstants.KEY.DATE_REMOVED + " is null " +
-                "AND " + CoreConstants.TABLE_NAME.ADOLESCENT + "." + DBConstants.KEY.IS_CLOSED + " is 0 ";
+                "AND " + CoreConstants.TABLE_NAME.ADOLESCENT + "." + DBConstants.KEY.IS_CLOSED + " is 0 " +
+                "AND (" + CoreConstants.TABLE_NAME.ADOLESCENT + "." + DBConstants.KEY.BASE_ENTITY_ID + " NOT IN (SELECT " +
+                CoreConstants.TABLE_NAME.ANC_MEMBER + "." + DBConstants.KEY.BASE_ENTITY_ID + " FROM " +
+                CoreConstants.TABLE_NAME.ANC_MEMBER + " WHERE " + CoreConstants.TABLE_NAME.ANC_MEMBER + "." +
+                DBConstants.KEY.BASE_ENTITY_ID + " NOT IN (SELECT " + CoreConstants.TABLE_NAME.PNC_MEMBER + "." + DBConstants.KEY.BASE_ENTITY_ID +
+                " FROM " + CoreConstants.TABLE_NAME.PNC_MEMBER + " WHERE " + CoreConstants.TABLE_NAME.PNC_MEMBER + "." + DBConstants.KEY.IS_CLOSED +
+                " is 1)))";
     }
 
     @Override
