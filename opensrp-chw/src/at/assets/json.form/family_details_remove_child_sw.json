@@ -93,15 +93,17 @@
         "openmrs_entity_id": "160417AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
         "openmrs_data_type": "select one",
         "type": "spinner",
-        "hint": "Sababu ya kuiondoa",
+        "hint": "Sababu ya kumuondoa",
         "values": [
           "Kifo",
           "Amehama",
+          "Ameondoa ridhaa",
           "Sababu nyingine"
         ],
         "keys": [
           "Died",
           "Moved away",
+          "Revoked consent",
           "Other"
         ],
         "v_required": {
