@@ -30,6 +30,7 @@ import static org.smartregister.util.JsonFormUtils.getFieldJSONObject;
 public class ReferralFollowupActivity extends BaseReferralFollowupActivity {
     private static final String CLIENT = "client";
     private boolean isComingFromReferralDetails = false;
+    private static final String IS_COMING_FROM_REFERRAL_DETAILS = "IS_COMING_FROM_REFERRAL_DETAILS";
 
     private String taskId = "";
     private static final String TASK_IDENTIFIER = "taskIdentifier";
@@ -43,7 +44,7 @@ public class ReferralFollowupActivity extends BaseReferralFollowupActivity {
         intent.putExtra(Constants.ACTIVITY_PAYLOAD.JSON_FORM, getReferralFollowupForm(referralType));
         intent.putExtra(TASK_IDENTIFIER, taskIdentifier);
         if (activity.getClass() == AtReferralDetailsViewActivity.class)
-            intent.putExtra("IS_COMING_FROM_REFERRAL_DETAILS", true);
+            intent.putExtra(IS_COMING_FROM_REFERRAL_DETAILS, true);
 
         intent.putExtra(Constants.ACTIVITY_PAYLOAD.ACTION, Constants.ACTIVITY_PAYLOAD_TYPE.FOLLOW_UP_VISIT);
         activity.startActivity(intent);
