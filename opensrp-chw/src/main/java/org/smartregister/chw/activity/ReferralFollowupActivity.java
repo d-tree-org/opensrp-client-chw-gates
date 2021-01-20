@@ -56,7 +56,7 @@ public class ReferralFollowupActivity extends BaseReferralFollowupActivity {
 
         if (getIntent().getExtras() != null) {
             taskId = getIntent().getExtras().getString(TASK_IDENTIFIER);
-            isComingFromReferralDetails = getIntent().getBooleanExtra("IS_COMING_FROM_REFERRAL_DETAILS", false);
+            isComingFromReferralDetails = getIntent().getBooleanExtra(IS_COMING_FROM_REFERRAL_DETAILS, false);
         }
     }
 
