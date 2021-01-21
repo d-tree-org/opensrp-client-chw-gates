@@ -13,6 +13,7 @@ import androidx.loader.content.Loader;
 
 import org.apache.commons.lang3.StringUtils;
 import org.smartregister.chw.R;
+import org.smartregister.chw.activity.AtReferralDetailsViewActivity;
 import org.smartregister.chw.activity.ReferralFollowupActivity;
 import org.smartregister.chw.anc.util.DBConstants;
 import org.smartregister.chw.core.custom_views.NavigationMenu;
@@ -20,6 +21,8 @@ import org.smartregister.chw.core.utils.QueryBuilder;
 import org.smartregister.chw.model.ReferralRegisterFragmentModel;
 import org.smartregister.chw.presenter.ReferralRegisterFragmentPresenter;
 import org.smartregister.chw.provider.ReferralRegisterProvider;
+import org.smartregister.chw.referral.activity.ReferralDetailsViewActivity;
+import org.smartregister.chw.referral.domain.MemberObject;
 import org.smartregister.chw.referral.fragment.BaseReferralRegisterFragment;
 import org.smartregister.chw.util.Constants;
 import org.smartregister.chw.util.Utils;
@@ -43,6 +46,16 @@ public class ReferralRegisterFragment extends BaseReferralRegisterFragment {
     private View view;
     private View dueOnlyLayout;
     private boolean dueFilterActive = false;
+
+    public static BaseReferralRegisterFragment newInstance(Bundle bundle) {
+        Bundle args = bundle;
+        BaseReferralRegisterFragment fragment = new ReferralRegisterFragment();
+        if (args == null) {
+            args = new Bundle();
+        }
+        fragment.setArguments(args);
+        return fragment;
+    }
 
     @Override
     public void initializeAdapter(Set<org.smartregister.configurableviews.model.View> visibleColumns) {
@@ -156,7 +169,7 @@ public class ReferralRegisterFragment extends BaseReferralRegisterFragment {
 
     @Override
     protected void openProfile(CommonPersonObjectClient client) {
-        //ReferralDetailsViewActivity.startReferralDetailsViewActivity(getActivity(), new MemberObject(client));
+        AtReferralDetailsViewActivity.startReferralDetailsViewActivity(getActivity(), new MemberObject(client), client);
     }
 
     @Override

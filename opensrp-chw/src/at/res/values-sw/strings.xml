@@ -84,4 +84,14 @@
 
     <string name="pnc_addo_linkage_text">Aliyejifungua - Ushauri kwenda DLDM</string>
 
+    <string name="back_to_referrals">Rudi kwenye rufaa</string>
+
+    <string name="referral_date">Tarehe ya Rufaa</string>
+
+    <string name="problem">Tatizo</string>
+
+    <string name="phone">Namba ya simu</string>
+
+    <string name="referral_type">Aina ya Rufaa</string>
+
 </resources>
