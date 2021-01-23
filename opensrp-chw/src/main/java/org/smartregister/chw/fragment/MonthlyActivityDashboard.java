@@ -162,7 +162,6 @@ public class MonthlyActivityDashboard extends Fragment implements ReportContract
     @Override
     public void setIndicatorTallies(List<Map<String, IndicatorTally>> indicatorTallies) {
         this.indicatorTallies = indicatorTallies;
-        buildVisualization(visualizationsViewGroup);
     }
 
     private void createReportViews(ViewGroup mainLayout) {
