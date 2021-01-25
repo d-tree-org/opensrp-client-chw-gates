@@ -75,6 +75,25 @@ public class MonthlyActivityDashboard extends Fragment implements ReportContract
         List<ReportIndicator> reportIndicators = new ArrayList<>();
         List<IndicatorQuery> indicatorQueries = new ArrayList<>();
 
+        String currentMonthVisitsQuery = "select count (*) " +
+                "from ( " +
+                "select distinct(base_entity_id), date(datetime(visit_date/1000, 'unixepoch')) as date_visited " +
+                "from visits " +
+                "where " +
+                "datetime(visit_date/1000, 'unixepoch') > date('now', 'start of month') " +
+                "and visit_type in ('ANC Home Visit', 'PNC Home Visit', 'Referral Follow-up Visit', 'Linkage Follow-up Visit', 'Child Home Visit', 'Adolescent Home Visit') " +
+                "group by base_entity_id, date_visited )";
+
+        String lastMonthVisitsQuery = "select count (*) " +
+                "from ( " +
+                "select distinct(base_entity_id), date(datetime(visit_date/1000, 'unixepoch')) as date_visited " +
+                "from visits " +
+                "where " +
+                "datetime(visit_date/1000, 'unixepoch') < date('now', 'start of month') " +
+                "and datetime(visit_date/1000, 'unixepoch') > date('now', 'start of month', '-1 months') " +
+                "and visit_type in ('ANC Home Visit', 'PNC Home Visit', 'Referral Follow-up Visit', 'Linkage Follow-up Visit', 'Child Home Visit', 'Adolescent Home Visit') " +
+                "group by base_entity_id, date_visited )";
+
         ReportIndicator currentMonthVisitsIndicator = new ReportIndicator();
         currentMonthVisitsIndicator.setKey("S_IND_004");
         currentMonthVisitsIndicator.setDescription("Visits conducted in the current month");
@@ -89,14 +108,14 @@ public class MonthlyActivityDashboard extends Fragment implements ReportContract
         currentMonthVisitsIndicatorQuery.setIndicatorCode("S_IND_004");
         currentMonthVisitsIndicatorQuery.setDbVersion(0);
         currentMonthVisitsIndicatorQuery.setId(null);
-        currentMonthVisitsIndicatorQuery.setQuery(" select count(base_entity_id) from visits where datetime(visit_date/1000, 'unixepoch') >= date('now', 'start of month') ");
+        currentMonthVisitsIndicatorQuery.setQuery(currentMonthVisitsQuery);
         indicatorQueries.add(currentMonthVisitsIndicatorQuery);
 
         IndicatorQuery lastMonthVisitsIndicatorQuery = new IndicatorQuery();
         lastMonthVisitsIndicatorQuery.setIndicatorCode("S_IND_003");
         lastMonthVisitsIndicatorQuery.setDbVersion(0);
         lastMonthVisitsIndicatorQuery.setId(null);
-        lastMonthVisitsIndicatorQuery.setQuery("  select count(base_entity_id) from visits where datetime(visit_date/1000, 'unixepoch') between date('now', 'start of month') and date('now', 'start of month', '-1 month') ");
+        lastMonthVisitsIndicatorQuery.setQuery(lastMonthVisitsQuery);
         indicatorQueries.add(lastMonthVisitsIndicatorQuery);
 
         presenter.addIndicators(reportIndicators);

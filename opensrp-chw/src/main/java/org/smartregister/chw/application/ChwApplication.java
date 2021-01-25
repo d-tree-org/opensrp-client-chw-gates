@@ -63,16 +63,10 @@ import org.smartregister.immunization.ImmunizationLibrary;
 import org.smartregister.location.helper.LocationHelper;
 import org.smartregister.receiver.SyncStatusBroadcastReceiver;
 import org.smartregister.reporting.ReportingLibrary;
-import org.smartregister.reporting.domain.CompositeIndicatorTally;
-import org.smartregister.reporting.job.RecurringIndicatorGeneratingJob;
-import org.smartregister.reporting.repository.DailyIndicatorCountRepository;
 import org.smartregister.repository.AllSharedPreferences;
 import org.smartregister.repository.Repository;
 import org.smartregister.simprint.SimPrintsLibrary;
-import org.smartregister.view.activity.DrishtiApplication;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -143,7 +137,7 @@ public class ChwApplication extends CoreChwApplication {
         // init json helper
         this.jsonSpecHelper = new JsonSpecHelper(this);
 
-        // Init Reporting library
+        // Init Reportinfg library
         ReportingLibrary.init(context, getRepository(), null, BuildConfig.VERSION_CODE, BuildConfig.DATABASE_VERSION);
 
         //init Job Manager
