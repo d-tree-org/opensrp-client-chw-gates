@@ -213,6 +213,10 @@
             android:theme="@style/ChwTheme.NoActionBar" />
 
         <activity
+            android:name=".activity.AtReferralDetailsViewActivity"
+            android:theme="@style/ChwTheme.NoActionBar"/>
+
+        <activity
             android:name=".activity.AdolescentMedicalHistoryActivity"
             android:label="@string/medical_history"
             android:theme="@style/ChwTheme.NoActionBar" />

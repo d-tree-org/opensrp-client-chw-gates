@@ -87,13 +87,4 @@ public class AncRegisterActivity extends CoreAncRegisterActivity {
         }
         this.finish();
     }
-
-    @Override
-    public void onRegistrationSaved(String register, boolean isEdit, boolean hasChildren) {
-        // Check if the client is an adolescent and close them from that that list
-        if (AdolescentDao.isAdolescentMember(BASE_ENTITY_ID)) {
-            AdolescentDao.closeAdolescentMember(BASE_ENTITY_ID);
-        }
-
-    }
 }

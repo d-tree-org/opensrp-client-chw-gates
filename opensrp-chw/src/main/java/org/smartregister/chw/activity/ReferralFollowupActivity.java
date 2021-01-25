@@ -29,6 +29,8 @@ import static org.smartregister.util.JsonFormUtils.getFieldJSONObject;
 
 public class ReferralFollowupActivity extends BaseReferralFollowupActivity {
     private static final String CLIENT = "client";
+    private boolean isComingFromReferralDetails = false;
+    private static final String IS_COMING_FROM_REFERRAL_DETAILS = "IS_COMING_FROM_REFERRAL_DETAILS";
 
     private String taskId = "";
     private static final String TASK_IDENTIFIER = "taskIdentifier";
@@ -41,6 +43,8 @@ public class ReferralFollowupActivity extends BaseReferralFollowupActivity {
         intent.putExtra(Constants.ACTIVITY_PAYLOAD.REFERRAL_FOLLOWUP_FORM_NAME, getReferralFollowupForm(referralType));
         intent.putExtra(Constants.ACTIVITY_PAYLOAD.JSON_FORM, getReferralFollowupForm(referralType));
         intent.putExtra(TASK_IDENTIFIER, taskIdentifier);
+        if (activity.getClass() == AtReferralDetailsViewActivity.class)
+            intent.putExtra(IS_COMING_FROM_REFERRAL_DETAILS, true);
 
         intent.putExtra(Constants.ACTIVITY_PAYLOAD.ACTION, Constants.ACTIVITY_PAYLOAD_TYPE.FOLLOW_UP_VISIT);
         activity.startActivity(intent);
@@ -50,8 +54,10 @@ public class ReferralFollowupActivity extends BaseReferralFollowupActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (getIntent().getExtras() != null)
+        if (getIntent().getExtras() != null) {
             taskId = getIntent().getExtras().getString(TASK_IDENTIFIER);
+            isComingFromReferralDetails = getIntent().getBooleanExtra(IS_COMING_FROM_REFERRAL_DETAILS, false);
+        }
     }
 
 
@@ -86,7 +92,7 @@ public class ReferralFollowupActivity extends BaseReferralFollowupActivity {
                 JSONObject wantToComplete = getFieldJSONObject(fields, "complete_referral");
                 JSONObject visit_hf_object = getFieldJSONObject(fields, "visit_hf");
                 if (visit_hf_object != null && "Yes".equalsIgnoreCase(visit_hf_object.optString(VALUE)) ||
-                        wantToComplete != null && "No".equalsIgnoreCase(wantToComplete.optString(VALUE)) ) {
+                        wantToComplete != null && "No".equalsIgnoreCase(wantToComplete.optString(VALUE))) {
                     // update task
                     TaskRepository taskRepository = ChwApplication.getInstance().getTaskRepository();
                     Task task = taskRepository.getTaskByIdentifier(getTaskIdentifier());
@@ -98,6 +104,11 @@ public class ReferralFollowupActivity extends BaseReferralFollowupActivity {
             // update schedule
             String baseEntityId = jsonForm.optString(CoreConstants.ENTITY_ID);
             updateReferralFollowUpVisitSchedule(baseEntityId);
+            if (isComingFromReferralDetails) {
+                Intent intent = new Intent(this, ReferralRegisterActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(intent);
+            }
 
             finish();
 
@@ -106,12 +117,12 @@ public class ReferralFollowupActivity extends BaseReferralFollowupActivity {
         }
     }
 
-    private void updateReferralFollowUpVisitSchedule(String baseEntityId){
+    private void updateReferralFollowUpVisitSchedule(String baseEntityId) {
         ChwApplication.getInstance().getScheduleRepository().deleteScheduleByName(CoreConstants.SCHEDULE_TYPES.REFERRAL_FOLLOWUP_VISIT, baseEntityId);
 
         // check if there is any task ready/pending
         Task oldestTask = CoreReferralUtils.getTaskForEntity(baseEntityId, false);
-        if(oldestTask != null)  {
+        if (oldestTask != null) {
             ChwScheduleTaskExecutor.getInstance().execute(baseEntityId, org.smartregister.chw.util.Constants.EncounterType.REFERRAL_FOLLOW_UP_VISIT, oldestTask.getAuthoredOn().toDate());
         }
     }

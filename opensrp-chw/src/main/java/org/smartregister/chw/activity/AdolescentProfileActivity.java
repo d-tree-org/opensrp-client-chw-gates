@@ -356,14 +356,14 @@ public class AdolescentProfileActivity extends BaseProfileActivity implements Ad
     @Override
     public void setVisitButtonDueStatus() {
         openVisitButtonView();
-        textViewRecord.setBackgroundResource(R.drawable.rounded_blue_btn);
+        textViewRecord.setBackgroundResource(R.drawable.record_btn_selector_due);
         textViewRecord.setTextColor(getResources().getColor(R.color.white));
     }
 
     @Override
     public void setVisitButtonOverdueStatus() {
         openVisitButtonView();
-        textViewRecord.setBackgroundResource(R.drawable.rounded_red_btn);
+        textViewRecord.setBackgroundResource(R.drawable.record_btn_selector_overdue);
         textViewRecord.setTextColor(getResources().getColor(R.color.white));
     }
 

@@ -3,9 +3,6 @@
     android:padding="40dp"
     android:shape="rectangle">
     <corners android:radius="5dp" />
-    <stroke
-        android:width="0.5dp"
-        android:color="@color/visit_status_not_yet" />
-    <solid android:color="@color/white" /> <!-- the button color -->
+    <solid android:color="@color/primary" /> <!-- the button color -->
 
 </shape>

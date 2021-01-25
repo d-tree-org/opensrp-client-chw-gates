@@ -249,7 +249,9 @@
         "label_text_style": "normal",
         "text_color": "#C0C0C0",
         "exclusive": [
-          "neither"
+          "addo",
+          "neither",
+          "health_facility"
         ],
         "options": [
           {

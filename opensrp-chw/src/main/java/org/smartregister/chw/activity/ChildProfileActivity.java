@@ -201,6 +201,7 @@ public class ChildProfileActivity extends CoreChildProfileActivity implements Ch
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == CoreConstants.ProfileActivityResults.CHANGE_COMPLETED && resultCode == Activity.RESULT_OK) {
             Intent intent = new Intent(ChildProfileActivity.this, ChildProfileActivity.class);
+            assert getIntent().getExtras() != null;
             intent.putExtras(getIntent().getExtras());
             startActivity(intent);
             finish();
@@ -208,14 +209,11 @@ public class ChildProfileActivity extends CoreChildProfileActivity implements Ch
 
             if (data.getExtras() != null){
                 SimPrintsVerification simprintsVerification = (SimPrintsVerification) data.getSerializableExtra(SimPrintsConstantHelper.INTENT_DATA);
+                assert simprintsVerification != null;
                 if (simprintsVerification.getCheckStatus()){
                     switch (simprintsVerification.getMaskedTier()){
                         case TIER_3:
-                            showSnackBar(this.getResources().getString(R.string.fingerprint_matched));
-                            break;
                         case TIER_2:
-                            showSnackBar(this.getResources().getString(R.string.fingerprint_matched));
-                            break;
                         case TIER_1:
                             showSnackBar(this.getResources().getString(R.string.fingerprint_matched));
                             break;
@@ -230,6 +228,7 @@ public class ChildProfileActivity extends CoreChildProfileActivity implements Ch
             if (data.getExtras() != null){
 
                 SimPrintsRegistration simPrintsRegistration = (SimPrintsRegistration) data.getSerializableExtra(SimPrintsConstantHelper.INTENT_DATA);
+                assert simPrintsRegistration != null;
                 if (simPrintsRegistration.getCheckStatus()){
                     String guid = simPrintsRegistration.getGuid();
 

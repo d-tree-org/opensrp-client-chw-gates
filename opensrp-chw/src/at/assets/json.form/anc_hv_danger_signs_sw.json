@@ -81,7 +81,7 @@
           },
           {
             "key": "ds_server_headache",
-            "text": "Maumivu ya kichwa",
+            "text": "Maumivu makali ya kichwa",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "139081AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
