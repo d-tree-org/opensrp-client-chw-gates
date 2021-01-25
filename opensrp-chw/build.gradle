@@ -480,7 +480,9 @@ dependencies {
     testImplementation 'org.robolectric:shadows-support-v4:3.4-rc2'
     testImplementation 'androidx.test:core:1.0.0'
 
-    implementation('com.crashlytics.sdk.android:crashlytics:2.9.5@aar') {
+    implementation platform('com.google.firebase:firebase-bom:26.1.1')
+    implementation 'com.google.firebase:firebase-analytics'
+    implementation('com.google.firebase:firebase-crashlytics:') {
         transitive = true
     }
 
