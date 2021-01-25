@@ -16,6 +16,7 @@ apply plugin: 'jacoco'
 apply plugin: 'com.github.kt3k.coveralls'
 apply plugin: 'io.fabric'
 apply from: "jacoco.gradle"
+apply plugin: 'com.google.gms.google-services'
 
 jacoco {
     toolVersion = "0.8.5"
