@@ -11,61 +11,72 @@
         android:id="@+id/record_visit_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:padding="10dp"
-        android:visibility="visible"
+        android:layout_marginLeft="12dp"
         android:layout_marginRight="16dp"
-        android:layout_marginLeft="16dp"
-        android:weightSum="3">
+        android:visibility="visible"
+        android:weightSum="2">
 
         <TextView
             android:id="@+id/textview_record_visit"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
             android:fontFamily="@font/google_sans_regular"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
             android:layout_alignParentLeft="true"
             android:layout_weight="1"
             android:background="@drawable/btn_drawable_primary"
             android:gravity="center"
-            android:paddingLeft="10dp"
+            android:paddingLeft="30dp"
             android:paddingTop="10dp"
-            android:paddingRight="10dp"
+            android:paddingRight="30dp"
             android:paddingBottom="10dp"
-            android:text="@string/record_visit"
+            android:text="@string/record_anc_visit"
             android:textColor="@color/white" />
 
+
         <TextView
-            android:id="@+id/textview_visit_not"
-            android:fontFamily="@font/google_sans_regular"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:id="@+id/textview_anc_visit_not"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
             android:layout_alignParentRight="true"
             android:layout_marginLeft="20dp"
             android:layout_weight="1"
             android:background="@drawable/btn_drawable"
             android:gravity="center"
-            android:paddingLeft="10dp"
+            android:paddingLeft="30dp"
             android:paddingTop="10dp"
-            android:paddingRight="10dp"
+            android:paddingRight="30dp"
             android:paddingBottom="10dp"
             android:text="@string/visit_not_done_btn_child_profile"
             android:textColor="@color/dark_grey" />
 
-        <TextView
-            android:id="@+id/textview_verify_fingerprint"
-            android:layout_width="0dp"
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/record_reccuringvisit_done_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="10dp"
+        android:visibility="gone"
+        android:weightSum="2">
+
+        <org.smartregister.view.customcontrols.CustomFontTextView
+            android:id="@+id/textview_record_reccuring_visit"
+            style="@style/CustomFontTextViewStyle.ListView.Normal.MultipleLines"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginLeft="20dp"
+            android:layout_alignParentLeft="true"
             android:layout_weight="1"
-            android:fontFamily="@font/google_sans_regular"
-            android:background="@drawable/btn_drawable"
-            android:gravity="center"
-            android:paddingLeft="10dp"
+            android:background="@drawable/record_btn_anc_recurringselector"
+            android:gravity="center_horizontal"
+            android:paddingLeft="30dp"
             android:paddingTop="10dp"
-            android:paddingRight="10dp"
+            android:paddingRight="30dp"
             android:paddingBottom="10dp"
-            android:text="@string/verify_child_fingerprint"
-            android:textColor="@color/dark_grey" />
+            android:text="@string/record_anc_visit"
+            android:textColor="@color/black" />
 
     </LinearLayout>
 
@@ -77,21 +88,6 @@
         android:padding="10dp"
         android:visibility="gone">
 
-        <TextView
-            android:id="@+id/textview_record_visit_done"
-            android:fontFamily="@font/google_sans_regular"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_centerHorizontal="true"
-            android:background="@drawable/btn_drawable_primary"
-            android:gravity="center_horizontal"
-            android:paddingLeft="30dp"
-            android:paddingTop="10dp"
-            android:paddingRight="30dp"
-            android:paddingBottom="10dp"
-            android:text="@string/record_visit"
-            android:textColor="@color/grey" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -103,11 +99,13 @@
         android:visibility="gone">
 
         <ImageView
-            android:id="@+id/cross_image_child"
+            android:id="@+id/tick_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:padding="10dp" />
+            android:layout_marginRight="10dp"
+            android:src="@drawable/childrow_upcoming" />
+
 
         <org.smartregister.view.customcontrols.CustomFontTextView
             android:id="@+id/textview_not_visit_this_month"
@@ -116,7 +114,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_toLeftOf="@+id/textview_undo"
-            android:layout_toRightOf="@+id/cross_image_child"
+            android:layout_toRightOf="@+id/tick_image"
             android:padding="10dp"
             android:text="@string/not_visiting_this_month"
             android:textColor="@color/black" />
@@ -150,4 +148,5 @@
         android:layout_height="1px"
         android:layout_marginTop="5dp"
         android:background="@color/light_grey" />
+
 </LinearLayout>
