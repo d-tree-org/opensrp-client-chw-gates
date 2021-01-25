@@ -33,11 +33,11 @@
 
     <string name="monthly_activity">Malengo ya mwezi</string>
 
-    <string name="fingerprint_matched"> Alama za vidole ziko sawa </string>
+    <string name="fingerprint_matched"> Alama za vidole zimelingana </string>
 
-    <string name="fingerprint_did_not_match"> Fingerprint Did not match </string>
+    <string name="fingerprint_did_not_match"> Alama za vidole hazijalingana </string>
 
-    <string name="fingerprint_verification_terminated"> Verification Terminated </string>
+    <string name="fingerprint_verification_terminated"> Uhakiki umesitishwa </string>
 
     <string name="fingerprint_enrolled"> Alama za vidole zimechukuliwa </string>
 
