@@ -8,20 +8,70 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:272897531023:android:fde76732e5d9644056e4fa",
+        "mobilesdk_app_id": "1:272897531023:android:83473c7eba343fc356e4fa",
+        "android_client_info": {
+          "package_name": "org.smartregister.addo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "272897531023-mpmr4qth5l4oku85a684pk52lp4amuec.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCXN3CDpFUF7fYvgCogv-cxoqfYajkPXSI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "272897531023-mpmr4qth5l4oku85a684pk52lp4amuec.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:272897531023:android:454b520711b06f8356e4fa",
         "android_client_info": {
           "package_name": "org.smartregister.chw.at"
         }
       },
       "oauth_client": [
         {
-          "client_id": "272897531023-e5218cvd6aggjj8f2ve4ouhjfu1sgr4b.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "org.smartregister.chw.at",
-            "certificate_hash": "204aef5f4dba366277eea6036b3fcd5441d6e9f6"
-          }
-        },
+          "client_id": "272897531023-mpmr4qth5l4oku85a684pk52lp4amuec.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCXN3CDpFUF7fYvgCogv-cxoqfYajkPXSI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "272897531023-mpmr4qth5l4oku85a684pk52lp4amuec.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:272897531023:android:c219bec8d7d8166156e4fa",
+        "android_client_info": {
+          "package_name": "org.smartregister.chw.at.staging"
+        }
+      },
+      "oauth_client": [
         {
           "client_id": "272897531023-mpmr4qth5l4oku85a684pk52lp4amuec.apps.googleusercontent.com",
           "client_type": 3
@@ -47,7 +97,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:272897531023:android:fde76732e5d9644056e4fa",
         "android_client_info": {
-          "package_name": "org.smartregister.chw.at.staging"
+          "package_name": "org.smartregister.hf"
         }
       },
       "oauth_client": [
@@ -55,7 +105,7 @@
           "client_id": "272897531023-e5218cvd6aggjj8f2ve4ouhjfu1sgr4b.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "org.smartregister.chw.at.staging",
+            "package_name": "org.smartregister.hf",
             "certificate_hash": "204aef5f4dba366277eea6036b3fcd5441d6e9f6"
           }
         },
