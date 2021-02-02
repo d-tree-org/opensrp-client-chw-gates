@@ -86,8 +86,7 @@ public class MonthlyActivitiesRegisterActivity extends BaseRegisterActivity {
 
     @Override
     protected Fragment[] getOtherFragments() {
-        Fragment fg  = new MonthlyActivitiesRegisterFragment();
-        return new Fragment[]{fg};
+        return new Fragment[0];
     }
 
     @Override
@@ -122,6 +121,11 @@ public class MonthlyActivitiesRegisterActivity extends BaseRegisterActivity {
         if (menu != null) {
             menu.getNavigationAdapter().setSelectedView(Constants.DrawerMenu.MONTHLY_ACTIVITY);
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
     }
 
 }
