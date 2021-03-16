@@ -20,34 +20,33 @@
 
         <TextView
             android:id="@+id/textview_record_visit"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:fontFamily="@font/google_sans_regular"
             android:layout_alignParentLeft="true"
             android:layout_weight="1"
             android:background="@drawable/btn_drawable_primary"
             android:gravity="center"
             android:paddingLeft="30dp"
-            android:paddingTop="10dp"
+            android:paddingTop="16dp"
             android:paddingRight="30dp"
-            android:paddingBottom="10dp"
+            android:paddingBottom="16dp"
             android:text="@string/record_anc_visit"
             android:textColor="@color/white" />
 
-
         <TextView
             android:id="@+id/textview_anc_visit_not"
-            android:layout_width="wrap_content"
-            android:layout_height="48dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_marginLeft="20dp"
             android:layout_weight="1"
             android:background="@drawable/btn_drawable"
             android:gravity="center"
             android:paddingLeft="30dp"
-            android:paddingTop="10dp"
+            android:paddingTop="16dp"
             android:paddingRight="30dp"
-            android:paddingBottom="10dp"
+            android:paddingBottom="16dp"
             android:text="@string/visit_not_done_btn_child_profile"
             android:textColor="@color/dark_grey" />
 
