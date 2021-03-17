@@ -119,12 +119,12 @@
           "Mbovu"
         ],
         "keys": [
-          "Okay",
+          "Good",
           "Fair",
           "Bad"
         ],
         "openmrs_choice_ids": {
-          "Okay": "159405AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+          "Good": "159405AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
           "Fair": "",
           "Bad": "159407AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
         },
