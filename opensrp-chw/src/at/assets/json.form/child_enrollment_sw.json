@@ -175,6 +175,23 @@
         }
       },
       {
+        "key": "dob_unknown",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "person",
+        "openmrs_entity_id": "birthdateApprox",
+        "hidden": "false",
+        "type": "check_box",
+        "label": "",
+        "options": [
+          {
+            "key": "dob_unknown",
+            "text": "Tarehe ya kuzaliwa haijulikani?",
+            "text_size": "18px",
+            "value": "false"
+          }
+        ]
+      },
+      {
         "key": "dob",
         "openmrs_entity_parent": "",
         "openmrs_entity": "person",
@@ -198,23 +215,6 @@
             }
           }
         }
-      },
-      {
-        "key": "dob_unknown",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "person",
-        "openmrs_entity_id": "birthdateApprox",
-        "hidden": "false",
-        "type": "check_box",
-        "label": "",
-        "options": [
-          {
-            "key": "dob_unknown",
-            "text": "Tarehe ya kuzaliwa haijulikani?",
-            "text_size": "18px",
-            "value": "false"
-          }
-        ]
       },
       {
         "key": "age",
