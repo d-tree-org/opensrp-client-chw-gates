@@ -115,14 +115,17 @@
         "hint": "LLIN condition",
         "values": [
           "Okay",
+          "Fair",
           "Bad"
         ],
         "keys": [
           "Okay",
+          "Fair",
           "Bad"
         ],
         "openmrs_choice_ids": {
           "Okay": "159405AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+          "Fair": "",
           "Bad": "159407AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
         },
         "v_required": {

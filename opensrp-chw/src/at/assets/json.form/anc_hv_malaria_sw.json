@@ -115,14 +115,17 @@
         "hint": "Hali ya chandarua chenye viuwatilifu vya muda mrefu kinachotumika",
         "values": [
           "Nzima",
+          "Nzima Kiasi",
           "Mbovu"
         ],
         "keys": [
           "Okay",
+          "Fair",
           "Bad"
         ],
         "openmrs_choice_ids": {
           "Okay": "159405AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+          "Fair": "",
           "Bad": "159407AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
         },
         "v_required": {
