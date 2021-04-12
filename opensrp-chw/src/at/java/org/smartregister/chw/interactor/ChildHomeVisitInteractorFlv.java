@@ -7,21 +7,22 @@ import org.joda.time.LocalDate;
 import org.joda.time.format.DateTimeFormat;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.smartregister.chw.actionhelper.DangerSignsAction;
-import org.smartregister.chw.anc.actionhelper.DangerSignsHelper;
+import org.smartregister.chw.R;
 import org.smartregister.chw.anc.actionhelper.HomeVisitActionHelper;
 import org.smartregister.chw.anc.model.BaseAncHomeVisitAction;
+import org.smartregister.chw.core.application.CoreChwApplication;
 import org.smartregister.chw.core.utils.CoreConstants;
 import org.smartregister.chw.core.utils.Utils;
 import org.smartregister.chw.util.Constants;
 import org.smartregister.chw.util.JsonFormUtils;
 import org.smartregister.immunization.domain.ServiceWrapper;
+import org.smartregister.util.LangUtils;
 
 import java.text.MessageFormat;
+import java.util.Locale;
 import java.util.Map;
 
 import timber.log.Timber;
-import org.smartregister.chw.R;
 
 public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractorFlv {
 
@@ -103,7 +104,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         BaseAncHomeVisitAction danger_signs = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.anc_home_visit_danger_signs))
                 .withOptional(false)
                 .withDetails(details)
-                .withFormName(Utils.getLocalForm(formName, CoreConstants.JSON_FORM.locale, CoreConstants.JSON_FORM.assetManager))
+                .withFormName(Utils.getLocalForm(formName, getLocale(), CoreConstants.JSON_FORM.assetManager))
                 .withHelper(dangerSignHelper)
                 .build();
         actionList.put(context.getString(R.string.anc_home_visit_danger_signs), danger_signs);
@@ -354,5 +355,10 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
                 .withHelper(remarksHelper)
                 .build();
         actionList.put(context.getString(R.string.remarks_and__comments), action);
+    }
+
+    private Locale getLocale() {
+        String language = LangUtils.getLanguage(CoreChwApplication.getInstance().getApplicationContext());
+        return new Locale(language);
     }
 }
