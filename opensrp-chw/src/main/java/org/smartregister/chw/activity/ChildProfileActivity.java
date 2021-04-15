@@ -197,6 +197,12 @@ public class ChildProfileActivity extends CoreChildProfileActivity implements Ch
     }
 
     @Override
+    protected void onResumption() {
+        super.onResumption();
+        fetchProfileData();
+    }
+
+    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == CoreConstants.ProfileActivityResults.CHANGE_COMPLETED && resultCode == Activity.RESULT_OK) {
