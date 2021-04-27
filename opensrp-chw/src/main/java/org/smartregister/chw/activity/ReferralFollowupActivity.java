@@ -100,9 +100,9 @@ public class ReferralFollowupActivity extends BaseReferralFollowupActivity {
                     //Get task status before updating
                     Task.TaskStatus status = task.getStatus();
                     if (status.equals(Task.TaskStatus.IN_PROGRESS)){ //Task was attended at the facility/Addo
-                        task.setCode(org.smartregister.chw.util.Constants.TaskReferralCode.ATTENDED);
+                        task.setBusinessStatus(org.smartregister.chw.util.Constants.TaskBusinessStatus.ATTENDED);
                     }else if (status.equals(Task.TaskStatus.READY)){ //Task was not attended at the facility/Addo
-                        task.setCode(org.smartregister.chw.util.Constants.TaskReferralCode.UNATTENDED);
+                        task.setBusinessStatus(org.smartregister.chw.util.Constants.TaskBusinessStatus.UNATTENDED);
                     }
 
                     task.setStatus(Task.TaskStatus.COMPLETED);
