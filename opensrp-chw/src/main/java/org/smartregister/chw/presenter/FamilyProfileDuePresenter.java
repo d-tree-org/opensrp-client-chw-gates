@@ -32,7 +32,8 @@ public class FamilyProfileDuePresenter extends BaseFamilyProfileDuePresenter {
 
     private String getDueQuery() {
         return " (ifnull(schedule_service.completion_date,'') = '' and " +
-                "((strftime('%Y-%m-%d') between schedule_service.due_date and schedule_service.over_due_date) or (strftime('%Y-%m-%d') between schedule_service.over_due_date and schedule_service.expiry_date)) and " +
+                "((strftime('%Y-%m-%d') between schedule_service.due_date and schedule_service.over_due_date) or " +
+                "(strftime('%Y-%m-%d') between schedule_service.over_due_date and schedule_service.expiry_date)) and " +
                 "ifnull(schedule_service.not_done_date,'') = '' ) ";
     }
 
