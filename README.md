@@ -1,3 +1,5 @@
+<img src="opensrp-chw/src/at/res/drawable-mdpi/ic_launcher.png" align="right" width="220px" height="220px"/>
+
 # Afya-Tek CHW Mobile Application
 > Afya-Tek is a program that is reimagining primary healthcare systems to be centered a round people not health institutions. The system puts people at the center of care so that services are personalized to their needs, coordinated across all actors within the primary health system, and of the highest quality.
 
