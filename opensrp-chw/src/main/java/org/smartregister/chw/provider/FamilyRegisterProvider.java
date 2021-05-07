@@ -97,6 +97,7 @@ public class FamilyRegisterProvider extends CoreRegisterProvider {
             Integer visits_due = services.get(CoreConstants.VisitType.DUE.name());
             Integer visits_not_done = services.get(CoreConstants.VisitType.NOT_VISIT_THIS_MONTH.name());
             Integer visits_over_due = services.get(CoreConstants.VisitType.OVERDUE.name());
+            Integer visits_expired = services.get(CoreConstants.VisitType.EXPIRY.name());
 
             int due = visits_due == null ? 0 : visits_due;
             int over_due = visits_over_due == null ? 0 : visits_over_due;
@@ -113,6 +114,8 @@ public class FamilyRegisterProvider extends CoreRegisterProvider {
                 setTasksDoneStatus(context, viewHolder.dueButton);
             } else if (visits_not_done != null && visits_not_done > 0) {
                 setTaskNotDone(context, viewHolder.dueButton);
+            } else if (visits_expired != null && visits_expired > 0) {
+                viewHolder.dueButton.setVisibility(View.GONE);
             }
 
         } else {
