@@ -1,13 +1,20 @@
 package org.smartregister.chw.activity;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
+import com.vijay.jsonwizard.utils.AllSharedPreferences;
 
 import org.joda.time.DateTime;
 import org.json.JSONObject;
@@ -52,6 +59,16 @@ public class ChildProfileActivity extends CoreChildProfileActivity implements Ch
 
     private static final int VERIFY_RESULT_CODE = 8379;
     private static final int REGISTER_RESULT_CODE = 5361;
+    private static final String SESSION_BASE_ENTITY_ID = "session_base_entity_id"; 
+
+    private TextView textViewNotVisitMonth;
+    private TextView textViewUndo;
+    private TextView textViewRecord;
+    private TextView textViewVisitNot;
+    private TextView verifyChildFingerprint;
+    private RelativeLayout layoutNotRecordView;
+    private RelativeLayout layoutRecordButtonDone;
+    private LinearLayout layoutRecordView;
 
     Client currentClient;
 
@@ -59,11 +76,14 @@ public class ChildProfileActivity extends CoreChildProfileActivity implements Ch
         return referralTypeModels;
     }
 
-    private TextView verifyChildFingerprint;
+    private SharedPreferences preferences;
 
     @Override
     protected void onCreation() {
         super.onCreation();
+
+        preferences = this.getPreferences(MODE_PRIVATE);
+
         initializePresenter();
         onClickFloatingMenu = flavor.getOnClickFloatingMenu(this, (ChildProfilePresenter) presenter);
         setupViews();
@@ -118,9 +138,47 @@ public class ChildProfileActivity extends CoreChildProfileActivity implements Ch
     @Override
     protected void setupViews() {
         super.setupViews();
+
+        textViewNotVisitMonth = findViewById(R.id.textview_not_visit_this_month);
+        textViewUndo = findViewById(R.id.textview_undo);
+        textViewVisitNot = findViewById(R.id.textview_visit_not);
+        textViewRecord = findViewById(R.id.textview_record_visit);
+        layoutRecordButtonDone = findViewById(R.id.record_visit_done_bar);
+        layoutNotRecordView = findViewById(R.id.record_visit_status_bar);
+        layoutRecordView = findViewById(R.id.record_visit_bar);
+
         verifyChildFingerprint = findViewById(R.id.textview_verify_fingerprint);
         verifyChildFingerprint.setOnClickListener(this);
+
         fetchProfileData();
+
+        showFingerprintVerificationPrompt();
+    }
+
+    private void showFingerprintVerificationPrompt(){
+        
+        //Get the previous session stored base entity ID
+        SharedPreferences.Editor editor = preferences.edit();
+        String lastSessionBaseEntityId = preferences.getString(SESSION_BASE_ENTITY_ID, "_");
+        
+        if (lastSessionBaseEntityId.equalsIgnoreCase("_") || !lastSessionBaseEntityId.equalsIgnoreCase(childBaseEntityId)){
+            //No Previous session or was a different child, show prompt and start a new session
+            displayFPVerifyPrompt();
+            editor.putString(SESSION_BASE_ENTITY_ID, childBaseEntityId != null ? childBaseEntityId : "_");
+            editor.apply();
+        }
+    }
+
+    void displayFPVerifyPrompt(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Verify Child Fingerprint");
+        builder.setMessage("Please scan child fingerprints by pressing 'Verify fingerprints' button");
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        }).show();
     }
 
     @Override
@@ -128,6 +186,29 @@ public class ChildProfileActivity extends CoreChildProfileActivity implements Ch
         if (familyFloatingMenu != null) {
             familyFloatingMenu.reDraw(hasPhone);
         }
+    }
+
+    @Override
+    public void setVisitNotDoneThisMonth() {
+        openVisitMonthView();
+        textViewNotVisitMonth.setText(getString(R.string.not_visiting_this_month));
+        textViewUndo.setText(getString(R.string.undo));
+        textViewUndo.setVisibility(View.VISIBLE);
+        imageViewCrossChild.setImageResource(R.drawable.activityrow_notvisited);
+    }
+
+    @Override
+    public void setVisitAboveTwentyFourView() {
+        textViewVisitNot.setVisibility(View.GONE);
+        openVisitRecordDoneView();
+        textViewRecord.setBackgroundResource(R.drawable.record_btn_selector_above_twentyfr);
+        textViewRecord.setTextColor(getResources().getColor(R.color.light_grey_text));
+    }
+
+    private void openVisitRecordDoneView() {
+        layoutRecordButtonDone.setVisibility(View.VISIBLE);
+        layoutNotRecordView.setVisibility(View.GONE);
+        layoutRecordView.setVisibility(View.GONE);
     }
 
     @Override
