@@ -5,9 +5,11 @@ import android.app.Activity;
 import org.smartregister.chw.activity.AncHomeVisitActivity;
 import org.smartregister.chw.activity.AncMemberProfileActivity;
 import org.smartregister.chw.core.fragment.CoreAncRegisterFragment;
+import org.smartregister.chw.job.BasePncCloseJob;
 import org.smartregister.chw.model.AncRegisterFragmentModel;
 import org.smartregister.chw.presenter.ChwAncRegisterFragmentPresenter;
 import org.smartregister.commonregistry.CommonPersonObjectClient;
+import org.smartregister.domain.FetchStatus;
 
 public class AncRegisterFragment extends CoreAncRegisterFragment {
     @Override
@@ -30,5 +32,11 @@ public class AncRegisterFragment extends CoreAncRegisterFragment {
             return;
 
         AncHomeVisitActivity.startMe(activity, client.getCaseId(), false);
+    }
+
+    @Override
+    public void onSyncComplete(FetchStatus fetchStatus) {
+        super.onSyncComplete(fetchStatus);
+        BasePncCloseJob.scheduleJobImmediately(BasePncCloseJob.TAG);
     }
 }
