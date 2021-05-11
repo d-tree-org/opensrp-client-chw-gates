@@ -206,6 +206,7 @@
         "type": "date_picker",
         "hint": "Tarehe ya kujifungua/mimba kutoka",
         "expanded": false,
+        "min_date": "today-100d",
         "max_date": "today",
         "v_required": {
           "value": "true",

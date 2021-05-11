@@ -5,14 +5,21 @@ import android.app.Activity;
 import android.content.Intent;
 
 import org.apache.commons.lang3.EnumUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.joda.time.DateTime;
+import org.joda.time.Days;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.smartregister.chw.anc.util.Constants;
+import org.smartregister.chw.anc.util.DBConstants;
 import org.smartregister.chw.anc.util.JsonFormUtils;
 import org.smartregister.chw.core.activity.CoreFamilyRegisterActivity;
 import org.smartregister.chw.core.activity.CorePncRegisterActivity;
 import org.smartregister.chw.core.utils.CoreConstants;
 import org.smartregister.chw.fragment.PncRegisterFragment;
+import org.smartregister.chw.job.BasePncCloseJob;
 import org.smartregister.job.SyncServiceJob;
 import org.smartregister.view.fragment.BaseRegisterFragment;
 
@@ -64,6 +71,17 @@ public class PncRegisterActivity extends CorePncRegisterActivity {
 
                 if (CoreConstants.EventType.PREGNANCY_OUTCOME.equals(encounter_type)) {
                     JSONArray fields = org.smartregister.util.JsonFormUtils.fields(form);
+                    JSONObject deliveryDateJson = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, DBConstants.KEY.DELIVERY_DATE);
+                    if (deliveryDateJson != null) {
+                        String deliveryDateString = deliveryDateJson.getString(org.smartregister.util.JsonFormUtils.VALUE);
+                        DateTimeFormatter formatter = DateTimeFormat.forPattern("dd-MM-yyyy");
+                        if (StringUtils.isNotBlank(deliveryDateString)) {
+                            int pncDays = Days.daysBetween(new DateTime(formatter.parseDateTime(deliveryDateString)), new DateTime()).getDays();
+                            if (pncDays > 43) {
+                                BasePncCloseJob.scheduleJobImmediately(BasePncCloseJob.TAG);
+                            }
+                        }
+                    }
                     String pregnancyOutcome = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, org.smartregister.chw.util.Constants.pregnancyOutcome).optString(JsonFormUtils.VALUE);
                     if (EnumUtils.isValidEnum(org.smartregister.chw.util.Constants.FamilyRegisterOptionsUtil.class, pregnancyOutcome)) {
                         startRegisterActivity(FamilyRegisterActivity.class);

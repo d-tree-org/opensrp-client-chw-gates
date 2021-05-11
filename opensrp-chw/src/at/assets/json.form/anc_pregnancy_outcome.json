@@ -206,6 +206,7 @@
         "type": "date_picker",
         "hint": "Date of delivery or miscarriage",
         "expanded": false,
+        "min_date": "today-100d",
         "max_date": "today",
         "v_required": {
           "value": "true",
