@@ -14,7 +14,7 @@ public class ChildVisitAlertRule extends HomeAlertRule {
         super(context, yearOfBirthString, lastVisitDateLong, visitNotDoneValue, dateCreatedLong);
     }
 
-    /* duration is 1->monthly, 3-quaterly, 6-semi-annualy */
+    /* duration is 1->monthly, 3-quarterly, 6-semi-annually */
     private boolean IsGreaterThanPeriod(LocalDate lastVisit, LocalDate todayDate, int duration) {
         return getMonthsDifference(lastVisit, todayDate) > duration;
     }
