@@ -171,8 +171,8 @@ public class ChildProfileActivity extends CoreChildProfileActivity implements Ch
 
     void displayFPVerifyPrompt(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Verify Child Fingerprint");
-        builder.setMessage("Please scan child fingerprints by pressing 'Verify fingerprints' button");
+        builder.setTitle(getResources().getString(R.string.verify_child_fingerprint));
+        builder.setMessage(getResources().getString(R.string.verify_fp_prompt_message));
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
