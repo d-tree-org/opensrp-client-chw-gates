@@ -8,6 +8,7 @@
 
     <string name="scan_fingerprint"> Scan </string>
     <string name="verify_child_fingerprint">Hakiki Alama za Vidole</string>
+    <string name="verify_fp_prompt_message"> Tafadhali chukua alama za vidole za mtoto kwa kubofya kitufe cha “Hakiki Alama za Vidole” </string>
 
     <string name="child_under_five">Mtoto chini ya miaka 5</string>
     <string name="go_to_family_s_profile">Elekea kwenye taarifa binafsi za kaya</string>
