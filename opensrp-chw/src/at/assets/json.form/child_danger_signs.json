@@ -200,7 +200,7 @@
           },
           {
             "key": "chk_blood_stool",
-            "text": "Blood Stool",
+            "text": "Bloody Stool",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id":""

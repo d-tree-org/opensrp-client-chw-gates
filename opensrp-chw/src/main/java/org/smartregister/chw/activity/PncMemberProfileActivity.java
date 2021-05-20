@@ -447,6 +447,12 @@ public class PncMemberProfileActivity extends CorePncMemberProfileActivity imple
     }
 
     @Override
+    protected void onResumption() {
+        super.onResumption();
+        ((PncMemberProfileContract.Presenter)presenter).fetchTasks();
+    }
+
+    @Override
     public void onMemberDetailsReloaded(MemberObject memberObject) {
         super.onMemberDetailsReloaded(memberObject);
         ((PncMemberProfileContract.Presenter)presenter).fetchTasks();

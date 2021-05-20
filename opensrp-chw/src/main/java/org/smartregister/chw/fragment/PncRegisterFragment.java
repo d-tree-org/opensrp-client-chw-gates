@@ -4,9 +4,11 @@ import org.smartregister.chw.activity.PncHomeVisitActivity;
 import org.smartregister.chw.activity.PncMemberProfileActivity;
 import org.smartregister.chw.anc.domain.MemberObject;
 import org.smartregister.chw.core.fragment.CorePncRegisterFragment;
+import org.smartregister.chw.job.BasePncCloseJob;
 import org.smartregister.chw.model.ChwPncRegisterFragmentModel;
 import org.smartregister.chw.presenter.PncRegisterFragmentPresenter;
 import org.smartregister.commonregistry.CommonPersonObjectClient;
+import org.smartregister.domain.FetchStatus;
 
 public class PncRegisterFragment extends CorePncRegisterFragment {
 
@@ -29,4 +31,9 @@ public class PncRegisterFragment extends CorePncRegisterFragment {
         presenter = new PncRegisterFragmentPresenter(this, new ChwPncRegisterFragmentModel(), null);
     }
 
+    @Override
+    public void onSyncComplete(FetchStatus fetchStatus) {
+        super.onSyncComplete(fetchStatus);
+        BasePncCloseJob.scheduleJobImmediately(BasePncCloseJob.TAG);
+    }
 }
