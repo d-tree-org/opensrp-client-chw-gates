@@ -7,6 +7,7 @@ import androidx.annotation.VisibleForTesting;
 
 import org.apache.commons.lang3.StringUtils;
 import org.jetbrains.annotations.NotNull;
+import org.joda.time.DateTime;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.smartregister.CoreLibrary;
@@ -31,6 +32,7 @@ import org.smartregister.family.util.AppExecutors;
 import org.smartregister.family.util.DBConstants;
 import org.smartregister.family.util.JsonFormUtils;
 import org.smartregister.location.helper.LocationHelper;
+import org.smartregister.util.DateUtil;
 import org.smartregister.util.FormUtils;
 import org.smartregister.view.LocationPickerView;
 
@@ -51,9 +53,11 @@ public class ChildProfileInteractor extends CoreChildProfileInteractor implement
     public static final String TAG = ChildProfileInteractor.class.getName();
     private AppExecutors appExecutors;
     private Map<String, Date> vaccineList = new LinkedHashMap<>();
+    private CommonPersonObjectClient commonPersonObjectClient;
 
     public ChildProfileInteractor() {
         this(new AppExecutors());
+        this.commonPersonObjectClient = super.getpClient();
     }
 
     @VisibleForTesting
@@ -62,7 +66,20 @@ public class ChildProfileInteractor extends CoreChildProfileInteractor implement
     }
 
     @Override
+    public void verifyChildFingerprintPermission(String baseEntityId, ChildProfileContract.InteractorCallback callback) {
+        org.smartregister.domain.db.Client client = CoreLibrary.getInstance().context().getEventClientRepository().fetchClientByBaseEntityId(baseEntityId);
+        DateTime dob = client.getBirthdate();
+        String ageDuration = DateUtil.getDuration(dob);
+        boolean permission = true;
+        if (!ageDuration.contains("y")){ //Child's age does not contain years
+            permission = false;
+        }
 
+        callback.setVerifyFingerprintPermission(permission);
+
+    }
+
+    @Override
     public Map<String, Date> getVaccineList() {
         return vaccineList;
     }
