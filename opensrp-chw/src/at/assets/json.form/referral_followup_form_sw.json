@@ -143,9 +143,6 @@
         "type": "check_box",
         "label": "Kwanini hawakupata huduma yoyote kwenye kituo cha afya?",
         "label_text_style": "bold",
-        "exclusive": [
-          "chk_other_reason"
-        ],
         "options": [
           {
             "key": "chk_many_people",
@@ -230,9 +227,6 @@
         "type": "check_box",
         "label": "Kwanini hakwenda kwenye kituo cha kutolea huduma za afya?",
         "label_text_style": "bold",
-        "exclusive": [
-          "chk_other_visit_reason"
-        ],
         "options": [
           {
             "key": "chk_no_time",
