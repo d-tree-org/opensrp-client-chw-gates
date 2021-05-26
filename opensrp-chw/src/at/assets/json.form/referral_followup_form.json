@@ -125,7 +125,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "toaster_notes",
-        "text": "Remind the client or caretaker to adhere to medications or counselling received at the health faciltiy",
+        "text": "Remind the client or caretaker to adhere to medications or conseling received at the health faciltiy",
         "toaster_type": "info",
         "relevance": {
           "rules-engine": {
@@ -143,9 +143,6 @@
         "type": "check_box",
         "label": "Why did they not get any services at the health facility?",
         "label_text_style": "bold",
-        "exclusive": [
-          "chk_other_reason"
-        ],
         "options": [
           {
             "key": "chk_many_people",
@@ -230,9 +227,6 @@
         "type": "check_box",
         "label": "Why they did not go to the health facility?",
         "label_text_style": "bold",
-        "exclusive": [
-          "chk_other_visit_reason"
-        ],
         "options": [
           {
             "key": "chk_no_time",

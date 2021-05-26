@@ -31,4 +31,9 @@ public class Constants extends CoreConstants {
         public static final String UPDATE_PNC_REGISTRATION = "Update Pnc Registration";
     }
 
+    public static class TaskBusinessStatus {
+        public static final String ATTENDED = "Attended";
+        public static final String UNATTENDED = "Unattended";
+    }
+
 }

@@ -114,15 +114,18 @@
         "type": "spinner",
         "hint": "LLIN condition",
         "values": [
-          "Okay",
+          "Good",
+          "Fair",
           "Bad"
         ],
         "keys": [
-          "Okay",
+          "Good",
+          "Fair",
           "Bad"
         ],
         "openmrs_choice_ids": {
-          "Okay": "159405AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+          "Good": "159405AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+          "Fair": "",
           "Bad": "159407AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
         },
         "v_required": {
@@ -133,6 +136,73 @@
           "step1:fam_llin": {
             "type": "string",
             "ex": "equalTo(., \"Yes\")"
+          }
+        }
+      },
+      {
+        "key": "no_llin_message",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "Remind the mother to get the LLIN from the health facility and counsel on the usage of LLIN and malaria prevention.",
+        "text_color": "#CF0800",
+        "toaster_type": "problem",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "malaria_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "not_used_llin_message",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "Counsel the mother on the usage of LLIN and malaria prevention.",
+        "text_color": "#CF0800",
+        "toaster_type": "problem",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "malaria_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "llin_condition_message",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "Advise the mother to get a new LLIN from the health facility and counsel on the usage of LLIN and malaria prevention",
+        "text_color": "#CF0800",
+        "toaster_type": "problem",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "malaria_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "using_llin_and_good_condition_message",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "Encourage the mother to continue using LLIN to prevent malaria infection ",
+        "text_color": "#17a80a",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "malaria_relevance.yml"
+            }
           }
         }
       }

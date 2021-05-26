@@ -115,14 +115,17 @@
         "hint": "Hali ya chandarua chenye viuwatilifu vya muda mrefu kinachotumika",
         "values": [
           "Nzima",
+          "Nzima Kiasi",
           "Mbovu"
         ],
         "keys": [
-          "Okay",
+          "Good",
+          "Fair",
           "Bad"
         ],
         "openmrs_choice_ids": {
-          "Okay": "159405AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+          "Good": "159405AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+          "Fair": "",
           "Bad": "159407AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
         },
         "v_required": {
@@ -133,6 +136,73 @@
           "step1:fam_llin_1m5yr": {
             "type": "string",
             "ex": "equalTo(., \"Yes\")"
+          }
+        }
+      },
+      {
+        "key": "no_llin_message_1m5yr",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "Mkumbushe mlezi kupata chandarua chenye viatilifu kutoka kituo cha Afya na mshauri utimiaji wa chandarua chenye viatilifu na kujilinda na Malaria",
+        "text_color": "#CF0800",
+        "toaster_type": "problem",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "malaria_relevance_1m5yr.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "not_used_llin_message_1m5yr",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "Mshauri mlezi utumiaji wa chandarua chenye viatilifu na kujilinda na Malaria",
+        "text_color": "#CF0800",
+        "toaster_type": "problem",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "malaria_relevance_1m5yr.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "llin_condition_message_1m5yr",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "Mshauri mlezi kupata chandarua kipya chenye viatilifu kutoka kituo cha Afya na mshauri utumiaji wa chandarua chenye viatilifu na kujilinda na Malaria",
+        "text_color": "#CF0800",
+        "toaster_type": "problem",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "malaria_relevance_1m5yr.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "using_llin_and_good_condition_message_1m5yr",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "Msisitize mlezi kuendelea kutumia chandarua chenye viatilifu ili kujikinga na maambukizi ya Malaria",
+        "text_color": "#17a80a",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "malaria_relevance_1m5yr.yml"
+            }
           }
         }
       }

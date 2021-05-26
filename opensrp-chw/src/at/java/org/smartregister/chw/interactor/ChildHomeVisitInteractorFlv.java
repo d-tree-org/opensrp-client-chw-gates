@@ -7,21 +7,22 @@ import org.joda.time.LocalDate;
 import org.joda.time.format.DateTimeFormat;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.smartregister.chw.actionhelper.DangerSignsAction;
-import org.smartregister.chw.anc.actionhelper.DangerSignsHelper;
+import org.smartregister.chw.R;
 import org.smartregister.chw.anc.actionhelper.HomeVisitActionHelper;
 import org.smartregister.chw.anc.model.BaseAncHomeVisitAction;
+import org.smartregister.chw.core.application.CoreChwApplication;
 import org.smartregister.chw.core.utils.CoreConstants;
 import org.smartregister.chw.core.utils.Utils;
 import org.smartregister.chw.util.Constants;
 import org.smartregister.chw.util.JsonFormUtils;
 import org.smartregister.immunization.domain.ServiceWrapper;
+import org.smartregister.util.LangUtils;
 
 import java.text.MessageFormat;
+import java.util.Locale;
 import java.util.Map;
 
 import timber.log.Timber;
-import org.smartregister.chw.R;
 
 public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractorFlv {
 
@@ -33,22 +34,22 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
             int daysInteger = 0;
 
             String ageString = Utils.getDuration(memberObject.getDob());
-            if (ageString.contains("w") && !ageString.contains("m") && !ageString.contains("y")){
+            if (ageString.contains("w") && !ageString.contains("m") && !ageString.contains("y")) {
                 //Has weeks
                 String weeks = ageString.contains("w") ? ageString.substring(0, ageString.indexOf("w")) : "";
                 int weeksInteger = Integer.parseInt(weeks);
 
-                if (ageString.contains("d")){
-                    String days = ageString.contains("d") ? ageString.substring(ageString.indexOf("w")+2, ageString.indexOf("d")) : "";
+                if (ageString.contains("d")) {
+                    String days = ageString.contains("d") ? ageString.substring(ageString.indexOf("w") + 2, ageString.indexOf("d")) : "";
                     daysInteger = Integer.parseInt(days);
                 }
 
                 int totalDays = (weeksInteger * 7) + daysInteger;
 
-                if (totalDays <= 30 ){
+                if (totalDays <= 30) {
                     formName = "new_born_danger_signs";
                 }
-            } else if (ageString.contains("d")){
+            } else if (ageString.contains("d")) {
                 String days = ageString.contains("d") ? ageString.substring(0, ageString.indexOf("d")) : "";
                 daysInteger = Integer.parseInt(days);
 
@@ -61,6 +62,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
             //evaluateExclusiveBreastFeeding(serviceWrapperMap);
             evaluateMalariaPrevention();
             evaluateCounselling();
+            evaluateRemarks();
         } catch (BaseAncHomeVisitAction.ValidationException e) {
             throw (e);
         } catch (Exception e) {
@@ -102,7 +104,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         BaseAncHomeVisitAction danger_signs = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.anc_home_visit_danger_signs))
                 .withOptional(false)
                 .withDetails(details)
-                .withFormName(Utils.getLocalForm(formName, CoreConstants.JSON_FORM.locale, CoreConstants.JSON_FORM.assetManager))
+                .withFormName(Utils.getLocalForm(formName, getLocale(), CoreConstants.JSON_FORM.assetManager))
                 .withHelper(dangerSignHelper)
                 .build();
         actionList.put(context.getString(R.string.anc_home_visit_danger_signs), danger_signs);
@@ -315,5 +317,48 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
                 .withHelper(malariaPreventionHelper)
                 .build();
         actionList.put(context.getString(R.string.pnc_malaria_prevention), action);
+    }
+
+    private void evaluateRemarks() throws Exception {
+        HomeVisitActionHelper remarksHelper = new HomeVisitActionHelper() {
+            private String chw_comment_child;
+
+            @Override
+            public void onPayloadReceived(String jsonPayload) {
+                try {
+                    JSONObject jsonObject = new JSONObject(jsonPayload);
+                    chw_comment_child = org.smartregister.chw.util.JsonFormUtils.getValue(jsonObject, "chw_comment_child");
+                } catch (JSONException e) {
+                    Timber.e(e);
+                }
+            }
+
+            @Override
+            public String evaluateSubTitle() {
+                return MessageFormat.format("{0}: {1}", context.getString(R.string.remarks_and__comments), chw_comment_child);
+            }
+
+            @Override
+            public BaseAncHomeVisitAction.Status evaluateStatusOnPayload() {
+                if (StringUtils.isNotBlank(chw_comment_child)) {
+                    return BaseAncHomeVisitAction.Status.COMPLETED;
+                } else {
+                    return BaseAncHomeVisitAction.Status.PENDING;
+                }
+            }
+        };
+
+        BaseAncHomeVisitAction action = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.remarks_and__comments))
+                .withOptional(true)
+                .withDetails(details)
+                .withFormName(Utils.getLocalForm("child_hv_remarks", CoreConstants.JSON_FORM.locale, CoreConstants.JSON_FORM.assetManager))
+                .withHelper(remarksHelper)
+                .build();
+        actionList.put(context.getString(R.string.remarks_and__comments), action);
+    }
+
+    private Locale getLocale() {
+        String language = LangUtils.getLanguage(CoreChwApplication.getInstance().getApplicationContext());
+        return new Locale(language);
     }
 }

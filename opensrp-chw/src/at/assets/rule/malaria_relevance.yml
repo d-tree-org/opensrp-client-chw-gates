@@ -1,0 +1,31 @@
+---
+name: step1_no_llin_message
+description: Does not have LLIN relevance
+priority: 1
+condition: "step1_fam_llin == 'No'"
+actions:
+  - "isRelevant = true"
+
+---
+name: step1_not_used_llin_message
+description: Not used LLIN relevance
+priority: 1
+condition: "step1_llin_2days == 'No'"
+actions:
+  - "isRelevant = true"
+
+---
+name: step1_llin_condition_message
+description: Not used LLIN relevance
+priority: 1
+condition: "step1_llin_condition == 'Fair' || step1_llin_condition == 'Bad'"
+actions:
+  - "isRelevant = true"
+
+---
+name: step1_using_llin_and_good_condition_message
+description: Using LLIN and Good condition
+priority: 1
+condition: "step1_llin_2days == 'Yes' && step1_llin_condition == 'Good'"
+actions:
+  - "isRelevant = true"

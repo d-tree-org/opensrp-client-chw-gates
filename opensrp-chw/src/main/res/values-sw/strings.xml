@@ -8,6 +8,7 @@
 
     <string name="scan_fingerprint"> Scan </string>
     <string name="verify_child_fingerprint">Hakiki Alama za Vidole</string>
+    <string name="verify_fp_prompt_message"> Tafadhali chukua alama za vidole za mtoto kwa kubofya kitufe cha “Hakiki Alama za Vidole” </string>
 
     <string name="child_under_five">Mtoto chini ya miaka 5</string>
     <string name="go_to_family_s_profile">Elekea kwenye taarifa binafsi za kaya</string>
@@ -247,6 +248,8 @@
 
     <!-- PNC Home visit-->
     <!-- PNC home visit tasks labels -->
+    <string name="pnc_last_visit_text">Tembeleo la mwisho {0}</string>
+    <string name="pnc_visit_done">Hudhurio la siku {0} imefanyika</string>
     <string name="pnc_danger_signs_mother">Dalili za hatari</string>
     <string name="pnc_danger_signs_baby">Dalili za hatari - mtoto ({0})</string>
     <string name="pnc_health_facility_visit">Hudhurio katika kituo cha kutolea huduma za afya kwa huduma ya mtoto na mama baada ya kujifungua - siku {0} ({1})</string>
