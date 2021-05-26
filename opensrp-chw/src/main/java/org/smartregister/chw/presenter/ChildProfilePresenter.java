@@ -12,6 +12,7 @@ import org.smartregister.chw.activity.ChildProfileActivity;
 import org.smartregister.chw.activity.ReferralRegistrationActivity;
 import org.smartregister.chw.contract.ChildProfileContract;
 import org.smartregister.chw.core.contract.CoreChildProfileContract;
+import org.smartregister.chw.core.interactor.CoreChildProfileInteractor;
 import org.smartregister.chw.core.presenter.CoreChildProfilePresenter;
 import org.smartregister.chw.core.utils.ChildDBConstants;
 import org.smartregister.chw.core.utils.CoreConstants;
@@ -159,6 +160,16 @@ public class ChildProfilePresenter extends CoreChildProfilePresenter implements 
             if (getView() != null)
                 getView().setProgressBarState(false);
         }
+    }
+
+    @Override
+    public void getChildVerifyFingerprintPermission(String childBaseEntityId) {
+        getAtInteractor().verifyChildFingerprintPermission(childBaseEntityId, this);
+    }
+
+    @Override
+    public void setVerifyFingerprintPermission(boolean permission) {
+        getAtView().updateChildFingerprintVerificationPermission(permission);
     }
 
     public void referToFacility() {

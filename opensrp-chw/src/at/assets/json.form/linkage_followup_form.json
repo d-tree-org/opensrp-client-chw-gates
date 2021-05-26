@@ -125,7 +125,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "toaster_notes",
-        "text": "Remind the client or caretaker to adhere to medications or counselling received at the ADDO",
+        "text": "Remind the client or caretaker to adhere to medications or conseling received at the ADDO",
         "toaster_type": "info",
         "relevance": {
           "rules-engine": {

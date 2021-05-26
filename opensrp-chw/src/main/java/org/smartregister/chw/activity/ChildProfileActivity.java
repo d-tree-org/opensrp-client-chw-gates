@@ -13,6 +13,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.cardview.widget.CardView;
+
 import com.google.android.material.snackbar.Snackbar;
 import com.vijay.jsonwizard.utils.AllSharedPreferences;
 
@@ -65,7 +67,7 @@ public class ChildProfileActivity extends CoreChildProfileActivity implements Ch
     private TextView textViewUndo;
     private TextView textViewRecord;
     private TextView textViewVisitNot;
-    private TextView verifyChildFingerprint;
+    private LinearLayout verifyChildFingerprint;
     private RelativeLayout layoutNotRecordView;
     private RelativeLayout layoutRecordButtonDone;
     private LinearLayout layoutRecordView;
@@ -92,6 +94,9 @@ public class ChildProfileActivity extends CoreChildProfileActivity implements Ch
         if (((ChwApplication) ChwApplication.getInstance()).hasReferrals()) {
             addChildReferralTypes();
         }
+
+        org.smartregister.chw.presenter.ChildProfilePresenter presenter = (org.smartregister.chw.presenter.ChildProfilePresenter) presenter();
+        presenter.getChildVerifyFingerprintPermission(childBaseEntityId);
     }
 
     @Override
@@ -151,8 +156,16 @@ public class ChildProfileActivity extends CoreChildProfileActivity implements Ch
         verifyChildFingerprint.setOnClickListener(this);
 
         fetchProfileData();
+    }
 
-        showFingerprintVerificationPrompt();
+    @Override
+    public void updateChildFingerprintVerificationPermission(boolean permission) {
+        if (permission){
+            showFingerprintVerificationPrompt();
+            verifyChildFingerprint.setVisibility(View.VISIBLE);
+        }else{
+            verifyChildFingerprint.setVisibility( View.GONE);
+        }
     }
 
     private void showFingerprintVerificationPrompt(){
