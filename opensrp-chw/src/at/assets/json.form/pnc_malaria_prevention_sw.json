@@ -115,14 +115,17 @@
         "hint": "Hali ya chandarua chenye viuwatilifu vya muda mrefu kinachotumika",
         "values": [
           "Nzima",
+          "Nzima Kiasi",
           "Mbovu"
         ],
         "keys": [
-          "Okay",
+          "Good",
+          "Fair",
           "Bad"
         ],
         "openmrs_choice_ids": {
-          "Okay": "159405AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+          "Good": "159405AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+          "Fair": "",
           "Bad": "159407AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
         },
         "v_required": {
@@ -133,6 +136,73 @@
           "step1:fam_llin": {
             "type": "string",
             "ex": "equalTo(., \"Yes\")"
+          }
+        }
+      },
+      {
+        "key": "no_llin_message",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "Mkumbushe mama kupata chandarua chenye viuwatilifu kutoka kituo cha Afya na mshauri utumiaji wa chandarua chenye viuwatilifu na kujikinga na maambukizi ya  Malaria",
+        "text_color": "#CF0800",
+        "toaster_type": "problem",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "malaria_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "not_used_llin_message",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "Mshauri mama utumiaji wa chandarua chenye dawa  viuwatilifu na kujikinga na maambukizi ya malaria",
+        "text_color": "#CF0800",
+        "toaster_type": "problem",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "malaria_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "llin_condition_message",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "Mshauri mama kupata chandarua kipya chenye viuwatilifu kutoka kituo cha Afya na mshauri utumiaji wa chandarua chenye viuwatilifu na kujikinga na maambukizi ya Malaria",
+        "text_color": "#CF0800",
+        "toaster_type": "problem",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "malaria_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "using_llin_and_good_condition_message",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "Msisitize mama aendelee kutumia chandarua chenye uatilifu kujikinga na maambukizi ya malaria",
+        "text_color": "#17a80a",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "malaria_relevance.yml"
+            }
           }
         }
       }
