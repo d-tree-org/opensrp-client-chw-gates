@@ -6,17 +6,24 @@ import android.util.Pair;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.gson.Gson;
 
 import org.apache.commons.lang3.StringUtils;
 import org.joda.time.DateTime;
 import org.joda.time.Days;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.smartregister.chw.R;
 import org.smartregister.chw.anc.domain.MemberObject;
 import org.smartregister.chw.anc.domain.Visit;
 import org.smartregister.chw.anc.util.Constants;
+import org.smartregister.chw.anc.util.NCUtils;
+import org.smartregister.chw.anc.util.VisitUtils;
 import org.smartregister.chw.application.ChwApplication;
 import org.smartregister.chw.contract.PncMemberProfileContract;
 import org.smartregister.chw.core.activity.CoreFamilyProfileActivity;
@@ -67,12 +74,15 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import timber.log.Timber;
 
+import static org.smartregister.chw.anc.AncLibrary.getInstance;
 import static org.smartregister.family.util.JsonFormUtils.REQUEST_CODE_GET_JSON;
 
 public class PncMemberProfileActivity extends CorePncMemberProfileActivity implements PncMemberProfileContract.View {
 
     private Flavor flavor = new PncMemberProfileActivityFlv();
     private List<ReferralTypeModel> referralTypeModels = new ArrayList<>();
+
+    protected ImageView imageViewCross;
 
     public static void startMe(Activity activity, String baseEntityID) {
         Intent intent = new Intent(activity, PncMemberProfileActivity.class);
@@ -190,7 +200,16 @@ public class PncMemberProfileActivity extends CorePncMemberProfileActivity imple
 
     @Override
     public void setupViews() {
+
+        //Avoiding NPE from the super class due to different resource files
+        imageViewCross = findViewById(R.id.tick_image);
+        textViewNotVisitMonth = findViewById(R.id.textview_not_visit_this_month);
+        textViewUndo = findViewById(R.id.textview_undo);
+        textViewUndo.setOnClickListener(this);
+
         super.setupViews();
+
+        textViewAncVisitNot.setVisibility(View.VISIBLE);
         PncVisitAlertRule summaryVisit = getVisitDetails();
         String statusVisit = summaryVisit.getButtonStatus();
         if (statusVisit.equals("OVERDUE")) {
@@ -204,7 +223,7 @@ public class PncMemberProfileActivity extends CorePncMemberProfileActivity imple
             if (lastVisit != null) {
                 if ((Days.daysBetween(new DateTime(lastVisit.getCreatedAt()), new DateTime()).getDays() < 1) &&
                         (Days.daysBetween(new DateTime(lastVisit.getDate()), new DateTime()).getDays() <= 1)) {
-                    setEditViews(true, true, lastVisit.getDate().getTime());
+                    setUpEditViews(true, VisitUtils.isVisitWithin24Hours(lastVisit), lastVisit.getDate().getTime());
                 } else {
                     textview_record_visit.setVisibility(View.GONE);
                     layoutRecordView.setVisibility(View.GONE);
@@ -217,6 +236,26 @@ public class PncMemberProfileActivity extends CorePncMemberProfileActivity imple
         } else {
             textview_record_visit.setVisibility(View.GONE);
             layoutRecordView.setVisibility(View.GONE);
+        }
+    }
+
+    @Override
+    protected void displayView() {
+        Visit lastPncHomeVisitNotDoneEvent = getVisit(Constants.EVENT_TYPE.PNC_HOME_VISIT_NOT_DONE);
+        Visit lastPncHomeVisitNotDoneUndoEvent = getVisit(Constants.EVENT_TYPE.PNC_HOME_VISIT_NOT_DONE_UNDO);
+
+        if(lastPncHomeVisitNotDoneEvent != null && lastPncHomeVisitNotDoneUndoEvent != null &&
+                lastPncHomeVisitNotDoneUndoEvent.getDate().before(lastPncHomeVisitNotDoneEvent.getDate())
+                && ancHomeVisitNotDoneEvent(lastPncHomeVisitNotDoneEvent)){
+            setVisitViews();
+        }
+        else if (lastPncHomeVisitNotDoneUndoEvent == null && lastPncHomeVisitNotDoneEvent != null && ancHomeVisitNotDoneEvent(lastPncHomeVisitNotDoneEvent)) {
+            setVisitViews();
+        }
+
+        Visit lastVisit = getVisit(Constants.EVENT_TYPE.PNC_HOME_VISIT);
+        if (lastVisit != null) {
+            setUpEditViews(true, VisitUtils.isVisitWithin24Hours(lastVisit), lastVisit.getDate().getTime());
         }
     }
 
@@ -236,9 +275,9 @@ public class PncMemberProfileActivity extends CorePncMemberProfileActivity imple
 
             @Override
             public void onNext(Visit visit) {
+                setupViews();
                 displayView();
                 setLastVisit(visit.getDate());
-                setupViews();
             }
 
             @Override
@@ -302,11 +341,6 @@ public class PncMemberProfileActivity extends CorePncMemberProfileActivity imple
     }
 
     @Override
-    public void openVisitMonthView() {
-        return;
-    }
-
-    @Override
     public void openUpcomingService() {
         PncUpcomingServicesActivity.startMe(this, memberObject);
     }
@@ -334,8 +368,80 @@ public class PncMemberProfileActivity extends CorePncMemberProfileActivity imple
                 Task task = (Task) view.getTag();
                 ReferralFollowupActivity.startReferralFollowupActivity(this, task.getIdentifier(), memberObject.getBaseEntityId());
                 break;
+            case R.id.textview_anc_visit_not:
+                this.presenter().getView().setVisitNotDoneThisMonth();
+                break;
             default:
                 break;
+        }
+    }
+
+    @Override
+    public void updateVisitNotDone(long value) {
+        textViewUndo.setVisibility(View.GONE);
+        layoutNotRecordView.setVisibility(View.GONE);
+        layoutRecordButtonDone.setVisibility(View.VISIBLE);
+        layoutRecordView.setVisibility(View.VISIBLE);
+        saveVisit(Constants.EVENT_TYPE.PNC_HOME_VISIT_NOT_DONE_UNDO);
+    }
+
+    @Override
+    public void setVisitNotDoneThisMonth() {
+        setVisitViews();
+        saveVisit(Constants.EVENT_TYPE.PNC_HOME_VISIT_NOT_DONE);
+    }
+
+    protected void setVisitViews() {
+        openVisitMonthView();
+        textViewNotVisitMonth.setText(getString(R.string.not_visiting_this_month));
+        textViewUndo.setText(getString(R.string.undo));
+        textViewUndo.setVisibility(View.VISIBLE);
+        imageViewCross.setImageResource(R.drawable.activityrow_notvisited);
+    }
+
+    private void saveVisit(String eventType) {
+        try {
+            Event event = org.smartregister.chw.anc.util.JsonFormUtils.createUntaggedEvent(memberObject.getBaseEntityId(), eventType, Constants.TABLES.ANC_MEMBERS);
+            Visit visit = NCUtils.eventToVisit(event, org.smartregister.chw.anc.util.JsonFormUtils.generateRandomUUIDString());
+            visit.setPreProcessedJson(new Gson().toJson(event));
+            getInstance().visitRepository().addVisit(visit);
+        } catch (JSONException e) {
+            Timber.e(e);
+        }
+    }
+
+    @Override
+    public void openVisitMonthView() {
+        if(layoutNotRecordView == null || layoutRecordButtonDone == null || layoutRecordView == null)
+            return;
+
+        layoutNotRecordView.setVisibility(View.VISIBLE);
+        layoutRecordButtonDone.setVisibility(View.GONE);
+        layoutRecordView.setVisibility(View.GONE);
+    }
+
+
+    @Override
+    protected void setUpEditViews(boolean enable, boolean within24Hours, Long longDate) {
+        openVisitMonthView();
+        if (enable) {
+            if (within24Hours) {
+                Calendar cal = Calendar.getInstance();
+                int offset = cal.getTimeZone().getOffset(cal.getTimeInMillis());
+                new Date(longDate - (long) offset);
+                String pncDay = pncMemberProfileInteractor.getPncDay(memberObject.getBaseEntityId());
+                layoutNotRecordView.setVisibility(View.VISIBLE);
+                tvEdit.setVisibility(View.VISIBLE);
+                textViewUndo.setVisibility(View.GONE);
+                textViewNotVisitMonth.setVisibility(View.VISIBLE);
+                textViewNotVisitMonth.setText(MessageFormat.format(getContext().getString(R.string.pnc_visit_done), pncDay));
+                imageViewCross.setImageResource(R.drawable.activityrow_visited);
+                textview_record_visit.setVisibility(View.GONE);
+            } else {
+                layoutNotRecordView.setVisibility(View.GONE);
+            }
+        } else {
+            layoutNotRecordView.setVisibility(View.GONE);
         }
     }
 
@@ -354,29 +460,6 @@ public class PncMemberProfileActivity extends CorePncMemberProfileActivity imple
 
     private PncVisitAlertRule getVisitDetails() {
         return ((PncMemberProfileInteractor) pncMemberProfileInteractor).getVisitSummary(memberObject.getBaseEntityId());
-    }
-
-    private void setEditViews(boolean enable, boolean within24Hours, Long longDate) {
-        if (enable) {
-            if (within24Hours) {
-                Calendar cal = Calendar.getInstance();
-                int offset = cal.getTimeZone().getOffset(cal.getTimeInMillis());
-                new Date(longDate - (long) offset);
-                String pncDay = pncMemberProfileInteractor.getPncDay(memberObject.getBaseEntityId());
-                layoutNotRecordView.setVisibility(View.VISIBLE);
-                tvEdit.setVisibility(View.VISIBLE);
-                textViewUndo.setVisibility(View.GONE);
-                textViewNotVisitMonth.setVisibility(View.VISIBLE);
-                textViewNotVisitMonth.setText(MessageFormat.format(getContext().getString(R.string.pnc_visit_done), pncDay));
-                imageViewCross.setImageResource(R.drawable.activityrow_visited);
-                textview_record_visit.setVisibility(View.GONE);
-            } else {
-                layoutNotRecordView.setVisibility(View.GONE);
-
-            }
-        } else {
-            layoutNotRecordView.setVisibility(View.GONE);
-        }
     }
 
     @Override
