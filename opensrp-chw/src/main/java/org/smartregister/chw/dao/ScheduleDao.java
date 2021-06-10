@@ -34,6 +34,15 @@ public class ScheduleDao extends AbstractDao {
         return AbstractDao.readData(sql, dataMap);
     }
 
+    public static @Nullable List<String> getActiveAdolescents(String scheduleName, String scheduleGroup) {
+        String sql = "select ec_adolescent.base_entity_id from ec_adolescent where ec_adolescent.is_closed = 0 " +
+                "and base_entity_id not in (select base_entity_id from schedule_service where schedule_name = '" + scheduleName +
+                "' and schedule_group_name = '" + scheduleGroup + "')";
+
+        DataMap<String> dataMap = c -> getCursorValue(c, "base_entity_id");
+        return AbstractDao.readData(sql, dataMap);
+    }
+
     public static @Nullable List<String> getActiveFamilies(String scheduleName, String scheduleGroup) {
         String sql = "select base_entity_id from ec_family where is_closed = 0 and base_entity_id not in " +
                 "(select base_entity_id from schedule_service where schedule_name = '" + scheduleName + "' and schedule_group_name = '" + scheduleGroup + "')";

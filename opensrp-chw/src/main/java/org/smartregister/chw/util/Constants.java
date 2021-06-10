@@ -9,6 +9,9 @@ public class Constants extends CoreConstants {
     public static final String ADOLESCENT_HOME_VISIT_NOT_DONE = "Adolescent Home Visit Not Done";
     public static final String ADOLESCENT_HOME_VISIT_DONE = "Adolescent Home Visit";
     public static final String ADOLESCENT_HOME_VISIT_NOT_DONE_UNDO = "Adolescent Home Visit Not Done Undo";
+    public static final String ADOLESCENT_VISIT = "ADOLESCENT_VISIT";
+    public static final String ADOLESCENT_HOMEVISIT_RULE_FILE = "adolescent-home-visit-rules.yml";
+    public static final String ADOLESCENT_REGISTRATION_EVENT = "Adolescent Registration";
 
     public static class FORM_SUBMISSION_FIELD {
         public static String pncHfNextVisitDateFieldType = "pnc_hf_next_visit_date";

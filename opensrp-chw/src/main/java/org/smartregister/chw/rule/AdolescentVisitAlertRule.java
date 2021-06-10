@@ -136,6 +136,10 @@ public class AdolescentVisitAlertRule implements ICommonRule, RegisterAlert {
         return anchor;
     }
 
+    private Date getFirstDayOfMonth(Date refDate) {
+        return new DateTime(refDate).withDayOfMonth(1).toDate();
+    }
+
     protected Date getLastDayOfMonth(Date refDate) {
         DateTime first = new DateTime(refDate).withDayOfMonth(1);
         return first.plusMonths(1).minusDays(1).toDate();
@@ -164,5 +168,41 @@ public class AdolescentVisitAlertRule implements ICommonRule, RegisterAlert {
     @Override
     public String getButtonStatus() {
         return buttonStatus;
+    }
+
+    public Date getDueDate() {
+        Date lastDueDate = getLastDueDate();
+
+        if (lastDueDate.getTime() < getFirstDayOfMonth(new Date()).getTime()) {
+            return getFirstDayOfMonth(new Date());
+        } else {
+            return lastDueDate;
+        }
+    }
+
+    private Date getLastDueDate() {
+        if (lastVisitDate != null && getFirstDayOfMonth(lastVisitDate.toDate()).getTime() < dateCreated.toDate().getTime()) {
+            return getFirstDayOfMonth(lastVisitDate.toDate());
+        } else {
+            return dateCreated.toDate();
+        }
+    }
+
+    public Date getNotDoneDate() {
+        if (getCompletionDate() == null && visitNotDoneDate != null) {
+            return visitNotDoneDate.toDate().getTime() > getDueDate().getTime() ? visitNotDoneDate.toDate() : null;
+        }
+        return null;
+    }
+
+    public Date getCompletionDate() {
+        if (lastVisitDate != null && lastVisitDate.toDate().getTime() >= getDueDate().getTime()) {
+            return lastVisitDate.toDate();
+        }
+        return null;
+    }
+
+    public Date getExpiryDate() {
+        return getLastDayOfMonth(new Date());
     }
 }

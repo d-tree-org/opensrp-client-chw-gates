@@ -113,6 +113,10 @@ public class ChwScheduleTaskExecutor extends ScheduleTaskExecutor {
         List<ScheduleService> scheduleServices = new ArrayList<>();
 
         scheduleServices.add(new AdolescentHomeVisitScheduler());
+        addToClassifers(Constants.ADOLESCENT_HOME_VISIT_DONE, classifier, scheduleServices);
+        addToClassifers(Constants.ADOLESCENT_HOME_VISIT_NOT_DONE, classifier, scheduleServices);
+        addToClassifers(Constants.ADOLESCENT_HOME_VISIT_NOT_DONE_UNDO, classifier, scheduleServices);
+        addToClassifers(Constants.ADOLESCENT_REGISTRATION_EVENT, classifier, scheduleServices);
     }
 
     private void initializeMalariaClassifier(Map<String, List<ScheduleService>> classifier) {
