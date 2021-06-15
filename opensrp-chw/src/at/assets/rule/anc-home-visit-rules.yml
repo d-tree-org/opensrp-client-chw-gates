@@ -20,3 +20,10 @@ condition: "ancVisitAlertRule.isVisitWithinThisMonth()"
 actions:
   - "ancVisitAlertRule.buttonStatus = 'VISIT_THIS_MONTH'"
 
+---
+name: overdue
+description: previous month not visited
+priority: 2
+condition: "ancVisitAlertRule.isOverdueWithinMonth(1)"
+actions:
+  - "ancVisitAlertRule.buttonStatus = 'OVERDUE'"
