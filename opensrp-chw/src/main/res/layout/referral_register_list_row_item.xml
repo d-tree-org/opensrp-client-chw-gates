@@ -113,14 +113,34 @@
                 android:orientation="vertical"
                 android:layout_centerInParent="true">
 
-                <TextView
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="12sp"
-                    android:text="@string/arrived_text"
-                    android:id="@+id/arrived_message"
-                    android:textColor="@color/white"
-                    android:fontFamily="@font/google_sans_bold"/>
+                    android:orientation="horizontal"
+                    android:layout_gravity="center"
+                    android:id="@+id/arrived_layout">
+
+                    <ImageView
+                        android:id="@+id/done_icon"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:clickable="true"
+                        android:contentDescription="Done Icon"
+                        android:visibility="visible"
+                        android:layout_gravity="center_vertical"
+                        app:srcCompat="@mipmap/baseline_done" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
+                        android:layout_gravity="center_vertical"
+                        android:text="@string/arrived_text"
+                        android:id="@+id/arrived_message"
+                        android:textColor="@color/white"
+                        android:fontFamily="@font/google_sans_bold"/>
+
+                </LinearLayout>
 
                 <ImageView
                     android:layout_width="80dp"
