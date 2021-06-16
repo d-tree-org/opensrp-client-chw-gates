@@ -218,7 +218,7 @@ public class AdolescentRegisterProvider implements RecyclerViewProvider<Adolesce
         if (TextUtils.isEmpty(lastVisitDays)) {
             dueButton.setText(context.getString(org.smartregister.chw.core.R.string.record_visit));
         } else {
-            dueButton.setText(context.getString(org.smartregister.chw.core.R.string.due_visit, lastVisitDays));
+            dueButton.setText(context.getString(R.string.over_due_visit, lastVisitDays));
         }
         dueButton.setBackgroundResource(org.smartregister.chw.core.R.drawable.overdue_red_btn_selector);
         dueButton.setOnClickListener(onClickListener);
@@ -302,10 +302,6 @@ public class AdolescentRegisterProvider implements RecyclerViewProvider<Adolesce
         protected Void doInBackground(Void... voids) {
 
             String baseEntityID = org.smartregister.util.Utils.getValue(pc.getColumnmaps(), org.smartregister.chw.anc.util.DBConstants.KEY.BASE_ENTITY_ID, false);
-
-            //ToDo: Implement Visit Rule for Adolescent client
-
-            // Placeholder for the implementation of visitSummary reference to HomeVisit.getANCVisitRule or Child Provider
 
             Map<String, VisitSummary> map = VisitDao.getVisitSummary(baseEntityID);
 

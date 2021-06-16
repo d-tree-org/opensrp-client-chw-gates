@@ -89,5 +89,7 @@
     <string name="phone">Phone</string>
 
     <string name="referral_type">Referral Type</string>
+    
+    <string name="over_due_visit">Visit Overdue \n %1$s</string>
 
 </resources>
