@@ -23,11 +23,11 @@ public class AdolescentVisitAlertRule implements ICommonRule, RegisterAlert {
     public String noOfDayDue;
     public String visitMonthName;
     private LocalDate dateCreated;
-    private LocalDate todayDate;
+    private final LocalDate todayDate;
     private LocalDate lastVisitDate;
     private LocalDate visitNotDoneDate;
-    private Integer yearOfBirth;
-    private Context context;
+    private final Integer yearOfBirth;
+    private final Context context;
     private boolean visitDoneLessThan24hours = false;
 
 
@@ -117,23 +117,18 @@ public class AdolescentVisitAlertRule implements ICommonRule, RegisterAlert {
     }
 
     public Date getOverDueDate() {
-        Date anchor = null;
         if (lastVisitDate == null) {
-            if (visitNotDoneDate != null) {
-                anchor = visitNotDoneDate.toDate();
-            } else {
-                anchor = getLastDayOfMonth(dateCreated.toDate());
-            }
+            return (visitNotDoneDate != null) ? visitNotDoneDate.toDate() : getLastDayOfMonth(dateCreated.toDate());
         } else {
-            if (visitNotDoneDate == null || (visitNotDoneDate != null && lastVisitDate.isAfter(visitNotDoneDate))) {
-                if ((getMonthsDifference(lastVisitDate, todayDate) == 0) || (getMonthsDifference(lastVisitDate, todayDate) == 1)) {
-                    anchor = getLastDayOfMonth(todayDate.toDate());
-                }
+            if (visitNotDoneDate == null || lastVisitDate.isAfter(visitNotDoneDate)) {
+                int monthsDiff = getMonthsDifference(lastVisitDate, todayDate);
+                return monthsDiff > 1 ? getLastDayOfMonth(lastVisitDate.plusMonths(6).toDate()) : getLastDayOfMonth(todayDate.plusMonths(6).toDate());
             } else if (visitNotDoneDate != null && visitNotDoneDate.isAfter(lastVisitDate)) {
-                anchor = visitNotDoneDate.toDate();
+                return visitNotDoneDate.toDate();
+            } else {
+                return getLastDayOfMonth(lastVisitDate.plusMonths(6).toDate());
             }
         }
-        return anchor;
     }
 
     private Date getFirstDayOfMonth(Date refDate) {
@@ -181,8 +176,8 @@ public class AdolescentVisitAlertRule implements ICommonRule, RegisterAlert {
     }
 
     private Date getLastDueDate() {
-        if (lastVisitDate != null && getFirstDayOfMonth(lastVisitDate.toDate()).getTime() < dateCreated.toDate().getTime()) {
-            return getFirstDayOfMonth(lastVisitDate.toDate());
+        if (lastVisitDate != null && getFirstDayOfMonth(lastVisitDate.toDate()).getTime() > dateCreated.toDate().getTime()) {
+            return getFirstDayOfMonth(lastVisitDate.plusMonths(6).toDate());
         } else {
             return dateCreated.toDate();
         }
@@ -202,7 +197,8 @@ public class AdolescentVisitAlertRule implements ICommonRule, RegisterAlert {
         return null;
     }
 
+    // Expiry date 1 month after overdue date
     public Date getExpiryDate() {
-        return getLastDayOfMonth(new Date());
+        return getLastDayOfMonth(new DateTime(getOverDueDate()).plusMonths(1).toDate());
     }
 }
