@@ -135,4 +135,13 @@ public class ReferralFollowupActivity extends BaseReferralFollowupActivity {
             ChwScheduleTaskExecutor.getInstance().execute(baseEntityId, org.smartregister.chw.util.Constants.EncounterType.REFERRAL_FOLLOW_UP_VISIT, oldestTask.getAuthoredOn().toDate());
         }
     }
+
+    @Override
+    public void showProgressDialog(int titleIdentifier) {
+
+    }
+
+    @Override
+    public void hideProgressDialog() {
+    }
 }
