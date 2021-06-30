@@ -11,12 +11,8 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import androidx.cardview.widget.CardView;
 
 import com.google.android.material.snackbar.Snackbar;
-import com.vijay.jsonwizard.utils.AllSharedPreferences;
 
 import org.joda.time.DateTime;
 import org.json.JSONObject;
@@ -184,7 +180,7 @@ public class ChildProfileActivity extends CoreChildProfileActivity implements Ch
 
     void displayFPVerifyPrompt(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(getResources().getString(R.string.verify_child_fingerprint));
+        builder.setTitle(getResources().getString(R.string.verify_fingerprint));
         builder.setMessage(getResources().getString(R.string.verify_fp_prompt_message));
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
