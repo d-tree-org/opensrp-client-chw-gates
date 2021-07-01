@@ -40,6 +40,7 @@ import org.smartregister.commonregistry.CommonPersonObject;
 import org.smartregister.commonregistry.CommonPersonObjectClient;
 import org.smartregister.commonregistry.CommonRepository;
 import org.smartregister.domain.Task;
+import org.smartregister.domain.db.Client;
 import org.smartregister.family.domain.FamilyEventClient;
 import org.smartregister.family.interactor.FamilyProfileInteractor;
 import org.smartregister.family.util.JsonFormUtils;
@@ -237,7 +238,17 @@ public class AncMemberProfileActivity extends CoreAncMemberProfileActivity imple
         } else if (id == R.id.referral_row) {
             Task task = (Task) view.getTag();
             ReferralFollowupActivity.startReferralFollowupActivity(this, task.getIdentifier(), memberObject.getBaseEntityId());
+        }else if (id == R.id.textview_verify_fingerprint || id == R.id.textview_verify_fingerprint_alt){
+            callVerifyFingerprint();
         }
+    }
+
+    private void callVerifyFingerprint(){
+        getPresenter().verifyFingerprint();
+    }
+
+    private AncMemberProfilePresenter getPresenter(){
+        return (AncMemberProfilePresenter) presenter();
     }
 
     @Override
@@ -315,5 +326,15 @@ public class AncMemberProfileActivity extends CoreAncMemberProfileActivity imple
     @Override
     public List<ReferralTypeModel> getReferralTypeModels() {
         return referralTypeModels;
+    }
+
+    @Override
+    public void callFingerprintVerification(String fingerprintId) {
+
+    }
+
+    @Override
+    public void callFingerprintRegistration(Client client) {
+
     }
 }
