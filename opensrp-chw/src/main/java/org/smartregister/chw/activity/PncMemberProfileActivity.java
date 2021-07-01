@@ -11,6 +11,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
 
 import org.apache.commons.lang3.StringUtils;
@@ -18,6 +19,7 @@ import org.joda.time.DateTime;
 import org.joda.time.Days;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.smartregister.CoreLibrary;
 import org.smartregister.chw.R;
 import org.smartregister.chw.anc.domain.MemberObject;
 import org.smartregister.chw.anc.domain.Visit;
@@ -57,11 +59,18 @@ import org.smartregister.family.contract.FamilyProfileContract;
 import org.smartregister.family.domain.FamilyEventClient;
 import org.smartregister.family.util.JsonFormUtils;
 import org.smartregister.family.util.Utils;
+import org.smartregister.simprint.SimPrintsConstantHelper;
+import org.smartregister.simprint.SimPrintsRegisterActivity;
+import org.smartregister.simprint.SimPrintsRegistration;
+import org.smartregister.simprint.SimPrintsVerification;
+import org.smartregister.simprint.SimPrintsVerifyActivity;
 
 import java.text.MessageFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -82,7 +91,14 @@ public class PncMemberProfileActivity extends CorePncMemberProfileActivity imple
     private Flavor flavor = new PncMemberProfileActivityFlv();
     private List<ReferralTypeModel> referralTypeModels = new ArrayList<>();
 
+    private static final int VERIFY_RESULT_CODE = 8379;
+    private static final int REGISTER_RESULT_CODE = 5361;
+
     protected ImageView imageViewCross;
+    protected TextView verifyFingerprint;
+    protected TextView verifyFingerprintAlt;
+
+    org.smartregister.domain.db.Client currentClient;
 
     public static void startMe(Activity activity, String baseEntityID) {
         Intent intent = new Intent(activity, PncMemberProfileActivity.class);
@@ -193,9 +209,65 @@ public class PncMemberProfileActivity extends CorePncMemberProfileActivity imple
                 ChwScheduleTaskExecutor.getInstance().execute(memberObject.getBaseEntityId(), CoreConstants.EventType.PNC_HOME_VISIT, new Date());
                 refreshOnHomeVisitResult();
                 break;
+            case VERIFY_RESULT_CODE:
+                if (data.getExtras() != null){
+                    SimPrintsVerification simprintsVerification = (SimPrintsVerification) data.getSerializableExtra(SimPrintsConstantHelper.INTENT_DATA);
+                    assert simprintsVerification != null;
+                    if (simprintsVerification.getCheckStatus()){
+                        switch (simprintsVerification.getMaskedTier()){
+                            case TIER_3:
+                            case TIER_2:
+                            case TIER_1:
+                                showSnackBar(this.getResources().getString(R.string.fingerprint_matched));
+                                break;
+                            default:
+                                showSnackBar(this.getResources().getString(R.string.fingerprint_did_not_match));
+                        }
+                    }else{
+                        showSnackBar(this.getResources().getString(R.string.fingerprint_verification_terminated));
+                    }
+                }
+                break;
+            case REGISTER_RESULT_CODE:
+                if (data.getExtras() != null){
+
+                    SimPrintsRegistration simPrintsRegistration = (SimPrintsRegistration) data.getSerializableExtra(SimPrintsConstantHelper.INTENT_DATA);
+                    assert simPrintsRegistration != null;
+                    if (simPrintsRegistration.getCheckStatus()){
+                        String guid = simPrintsRegistration.getGuid();
+
+                        if (!guid.isEmpty()){
+
+                            Map<String, String> identifier = new HashMap<>();
+                            identifier.put("simprints_guid", guid);
+
+                            currentClient.setIdentifiers(identifier);
+
+                            JSONObject object = CoreLibrary.getInstance().context().getEventClientRepository().convertToJson(currentClient);
+
+                            CoreLibrary.getInstance().context().getEventClientRepository().addorUpdateClient(currentClient.getBaseEntityId(), object);
+
+                            showSnackBar(this.getResources().getString(R.string.fingerprint_enrolled));
+                        }
+                    }
+                }
+                break;
             default:
                 break;
         }
+    }
+
+    private void showSnackBar(String message){
+        View parentLayout = findViewById(android.R.id.content);
+        Snackbar.make(parentLayout, message, Snackbar.LENGTH_INDEFINITE)
+                .setAction("CLOSE", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                    }
+                })
+                .setActionTextColor(getResources().getColor(android.R.color.holo_red_light ))
+                .show();
     }
 
     @Override
@@ -206,6 +278,11 @@ public class PncMemberProfileActivity extends CorePncMemberProfileActivity imple
         textViewNotVisitMonth = findViewById(R.id.textview_not_visit_this_month);
         textViewUndo = findViewById(R.id.textview_undo);
         textViewUndo.setOnClickListener(this);
+
+        verifyFingerprint = findViewById(R.id.textview_verify_fingerprint);
+        verifyFingerprint.setOnClickListener(this);
+        verifyFingerprintAlt = findViewById(R.id.textview_verify_fingerprint_alt);
+        verifyFingerprintAlt.setOnClickListener(this);
 
         super.setupViews();
 
@@ -371,8 +448,55 @@ public class PncMemberProfileActivity extends CorePncMemberProfileActivity imple
             case R.id.textview_anc_visit_not:
                 this.presenter().getView().setVisitNotDoneThisMonth();
                 break;
+            case R.id.textview_verify_fingerprint:
+                verifyFP();
+                break;
+            case R.id.textview_verify_fingerprint_alt:
+                verifyFP();
+                break;
             default:
                 break;
+        }
+    }
+
+    private void verifyFP(){
+        pncMemberProfilePresenter().verifyFingerprint();
+    }
+
+    @Override
+    public void callFingerprintVerification(String fingerprintId) {
+        String moduleId = CoreLibrary.getInstance().context().allSharedPreferences().fetchUserLocalityName("");
+        if (moduleId == null || moduleId.isEmpty()){
+            moduleId = "global_module";
+        }
+        SimPrintsVerifyActivity.startSimprintsVerifyActivity(this,
+                moduleId, fingerprintId, VERIFY_RESULT_CODE);
+    }
+
+    @Override
+    public void callFingerprintRegistration(org.smartregister.domain.db.Client client) {
+
+        currentClient = client;
+
+        try {
+            DateTime birthdate = client.getBirthdate();
+            SimpleDateFormat dateFormatForRiddler = new SimpleDateFormat("dd-MM-yyyy");
+            String formatedDate = "";
+            formatedDate = dateFormatForRiddler.format(birthdate.toDate());
+
+            JSONObject metadata = new JSONObject();
+            metadata.put("DOB", formatedDate);
+
+            String moduleId = CoreLibrary.getInstance().context().allSharedPreferences().fetchUserLocalityName("");
+            if (moduleId == null || moduleId.isEmpty()){
+                moduleId = "global_module";
+            }
+
+            SimPrintsRegisterActivity.startSimprintsRegisterActivity(this,
+                    moduleId, REGISTER_RESULT_CODE, metadata);
+
+        } catch (Exception exception) {
+            exception.printStackTrace();
         }
     }
 
