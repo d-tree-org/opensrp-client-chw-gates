@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.google.android.material.snackbar.Snackbar;
 
@@ -83,6 +84,15 @@ public class AncMemberProfileActivity extends CoreAncMemberProfileActivity imple
         Intent intent = new Intent(activity, AncMemberProfileActivity.class);
         intent.putExtra(Constants.ANC_MEMBER_OBJECTS.BASE_ENTITY_ID, baseEntityID);
         activity.startActivity(intent);
+    }
+
+    @Override
+    public void setupViews() {
+        super.setupViews();
+        TextView verifyFingerprint = findViewById(R.id.textview_verify_fingerprint);
+        verifyFingerprint.setOnClickListener(this);
+        TextView verifyFingerprintAlt = findViewById(R.id.textview_verify_fingerprint_alt);
+        verifyFingerprintAlt.setOnClickListener(this);
     }
 
     @Override
