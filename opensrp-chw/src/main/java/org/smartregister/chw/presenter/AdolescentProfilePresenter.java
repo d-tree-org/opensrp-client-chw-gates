@@ -231,6 +231,11 @@ public class AdolescentProfilePresenter implements AdolescentProfileContract.Pre
     }
 
     @Override
+    public void verifyFingerprint() {
+        interactor.getFingerprintForVerification(adolescentBaseEntityId, this);
+    }
+
+    @Override
     public void updateVisitNotDone() {
         hideProgress();
         getView().openVisitMonthView();
@@ -240,5 +245,14 @@ public class AdolescentProfilePresenter implements AdolescentProfileContract.Pre
     public void undoVisitNotDone() {
         hideProgress();
         getView().showUndoVisitNotDoneView();
+    }
+
+    @Override
+    public void onFingerprintFetched(String fingerprint, boolean hasFingerprint, org.smartregister.domain.db.Client client) {
+        if (hasFingerprint){
+            getView().callFingerprintVerification(fingerprint);
+        }else{
+            getView().callFingerprintRegistration(client);
+        }
     }
 }
