@@ -85,6 +85,7 @@ public class AdolescentProfileActivity extends BaseProfileActivity implements Ad
     private View viewLastVisitRow;
     protected TextView textViewMedicalHistory;
     protected ImageView imageViewCrossChild;
+    private TextView verifyFingerprint;
 
     public String baseEntityId;
     public String lastVisitDay;
@@ -174,6 +175,7 @@ public class AdolescentProfileActivity extends BaseProfileActivity implements Ad
         viewFamilyRow = findViewById(org.smartregister.chw.core.R.id.view_family_row);
         progressBar = findViewById(org.smartregister.chw.core.R.id.progress_bar);
         textViewTitle = findViewById(R.id.toolbar_title);
+        verifyFingerprint = findViewById(R.id.textview_verify_adolescent_fingerprint);
 
         // Setup onClick Listener
         textViewRecord.setOnClickListener(this);
@@ -182,6 +184,7 @@ public class AdolescentProfileActivity extends BaseProfileActivity implements Ad
         layoutFamilyHasRow.setOnClickListener(this);
         textViewVisitNot.setOnClickListener(this);
         textViewUndo.setOnClickListener(this);
+        verifyFingerprint.setOnClickListener(this);
         setUpToolbar();
     }
 
