@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.util.Pair;
 
 import org.json.JSONObject;
+import org.smartregister.CoreLibrary;
 import org.smartregister.chw.contract.AdolescentProfileContract;
 import org.smartregister.chw.model.AdolescentVisit;
 import org.smartregister.chw.core.utils.ChildDBConstants;
@@ -190,6 +191,17 @@ public class AdolescentProfileInteractor implements AdolescentProfileContract.In
         };
 
         appExecutors.diskIO().execute(runnable);
+    }
+
+    @Override
+    public void getFingerprintForVerification(String baseEntityId, AdolescentProfileContract.InteractorCallBack callBack) {
+        org.smartregister.domain.db.Client client = CoreLibrary.getInstance().context().getEventClientRepository().fetchClientByBaseEntityId(baseEntityId);
+        String simprintsId = client.getIdentifier("simprints_guid");
+        if (simprintsId != null){
+            callBack.onFingerprintFetched(simprintsId, true, client);
+        }else {
+            callBack.onFingerprintFetched("", false, client);
+        }
     }
 
     private void saveRegistration(Pair<Client, Event> pair, String jsonString, boolean isEditMode) {
