@@ -94,4 +94,6 @@
 
     <string name="referral_type">Aina ya Rufaa</string>
 
+    <string name="over_due_visit">TEMBELEO LIMECHELEWA \n %1$s</string>
+
 </resources>

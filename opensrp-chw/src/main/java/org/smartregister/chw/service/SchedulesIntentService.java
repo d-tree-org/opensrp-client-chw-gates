@@ -10,7 +10,9 @@ import org.smartregister.chw.core.utils.CoreConstants;
 import org.smartregister.chw.dao.ScheduleDao;
 import org.smartregister.chw.fp.util.FamilyPlanningConstants;
 import org.smartregister.chw.schedulers.ChwScheduleTaskExecutor;
+import org.smartregister.chw.util.Constants;
 
+import java.sql.Time;
 import java.util.Date;
 import java.util.List;
 
@@ -53,6 +55,9 @@ public class SchedulesIntentService extends IntentService {
 
         if (ChwApplication.getApplicationFlavor().hasRoutineVisit())
             executeRoutineHouseholdSchedules();
+
+        if (ChwApplication.getApplicationFlavor().hasAdolescent())
+            executeAdolescentVisitSchedules();
     }
 
     private void executeChildVisitSchedules() {
@@ -126,6 +131,19 @@ public class SchedulesIntentService extends IntentService {
             Timber.v("  Computing Routine household schedules for %s", baseID);
             ChwScheduleTaskExecutor.getInstance().execute(baseID, CoreConstants.EventType.ROUTINE_HOUSEHOLD_VISIT, new Date());
         }
+    }
+
+    private void executeAdolescentVisitSchedules() {
+        Timber.v("Computing Adolescent Schedules");
+        ChwApplication.getInstance().getScheduleRepository().deleteSchedulesNotCreatedToday(Constants.ADOLESCENT_VISIT, CoreConstants.SCHEDULE_GROUPS.HOME_VISIT);
+        List<String> baseEntityIDs = ScheduleDao.getActiveAdolescents(Constants.ADOLESCENT_VISIT, CoreConstants.SCHEDULE_GROUPS.HOME_VISIT);
+        if (baseEntityIDs == null) return;
+
+        for (String baseID: baseEntityIDs) {
+            Timber.v(" Computing Adolescent schedules for %s", baseID);
+            ChwScheduleTaskExecutor.getInstance().execute(baseID, Constants.ADOLESCENT_HOME_VISIT_DONE, new Date());
+        }
+
     }
 
 }

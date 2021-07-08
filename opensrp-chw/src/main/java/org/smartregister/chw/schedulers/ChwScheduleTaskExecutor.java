@@ -6,6 +6,7 @@ import org.smartregister.chw.core.schedulers.ScheduleTaskExecutor;
 import org.smartregister.chw.core.utils.CoreConstants;
 import org.smartregister.chw.fp.util.FamilyPlanningConstants;
 import org.smartregister.chw.task.ANCVisitScheduler;
+import org.smartregister.chw.task.AdolescentHomeVisitScheduler;
 import org.smartregister.chw.task.ChildHomeVisitScheduler;
 import org.smartregister.chw.task.FpVisitScheduler;
 import org.smartregister.chw.task.MalariaScheduler;
@@ -62,6 +63,9 @@ public class ChwScheduleTaskExecutor extends ScheduleTaskExecutor {
             if (ChwApplication.getApplicationFlavor().hasReferrals())
                 initializeReferralClassifier(scheduleServiceMap);
 
+            if (ChwApplication.getApplicationFlavor().hasAdolescent())
+                initializeAdolescentClassifier(scheduleServiceMap);
+
         }
         return scheduleServiceMap;
     }
@@ -105,6 +109,16 @@ public class ChwScheduleTaskExecutor extends ScheduleTaskExecutor {
         addToClassifers(CoreConstants.EventType.PNC_HOME_VISIT_NOT_DONE_UNDO, classifier, scheduleServices);
     }
 
+    private void initializeAdolescentClassifier(Map<String, List<ScheduleService>> classifier) {
+        List<ScheduleService> scheduleServices = new ArrayList<>();
+
+        scheduleServices.add(new AdolescentHomeVisitScheduler());
+        addToClassifers(Constants.ADOLESCENT_HOME_VISIT_DONE, classifier, scheduleServices);
+        addToClassifers(Constants.ADOLESCENT_HOME_VISIT_NOT_DONE, classifier, scheduleServices);
+        addToClassifers(Constants.ADOLESCENT_HOME_VISIT_NOT_DONE_UNDO, classifier, scheduleServices);
+        addToClassifers(Constants.ADOLESCENT_REGISTRATION_EVENT, classifier, scheduleServices);
+    }
+
     private void initializeMalariaClassifier(Map<String, List<ScheduleService>> classifier) {
         List<ScheduleService> scheduleServices = new ArrayList<>();
         scheduleServices.add(new MalariaScheduler());
@@ -146,5 +160,6 @@ public class ChwScheduleTaskExecutor extends ScheduleTaskExecutor {
         addToClassifers(CoreConstants.EventType.PNC_REFERRAL, classifier, scheduleServices);
         addToClassifers(CoreConstants.EventType.CHILD_REFERRAL, classifier, scheduleServices);
         addToClassifers(Constants.EncounterType.REFERRAL_FOLLOW_UP_VISIT, classifier, scheduleServices);
+        addToClassifers(CoreConstants.EventType.ADOLESCENT_REFERRAL, classifier, scheduleServices);
     }
 }

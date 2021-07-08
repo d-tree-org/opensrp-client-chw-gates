@@ -30,7 +30,7 @@ actions:
 name: overdue
 description: previous month not visited
 priority: 2
-condition: "adolescentVisitAlertRule.isOverdueWithinMonth(6)"
+condition: "adolescentVisitAlertRule.isOverdueWithinMonth(1)"
 actions:
   - "adolescentVisitAlertRule.buttonStatus = 'OVERDUE'"
 ---
