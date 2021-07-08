@@ -8,7 +8,10 @@ import org.smartregister.clientandeventmodel.Client;
 import org.smartregister.clientandeventmodel.Event;
 import org.smartregister.commonregistry.CommonPersonObjectClient;
 import org.smartregister.domain.FetchStatus;
+import org.smartregister.domain.Task;
 import org.smartregister.view.contract.BaseProfileContract;
+
+import java.util.Set;
 
 public interface AdolescentProfileContract extends BaseProfileContract {
 
@@ -65,6 +68,8 @@ public interface AdolescentProfileContract extends BaseProfileContract {
 
         void hideView();
 
+        void setClientTasks(Set<Task> taskList);
+
     }
 
     interface Presenter extends BaseProfileContract.Presenter {
@@ -93,6 +98,8 @@ public interface AdolescentProfileContract extends BaseProfileContract {
 
         void updateVisitNotDone(long value);
 
+        void fetchTasks();
+
     }
     interface Model{}
     interface Interactor{
@@ -109,6 +116,7 @@ public interface AdolescentProfileContract extends BaseProfileContract {
 
         void saveRegistration(final Pair<Client, Event> pair, String jsonString, final boolean isEditMode, final AdolescentProfileContract.InteractorCallBack callBack);
 
+        void getClientTasks(String planId, String baseEntityId, AdolescentProfileContract.InteractorCallBack callback);
     }
     interface InteractorCallBack extends BaseProfileContract{
 
@@ -137,6 +145,8 @@ public interface AdolescentProfileContract extends BaseProfileContract {
         void updateVisitNotDone();
 
         void undoVisitNotDone();
+
+        void setClientTasks(Set<Task> taskList);
     }
 
 }

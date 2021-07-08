@@ -22,6 +22,7 @@ import org.smartregister.chw.malaria.interactor.BaseMalariaRegisterInteractor;
 import org.smartregister.chw.malaria.model.BaseMalariaRegisterModel;
 import org.smartregister.chw.malaria.presenter.BaseMalariaRegisterPresenter;
 import org.smartregister.chw.malaria.util.Constants;
+import org.smartregister.chw.presenter.CoreReferralFollowupPresenter;
 import org.smartregister.util.Utils;
 import org.smartregister.view.activity.BaseRegisterActivity;
 import org.smartregister.view.fragment.BaseRegisterFragment;
@@ -118,7 +119,7 @@ public class CoreReferralFollowupActivity extends BaseRegisterActivity implement
 
     @Override
     protected void initializePresenter() {
-        presenter = new BaseMalariaRegisterPresenter(this, new BaseMalariaRegisterModel(), new BaseMalariaRegisterInteractor());
+        presenter = new CoreReferralFollowupPresenter(this, new BaseMalariaRegisterModel(), new BaseMalariaRegisterInteractor());
     }
 
     @Override
