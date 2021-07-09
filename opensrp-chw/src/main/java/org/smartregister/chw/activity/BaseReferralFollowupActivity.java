@@ -95,7 +95,7 @@ public abstract class BaseReferralFollowupActivity extends CoreReferralFollowupA
                     completeReferralTask(jsonString);
                 }
 
-                finish();
+                //finish();
 
             } catch (JSONException e) {
                 Timber.e(e);

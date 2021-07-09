@@ -1,7 +1,6 @@
 package org.smartregister.chw.presenter;
 
 import android.util.Pair;
-import android.widget.Toast;
 
 import org.apache.commons.lang3.tuple.Triple;
 import org.joda.time.DateTime;
@@ -12,19 +11,17 @@ import org.smartregister.chw.core.utils.CoreConstants;
 import org.smartregister.chw.interactor.AdolescentProfileInteractor;
 import org.smartregister.chw.model.AdolescentRegisterModel;
 import org.smartregister.chw.model.AdolescentVisit;
-import org.smartregister.chw.model.ChildRegisterModel;
 import org.smartregister.chw.util.ChildDBConstants;
-import org.smartregister.chw.util.JsonFormUtils;
 import org.smartregister.clientandeventmodel.Client;
 import org.smartregister.clientandeventmodel.Event;
 import org.smartregister.commonregistry.CommonPersonObjectClient;
 import org.smartregister.domain.FetchStatus;
-import org.smartregister.family.contract.FamilyProfileContract;
-import org.smartregister.family.domain.FamilyEventClient;
+import org.smartregister.domain.Task;
 import org.smartregister.family.util.DBConstants;
 import org.smartregister.family.util.Utils;
 
 import java.lang.ref.WeakReference;
+import java.util.Set;
 
 public class AdolescentProfilePresenter implements AdolescentProfileContract.Presenter, AdolescentProfileContract.InteractorCallBack{
 
@@ -253,6 +250,18 @@ public class AdolescentProfilePresenter implements AdolescentProfileContract.Pre
             getView().callFingerprintVerification(fingerprint);
         }else{
             getView().callFingerprintRegistration(client);
+        }
+    }
+  
+    @Override
+    public void fetchTasks() {
+        interactor.getClientTasks(CoreConstants.REFERRAL_PLAN_ID, adolescentBaseEntityId, this);
+    }
+
+    @Override
+    public void setClientTasks(Set<Task> taskList) {
+        if (getView() != null) {
+            getView().setClientTasks(taskList);
         }
     }
 }

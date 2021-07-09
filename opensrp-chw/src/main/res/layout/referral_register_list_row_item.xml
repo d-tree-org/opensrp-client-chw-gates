@@ -97,40 +97,78 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
+        android:gravity="center"
         android:background="@drawable/grey_left_border"
-        android:paddingStart="@dimen/register_list_item_padding"
-        android:paddingLeft="@dimen/register_list_item_padding"
-        android:paddingTop="@dimen/register_list_top_bottom_padding"
-        android:paddingEnd="@dimen/register_list_item_padding"
-        android:paddingRight="@dimen/register_list_item_padding"
-        android:paddingBottom="@dimen/register_list_top_bottom_padding"
         android:orientation="vertical"
         android:layout_marginEnd="@dimen/register_list_top_bottom_padding">
 
-        <ImageView
-            android:id="@+id/done_icon"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:clickable="true"
-            android:contentDescription="Done Icon"
-            android:visibility="gone"
-            android:layout_gravity="center_horizontal"
-            app:srcCompat="@mipmap/baseline_done" />
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
-        <org.smartregister.view.customcontrols.CustomFontTextView
-            android:id="@+id/text_view_referral_status"
-            style="@style/CustomFontTextViewStyle.ClientList"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:adjustViewBounds="true"
-            android:gravity="center"
-            android:hapticFeedbackEnabled="true"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:textAllCaps="false"
-            android:textColor="@color/alert_in_progress_blue"
-            android:text="@string/followup"
-            android:textSize="@dimen/referral_register_list_due_size" />
+            <LinearLayout
+                android:layout_width="@dimen/register_list_item_width"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:layout_centerInParent="true">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center"
+                    android:id="@+id/arrived_layout">
+
+                    <ImageView
+                        android:id="@+id/done_icon"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:clickable="true"
+                        android:contentDescription="Done Icon"
+                        android:visibility="visible"
+                        android:layout_gravity="center_vertical"
+                        app:srcCompat="@mipmap/baseline_done" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
+                        android:layout_gravity="center_vertical"
+                        android:text="@string/arrived_text"
+                        android:id="@+id/arrived_message"
+                        android:textColor="@color/white"
+                        android:fontFamily="@font/google_sans_bold"/>
+
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="4dp"
+                    android:id="@+id/split_line"
+                    android:background="@color/white"/>
+
+                <TextView
+                    android:id="@+id/text_view_referral_status"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:adjustViewBounds="true"
+                    android:gravity="center"
+                    android:layout_marginTop="4dp"
+                    android:hapticFeedbackEnabled="true"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:textAllCaps="false"
+                    android:textColor="@color/alert_in_progress_blue"
+                    android:text="@string/followup"
+                    android:fontFamily="@font/google_sans_regular"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
 
     </LinearLayout>
 

@@ -28,6 +28,7 @@ import com.vijay.jsonwizard.constants.JsonFormConstants;
 import com.vijay.jsonwizard.domain.Form;
 
 import org.joda.time.DateTime;
+import org.joda.time.Days;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.opensrp.api.constants.Gender;
@@ -46,6 +47,7 @@ import org.smartregister.commonregistry.CommonPersonObjectClient;
 import org.smartregister.commonregistry.CommonRepository;
 import org.smartregister.domain.FetchStatus;
 import org.smartregister.domain.db.Client;
+import org.smartregister.domain.Task;
 import org.smartregister.family.util.Constants;
 import org.smartregister.family.util.DBConstants;
 import org.smartregister.family.util.JsonFormUtils;
@@ -61,6 +63,7 @@ import org.smartregister.view.activity.BaseProfileActivity;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import timber.log.Timber;
@@ -230,6 +233,9 @@ public class AdolescentProfileActivity extends BaseProfileActivity implements Ad
         } else if (i == R.id.textview_verify_adolescent_fingerprint){
             //Call verify fingerprint
             startFingerprintVerification();
+        } else if (i == R.id.referral_row) {
+            Task task = (Task) view.getTag();
+            ReferralFollowupActivity.startReferralFollowupActivity(this, task.getIdentifier(), task.getForEntity());
         }
 
     }
@@ -347,6 +353,36 @@ public class AdolescentProfileActivity extends BaseProfileActivity implements Ad
         intent.putExtra(JsonFormConstants.JSON_FORM_KEY.FORM, form);
 
         startActivityForResult(intent, JsonFormUtils.REQUEST_CODE_GET_JSON);
+    }
+
+    @Override
+    public void setClientTasks(Set<Task> taskList) {
+        boolean isReferralFollowUpDue = false;
+
+        for (Task task: taskList) {
+            int days = Math.abs(Days.daysBetween(task.getAuthoredOn(), DateTime.now()).getDays());
+            if ((days >= 1 && task.getPriority() == 1) || days >= 3) {
+                isReferralFollowUpDue = true;
+                break;
+            }
+        }
+
+        if (isReferralFollowUpDue) {
+            layoutReferralRow.setOnClickListener(this);
+            layoutReferralRow.setVisibility(View.VISIBLE);
+            findViewById(R.id.view_referral_row).setVisibility(View.VISIBLE);
+            layoutReferralRow.setTag(taskList.iterator().next());
+        } else {
+            layoutReferralRow.setVisibility(View.GONE);
+            findViewById(R.id.view_referral_row).setVisibility(View.GONE);
+        }
+
+    }
+
+    @Override
+    protected void onResumption() {
+        super.onResumption();
+        presenter().fetchTasks();
     }
 
     @Override
