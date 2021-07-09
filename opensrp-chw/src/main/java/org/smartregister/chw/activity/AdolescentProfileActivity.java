@@ -23,6 +23,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.vijay.jsonwizard.constants.JsonFormConstants;
 import com.vijay.jsonwizard.domain.Form;
 
@@ -45,14 +46,23 @@ import org.smartregister.commonregistry.CommonPersonObject;
 import org.smartregister.commonregistry.CommonPersonObjectClient;
 import org.smartregister.commonregistry.CommonRepository;
 import org.smartregister.domain.FetchStatus;
+import org.smartregister.domain.db.Client;
 import org.smartregister.domain.Task;
 import org.smartregister.family.util.Constants;
 import org.smartregister.family.util.DBConstants;
 import org.smartregister.family.util.JsonFormUtils;
 import org.smartregister.family.util.Utils;
 import org.smartregister.helper.ImageRenderHelper;
+import org.smartregister.simprint.SimPrintsConstantHelper;
+import org.smartregister.simprint.SimPrintsRegisterActivity;
+import org.smartregister.simprint.SimPrintsRegistration;
+import org.smartregister.simprint.SimPrintsVerification;
+import org.smartregister.simprint.SimPrintsVerifyActivity;
 import org.smartregister.view.activity.BaseProfileActivity;
 
+import java.text.SimpleDateFormat;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -61,8 +71,10 @@ import timber.log.Timber;
 
 public class AdolescentProfileActivity extends BaseProfileActivity implements AdolescentProfileContract.View {
 
+    private static final int VERIFY_RESULT_CODE = 8379;
+    private static final int REGISTER_RESULT_CODE = 5361;
+
     private static final String UPDATE_ADOLESCENT_REGISTRATION = "Update Adolescent Registration" ;
-    protected MemberObject memberObject;
     private TextView textViewTitle;
     protected CircleImageView imageView;
     protected TextView textViewName;
@@ -90,6 +102,7 @@ public class AdolescentProfileActivity extends BaseProfileActivity implements Ad
     private View viewLastVisitRow;
     protected TextView textViewMedicalHistory;
     protected ImageView imageViewCrossChild;
+    private TextView verifyFingerprint;
 
     public String baseEntityId;
     public String lastVisitDay;
@@ -99,8 +112,11 @@ public class AdolescentProfileActivity extends BaseProfileActivity implements Ad
     protected String familyHead;
     protected String primaryCaregiver;
     protected String familyName;
-    protected CommonPersonObjectClient commonPersonObject;
     public Handler handler = new Handler();
+
+    protected MemberObject memberObject;
+    protected CommonPersonObjectClient commonPersonObject;
+    org.smartregister.domain.db.Client currentClient;
 
     private ProgressBar progressBar;
 
@@ -179,6 +195,7 @@ public class AdolescentProfileActivity extends BaseProfileActivity implements Ad
         viewFamilyRow = findViewById(org.smartregister.chw.core.R.id.view_family_row);
         progressBar = findViewById(org.smartregister.chw.core.R.id.progress_bar);
         textViewTitle = findViewById(R.id.toolbar_title);
+        verifyFingerprint = findViewById(R.id.textview_verify_adolescent_fingerprint);
 
         // Setup onClick Listener
         textViewRecord.setOnClickListener(this);
@@ -187,6 +204,7 @@ public class AdolescentProfileActivity extends BaseProfileActivity implements Ad
         layoutFamilyHasRow.setOnClickListener(this);
         textViewVisitNot.setOnClickListener(this);
         textViewUndo.setOnClickListener(this);
+        verifyFingerprint.setOnClickListener(this);
         setUpToolbar();
     }
 
@@ -212,12 +230,20 @@ public class AdolescentProfileActivity extends BaseProfileActivity implements Ad
             Toast.makeText(this, "You clicked the last visit thingy", Toast.LENGTH_SHORT).show();
         } else if (i == R.id.family_has_row) {
             openFamilyDueServices();
+        } else if (i == R.id.textview_verify_adolescent_fingerprint){
+            //Call verify fingerprint
+            startFingerprintVerification();
         } else if (i == R.id.referral_row) {
             Task task = (Task) view.getTag();
             ReferralFollowupActivity.startReferralFollowupActivity(this, task.getIdentifier(), task.getForEntity());
         }
 
     }
+
+    private void startFingerprintVerification(){
+        presenter().verifyFingerprint();
+    }
+
 
     @Override
     public AdolescentProfileContract.Presenter presenter() {
@@ -522,6 +548,42 @@ public class AdolescentProfileActivity extends BaseProfileActivity implements Ad
     }
 
     @Override
+    public void callFingerprintVerification(String fingerprintId) {
+        String moduleId = CoreLibrary.getInstance().context().allSharedPreferences().fetchUserLocalityName("");
+        if (moduleId == null || moduleId.isEmpty()){
+            moduleId = "global_module";
+        }
+        SimPrintsVerifyActivity.startSimprintsVerifyActivity(this,
+                moduleId, fingerprintId, VERIFY_RESULT_CODE);
+    }
+
+    @Override
+    public void callFingerprintRegistration(Client client) {
+        currentClient = client;
+
+        try {
+            DateTime birthdate = client.getBirthdate();
+            SimpleDateFormat dateFormatForRiddler = new SimpleDateFormat("dd-MM-yyyy");
+            String formatedDate = "";
+            formatedDate = dateFormatForRiddler.format(birthdate.toDate());
+
+            JSONObject metadata = new JSONObject();
+            metadata.put("DOB", formatedDate);
+
+            String moduleId = CoreLibrary.getInstance().context().allSharedPreferences().fetchUserLocalityName("");
+            if (moduleId == null || moduleId.isEmpty()){
+                moduleId = "global_module";
+            }
+
+            SimPrintsRegisterActivity.startSimprintsRegisterActivity(this,
+                    moduleId, REGISTER_RESULT_CODE, metadata);
+
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
+    }
+
+    @Override
     public void enableEdit(boolean enable) {
         if (enable) {
             tvEdit.setVisibility(View.VISIBLE);
@@ -600,17 +662,74 @@ public class AdolescentProfileActivity extends BaseProfileActivity implements Ad
 
         if (resultCode != Activity.RESULT_OK) return;
 
-        if (requestCode == JsonFormUtils.REQUEST_CODE_GET_JSON) {
+        switch (requestCode){
+            case JsonFormUtils.REQUEST_CODE_GET_JSON:
+                try {
+                    String jsonString = data.getStringExtra(Constants.JSON_FORM_EXTRA.JSON);
+                    presenter().updateAdolescentProfile(jsonString);
 
-            try {
-               String jsonString = data.getStringExtra(Constants.JSON_FORM_EXTRA.JSON);
-                presenter().updateAdolescentProfile(jsonString);
+                } catch (Exception e) {
+                    Timber.e(e);
+                }
+                break;
+            case VERIFY_RESULT_CODE:
+                if (data.getExtras() != null){
+                    SimPrintsVerification simprintsVerification = (SimPrintsVerification) data.getSerializableExtra(SimPrintsConstantHelper.INTENT_DATA);
+                    assert simprintsVerification != null;
+                    if (simprintsVerification.getCheckStatus()){
+                        switch (simprintsVerification.getMaskedTier()){
+                            case TIER_3:
+                            case TIER_2:
+                            case TIER_1:
+                                showSnackBar(this.getResources().getString(R.string.fingerprint_matched));
+                                break;
+                            default:
+                                showSnackBar(this.getResources().getString(R.string.fingerprint_did_not_match));
+                        }
+                    }else{
+                        showSnackBar(this.getResources().getString(R.string.fingerprint_verification_terminated));
+                    }
+                }
+                break;
+            case REGISTER_RESULT_CODE:
+                if (data.getExtras() != null){
 
-            } catch (Exception e) {
-                Timber.e(e);
-            }
+                    SimPrintsRegistration simPrintsRegistration = (SimPrintsRegistration) data.getSerializableExtra(SimPrintsConstantHelper.INTENT_DATA);
+                    assert simPrintsRegistration != null;
+                    if (simPrintsRegistration.getCheckStatus()){
+                        String guid = simPrintsRegistration.getGuid();
 
+                        if (!guid.isEmpty()){
+
+                            Map<String, String> identifier = new HashMap<>();
+                            identifier.put("simprints_guid", guid);
+
+                            currentClient.setIdentifiers(identifier);
+
+                            JSONObject object = CoreLibrary.getInstance().context().getEventClientRepository().convertToJson(currentClient);
+
+                            CoreLibrary.getInstance().context().getEventClientRepository().addorUpdateClient(currentClient.getBaseEntityId(), object);
+
+                            showSnackBar(this.getResources().getString(R.string.fingerprint_enrolled));
+                        }
+                    }
+                }
+                break;
         }
 
     }
+
+    private void showSnackBar(String message){
+        View parentLayout = findViewById(android.R.id.content);
+        Snackbar.make(parentLayout, message, Snackbar.LENGTH_INDEFINITE)
+                .setAction("CLOSE", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                    }
+                })
+                .setActionTextColor(getResources().getColor(android.R.color.holo_red_light ))
+                .show();
+    }
+
 }

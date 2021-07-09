@@ -32,7 +32,7 @@
                 android:paddingTop="10dp"
                 android:paddingRight="10dp"
                 android:paddingBottom="10dp"
-                android:text="@string/verify_child_fingerprint"
+                android:text="@string/verify_fingerprint"
                 android:textColor="@color/white" />
 
         </LinearLayout>

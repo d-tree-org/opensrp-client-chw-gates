@@ -68,6 +68,10 @@ public interface AdolescentProfileContract extends BaseProfileContract {
 
         void hideView();
 
+        void callFingerprintVerification(String fingerprintId);
+
+        void callFingerprintRegistration(org.smartregister.domain.db.Client client);
+      
         void setClientTasks(Set<Task> taskList);
 
     }
@@ -98,6 +102,8 @@ public interface AdolescentProfileContract extends BaseProfileContract {
 
         void updateVisitNotDone(long value);
 
+        void verifyFingerprint();
+      
         void fetchTasks();
 
     }
@@ -116,7 +122,10 @@ public interface AdolescentProfileContract extends BaseProfileContract {
 
         void saveRegistration(final Pair<Client, Event> pair, String jsonString, final boolean isEditMode, final AdolescentProfileContract.InteractorCallBack callBack);
 
+        void getFingerprintForVerification(String baseEntityId, InteractorCallBack callBack);
+
         void getClientTasks(String planId, String baseEntityId, AdolescentProfileContract.InteractorCallBack callback);
+
     }
     interface InteractorCallBack extends BaseProfileContract{
 
@@ -146,7 +155,10 @@ public interface AdolescentProfileContract extends BaseProfileContract {
 
         void undoVisitNotDone();
 
+        void onFingerprintFetched(String fingerprint, boolean hasFingerprint, org.smartregister.domain.db.Client client);
+
         void setClientTasks(Set<Task> taskList);
+
     }
 
 }

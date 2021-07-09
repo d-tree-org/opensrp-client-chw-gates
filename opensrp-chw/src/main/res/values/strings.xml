@@ -7,7 +7,7 @@
     <string name="not_provided">Not provided</string>
 
     <string name="scan_fingerprint"> Scan </string>
-    <string name="verify_child_fingerprint">Verify Fingerprint</string>
+    <string name="verify_fingerprint">Verify Fingerprint</string>
     <string name="verify_fp_prompt_message">"Please scan child fingerprints by pressing 'Verify fingerprints' button"</string>
 
     <string name="child_under_five">Child under 5 years</string>
