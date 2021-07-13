@@ -9,6 +9,7 @@ import org.jeasy.rules.api.Rules;
 import org.jetbrains.annotations.NotNull;
 import org.joda.time.LocalDate;
 import org.json.JSONObject;
+import org.smartregister.CoreLibrary;
 import org.smartregister.chw.anc.AncLibrary;
 import org.smartregister.chw.anc.contract.BaseAncMemberProfileContract;
 import org.smartregister.chw.anc.domain.MemberObject;
@@ -214,5 +215,16 @@ public class PncMemberProfileInteractor extends CorePncMemberProfileInteractor i
         taskList.addAll(inProgressTasks);
 
         callback.setClientTasks(taskList);
+    }
+
+    @Override
+    public void getFingerprintForVerification(String baseEntityId, PncMemberProfileContract.InteractorCallBack callBack) {
+        org.smartregister.domain.db.Client client = CoreLibrary.getInstance().context().getEventClientRepository().fetchClientByBaseEntityId(baseEntityId);
+        String simprintsId = client.getIdentifier("simprints_guid");
+        if (simprintsId != null){
+            callBack.onFingerprintFetched(simprintsId, true, client);
+        }else {
+            callBack.onFingerprintFetched("", false, client);
+        }
     }
 }

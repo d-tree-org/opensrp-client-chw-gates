@@ -7,7 +7,7 @@
     <string name="not_provided">Not provided</string>
 
     <string name="scan_fingerprint"> Scan </string>
-    <string name="verify_child_fingerprint">Verify Fingerprint</string>
+    <string name="verify_fingerprint">Verify Fingerprint</string>
     <string name="verify_fp_prompt_message">"Please scan child fingerprints by pressing 'Verify fingerprints' button"</string>
 
     <string name="child_under_five">Child under 5 years</string>
@@ -348,6 +348,7 @@
     <string name="linkage_followup">Linkage Followup</string>
 
     <string name="followup">FOLLOW UP</string>
+    <string name="arrived_text"> Arrived </string>
 
     <string name="return_to_previous_page_adolescent">Return to all adolescents</string>
     <string name="adolescent_fragment_title">Adolescent Clients</string>

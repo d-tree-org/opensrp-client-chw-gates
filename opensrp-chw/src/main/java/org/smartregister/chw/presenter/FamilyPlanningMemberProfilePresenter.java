@@ -31,4 +31,9 @@ public class FamilyPlanningMemberProfilePresenter extends CoreFamilyPlanningProf
             Utils.launchClientReferralActivity((Activity) getView(), referralTypeModels, fpMemberObject.getBaseEntityId());
         }
     }
+
+    @Override
+    public void verifyFingerprint() {
+
+    }
 }

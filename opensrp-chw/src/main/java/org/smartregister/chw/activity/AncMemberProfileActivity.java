@@ -7,11 +7,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+import com.google.android.material.snackbar.Snackbar;
 
 import org.joda.time.DateTime;
 import org.joda.time.Days;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.smartregister.CoreLibrary;
 import org.smartregister.chw.R;
 import org.smartregister.chw.anc.AncLibrary;
 import org.smartregister.chw.anc.domain.MemberObject;
@@ -40,15 +44,24 @@ import org.smartregister.commonregistry.CommonPersonObject;
 import org.smartregister.commonregistry.CommonPersonObjectClient;
 import org.smartregister.commonregistry.CommonRepository;
 import org.smartregister.domain.Task;
+import org.smartregister.domain.db.Client;
 import org.smartregister.family.domain.FamilyEventClient;
 import org.smartregister.family.interactor.FamilyProfileInteractor;
 import org.smartregister.family.util.JsonFormUtils;
 import org.smartregister.family.util.Utils;
 import org.smartregister.repository.AllSharedPreferences;
+import org.smartregister.simprint.SimPrintsConstantHelper;
+import org.smartregister.simprint.SimPrintsRegisterActivity;
+import org.smartregister.simprint.SimPrintsRegistration;
+import org.smartregister.simprint.SimPrintsVerification;
+import org.smartregister.simprint.SimPrintsVerifyActivity;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import io.reactivex.Observable;
@@ -60,12 +73,26 @@ import timber.log.Timber;
 
 public class AncMemberProfileActivity extends CoreAncMemberProfileActivity implements AncMemberProfileContract.View {
 
+    private static final int VERIFY_RESULT_CODE = 8379;
+    private static final int REGISTER_RESULT_CODE = 5361;
+
+    org.smartregister.domain.db.Client currentClient;
+
     private List<ReferralTypeModel> referralTypeModels = new ArrayList<>();
 
     public static void startMe(Activity activity, String baseEntityID) {
         Intent intent = new Intent(activity, AncMemberProfileActivity.class);
         intent.putExtra(Constants.ANC_MEMBER_OBJECTS.BASE_ENTITY_ID, baseEntityID);
         activity.startActivity(intent);
+    }
+
+    @Override
+    public void setupViews() {
+        super.setupViews();
+        TextView verifyFingerprint = findViewById(R.id.textview_verify_fingerprint);
+        verifyFingerprint.setOnClickListener(this);
+        TextView verifyFingerprintAlt = findViewById(R.id.textview_verify_fingerprint_alt);
+        verifyFingerprintAlt.setOnClickListener(this);
     }
 
     @Override
@@ -166,7 +193,61 @@ public class AncMemberProfileActivity extends CoreAncMemberProfileActivity imple
         } else if (requestCode == CoreConstants.ProfileActivityResults.CHANGE_COMPLETED) {
             ChwScheduleTaskExecutor.getInstance().execute(memberObject.getBaseEntityId(), CoreConstants.EventType.ANC_HOME_VISIT, new Date());
             finish();
+        } else if (requestCode == VERIFY_RESULT_CODE){
+            if (data.getExtras() != null){
+                SimPrintsVerification simprintsVerification = (SimPrintsVerification) data.getSerializableExtra(SimPrintsConstantHelper.INTENT_DATA);
+                assert simprintsVerification != null;
+                if (simprintsVerification.getCheckStatus()){
+                    switch (simprintsVerification.getMaskedTier()){
+                        case TIER_3:
+                        case TIER_2:
+                        case TIER_1:
+                            showSnackBar(this.getResources().getString(R.string.fingerprint_matched));
+                            break;
+                        default:
+                            showSnackBar(this.getResources().getString(R.string.fingerprint_did_not_match));
+                    }
+                }else{
+                    showSnackBar(this.getResources().getString(R.string.fingerprint_verification_terminated));
+                }
+            }
+        }else if (requestCode == REGISTER_RESULT_CODE){
+            if (data.getExtras() != null){
+
+                SimPrintsRegistration simPrintsRegistration = (SimPrintsRegistration) data.getSerializableExtra(SimPrintsConstantHelper.INTENT_DATA);
+                assert simPrintsRegistration != null;
+                if (simPrintsRegistration.getCheckStatus()){
+                    String guid = simPrintsRegistration.getGuid();
+
+                    if (!guid.isEmpty()){
+
+                        Map<String, String> identifier = new HashMap<>();
+                        identifier.put("simprints_guid", guid);
+
+                        currentClient.setIdentifiers(identifier);
+
+                        JSONObject object = CoreLibrary.getInstance().context().getEventClientRepository().convertToJson(currentClient);
+
+                        CoreLibrary.getInstance().context().getEventClientRepository().addorUpdateClient(currentClient.getBaseEntityId(), object);
+
+                        showSnackBar(this.getResources().getString(R.string.fingerprint_enrolled));
+                    }
+                }
+            }
         }
+    }
+
+    private void showSnackBar(String message){
+        View parentLayout = findViewById(android.R.id.content);
+        Snackbar.make(parentLayout, message, Snackbar.LENGTH_INDEFINITE)
+                .setAction("CLOSE", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                    }
+                })
+                .setActionTextColor(getResources().getColor(android.R.color.holo_red_light ))
+                .show();
     }
 
     @Override
@@ -237,7 +318,17 @@ public class AncMemberProfileActivity extends CoreAncMemberProfileActivity imple
         } else if (id == R.id.referral_row) {
             Task task = (Task) view.getTag();
             ReferralFollowupActivity.startReferralFollowupActivity(this, task.getIdentifier(), memberObject.getBaseEntityId());
+        }else if (id == R.id.textview_verify_fingerprint || id == R.id.textview_verify_fingerprint_alt){
+            callVerifyFingerprint();
         }
+    }
+
+    private void callVerifyFingerprint(){
+        getPresenter().verifyFingerprint();
+    }
+
+    private AncMemberProfilePresenter getPresenter(){
+        return (AncMemberProfilePresenter) presenter();
     }
 
     @Override
@@ -315,5 +406,42 @@ public class AncMemberProfileActivity extends CoreAncMemberProfileActivity imple
     @Override
     public List<ReferralTypeModel> getReferralTypeModels() {
         return referralTypeModels;
+    }
+
+    @Override
+    public void callFingerprintVerification(String fingerprintId) {
+        String moduleId = CoreLibrary.getInstance().context().allSharedPreferences().fetchUserLocalityName("");
+        if (moduleId == null || moduleId.isEmpty()){
+            moduleId = "global_module";
+        }
+        SimPrintsVerifyActivity.startSimprintsVerifyActivity(this,
+                moduleId, fingerprintId, VERIFY_RESULT_CODE);
+    }
+
+    @Override
+    public void callFingerprintRegistration(Client client) {
+
+        currentClient = client;
+
+        try {
+            DateTime birthdate = client.getBirthdate();
+            SimpleDateFormat dateFormatForRiddler = new SimpleDateFormat("dd-MM-yyyy");
+            String formatedDate = "";
+            formatedDate = dateFormatForRiddler.format(birthdate.toDate());
+
+            JSONObject metadata = new JSONObject();
+            metadata.put("DOB", formatedDate);
+
+            String moduleId = CoreLibrary.getInstance().context().allSharedPreferences().fetchUserLocalityName("");
+            if (moduleId == null || moduleId.isEmpty()){
+                moduleId = "global_module";
+            }
+
+            SimPrintsRegisterActivity.startSimprintsRegisterActivity(this,
+                    moduleId, REGISTER_RESULT_CODE, metadata);
+
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
     }
 }

@@ -4,12 +4,14 @@ import android.content.Context;
 
 import org.jetbrains.annotations.NotNull;
 import org.joda.time.LocalDate;
+import org.smartregister.CoreLibrary;
 import org.smartregister.chw.anc.AncLibrary;
 import org.smartregister.chw.anc.contract.BaseAncMemberProfileContract;
 import org.smartregister.chw.anc.domain.MemberObject;
 import org.smartregister.chw.anc.domain.Visit;
 import org.smartregister.chw.anc.model.BaseUpcomingService;
 import org.smartregister.chw.anc.util.Constants;
+import org.smartregister.chw.contract.PncMemberProfileContract;
 import org.smartregister.chw.core.application.CoreChwApplication;
 import org.smartregister.chw.core.contract.AncMemberProfileContract;
 import org.smartregister.chw.core.interactor.CoreAncMemberProfileInteractor;
@@ -27,7 +29,7 @@ import java.util.Set;
 
 import timber.log.Timber;
 
-public class AncMemberProfileInteractor extends CoreAncMemberProfileInteractor {
+public class AncMemberProfileInteractor extends CoreAncMemberProfileInteractor implements org.smartregister.chw.contract.AncMemberProfileContract.Interactor {
 
     public AncMemberProfileInteractor(Context context) {
         super(context);
@@ -108,4 +110,16 @@ public class AncMemberProfileInteractor extends CoreAncMemberProfileInteractor {
 
         callback.setClientTasks(taskList);
     }
+
+    @Override
+    public void getFingerprintForVerification(String baseEntityId, org.smartregister.chw.contract.AncMemberProfileContract.InteractorCallback callback) {
+        org.smartregister.domain.db.Client client = CoreLibrary.getInstance().context().getEventClientRepository().fetchClientByBaseEntityId(baseEntityId);
+        String simprintsId = client.getIdentifier("simprints_guid");
+        if (simprintsId != null){
+            callback.onFingerprintFetched(simprintsId, true, client);
+        }else {
+            callback.onFingerprintFetched("", false, client);
+        }
+    }
+
 }

@@ -22,6 +22,11 @@ public class DefaultChwApplicationFlv implements ChwApplication.Flavor {
     }
 
     @Override
+    public boolean hasAdolescent() {
+        return false;
+    }
+
+    @Override
     public boolean hasChildSickForm() {
         return false;
     }

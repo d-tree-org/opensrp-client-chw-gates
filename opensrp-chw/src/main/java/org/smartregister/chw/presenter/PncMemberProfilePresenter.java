@@ -9,9 +9,11 @@ import org.smartregister.chw.anc.domain.MemberObject;
 import org.smartregister.chw.anc.presenter.BaseAncMemberProfilePresenter;
 import org.smartregister.chw.contract.PncMemberProfileContract;
 import org.smartregister.chw.core.utils.CoreConstants;
+import org.smartregister.chw.interactor.PncMemberProfileInteractor;
 import org.smartregister.chw.model.ReferralTypeModel;
 import org.smartregister.commonregistry.CommonPersonObjectClient;
 import org.smartregister.domain.Task;
+import org.smartregister.domain.db.Client;
 import org.smartregister.family.contract.FamilyProfileContract;
 import org.smartregister.family.domain.FamilyEventClient;
 import org.smartregister.family.util.Utils;
@@ -29,9 +31,12 @@ public class PncMemberProfilePresenter extends BaseAncMemberProfilePresenter imp
     private FormUtils formUtils;
     private String entityId;
 
+    BaseAncMemberProfileContract.Interactor interactor;
+
     public PncMemberProfilePresenter(BaseAncMemberProfileContract.View view,
                                      BaseAncMemberProfileContract.Interactor interactor, MemberObject memberObject) {
         super(view, interactor, memberObject);
+        this.interactor = interactor;
         setEntityId(memberObject.getBaseEntityId());
     }
 
@@ -77,6 +82,17 @@ public class PncMemberProfilePresenter extends BaseAncMemberProfilePresenter imp
         } catch (Exception e) {
             Timber.e(e);
         }
+    }
+
+    private PncMemberProfileContract.Interactor getInteractor(){
+        if (interactor != null)
+            return (PncMemberProfileContract.Interactor) interactor;
+        return new PncMemberProfileInteractor(this.getView().getContext());
+    }
+
+    @Override
+    public void verifyFingerprint() {
+        getInteractor().getFingerprintForVerification(getEntityId(), this);
     }
 
     @Override
@@ -131,6 +147,17 @@ public class PncMemberProfilePresenter extends BaseAncMemberProfilePresenter imp
     public void setClientTasks(Set<Task> taskList) {
         if (getView() != null) {
             getView().setClientTasks(taskList);
+        }
+    }
+
+    @Override
+    public void onFingerprintFetched(String fingerprint, boolean hasFingerprint, Client client) {
+        if (hasFingerprint){
+            //Call Fingerprint Verification
+            getView().callFingerprintVerification(fingerprint);
+        }else{
+            //Call Fingerprint Identification
+            getView().callFingerprintRegistration(client);
         }
     }
 }

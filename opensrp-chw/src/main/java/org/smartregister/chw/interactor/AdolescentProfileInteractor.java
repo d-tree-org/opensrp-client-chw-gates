@@ -5,7 +5,9 @@ import android.database.Cursor;
 import android.util.Pair;
 
 import org.json.JSONObject;
+import org.smartregister.CoreLibrary;
 import org.smartregister.chw.contract.AdolescentProfileContract;
+import org.smartregister.chw.core.application.CoreChwApplication;
 import org.smartregister.chw.model.AdolescentVisit;
 import org.smartregister.chw.core.utils.ChildDBConstants;
 import org.smartregister.chw.core.utils.CoreConstants;
@@ -19,6 +21,7 @@ import org.smartregister.clientandeventmodel.Event;
 import org.smartregister.commonregistry.CommonPersonObject;
 import org.smartregister.commonregistry.CommonPersonObjectClient;
 import org.smartregister.commonregistry.CommonRepository;
+import org.smartregister.domain.Task;
 import org.smartregister.family.FamilyLibrary;
 import org.smartregister.family.util.AppExecutors;
 import org.smartregister.family.util.DBConstants;
@@ -29,10 +32,8 @@ import org.smartregister.repository.UniqueIdRepository;
 import org.smartregister.sync.ClientProcessorForJava;
 import org.smartregister.sync.helper.ECSyncHelper;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Locale;
+import java.util.Set;
 
 import io.reactivex.Observable;
 import io.reactivex.Observer;
@@ -192,6 +193,17 @@ public class AdolescentProfileInteractor implements AdolescentProfileContract.In
         appExecutors.diskIO().execute(runnable);
     }
 
+    @Override
+    public void getFingerprintForVerification(String baseEntityId, AdolescentProfileContract.InteractorCallBack callBack) {
+        org.smartregister.domain.db.Client client = CoreLibrary.getInstance().context().getEventClientRepository().fetchClientByBaseEntityId(baseEntityId);
+        String simprintsId = client.getIdentifier("simprints_guid");
+        if (simprintsId != null){
+            callBack.onFingerprintFetched(simprintsId, true, client);
+        }else {
+            callBack.onFingerprintFetched("", false, client);
+        }
+    }
+
     private void saveRegistration(Pair<Client, Event> pair, String jsonString, boolean isEditMode) {
         try {
 
@@ -293,5 +305,15 @@ public class AdolescentProfileInteractor implements AdolescentProfileContract.In
             ChwScheduleTaskExecutor.getInstance().execute(getcommonPersonObjectClient().entityId(), Constants.ADOLESCENT_HOME_VISIT_NOT_DONE, new Date());
             objectObservableEmitter.onNext("");
         });
+    }
+
+    @Override
+    public void getClientTasks(String planId, String baseEntityId, AdolescentProfileContract.InteractorCallBack callback) {
+        Set<Task> taskList = CoreChwApplication.getInstance().getTaskRepository().getTasksByEntityAndStatus(planId, baseEntityId, Task.TaskStatus.READY);
+        Set<Task> inProgressTask = CoreChwApplication.getInstance().getTaskRepository().getTasksByEntityAndStatus(planId, baseEntityId, Task.TaskStatus.IN_PROGRESS);
+
+        taskList.addAll(inProgressTask);
+        callback.setClientTasks(taskList);
+
     }
 }

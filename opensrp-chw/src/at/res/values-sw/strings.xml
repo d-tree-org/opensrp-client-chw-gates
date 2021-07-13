@@ -26,6 +26,8 @@
     <string name="record_anc_visit">Rekodi tembeleo la mjamzito</string>
 
     <string name="followup">FUATILIA</string>
+    <string name="arrived_text"> Amewasili </string>
+
     <string name="confirm_remove_text">Una uhakika unataka kuondoa taarifa za huyu mteja? Hii itaondoa taarifa zote za %s kutoka kwenye simu yako. Haitawezekana kumrudisha.</string>
     <string name="care_giver_initials">MLEZI</string>
     <string name="gestation_age_initial">Umri wa Mimba</string>
@@ -93,5 +95,7 @@
     <string name="phone">Namba ya simu</string>
 
     <string name="referral_type">Aina ya Rufaa</string>
+
+    <string name="over_due_visit">TEMBELEO LIMECHELEWA \n %1$s</string>
 
 </resources>
