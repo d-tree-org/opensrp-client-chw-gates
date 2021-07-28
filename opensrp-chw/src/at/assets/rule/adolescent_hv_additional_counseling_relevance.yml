@@ -21,17 +21,17 @@ name: step1_adolescent_service_option
 description: Service options relevance
 priority: 1
 condition: "(step1_additional_counseling.contains('family_planning_methods') ||
-              step1_additional_counseling.contains('reproductive_health_issues') ||
-              step1_adolescent_condition_present.contains('pain_lower_abdominal_parts') ||
-              step1_adolescent_condition_present.contains('vaginal_discharge') ||
-              step1_adolescent_condition_present.contains('swelling_genitals')) ||
-              step1_adolescent_condition_present.contains('suspected_pregnancy') ||
-              step1_adolescent_condition_present.contains('wound_around_genitals') ||
-              step1_adolescent_condition_present.contains('irritation_around_genitals') ||
-              step1_adolescent_condition_present.contains('others')&&
-              !(
-                  step1_adolescent_condition_present.contains('vaginal_bleeding_between_periods') ||
-              )"
+            step1_additional_counseling.contains('reproductive_health_issues') ||
+            step1_adolescent_condition_present.contains('pain_lower_abdominal_parts') ||
+            step1_adolescent_condition_present.contains('vaginal_discharge') ||
+            step1_adolescent_condition_present.contains('wound_around_genitals') ||
+            step1_adolescent_condition_present.contains('suspected_pregnancy') ||
+            step1_adolescent_condition_present.contains('irritation_around_genitals') ||
+            step1_adolescent_condition_present.contains('others') ||
+            step1_adolescent_condition_present.contains('swelling_genitals')) &&
+            !(
+              step1_adolescent_condition_present.contains('vaginal_bleeding_between_periods')
+            )"
 actions:
   - "isRelevant = true"
 
@@ -39,15 +39,7 @@ actions:
 name: step1_adolescent_addo_linkage_toaster
 description: Addo Linkage toaster
 priority: 1
-condition: "(step1_adolescent_service_option.contains('addo')) &&
-            !(step1_adolescent_condition_present.contains('irritation_around_genitals') ||
-                step1_additional_counseling.contains('reproductive_health_issues') ||
-                step1_adolescent_service_option.contains('health_facility') ||
-                step1_adolescent_service_option.contains('neither') ||
-                step1_adolescent_condition_present.contains('suspected_pregnancy') ||
-                step1_adolescent_condition_present.contains('wound_around_genitals') ||
-                step1_adolescent_condition_present.contains('vaginal_bleeding_between_periods') ||
-                step1_adolescent_condition_present.contains('others'))"
+condition: "step1_adolescent_service_option.contains('addo')"
 actions:
   - "isRelevant = true"
 
@@ -55,15 +47,7 @@ actions:
 name: step1_save_n_link
 description: Addo Linkage toaster
 priority: 1
-condition: "(step1_adolescent_service_option.contains('addo')) &&
-            !(step1_additional_counseling.contains('reproductive_health_issues') ||
-                step1_adolescent_condition_present.contains('irritation_around_genitals') ||
-                          step1_adolescent_service_option.contains('health_facility') ||
-                          step1_adolescent_service_option.contains('neither') ||
-                          step1_adolescent_condition_present.contains('suspected_pregnancy') ||
-                          step1_adolescent_condition_present.contains('wound_around_genitals') ||
-                          step1_adolescent_condition_present.contains('vaginal_bleeding_between_periods') ||
-                          step1_adolescent_condition_present.contains('others'))"
+condition: "step1_adolescent_service_option.contains('addo')"
 actions:
   - "isRelevant = true"
 
