@@ -29,6 +29,7 @@ name: step1_adolescent_service_option
 description: Service options relevance
 priority: 1
 condition: "(step1_additional_counseling.contains('family_planning_methods') ||
+            step1_additional_counseling.contains('reproductive_health_issues') ||
             step1_adolescent_condition_present.contains('pain_lower_abdominal_parts') ||
             step1_adolescent_condition_present.contains('vaginal_discharge') ||
             step1_adolescent_condition_present.contains('swelling_genitals')) &&
