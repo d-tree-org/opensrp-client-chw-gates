@@ -31,7 +31,7 @@ public class AncRegisterFragment extends CoreAncRegisterFragment {
         if (activity == null)
             return;
 
-        AncHomeVisitActivity.startMe(activity, client.getCaseId(), false);
+        AncHomeVisitActivity.startMe(activity, client.getCaseId(), false, true);
     }
 
     @Override
