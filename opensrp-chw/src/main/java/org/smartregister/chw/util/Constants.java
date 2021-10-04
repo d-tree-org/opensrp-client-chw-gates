@@ -39,4 +39,8 @@ public class Constants extends CoreConstants {
         public static final String UNATTENDED = "Unattended";
     }
 
+    public static class ANC_INTENT_KEY {
+        public static final String ORIGINATES_FROM_ANC_REGISTER = "originates_from_anc_register";
+    }
+
 }
