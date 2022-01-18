@@ -22,3 +22,7 @@ jacoco.exec
 /github.properties
 /app.properties
 /database/
+caches
+daemon
+native
+wrapper
