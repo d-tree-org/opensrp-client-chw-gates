@@ -403,9 +403,12 @@
         "extra_info": {
           "DOB": "dob_calculated"
         },
-        "v_required": {
-          "value": "true",
-          "err": "Tafadhali skani alama za vidole"
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "family_member_edit_relevance.yml"
+            }
+          }
         }
       }
     ]
