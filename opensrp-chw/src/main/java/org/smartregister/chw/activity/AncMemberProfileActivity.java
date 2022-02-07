@@ -90,9 +90,11 @@ public class AncMemberProfileActivity extends CoreAncMemberProfileActivity imple
     public void setupViews() {
         super.setupViews();
         TextView verifyFingerprint = findViewById(R.id.textview_verify_fingerprint);
-        verifyFingerprint.setOnClickListener(this);
+        verifyFingerprint.setVisibility(View.GONE);
+        //verifyFingerprint.setOnClickListener(this);
         TextView verifyFingerprintAlt = findViewById(R.id.textview_verify_fingerprint_alt);
-        verifyFingerprintAlt.setOnClickListener(this);
+        verifyFingerprintAlt.setVisibility(View.GONE);
+        //verifyFingerprintAlt.setOnClickListener(this);
     }
 
     @Override
@@ -319,7 +321,7 @@ public class AncMemberProfileActivity extends CoreAncMemberProfileActivity imple
             Task task = (Task) view.getTag();
             ReferralFollowupActivity.startReferralFollowupActivity(this, task.getIdentifier(), memberObject.getBaseEntityId());
         }else if (id == R.id.textview_verify_fingerprint || id == R.id.textview_verify_fingerprint_alt){
-            callVerifyFingerprint();
+            //callVerifyFingerprint();
         }
     }
 
