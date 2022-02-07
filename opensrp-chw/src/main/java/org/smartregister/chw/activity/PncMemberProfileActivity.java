@@ -280,9 +280,11 @@ public class PncMemberProfileActivity extends CorePncMemberProfileActivity imple
         textViewUndo.setOnClickListener(this);
 
         verifyFingerprint = findViewById(R.id.textview_verify_fingerprint);
-        verifyFingerprint.setOnClickListener(this);
+        verifyFingerprint.setVisibility(View.GONE);
+        //verifyFingerprint.setOnClickListener(this);
         verifyFingerprintAlt = findViewById(R.id.textview_verify_fingerprint_alt);
-        verifyFingerprintAlt.setOnClickListener(this);
+        verifyFingerprintAlt.setVisibility(View.GONE);
+        //verifyFingerprintAlt.setOnClickListener(this);
 
         super.setupViews();
 
@@ -449,10 +451,10 @@ public class PncMemberProfileActivity extends CorePncMemberProfileActivity imple
                 this.presenter().getView().setVisitNotDoneThisMonth();
                 break;
             case R.id.textview_verify_fingerprint:
-                verifyFP();
+                //verifyFP();
                 break;
             case R.id.textview_verify_fingerprint_alt:
-                verifyFP();
+                //verifyFP();
                 break;
             default:
                 break;
