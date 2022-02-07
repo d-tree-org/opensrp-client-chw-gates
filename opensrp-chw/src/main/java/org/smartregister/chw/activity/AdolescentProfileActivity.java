@@ -196,6 +196,7 @@ public class AdolescentProfileActivity extends BaseProfileActivity implements Ad
         progressBar = findViewById(org.smartregister.chw.core.R.id.progress_bar);
         textViewTitle = findViewById(R.id.toolbar_title);
         verifyFingerprint = findViewById(R.id.textview_verify_adolescent_fingerprint);
+        verifyFingerprint.setVisibility(View.GONE);
 
         // Setup onClick Listener
         textViewRecord.setOnClickListener(this);
@@ -204,7 +205,7 @@ public class AdolescentProfileActivity extends BaseProfileActivity implements Ad
         layoutFamilyHasRow.setOnClickListener(this);
         textViewVisitNot.setOnClickListener(this);
         textViewUndo.setOnClickListener(this);
-        verifyFingerprint.setOnClickListener(this);
+        //verifyFingerprint.setOnClickListener(this);
         setUpToolbar();
     }
 
@@ -232,7 +233,8 @@ public class AdolescentProfileActivity extends BaseProfileActivity implements Ad
             openFamilyDueServices();
         } else if (i == R.id.textview_verify_adolescent_fingerprint){
             //Call verify fingerprint
-            startFingerprintVerification();
+
+            // Remove fingerprint startFingerprintVerification();
         } else if (i == R.id.referral_row) {
             Task task = (Task) view.getTag();
             ReferralFollowupActivity.startReferralFollowupActivity(this, task.getIdentifier(), task.getForEntity());
