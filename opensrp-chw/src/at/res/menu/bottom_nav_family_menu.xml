@@ -13,7 +13,8 @@
         android:enabled="true"
         android:icon="@mipmap/ic_fingerprint"
         android:title="@string/scan_fingerprint"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="ifRoom"
+        android:visible="false" />
 
     <item
         android:id="@+id/action_register"
