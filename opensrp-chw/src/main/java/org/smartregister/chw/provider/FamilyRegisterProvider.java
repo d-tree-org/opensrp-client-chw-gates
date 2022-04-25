@@ -154,8 +154,9 @@ public class FamilyRegisterProvider extends CoreRegisterProvider {
             if (ChwApplication.getApplicationFlavor().hasMalaria())
                 malariaCount = ChwApplication.malariaRegisterRepository().getMalariaCount(familyBaseEntityId, CoreConstants.TABLE_NAME.MALARIA_CONFIRMATION);
 
-            if (ChwApplication.getApplicationFlavor().hasPNC())
-                fpCount = FpDao.getFpWomenCount(familyBaseEntityId) != null ? FpDao.getFpWomenCount(familyBaseEntityId) : 0;
+            // No family planning, this throws some exceptions
+            /* if (ChwApplication.getApplicationFlavor().hasPNC())
+                fpCount = FpDao.getFpWomenCount(familyBaseEntityId) != null ? FpDao.getFpWomenCount(familyBaseEntityId) : 0;*/
 
             services = FamilyDao.getFamilyServiceSchedule(familyBaseEntityId);
             return null;
@@ -167,7 +168,7 @@ public class FamilyRegisterProvider extends CoreRegisterProvider {
             updateChildIcons(viewHolder, list, ancWomanCount, pncWomanCount);
             updateMalariaIcons(viewHolder, malariaCount);
             updateButtonState(context, viewHolder, services);
-            updateFpIcons(viewHolder, fpCount);
+            //updateFpIcons(viewHolder, fpCount);
         }
     }
 

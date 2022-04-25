@@ -663,19 +663,11 @@
           "DOB": "dob_calculated"
         },
         "relevance": {
-          "step2:fam_consent": {
-            "ex-checkbox": [
-              {
-                "or": [
-                  "chk_consent_yes"
-                ]
-              }
-            ]
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "family_register_relevance.yml"
+            }
           }
-        },
-        "v_required": {
-          "value": "true",
-          "err": "Tafadhali skani alama za vidole"
         }
       },
       {

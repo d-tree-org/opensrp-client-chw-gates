@@ -45,7 +45,8 @@ public class FamilyOtherMemberProfileActivityFlv implements FamilyOtherMemberPro
         menu.findItem(R.id.action_fp_change).setVisible(false);
         menu.findItem(R.id.action_fp_initiation).setVisible(false);
         menu.findItem(R.id.action_family_planning_initiation).setVisible(false);
-        UtilsFlv.updateFpMenuItems(baseEntityId, menu);
+        // No FP
+        //UtilsFlv.updateFpMenuItems(baseEntityId, menu);
     }
 
     @Override
