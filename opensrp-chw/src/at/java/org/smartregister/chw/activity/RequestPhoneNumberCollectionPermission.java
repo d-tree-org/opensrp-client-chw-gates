@@ -15,7 +15,7 @@ import androidx.fragment.app.FragmentActivity;
 
 import org.smartregister.chw.R;
 
-public class RequestCallPhonePermission extends FragmentActivity {
+public class RequestPhoneNumberCollectionPermission extends FragmentActivity {
     private static final int READ_PHONE_NUMBERS_PERMISSION_CODE = 100;
 
     @Override
@@ -23,10 +23,10 @@ public class RequestCallPhonePermission extends FragmentActivity {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == READ_PHONE_NUMBERS_PERMISSION_CODE) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                Toast.makeText(RequestCallPhonePermission.this, "Read Phone Number Permission Granted", Toast.LENGTH_SHORT).show();
-                finish();
+                Toast.makeText(RequestPhoneNumberCollectionPermission.this, "Read Phone Number Permission Granted", Toast.LENGTH_SHORT).show();
+                startLoginActivity();
             } else {
-                Toast.makeText(RequestCallPhonePermission.this, "Read Phone Number Permission Not Granted", Toast.LENGTH_SHORT).show();
+                Toast.makeText(RequestPhoneNumberCollectionPermission.this, "Read Phone Number Permission Not Granted", Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -34,7 +34,7 @@ public class RequestCallPhonePermission extends FragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (ContextCompat.checkSelfPermission(RequestCallPhonePermission.this,
+        if (ContextCompat.checkSelfPermission(RequestPhoneNumberCollectionPermission.this,
                 Manifest.permission.READ_PHONE_NUMBERS) == PackageManager.PERMISSION_GRANTED) {
             startLoginActivity();
         }
@@ -42,7 +42,7 @@ public class RequestCallPhonePermission extends FragmentActivity {
     }
 
     public void onClickNoThanks(View view) {
-
+        finish();
     }
 
     public void onClickGrant(View view) {
@@ -52,15 +52,16 @@ public class RequestCallPhonePermission extends FragmentActivity {
     }
 
     public void checkPermission(String permission, int requestCode) {
-        if (ContextCompat.checkSelfPermission(RequestCallPhonePermission.this, permission) == PackageManager.PERMISSION_DENIED) {
-            ActivityCompat.requestPermissions(RequestCallPhonePermission.this, new String[]{permission}, requestCode);
+        if (ContextCompat.checkSelfPermission(RequestPhoneNumberCollectionPermission.this, permission) == PackageManager.PERMISSION_DENIED) {
+            ActivityCompat.requestPermissions(RequestPhoneNumberCollectionPermission.this, new String[]{permission}, requestCode);
         } else {
-            Toast.makeText(RequestCallPhonePermission.this, "Permission already granted", Toast.LENGTH_SHORT).show();
+            Toast.makeText(RequestPhoneNumberCollectionPermission.this, "Permission already granted", Toast.LENGTH_SHORT).show();
         }
     }
 
     public void startLoginActivity() {
-        Intent intent = new Intent(RequestCallPhonePermission.this, LoginActivity.class);
+        Intent intent = new Intent(RequestPhoneNumberCollectionPermission.this, LoginActivity.class);
         startActivity(intent);
+        finish();
     }
 }

@@ -148,28 +148,15 @@
             android:screenOrientation="portrait"
             android:theme="@style/ChwTheme.Login"
             android:windowSoftInputMode="stateAlwaysHidden|adjustResize">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
         </activity>
-
-
-
         <activity
-            android:name=".activity.RequestCallPhonePermission"
+            android:name=".activity.RequestPhoneNumberCollectionPermission"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
-
-
-
         <activity
             android:name=".activity.AboveFiveChildProfileActivity"
             android:label="@string/child_details"
