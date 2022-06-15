@@ -311,9 +311,12 @@
         "extra_info": {
           "DOB": "dob_calculated"
         },
-        "v_required": {
-          "value": "true",
-          "err": "Tafadhali skani alama ya vidole"
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "family-child-relevance.yml"
+            }
+          }
         }
       }
     ]

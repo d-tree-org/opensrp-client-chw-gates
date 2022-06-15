@@ -606,19 +606,11 @@
          "extra_info": {
            "DOB": "dob_calculated"
          },
-         "v_required": {
-           "value": "true",
-           "err": "Please scan fingerprint"
-         },
          "relevance": {
-           "step1:member_consent": {
-             "ex-checkbox": [
-               {
-                 "or": [
-                   "chk_consent_yes"
-                 ]
-               }
-             ]
+           "rules-engine": {
+             "ex-rules": {
+               "rules-file": "family_member_relevance.yml"
+             }
            }
          }
        },

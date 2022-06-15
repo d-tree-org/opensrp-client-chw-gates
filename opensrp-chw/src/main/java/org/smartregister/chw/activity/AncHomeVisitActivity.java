@@ -3,6 +3,7 @@ package org.smartregister.chw.activity;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.widget.Toast;
 
 import com.vijay.jsonwizard.constants.JsonFormConstants;
@@ -30,11 +31,24 @@ import timber.log.Timber;
 
 public class AncHomeVisitActivity extends BaseAncHomeVisitActivity {
 
+    private boolean originatesFromAncRegister;
+
     public static void startMe(Activity activity, String baseEntityID, Boolean isEditMode) {
+        startMe(activity, baseEntityID, isEditMode, false);
+    }
+
+    public static void startMe(Activity activity, String baseEntityID, Boolean isEditMode, Boolean isFromRegister) {
         Intent intent = new Intent(activity, AncHomeVisitActivity.class);
         intent.putExtra(org.smartregister.chw.anc.util.Constants.ANC_MEMBER_OBJECTS.BASE_ENTITY_ID, baseEntityID);
         intent.putExtra(org.smartregister.chw.anc.util.Constants.ANC_MEMBER_OBJECTS.EDIT_MODE, isEditMode);
+        intent.putExtra(org.smartregister.chw.util.Constants.ANC_INTENT_KEY.ORIGINATES_FROM_ANC_REGISTER, isFromRegister);
         activity.startActivityForResult(intent, org.smartregister.chw.anc.util.Constants.REQUEST_CODE_HOME_VISIT);
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        originatesFromAncRegister = getIntent().getBooleanExtra(org.smartregister.chw.util.Constants.ANC_INTENT_KEY.ORIGINATES_FROM_ANC_REGISTER, false);
     }
 
     @Override
@@ -47,7 +61,18 @@ public class AncHomeVisitActivity extends BaseAncHomeVisitActivity {
         // recompute schedule
         Runnable runnable = () -> ChwScheduleTaskExecutor.getInstance().execute(memberObject.getBaseEntityId(), CoreConstants.EventType.ANC_HOME_VISIT, new Date());
         org.smartregister.chw.util.Utils.startAsyncTask(new RunnableTask(runnable), null);
-        super.submittedAndClose();
+        if (originatesFromAncRegister) {
+           startAncRegisterActivity();
+        } else {
+            super.submittedAndClose();
+        }
+    }
+
+    private void startAncRegisterActivity() {
+        Intent intent = new Intent(this, AncRegisterActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        finish();
     }
 
     @Override
@@ -93,15 +118,15 @@ public class AncHomeVisitActivity extends BaseAncHomeVisitActivity {
                     JSONArray a = form.getJSONObject("step1").getJSONArray("fields");
                     String buttonAction = "";
 
-                    for (int i=0; i<a.length(); i++) {
+                    for (int i = 0; i < a.length(); i++) {
                         org.json.JSONObject jo = a.getJSONObject(i);
                         if (jo.getString("key").equalsIgnoreCase("save_n_link") || jo.getString("key").equalsIgnoreCase("save_n_refer")) {
-                            if(jo.optString("value") != null && jo.optString("value").compareToIgnoreCase("true") == 0){
+                            if (jo.optString("value") != null && jo.optString("value").compareToIgnoreCase("true") == 0) {
                                 buttonAction = jo.getJSONObject("action").getString("behaviour");
                             }
                         }
                     }
-                    if(!buttonAction.isEmpty()) {
+                    if (!buttonAction.isEmpty()) {
                         // check if other referral exists
                         String businessStatus = buttonAction.equalsIgnoreCase("refer") ? CoreConstants.BUSINESS_STATUS.REFERRED : CoreConstants.BUSINESS_STATUS.LINKED;
                         if (!CoreReferralUtils.hasReferralTask(baseEntityID, businessStatus)) {

@@ -61,3 +61,10 @@ priority: 1
 condition: "step1_rhc_card.contains('Yes')"
 actions:
   - "isRelevant = true"
+---
+name: step1_finger_print
+description: Hide the fingerprint widget from the form
+priority: 1
+condition: "true"
+actions:
+  - "isRelevant = false"

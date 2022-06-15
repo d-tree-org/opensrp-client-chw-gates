@@ -47,3 +47,10 @@ priority: 1
 condition: "step1_member_consent.contains('chk_consent_yes') && step2_wra == 1"
 actions:
   - "isRelevant = true"
+---
+name: step3_finger_print
+description: Hide the fingerprint widget from the form
+priority: 1
+condition: "true"
+actions:
+  - "isRelevant = false"

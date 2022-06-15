@@ -92,7 +92,6 @@ public class ChildProfileActivity extends CoreChildProfileActivity implements Ch
         }
 
         org.smartregister.chw.presenter.ChildProfilePresenter presenter = (org.smartregister.chw.presenter.ChildProfilePresenter) presenter();
-        presenter.getChildVerifyFingerprintPermission(childBaseEntityId);
     }
 
     @Override
@@ -149,7 +148,7 @@ public class ChildProfileActivity extends CoreChildProfileActivity implements Ch
         layoutRecordView = findViewById(R.id.record_visit_bar);
 
         verifyChildFingerprint = findViewById(R.id.textview_verify_fingerprint);
-        verifyChildFingerprint.setOnClickListener(this);
+        verifyChildFingerprint.setVisibility(View.GONE);
 
         fetchProfileData();
     }

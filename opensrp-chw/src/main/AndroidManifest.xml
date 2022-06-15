@@ -148,9 +148,12 @@
             android:screenOrientation="portrait"
             android:theme="@style/ChwTheme.Login"
             android:windowSoftInputMode="stateAlwaysHidden|adjustResize">
+        </activity>
+        <activity
+            android:name=".activity.RequestPhoneNumberCollectionPermission"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
