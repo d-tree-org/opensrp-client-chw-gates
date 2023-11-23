@@ -4,6 +4,9 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.bottomnavigation.LabelVisibilityMode;
 
@@ -14,6 +17,7 @@ import org.smartregister.chw.application.ChwApplication;
 import org.smartregister.chw.core.activity.CoreFamilyRegisterActivity;
 import org.smartregister.chw.core.custom_views.NavigationMenu;
 import org.smartregister.chw.fragment.FamilyRegisterFragment;
+import org.smartregister.chw.fragment.VisitLocationFragment;
 import org.smartregister.chw.listener.ChwBottomNavigationListener;
 import org.smartregister.chw.listener.FamilyBottomNavigationListener;
 import org.smartregister.chw.referral.ReferralLibrary;
@@ -93,6 +97,18 @@ public class FamilyRegisterActivity extends CoreFamilyRegisterActivity {
         if (action != null && action.equals(Constants.ACTION.START_REGISTRATION)) {
             startRegistration();
         }
+        //Fragment with background task to capture current CHW location
+        addVisitLocationFragment();
+    }
+
+    private void addVisitLocationFragment(){
+        VisitLocationFragment visitLocationFragment = new VisitLocationFragment();
+
+        // Using FragmentManager to add the fragment to the activity
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.add(visitLocationFragment, "visitLocationBackgroundTask");
+        fragmentTransaction.commit();
     }
 
     @Override
