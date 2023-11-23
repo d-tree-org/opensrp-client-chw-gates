@@ -13,6 +13,7 @@ import org.joda.time.format.DateTimeFormat;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.smartregister.chw.R;
+import org.smartregister.chw.action_helper.MedicationInUseActionHelper;
 import org.smartregister.chw.actionhelper.HealthFacilityVisitAction;
 import org.smartregister.chw.anc.AncLibrary;
 import org.smartregister.chw.anc.contract.BaseAncHomeVisitContract;
@@ -21,6 +22,8 @@ import org.smartregister.chw.anc.domain.Visit;
 import org.smartregister.chw.anc.domain.VisitDetail;
 import org.smartregister.chw.anc.model.BaseAncHomeVisitAction;
 import org.smartregister.chw.anc.util.VisitUtils;
+import org.smartregister.chw.core.utils.CoreConstants;
+import org.smartregister.chw.core.utils.Utils;
 import org.smartregister.chw.util.Constants;
 import org.smartregister.chw.util.ContactUtil;
 import org.smartregister.chw.util.JsonFormUtils;
@@ -80,6 +83,7 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
         dateMap.putAll(ContactUtil.getContactWeeks(isFirst, lastContact, lastMenstrualPeriod));
 
         evaluateDangerSigns(actionList, details, context);
+        evaluateMedicationInUse(actionList, details, context);
         evaluateHealthFacilityVisit(actionList, details, memberObject, dateMap, context);
 //        evaluateFamilyPlanning(actionList, details, context);
 //        evaluateNutritionStatus(actionList, details, context);
@@ -102,6 +106,18 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
                 .withHelper(new DangerSignsAction())
                 .build();
         actionList.put(context.getString(R.string.anc_home_visit_danger_signs), danger_signs);
+    }
+
+    private void evaluateMedicationInUse(LinkedHashMap<String, BaseAncHomeVisitAction> actionList,
+                                         Map<String, List<VisitDetail>> details,
+                                         final Context context) throws BaseAncHomeVisitAction.ValidationException {
+        BaseAncHomeVisitAction danger_signs = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.anc_home_visit_medication_in_use))
+                .withOptional(false)
+                .withDetails(details)
+                .withFormName(Utils.getLocalForm("anc_hv_medication_in_use", CoreConstants.JSON_FORM.locale, CoreConstants.JSON_FORM.assetManager))
+                .withHelper(new MedicationInUseActionHelper())
+                .build();
+        actionList.put(context.getString(R.string.anc_home_visit_medication_in_use), danger_signs);
     }
 
     private void evaluateHealthFacilityVisit(LinkedHashMap<String, BaseAncHomeVisitAction> actionList,
