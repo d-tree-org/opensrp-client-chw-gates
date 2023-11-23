@@ -15,6 +15,7 @@ import org.smartregister.chw.core.utils.CoreConstants;
 import org.smartregister.chw.core.utils.Utils;
 import org.smartregister.chw.util.Constants;
 import org.smartregister.chw.util.JsonFormUtils;
+import org.smartregister.chw.util.VisitLocationUtils;
 import org.smartregister.immunization.domain.ServiceWrapper;
 import org.smartregister.util.LangUtils;
 
@@ -89,6 +90,11 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
             @Override
             public String evaluateSubTitle() {
                 return MessageFormat.format("{0}: {1}", "Danger Signs", child_danger_signs);
+            }
+
+            @Override
+            public String postProcess(String jsonPayload) {
+                return VisitLocationUtils.updateWithCurrentGpsLocation(jsonPayload);
             }
 
             @Override
