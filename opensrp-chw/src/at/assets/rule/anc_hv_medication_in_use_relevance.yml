@@ -1,0 +1,49 @@
+---
+name: step1_child_minor_illness_present_toaster
+description: Child Minor Illnesses relevance
+priority: 1
+condition: "step1_fever == 'Yes' || step1_cough_cold == 'Yes' || step1_mild_diarrhea == 'Yes' || step1_skin_infections == 'Yes' || step1_minor_wound == 'Yes'"
+actions:
+  - "isRelevant = true"
+---
+name: step1_medication_currently_using
+description: Relevance for medication used currently by client
+priority: 1
+condition: "step1_using_medication == 'yes'"
+actions:
+  - "isRelevant = true"
+---
+name: step1_source_medicine
+description: Relevance for sources of medicines
+priority: 1
+condition: "step1_using_medication == 'yes'"
+actions:
+  - "isRelevant = true"
+---
+name: step1_source_selection_medicine
+description: Relevance for sources selection of medicines
+priority: 1
+condition: "step1_using_medication == 'yes'"
+actions:
+  - "isRelevant = true"
+---
+name: step1_get_all_meds
+description: Relevance for if the client was able to get all the medications
+priority: 1
+condition: "step1_using_medication == 'yes'"
+actions:
+  - "isRelevant = true"
+---
+name: step1_not_get_all_meds_reason
+description: Relevance for the reason for not getting all the medications
+priority: 1
+condition: "step1_using_medication == 'yes' && step1_get_all_meds == 'no'"
+actions:
+  - "isRelevant = true"
+---
+name: step1_not_get_all_meds_reason_other
+description: Relevance for other the reason for not getting all the medications
+priority: 1
+condition: "step1_using_medication == 'yes' && step1_not_get_all_meds_reason.contains('other_reason')"
+actions:
+  - "isRelevant = true"
