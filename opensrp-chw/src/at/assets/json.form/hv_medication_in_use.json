@@ -88,109 +88,18 @@
         ],
         "options": [
           {
-            "key": "ds_fever",
-            "text": "Severe fever and shivering",
+            "key": "med_one",
+            "text": "Med 1",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "140238AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           },
           {
             "key": "ds_bleeding_vaginally",
-            "text": "Vaginal bleeding",
+            "text": "Med 2",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "150802AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-          },
-          {
-            "key": "ds_server_headache",
-            "text": "Severe headache",
-            "value": false,
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "139081AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-          },
-          {
-            "key": "ds_blurred_vision",
-            "text": "Blurred vision",
-            "value": false,
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "147104AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-          },
-          {
-            "key": "ds_convulsions",
-            "text": "Seizures/Convulsions",
-            "value": false,
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "164483AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-          },
-          {
-            "key": "ds_difficulty_breathing",
-            "text": "Difficulty breathing",
-            "value": false,
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "142373AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-          },
-          {
-            "key": "ds_severe_abdominal_pain",
-            "text": "Severe abdominal pain",
-            "value": false,
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "165271AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-          },
-          {
-            "key": "ds_loss_consciousness",
-            "text": "Loss of consciousness",
-            "value": false,
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "135592AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-          },
-          {
-            "key": "ds_swelling",
-            "text": "Swelling of the hands, face, and/or legs",
-            "value": false,
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "460AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-          },
-          {
-            "key": "ds_early_labour",
-            "text": "Early labor pains before 9 months",
-            "value": false,
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "151687AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-          },
-          {
-            "key": "ds_vaginal_discharge",
-            "text": "Foul smelling vaginal discharge",
-            "value": false,
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "123395AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-          },
-          {
-            "key": "ds_unusual_movement",
-            "text": "Less/no fetal movement",
-            "value": false,
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "113377AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-          },
-          {
-            "key": "ds_water_broke",
-            "text": "Water broke before 9 months",
-            "value": false,
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": ""
-          },
-          {
-            "key": "ds_vomiting",
-            "text": "Vomiting",
-            "value": false,
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": ""
-          },
-          {
-            "key": "ds_anemia",
-            "text": "Anemia demonstrated by paleness on the palms or tongue, weakness or tiredness",
-            "value": false,
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": ""
           }
         ],
         "relevance": {
