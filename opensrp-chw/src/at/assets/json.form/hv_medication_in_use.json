@@ -75,31 +75,230 @@
         }
       },
       {
-        "key": "medication_currently_using",
+        "key": "medication_currently_using_anc",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "medication_currently_using",
+        "openmrs_entity_id": "medication_currently_using_anc",
         "type": "check_box",
         "label": "List types of medicines you are currently using",
         "label_text_style": "normal",
         "text_color": "#C0C0C0",
-        "exclusive": [
-          "ds_none"
-        ],
         "options": [
           {
-            "key": "med_one",
-            "text": "Med 1",
+            "key": "ferrous_sulphate_tablets",
+            "text": "Ferrous Sulphate tablet",
             "value": false,
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "140238AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+            "openmrs_entity_id": "ferrous_sulphate_tablets"
           },
           {
-            "key": "ds_bleeding_vaginally",
-            "text": "Med 2",
+            "key": "ferrous_sulphate_oral",
+            "text": "Ferrous Sulphate Oral Solution",
             "value": false,
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "150802AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+            "openmrs_entity_id": "ferrous_sulphate_oral"
+          },
+          {
+            "key": "folic_acid",
+            "text": "Folic Acid tablet",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "folic_acid"
+          },
+          {
+            "key": "ferrous_folic_tablets",
+            "text": "Ferrous + Folic tablet",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "ferrous_folic_tablets"
+          },
+          {
+            "key": "sp_tablet",
+            "text": "SP tablet",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "sp_tablet"
+          },
+          {
+            "key": "mosquito_net",
+            "text": "Mosquito Net",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "mosquito_net"
+          },
+          {
+            "key": "delivery_kit",
+            "text": "Delivery Kit",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "delivery_kit"
+          },
+          {
+            "key": "ergometrine_injection",
+            "text": "Ergometrine Injection",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "ergometrine_injection"
+          },
+          {
+            "key": "alu_2nd_3rd_trimester",
+            "text": "ALU (2nd and 3rd trimester)",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "alu_2nd_3rd_trimester"
+          },
+          {
+            "key": "quinine_tab_and_injection",
+            "text": "Quinine tab & injection (first trimester)",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "alu_2nd_3rd_trimester"
+          }
+        ],
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "anc_hv_medication_in_use_relevance.yml"
+            }
+          }
+        },
+        "v_required": {
+          "value": "true",
+          "err": "Please pick at least one"
+        }
+      },
+      {
+        "key": "medication_currently_using_pnc",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "medication_currently_using_pnc",
+        "type": "check_box",
+        "label": "List types of medicines you are currently using",
+        "label_text_style": "normal",
+        "text_color": "#C0C0C0",
+        "options": [
+          {
+            "key": "combined_oral_contraceptives",
+            "text": "Combined Oral Contraceptives",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "combined_oral_contraceptives"
+          },
+          {
+            "key": "depot_injection",
+            "text": "Depot Injection",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "depot_injection"
+          },
+          {
+            "key": "condoms",
+            "text": "Condoms",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "condoms"
+          }
+        ],
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "anc_hv_medication_in_use_relevance.yml"
+            }
+          }
+        },
+        "v_required": {
+          "value": "true",
+          "err": "Please pick at least one"
+        }
+      },
+      {
+        "key": "medication_currently_using_child",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "medication_currently_using_child",
+        "type": "check_box",
+        "label": "List types of medicines you are currently using",
+        "label_text_style": "normal",
+        "text_color": "#C0C0C0",
+        "options": [
+          {
+            "key": "amoxicillin",
+            "text": "Amoxicillin 125mg, 250mg (Include with mg)",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "amoxicillin"
+          },
+          {
+            "key": "ors",
+            "text": "ORS",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "ors"
+          },
+          {
+            "key": "zinc_sulphate_10g",
+            "text": "Zinc Sulphate (10mg) (Include with mg)",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "zinc_sulphate_10g"
+          },
+          {
+            "key": "zinc_sulphate_20g",
+            "text": "Zinc Sulphate (20mg) (Include with mg)",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "zinc_sulphate_20g"
+          },
+          {
+            "key": "albendazole",
+            "text": "Albendazole 200mg, 400mg",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "albendazole"
+          }
+        ],
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "anc_hv_medication_in_use_relevance.yml"
+            }
+          }
+        },
+        "v_required": {
+          "value": "true",
+          "err": "Please pick at least one"
+        }
+      },
+      {
+        "key": "medication_currently_using_adolescent",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "medication_currently_using_adolescent",
+        "type": "check_box",
+        "label": "List types of medicines you are currently using",
+        "label_text_style": "normal",
+        "text_color": "#C0C0C0",
+        "options": [
+          {
+            "key": "combined_oral_contraceptives",
+            "text": "Combined Oral Contraceptives",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "combined_oral_contraceptives"
+          },
+          {
+            "key": "depot_injection",
+            "text": "Depot Injection",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "depot_injection"
+          },
+          {
+            "key": "condoms",
+            "text": "Condoms",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "condoms"
           }
         ],
         "relevance": {
