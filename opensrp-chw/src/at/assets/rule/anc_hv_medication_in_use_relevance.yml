@@ -6,8 +6,29 @@ condition: "step1_fever == 'Yes' || step1_cough_cold == 'Yes' || step1_mild_diar
 actions:
   - "isRelevant = true"
 ---
-name: step1_medication_currently_using
-description: Relevance for medication used currently by client
+name: step1_medication_currently_using_anc
+description: Relevance for medication used currently by an ANC client
+priority: 1
+condition: "step1_using_medication == 'yes'"
+actions:
+  - "isRelevant = true"
+---
+name: step1_medication_currently_using_pnc
+description: Relevance for medication used currently by a PNC client
+priority: 1
+condition: "step1_using_medication == 'yes'"
+actions:
+  - "isRelevant = true"
+---
+name: step1_medication_currently_using_child
+description: Relevance for medication used currently by a child client
+priority: 1
+condition: "step1_using_medication == 'yes'"
+actions:
+  - "isRelevant = true"
+---
+name: step1_medication_currently_using_adolescent
+description: Relevance for medication used currently by an adolescent
 priority: 1
 condition: "step1_using_medication == 'yes'"
 actions:
