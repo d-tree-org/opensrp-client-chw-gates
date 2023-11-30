@@ -112,7 +112,7 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
                 .withOptional(false)
                 .withDetails(details)
                 .withFormName(Utils.getLocalForm("hv_medication_in_use", CoreConstants.JSON_FORM.locale, CoreConstants.JSON_FORM.assetManager))
-                .withHelper(new MedicationInUseActionHelper())
+                .withHelper(new MedicationInUseActionHelper(MedicationInUseActionHelper.ClientType.ANC))
                 .build();
         actionList.put(context.getString(R.string.anc_home_visit_medication_in_use), danger_signs);
     }
