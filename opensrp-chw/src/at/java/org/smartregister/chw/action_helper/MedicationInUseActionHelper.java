@@ -2,7 +2,10 @@ package org.smartregister.chw.action_helper;
 
 import android.content.Context;
 
+import com.vijay.jsonwizard.constants.JsonFormConstants;
+
 import org.apache.commons.lang3.StringUtils;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.smartregister.chw.anc.domain.VisitDetail;
@@ -21,15 +24,61 @@ public class MedicationInUseActionHelper extends org.smartregister.chw.actionhel
 
     private Context context;
     private String usingMedication;
+    private String jsonString;
+    private ClientType clientType;
+
+    String ANC_MEDICATIONS = "medication_currently_using_anc";
+    String PNC_MEDICATIONS = "medication_currently_using_pnc";
+    String CHILD_MEDICATIONS = "medication_currently_using_child";
+    String ADOLESCENT_MEDICATIONS = "medication_currently_using_adolescent";
+
+    public MedicationInUseActionHelper(ClientType clientType){
+        this.clientType = clientType;
+    }
 
     @Override
     public void onJsonFormLoaded(String s, Context context, Map<String, List<VisitDetail>> map) {
         this.context = context;
+        this.jsonString = s;
     }
 
     @Override
     public String getPreProcessed() {
-        return null;
+        try {
+            JSONObject jsonObject = new JSONObject(jsonString);
+            JSONArray fields = JsonFormUtils.fields(jsonObject);
+
+            switch (clientType){
+                case ANC:
+                    JsonFormUtils.getFieldJSONObject(fields, PNC_MEDICATIONS).put(JsonFormConstants.TYPE, JsonFormConstants.HIDDEN);
+                    JsonFormUtils.getFieldJSONObject(fields, CHILD_MEDICATIONS).put(JsonFormConstants.TYPE, JsonFormConstants.HIDDEN);
+                    JsonFormUtils.getFieldJSONObject(fields, ADOLESCENT_MEDICATIONS).put(JsonFormConstants.TYPE, JsonFormConstants.HIDDEN);
+                    break;
+                case PNC:
+                    JsonFormUtils.getFieldJSONObject(fields, ANC_MEDICATIONS).put(JsonFormConstants.TYPE, JsonFormConstants.HIDDEN);
+                    JsonFormUtils.getFieldJSONObject(fields, CHILD_MEDICATIONS).put(JsonFormConstants.TYPE, JsonFormConstants.HIDDEN);
+                    JsonFormUtils.getFieldJSONObject(fields, ADOLESCENT_MEDICATIONS).put(JsonFormConstants.TYPE, JsonFormConstants.HIDDEN);
+                    break;
+                case CHILD:
+                    JsonFormUtils.getFieldJSONObject(fields, PNC_MEDICATIONS).put(JsonFormConstants.TYPE, JsonFormConstants.HIDDEN);
+                    JsonFormUtils.getFieldJSONObject(fields, ANC_MEDICATIONS).put(JsonFormConstants.TYPE, JsonFormConstants.HIDDEN);
+                    JsonFormUtils.getFieldJSONObject(fields, ADOLESCENT_MEDICATIONS).put(JsonFormConstants.TYPE, JsonFormConstants.HIDDEN);
+                    break;
+                case ADOLESCENT:
+                    JsonFormUtils.getFieldJSONObject(fields, PNC_MEDICATIONS).put(JsonFormConstants.TYPE, JsonFormConstants.HIDDEN);
+                    JsonFormUtils.getFieldJSONObject(fields, CHILD_MEDICATIONS).put(JsonFormConstants.TYPE, JsonFormConstants.HIDDEN);
+                    JsonFormUtils.getFieldJSONObject(fields, ANC_MEDICATIONS).put(JsonFormConstants.TYPE, JsonFormConstants.HIDDEN);
+                    break;
+                default:
+                    return jsonString;
+            }
+
+            return jsonObject.toString();
+
+        }catch (JSONException e){
+            e.printStackTrace();
+        }
+        return jsonString;
     }
 
     @Override
@@ -70,4 +119,12 @@ public class MedicationInUseActionHelper extends org.smartregister.chw.actionhel
     public void onPayloadReceived(BaseAncHomeVisitAction baseAncHomeVisitAction) {
         Timber.v("onPayloadReceived");
     }
+
+    public enum ClientType {
+        ANC,
+        PNC,
+        CHILD,
+        ADOLESCENT
+    }
+
 }
