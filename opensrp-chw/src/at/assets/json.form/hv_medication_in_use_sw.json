@@ -80,7 +80,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "medication_currently_using_anc",
         "type": "check_box",
-        "label": "List types of medicines you are currently using",
+        "label": "Orodhesha dawa unazotumia",
         "label_text_style": "normal",
         "text_color": "#C0C0C0",
         "options": [
@@ -173,7 +173,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "medication_currently_using_pnc",
         "type": "check_box",
-        "label": "List types of medicines you are currently using",
+        "label": "Orodhesha dawa unazotumia",
         "label_text_style": "normal",
         "text_color": "#C0C0C0",
         "options": [
@@ -217,7 +217,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "medication_currently_using_child",
         "type": "check_box",
-        "label": "List types of medicines you are currently using",
+        "label": "Orodhesha dawa unazotumia",
         "label_text_style": "normal",
         "text_color": "#C0C0C0",
         "options": [
@@ -275,7 +275,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "medication_currently_using_adolescent",
         "type": "check_box",
-        "label": "List types of medicines you are currently using",
+        "label": "Orodhesha dawa unazotumia",
         "label_text_style": "normal",
         "text_color": "#C0C0C0",
         "options": [
