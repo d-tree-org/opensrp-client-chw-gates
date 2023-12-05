@@ -47,7 +47,7 @@
     "encounter_location": ""
   },
   "step1": {
-    "title": "Medication In Use",
+    "title": "Dawa zinazotumiwa",
     "fields": [
       {
         "key": "using_medication",
