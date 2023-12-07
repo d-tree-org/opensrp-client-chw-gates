@@ -3,17 +3,21 @@ package org.smartregister.chw.activity;
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
+import android.location.Location;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.lifecycle.ViewModelProvider;
+
 import com.google.android.material.snackbar.Snackbar;
 
 import org.joda.time.DateTime;
 import org.joda.time.Days;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.smartregister.CoreLibrary;
 import org.smartregister.chw.R;
@@ -38,6 +42,8 @@ import org.smartregister.chw.model.FamilyProfileModel;
 import org.smartregister.chw.model.ReferralTypeModel;
 import org.smartregister.chw.presenter.AncMemberProfilePresenter;
 import org.smartregister.chw.schedulers.ChwScheduleTaskExecutor;
+import org.smartregister.chw.util.VisitLocationUtils;
+import org.smartregister.chw.viewmodel.VisitLocationViewModel;
 import org.smartregister.clientandeventmodel.Event;
 import org.smartregister.commonregistry.AllCommonsRepository;
 import org.smartregister.commonregistry.CommonPersonObject;
@@ -80,6 +86,10 @@ public class AncMemberProfileActivity extends CoreAncMemberProfileActivity imple
 
     private List<ReferralTypeModel> referralTypeModels = new ArrayList<>();
 
+    //Visit location variables
+    private VisitLocationViewModel visitLocationViewModel;
+    private Location visitLocation;
+
     public static void startMe(Activity activity, String baseEntityID) {
         Intent intent = new Intent(activity, AncMemberProfileActivity.class);
         intent.putExtra(Constants.ANC_MEMBER_OBJECTS.BASE_ENTITY_ID, baseEntityID);
@@ -103,6 +113,21 @@ public class AncMemberProfileActivity extends CoreAncMemberProfileActivity imple
         if (((ChwApplication) ChwApplication.getInstance()).hasReferrals()) {
             addAncReferralTypes();
         }
+
+        captureCurrentLocation();
+
+    }
+
+    private void captureCurrentLocation(){
+        visitLocationViewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication())).get(VisitLocationViewModel.class);
+        visitLocationViewModel.getLocationLiveData().observe(this, new androidx.lifecycle.Observer<Location>() {
+            @Override
+            public void onChanged(Location location) {
+                if (location != null){
+                    VisitLocationUtils.updateLocationInPreference(location);
+                }
+            }
+        });
     }
 
     @Override
@@ -155,18 +180,34 @@ public class AncMemberProfileActivity extends CoreAncMemberProfileActivity imple
 
     @Override // to chw
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        assert data != null;
+        String mJsonString = data.getStringExtra(org.smartregister.family.util.Constants.JSON_FORM_EXTRA.JSON);
+        String json = "";
+        if (visitLocation != null){
+            json = VisitLocationUtils.updateWithCurrentGpsLocation(mJsonString);
+        }else{
+            json = mJsonString;
+        }
+        data.putExtra(org.smartregister.family.util.Constants.JSON_FORM_EXTRA.JSON, json);
+
+        //Call super method with updated data
         super.onActivityResult(requestCode, resultCode, data);
+
         if (resultCode != RESULT_OK) return;
 
         if (requestCode == JsonFormUtils.REQUEST_CODE_GET_JSON) {
             try {
                 String jsonString = data.getStringExtra(org.smartregister.family.util.Constants.JSON_FORM_EXTRA.JSON);
                 JSONObject form = new JSONObject(jsonString);
+
+                //Update Family Member
                 if (form.getString(JsonFormUtils.ENCOUNTER_TYPE).equals(Utils.metadata().familyMemberRegister.updateEventType)) {
                     FamilyEventClient familyEventClient =
                             new FamilyProfileModel(memberObject.getFamilyName()).processUpdateMemberRegistration(jsonString, memberObject.getBaseEntityId());
                     new FamilyProfileInteractor().saveRegistration(familyEventClient, jsonString, true, ancMemberProfilePresenter());
-                } else if (form.getString(JsonFormUtils.ENCOUNTER_TYPE).equals(CoreConstants.EventType.UPDATE_ANC_REGISTRATION)) {
+                }
+                //Update ANC Registration Information
+                else if (form.getString(JsonFormUtils.ENCOUNTER_TYPE).equals(CoreConstants.EventType.UPDATE_ANC_REGISTRATION)) {
                     AllSharedPreferences allSharedPreferences = org.smartregister.util.Utils.getAllSharedPreferences();
                     Event baseEvent = org.smartregister.chw.anc.util.JsonFormUtils.processJsonForm(allSharedPreferences, jsonString, Constants.TABLES.ANC_MEMBERS);
                     NCUtils.processEvent(baseEvent.getBaseEntityId(), new JSONObject(org.smartregister.chw.anc.util.JsonFormUtils.gson.toJson(baseEvent)));
@@ -182,7 +223,9 @@ public class AncMemberProfileActivity extends CoreAncMemberProfileActivity imple
                         CoreChwApplication.getInstance().getRepository().getWritableDatabase().update(CoreConstants.TABLE_NAME.ANC_MEMBER, values, DBConstants.KEY.BASE_ENTITY_ID + " = ?  ", new String[]{baseEntityId});
                     }
 
-                } else if (form.getString(JsonFormUtils.ENCOUNTER_TYPE).equals(CoreConstants.EventType.ANC_REFERRAL)) {
+                }
+                // ANC Referral
+                else if (form.getString(JsonFormUtils.ENCOUNTER_TYPE).equals(CoreConstants.EventType.ANC_REFERRAL)) {
                     ancMemberProfilePresenter().createReferralEvent(Utils.getAllSharedPreferences(), jsonString);
                     showToast(this.getString(R.string.referral_submitted));
                 }

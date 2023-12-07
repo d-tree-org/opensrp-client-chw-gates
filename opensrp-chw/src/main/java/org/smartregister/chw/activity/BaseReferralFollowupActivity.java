@@ -7,6 +7,7 @@ import android.os.Bundle;
 import com.vijay.jsonwizard.constants.JsonFormConstants;
 import com.vijay.jsonwizard.domain.Form;
 
+import org.apache.commons.lang3.JavaVersion;
 import org.apache.commons.lang3.tuple.Triple;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -18,6 +19,7 @@ import org.smartregister.chw.core.application.CoreChwApplication;
 import org.smartregister.chw.core.custom_views.NavigationMenu;
 import org.smartregister.chw.core.utils.CoreConstants;
 import org.smartregister.chw.util.Constants;
+import org.smartregister.chw.util.VisitLocationUtils;
 import org.smartregister.domain.Task;
 import org.smartregister.family.util.JsonFormUtils;
 import org.smartregister.family.util.Utils;
@@ -82,6 +84,11 @@ public abstract class BaseReferralFollowupActivity extends CoreReferralFollowupA
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        assert data != null;
+        String mJsonString = data.getStringExtra(org.smartregister.family.util.Constants.JSON_FORM_EXTRA.JSON);
+        String json = VisitLocationUtils.updateWithCurrentGpsLocation(mJsonString);
+        data.putExtra(org.smartregister.family.util.Constants.JSON_FORM_EXTRA.JSON, json.isEmpty() ? mJsonString : json);
+
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_CODE_GET_JSON) {
             String jsonString = data.getStringExtra(JSON);

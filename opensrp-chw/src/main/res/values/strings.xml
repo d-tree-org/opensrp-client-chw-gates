@@ -363,4 +363,8 @@
     <string name="chw_remarks_or_comments">Remarks/Comments</string>
     <string name="chw_remarks_or_comments_given">Remarks/Comments</string>
 
+    <string name="location_service_disabled_title">Location Disabled</string>
+    <string name="location_service_disabled_message">Please enable location to continue.</string>
+    <string name="enable">Enable</string>
+
 </resources>

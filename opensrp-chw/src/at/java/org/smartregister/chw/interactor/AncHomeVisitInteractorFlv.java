@@ -1,7 +1,10 @@
 package org.smartregister.chw.interactor;
 
 import android.content.Context;
+import android.location.Location;
 import android.text.TextUtils;
+
+import androidx.lifecycle.ViewModelProvider;
 
 import org.apache.commons.lang3.StringUtils;
 import org.joda.time.DateTime;
@@ -21,6 +24,8 @@ import org.smartregister.chw.anc.util.VisitUtils;
 import org.smartregister.chw.util.Constants;
 import org.smartregister.chw.util.ContactUtil;
 import org.smartregister.chw.util.JsonFormUtils;
+import org.smartregister.chw.util.VisitLocationUtils;
+import org.smartregister.chw.viewmodel.VisitLocationViewModel;
 
 import java.text.MessageFormat;
 import java.text.SimpleDateFormat;
@@ -33,6 +38,7 @@ import java.util.Map;
 import timber.log.Timber;
 
 public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor {
+
 
     @Override
     public LinkedHashMap<String, BaseAncHomeVisitAction> calculateActions(BaseAncHomeVisitContract.View view, MemberObject memberObject, BaseAncHomeVisitContract.InteractorCallBack callBack) throws BaseAncHomeVisitAction.ValidationException {
@@ -88,6 +94,7 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
     private void evaluateDangerSigns(LinkedHashMap<String, BaseAncHomeVisitAction> actionList,
                                      Map<String, List<VisitDetail>> details,
                                      final Context context) throws BaseAncHomeVisitAction.ValidationException {
+
         BaseAncHomeVisitAction danger_signs = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.anc_home_visit_danger_signs))
                 .withOptional(false)
                 .withDetails(details)
@@ -187,6 +194,7 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
     }
 
     private class DangerSignsAction extends org.smartregister.chw.actionhelper.DangerSignsAction {
+
         private String danger_signs_counseling;
         private String danger_signs_present;
         private String minor_illnesses_present;
@@ -228,8 +236,12 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
         }
 
         @Override
-        public String postProcess(String s) {
-            return null;
+        public String postProcess(String jsonString) {
+            String jsonStringWithLocation = VisitLocationUtils.updateWithCurrentGpsLocation(jsonString);
+            if (!jsonStringWithLocation.isEmpty())
+                return jsonStringWithLocation;
+            else
+                return jsonString;
         }
 
         @Override
