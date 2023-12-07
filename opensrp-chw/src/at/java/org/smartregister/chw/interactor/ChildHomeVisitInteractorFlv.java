@@ -8,6 +8,7 @@ import org.joda.time.format.DateTimeFormat;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.smartregister.chw.R;
+import org.smartregister.chw.action_helper.MedicationInUseActionHelper;
 import org.smartregister.chw.anc.actionhelper.HomeVisitActionHelper;
 import org.smartregister.chw.anc.model.BaseAncHomeVisitAction;
 import org.smartregister.chw.core.application.CoreChwApplication;
@@ -60,7 +61,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
             }
 
             evaluateDangerSigns(formName);
-            //evaluateExclusiveBreastFeeding(serviceWrapperMap);
+            evaluateMedicineInUse();
             evaluateMalariaPrevention();
             evaluateCounselling();
             evaluateRemarks();
@@ -114,6 +115,18 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
                 .withHelper(dangerSignHelper)
                 .build();
         actionList.put(context.getString(R.string.anc_home_visit_danger_signs), danger_signs);
+    }
+
+    private void evaluateMedicineInUse() throws Exception {
+
+        BaseAncHomeVisitAction danger_signs = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.anc_home_visit_medication_in_use))
+                .withOptional(false)
+                .withDetails(details)
+                .withFormName(Utils.getLocalForm("hv_medication_in_use", CoreConstants.JSON_FORM.locale, CoreConstants.JSON_FORM.assetManager))
+                .withHelper(new MedicationInUseActionHelper(MedicationInUseActionHelper.ClientType.CHILD))
+                .build();
+        actionList.put(context.getString(R.string.anc_home_visit_medication_in_use), danger_signs);
+
     }
 
     private void evaluateCounselling() throws Exception {

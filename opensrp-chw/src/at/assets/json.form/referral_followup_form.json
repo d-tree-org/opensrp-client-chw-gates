@@ -119,6 +119,102 @@
           }
         }
       },
+      {
+        "key": "get_all_meds",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "get_all_meds",
+        "openmrs_data_type": "select one",
+        "type": "spinner",
+        "hint": "Were you able to get all the medicines you needed?",
+        "v_required": {
+          "value": "true",
+          "err": "Please select one option"
+        },
+        "values": [
+          "Yes",
+          "No"
+        ],
+        "keys": [
+          "yes",
+          "no"
+        ],
+        "openmrs_choice_ids": {
+          "Yes": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+          "No": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "referral_followup_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "not_get_all_meds_reason",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "not_get_all_meds_reason",
+        "type": "check_box",
+        "label": "If 'No' why were you not able to get the medicines you need?",
+        "label_text_style": "normal",
+        "text_color": "#C0C0C0",
+        "options": [
+          {
+            "key": "too_expensive",
+            "text": "Too expensive",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "too_expensive"
+          },
+          {
+            "key": "stock_out",
+            "text": "Stock out",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "stock_out"
+          },
+          {
+            "key": "other_reason",
+            "text": "Other reasons (mention)",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "other_reason"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Please pick at least one"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "referral_followup_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "not_get_all_meds_reason_other",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "not_get_all_meds_reason_other",
+        "type": "edit_text",
+        "hint": "Outline other reason why client did not get all the medicines",
+        "edit_type": "text",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "referral_followup_relevance.yml"
+            }
+          }
+        },
+        "v_required": {
+          "value": "true",
+          "err": "Please enter the person's name"
+        }
+      },
 	  {
         "key": "reminder_toaster",
         "openmrs_entity_parent": "",
