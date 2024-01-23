@@ -306,4 +306,8 @@
     <string name="chw_remarks_or_comments">Maoni</string>
     <string name="chw_remarks_or_comments_given">Maoni</string>
 
+    <string name="location_service_disabled_title">Dira ya Satelaiti (GPS) Imezimwa</string>
+    <string name="location_service_disabled_message">Tafadhali washa dira ya satelaiti (gps) na uendelee.</string>
+    <string name="enable">Washa</string>
+
 </resources>

@@ -6,6 +6,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.smartregister.chw.R;
+import org.smartregister.chw.action_helper.MedicationInUseActionHelper;
 import org.smartregister.chw.anc.AncLibrary;
 import org.smartregister.chw.anc.actionhelper.HomeVisitActionHelper;
 import org.smartregister.chw.anc.contract.BaseAncHomeVisitContract;
@@ -71,6 +72,7 @@ public class AdolescentHomeVisitInteractor extends BaseAncHomeVisitInteractor {
 
             try {
                 evaluateEducationAndCounseling();
+                evaluateMedicationInUse();
                 evaluateForAdditionalNeeds();
                 evaluateRemarks();
             } catch (BaseAncHomeVisitAction.ValidationException e) {
@@ -124,6 +126,17 @@ public class AdolescentHomeVisitInteractor extends BaseAncHomeVisitInteractor {
                 .withHelper(counselingHelper)
                 .build();
         actionList.put(context.getString(R.string.adolescent_education_counseling), education_counseling);
+    }
+
+    private void evaluateMedicationInUse() throws Exception {
+
+        BaseAncHomeVisitAction danger_signs = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.anc_home_visit_medication_in_use))
+                .withOptional(false)
+                .withDetails(details)
+                .withFormName(Utils.getLocalForm("hv_medication_in_use", CoreConstants.JSON_FORM.locale, CoreConstants.JSON_FORM.assetManager))
+                .withHelper(new MedicationInUseActionHelper(MedicationInUseActionHelper.ClientType.ADOLESCENT))
+                .build();
+        actionList.put(context.getString(R.string.anc_home_visit_medication_in_use), danger_signs);
     }
 
     private void evaluateForAdditionalNeeds() throws Exception {

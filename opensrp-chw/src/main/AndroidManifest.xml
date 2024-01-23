@@ -7,8 +7,7 @@
         android:name="android.hardware.camera"
         android:required="false" />
     <uses-feature
-        android:name="android.hardware.camera.autofocus"
-        android:required="false" />
+        android:name="android.hardware.camera.autofocus" />
     <uses-feature
         android:name="android.hardware.telephony"
         android:required="false" />
@@ -23,6 +22,8 @@
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         tools:replace="android:appComponentFactory, android:theme"
@@ -151,6 +152,7 @@
         </activity>
         <activity
             android:name=".activity.RequestPhoneNumberCollectionPermission"
+            android:exported="true"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -255,6 +257,7 @@
         <service android:name="org.smartregister.sync.intent.SettingsSyncIntentService" />
         <service android:name=".sync.AfyatekSettingsSyncIntentService" />
         <service android:name=".service.UpdateChildToAdolescentService" />
+        <service android:name=".service.GpsLocationService" />
 
         <uses-library
             android:name="org.apache.http.legacy"

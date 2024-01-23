@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.location.Location;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -32,9 +33,12 @@ import org.smartregister.chw.dao.MalariaDao;
 import org.smartregister.chw.model.ReferralTypeModel;
 import org.smartregister.chw.presenter.ChildProfilePresenter;
 import org.smartregister.chw.schedulers.ChwScheduleTaskExecutor;
+import org.smartregister.chw.util.VisitLocationUtils;
+import org.smartregister.chw.viewmodel.VisitLocationViewModel;
 import org.smartregister.domain.Task;
 import org.smartregister.domain.db.Client;
 import org.smartregister.family.util.Constants;
+import org.smartregister.repository.AllSharedPreferences;
 import org.smartregister.simprint.SimPrintsConstantHelper;
 import org.smartregister.simprint.SimPrintsRegisterActivity;
 import org.smartregister.simprint.SimPrintsRegistration;
@@ -49,6 +53,10 @@ import java.util.List;
 import java.util.Map;
 
 import static org.smartregister.chw.anc.util.Constants.ANC_MEMBER_OBJECTS.MEMBER_PROFILE_OBJECT;
+
+import androidx.lifecycle.ViewModelProvider;
+
+import kotlin.reflect.jvm.internal.impl.incremental.components.LocationInfo;
 
 public class ChildProfileActivity extends CoreChildProfileActivity implements ChildProfileContract.View {
     public FamilyMemberFloatingMenu familyFloatingMenu;
@@ -76,6 +84,10 @@ public class ChildProfileActivity extends CoreChildProfileActivity implements Ch
 
     private SharedPreferences preferences;
 
+    //Visit Location variables
+    private Location visitLocation;
+    private VisitLocationViewModel visitLocationViewModel;
+
     @Override
     protected void onCreation() {
         super.onCreation();
@@ -90,9 +102,25 @@ public class ChildProfileActivity extends CoreChildProfileActivity implements Ch
         if (((ChwApplication) ChwApplication.getInstance()).hasReferrals()) {
             addChildReferralTypes();
         }
-
         org.smartregister.chw.presenter.ChildProfilePresenter presenter = (org.smartregister.chw.presenter.ChildProfilePresenter) presenter();
+
+        captureCurrentLocation();
+
     }
+
+    private void captureCurrentLocation(){
+        visitLocationViewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication())).get(VisitLocationViewModel.class);
+        visitLocationViewModel.getLocationLiveData().observe(this, new androidx.lifecycle.Observer<Location>() {
+            @Override
+            public void onChanged(Location location) {
+                if (location != null){
+                    VisitLocationUtils.updateLocationInPreference(location);
+                }
+            }
+        });
+    }
+
+
 
     @Override
     public void onClick(View view) {
@@ -293,6 +321,12 @@ public class ChildProfileActivity extends CoreChildProfileActivity implements Ch
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        assert data != null;
+        String mJsonString = data.getStringExtra(org.smartregister.family.util.Constants.JSON_FORM_EXTRA.JSON);
+        String json = VisitLocationUtils.updateWithCurrentGpsLocation(mJsonString);
+        data.putExtra(org.smartregister.family.util.Constants.JSON_FORM_EXTRA.JSON, json.isEmpty() ? mJsonString : json);
+
+        //Call super class with updated data
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == CoreConstants.ProfileActivityResults.CHANGE_COMPLETED && resultCode == Activity.RESULT_OK) {
             Intent intent = new Intent(ChildProfileActivity.this, ChildProfileActivity.class);

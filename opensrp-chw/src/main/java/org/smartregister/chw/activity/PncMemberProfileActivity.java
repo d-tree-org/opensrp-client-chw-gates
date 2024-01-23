@@ -2,6 +2,7 @@ package org.smartregister.chw.activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.location.Location;
 import android.util.Pair;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -49,6 +50,8 @@ import org.smartregister.chw.model.FamilyProfileModel;
 import org.smartregister.chw.model.ReferralTypeModel;
 import org.smartregister.chw.presenter.PncMemberProfilePresenter;
 import org.smartregister.chw.schedulers.ChwScheduleTaskExecutor;
+import org.smartregister.chw.util.VisitLocationUtils;
+import org.smartregister.chw.viewmodel.VisitLocationViewModel;
 import org.smartregister.clientandeventmodel.Client;
 import org.smartregister.clientandeventmodel.Event;
 import org.smartregister.commonregistry.CommonPersonObject;
@@ -86,6 +89,8 @@ import timber.log.Timber;
 import static org.smartregister.chw.anc.AncLibrary.getInstance;
 import static org.smartregister.family.util.JsonFormUtils.REQUEST_CODE_GET_JSON;
 
+import androidx.lifecycle.ViewModelProvider;
+
 public class PncMemberProfileActivity extends CorePncMemberProfileActivity implements PncMemberProfileContract.View {
 
     private Flavor flavor = new PncMemberProfileActivityFlv();
@@ -100,10 +105,36 @@ public class PncMemberProfileActivity extends CorePncMemberProfileActivity imple
 
     org.smartregister.domain.db.Client currentClient;
 
+    //Visit location variables
+    private Location visitLocation;
+    private VisitLocationViewModel visitLocationViewModel;
+
     public static void startMe(Activity activity, String baseEntityID) {
         Intent intent = new Intent(activity, PncMemberProfileActivity.class);
         intent.putExtra(Constants.ANC_MEMBER_OBJECTS.BASE_ENTITY_ID, baseEntityID);
         activity.startActivity(intent);
+    }
+
+    @Override
+    protected void onCreation() {
+        super.onCreation();
+        if (((ChwApplication) ChwApplication.getInstance()).hasReferrals()) {
+            addPncReferralTypes();
+        }
+
+        captureCurrentLocation();
+    }
+
+    private void captureCurrentLocation(){
+        visitLocationViewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication())).get(VisitLocationViewModel.class);
+        visitLocationViewModel.getLocationLiveData().observe(this, new androidx.lifecycle.Observer<Location>() {
+            @Override
+            public void onChanged(Location location) {
+                if (location != null){
+                    VisitLocationUtils.updateLocationInPreference(location);
+                }
+            }
+        });
     }
 
     @Override
@@ -163,6 +194,12 @@ public class PncMemberProfileActivity extends CorePncMemberProfileActivity imple
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        assert data != null;
+        String mJsonString = data.getStringExtra(org.smartregister.family.util.Constants.JSON_FORM_EXTRA.JSON);
+        String json = VisitLocationUtils.updateWithCurrentGpsLocation(mJsonString);
+        data.putExtra(org.smartregister.family.util.Constants.JSON_FORM_EXTRA.JSON, json.isEmpty() ? mJsonString : json);
+
+        //Call super with updated data
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode != Activity.RESULT_OK) return;
 
@@ -390,14 +427,6 @@ public class PncMemberProfileActivity extends CorePncMemberProfileActivity imple
     @Override
     protected Class<? extends CorePncRegisterActivity> getPncRegisterActivityClass() {
         return PncRegisterActivity.class;
-    }
-
-    @Override
-    protected void onCreation() {
-        super.onCreation();
-        if (((ChwApplication) ChwApplication.getInstance()).hasReferrals()) {
-            addPncReferralTypes();
-        }
     }
 
     @Override

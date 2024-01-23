@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
+import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -21,6 +22,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -42,6 +45,8 @@ import org.smartregister.chw.core.utils.CoreConstants;
 import org.smartregister.chw.dataloader.FamilyMemberDataLoader;
 import org.smartregister.chw.form_data.NativeFormsDataBinder;
 import org.smartregister.chw.presenter.AdolescentProfilePresenter;
+import org.smartregister.chw.util.VisitLocationUtils;
+import org.smartregister.chw.viewmodel.VisitLocationViewModel;
 import org.smartregister.commonregistry.CommonPersonObject;
 import org.smartregister.commonregistry.CommonPersonObjectClient;
 import org.smartregister.commonregistry.CommonRepository;
@@ -120,6 +125,10 @@ public class AdolescentProfileActivity extends BaseProfileActivity implements Ad
 
     private ProgressBar progressBar;
 
+    //Visit Location Variables
+    private VisitLocationViewModel visitLocationViewModel;
+    private Location visitLocation;
+
     @Override
     protected void onCreation() {
         setContentView(R.layout.activity_adolescent_profile);
@@ -154,6 +163,20 @@ public class AdolescentProfileActivity extends BaseProfileActivity implements Ad
         setupViews();
         initializePresenter();
 
+        captureCurrentLocation();
+
+    }
+
+    private void captureCurrentLocation(){
+        visitLocationViewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication())).get(VisitLocationViewModel.class);
+        visitLocationViewModel.getLocationLiveData().observe(this, new Observer<Location>() {
+            @Override
+            public void onChanged(Location location) {
+                if (location != null){
+                    VisitLocationUtils.updateLocationInPreference(location);
+                }
+            }
+        });
     }
 
     public static void startMe(Activity activity, boolean isComesFromFamily, String baseEntityId, CommonPersonObjectClient pc, Class<?> cls) {
@@ -668,7 +691,12 @@ public class AdolescentProfileActivity extends BaseProfileActivity implements Ad
             case JsonFormUtils.REQUEST_CODE_GET_JSON:
                 try {
                     String jsonString = data.getStringExtra(Constants.JSON_FORM_EXTRA.JSON);
-                    presenter().updateAdolescentProfile(jsonString);
+                    String jsonStringWithLocation = "";
+                    //Update the json with location information
+                    if (visitLocation != null){
+                        jsonStringWithLocation = VisitLocationUtils.updateWithCurrentGpsLocation(jsonString);
+                    }
+                    presenter().updateAdolescentProfile(jsonStringWithLocation);
 
                 } catch (Exception e) {
                     Timber.e(e);

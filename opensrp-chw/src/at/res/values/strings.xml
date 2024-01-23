@@ -96,4 +96,6 @@
     <string name="callPhoneRequestTitle">Allow Phone Number Collection</string>
     <string name="callPhoneRequestMessage">CHW collect user phone numbers to be used for monitoring, evaluation and analysis of visits conducted by Community Health Work and making their payments for work they have done.</string>
 
+    <string name="anc_home_visit_medication_in_use">Medication in use</string>
+
 </resources>
