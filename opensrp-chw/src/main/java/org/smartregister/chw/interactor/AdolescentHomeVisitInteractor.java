@@ -133,7 +133,7 @@ public class AdolescentHomeVisitInteractor extends BaseAncHomeVisitInteractor {
         BaseAncHomeVisitAction danger_signs = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.anc_home_visit_medication_in_use))
                 .withOptional(false)
                 .withDetails(details)
-                .withFormName(Utils.getLocalForm("hv_medication_in_use", CoreConstants.JSON_FORM.locale, CoreConstants.JSON_FORM.assetManager))
+                .withFormName(Utils.getLocalForm("adolescent_hv_medication_in_use", CoreConstants.JSON_FORM.locale, CoreConstants.JSON_FORM.assetManager))
                 .withHelper(new MedicationInUseActionHelper(MedicationInUseActionHelper.ClientType.ADOLESCENT))
                 .build();
         actionList.put(context.getString(R.string.anc_home_visit_medication_in_use), danger_signs);
