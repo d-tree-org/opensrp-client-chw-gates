@@ -1,0 +1,651 @@
+{
+  "count": "1",
+  "encounter_type": "Child Home Visit - Medication In Use",
+  "entity_id": "",
+  "metadata": {
+    "start": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "start",
+      "openmrs_entity_id": "163137AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "end": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "end",
+      "openmrs_entity_id": "163138AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "today": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "encounter",
+      "openmrs_entity_id": "encounter_date"
+    },
+    "deviceid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "deviceid",
+      "openmrs_entity_id": "163149AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "subscriberid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "subscriberid",
+      "openmrs_entity_id": "163150AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "simserial": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "simserial",
+      "openmrs_entity_id": "163151AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "phonenumber": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "phonenumber",
+      "openmrs_entity_id": "163152AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "encounter_location": ""
+  },
+  "step1": {
+    "title": "Medication In Use",
+    "fields": [
+      {
+        "key": "using_medication",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "using_medication",
+        "openmrs_data_type": "select one",
+        "type": "spinner",
+        "hint": "Are you currently using any medication?",
+        "v_required": {
+          "value": "true",
+          "err": "Please select one option"
+        },
+        "values": [
+          "Yes",
+          "No"
+        ],
+        "keys": [
+          "yes",
+          "no"
+        ],
+        "openmrs_choice_ids": {
+          "Yes": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+          "No": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+        }
+      },
+      {
+        "key": "spacer",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "spacer",
+        "type": "spacer",
+        "spacer_height": "10dp"
+      },
+      {
+        "key": "medication_currently_in_use_label",
+        "type": "label",
+        "label_text_style": "bold",
+        "text": "List types of medicines the child is currently using",
+        "text_color": "#000000",
+        "relevance": {
+          "step1:using_medication": {
+            "type": "string",
+            "ex": "equalTo(., \"yes\")"
+          }
+        }
+      },
+      {
+        "key": "medication_currently_using_child",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "medication_currently_using_child",
+        "buttonText": "Add Medications currently used by child",
+        "dialogTitle": "Add Medications currently used by child",
+        "searchHint": "Search Medication",
+        "v_required": {
+          "value": "true",
+          "err": "This field has error"
+        },
+        "options": [
+          {
+            "key": "amoxicillin",
+            "text": "Amoxicillin 125mg, 250mg (Include with mg)",
+            "property": {
+              "presumed-id": "er",
+              "confirmed-id": "er"
+            }
+          },
+          {
+            "key": "ors",
+            "text": "ORS",
+            "property": {
+              "presumed-id": "er",
+              "confirmed-id": "er"
+            }
+          },
+          {
+            "key": "zinc_sulphate_10g",
+            "text": "Zinc Sulphate (10mg) (Include with mg)",
+            "property": {
+              "presumed-id": "er",
+              "confirmed-id": "er"
+            }
+          },
+          {
+            "key": "zinc_sulphate_20g",
+            "text": "Zinc Sulphate (20mg) (Include with mg)",
+            "property": {
+              "presumed-id": "er",
+              "confirmed-id": "er"
+            }
+          },
+          {
+            "key": "albendazole",
+            "text": "Albendazole 200mg, 400mg",
+            "property": {
+              "presumed-id": "er",
+              "confirmed-id": "er"
+            }
+          }
+        ],
+        "type": "multi_select_list",
+        "relevance": {
+          "step1:using_medication": {
+            "type": "string",
+            "ex": "equalTo(., \"yes\")"
+          }
+        }
+      },
+      {
+        "key": "spacer",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "spacer",
+        "type": "spacer",
+        "spacer_height": "20dp"
+      },
+      {
+        "key": "source_medicine",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "source_medicine",
+        "type": "check_box",
+        "label": "Where did you get the medicines?",
+        "label_text_style": "normal",
+        "text_color": "#C0C0C0",
+        "options": [
+          {
+            "key": "health_facility",
+            "text": "Health Facility",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "health_facility"
+          },
+          {
+            "key": "addo",
+            "text": "ADDO",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "addo"
+          },
+          {
+            "key": "pharmacy",
+            "text": "Pharmacy",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "phamarcy"
+          },
+          {
+            "key": "given_by_someone",
+            "text": "Given by someone",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "given_by_someone"
+          },
+          {
+            "key": "other_commodities_shop",
+            "text": "Other commodities shop",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "other_commodities_shop"
+          }
+        ],
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "hv_medication_in_use_relevance.yml"
+            }
+          }
+        },
+        "v_required": {
+          "value": "true",
+          "err": "Please pick at least one"
+        }
+      },
+      {
+        "key": "source_selection_medicine",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "source_selection_medicine",
+        "type": "check_box",
+        "label": "Why did you choose to get the medicines from that location instead of another location?",
+        "label_text_style": "normal",
+        "text_color": "#C0C0C0",
+        "options": [
+          {
+            "key": "lower_cost",
+            "text": "Lower cost of medicines ",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "lower_cost"
+          },
+          {
+            "key": "close_to_residence",
+            "text": "Close to my residence",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "close_to_residence"
+          },
+          {
+            "key": "always_availability",
+            "text": "Always availability of medicines",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "always_availability"
+          },
+          {
+            "key": "privacy",
+            "text": "Privacy (e.g., I trust and know the seller) ",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "privacy"
+          },
+          {
+            "key": "credit_availability",
+            "text": "Availability of credits",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "credit_availability"
+          },
+          {
+            "key": "convenience_for_multiple_services",
+            "text": "Convenience for multiple services (i.e., diagnostics, other commodities) ",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "convenience_for_multiple_services"
+          },
+          {
+            "key": "referral",
+            "text": "There for a referral/linkage",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "referral"
+          }
+        ],
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "hv_medication_in_use_relevance.yml"
+            }
+          }
+        },
+        "v_required": {
+          "value": "true",
+          "err": "Please pick at least one"
+        }
+      },
+      {
+        "key": "get_all_meds",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "get_all_meds",
+        "openmrs_data_type": "select one",
+        "type": "spinner",
+        "hint": "Were you able to get all the medicines you needed the last time you attempted (at HF or ADDO)?",
+        "v_required": {
+          "value": "true",
+          "err": "Please select one option"
+        },
+        "values": [
+          "Yes",
+          "No"
+        ],
+        "keys": [
+          "yes",
+          "no"
+        ],
+        "openmrs_choice_ids": {
+          "Yes": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+          "No": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "hv_medication_in_use_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "not_get_all_meds_reason",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "not_get_all_meds_reason",
+        "type": "check_box",
+        "label": "If 'No' why were you not able to get the medicines you need?",
+        "label_text_style": "normal",
+        "text_color": "#C0C0C0",
+        "options": [
+          {
+            "key": "too_expensive",
+            "text": "Too expensive",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "too_expensive"
+          },
+          {
+            "key": "stock_out",
+            "text": "Stock out",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "stock_out"
+          },
+          {
+            "key": "other_reason",
+            "text": "Other reasons (mention)",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "other_reason"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Please pick at least one"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "hv_medication_in_use_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "not_get_all_meds_reason_other",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "not_get_all_meds_reason_other",
+        "type": "edit_text",
+        "hint": "Outline other reason why client did not get all the medicines",
+        "edit_type": "text",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "hv_medication_in_use_relevance.yml"
+            }
+          }
+        },
+        "v_required": {
+          "value": "true",
+          "err": "Please enter the person's name"
+        }
+      },
+      {
+        "key": "spacer",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "spacer",
+        "type": "spacer",
+        "spacer_height": "30dp"
+      },
+      {
+        "key": "expensive_medication_label",
+        "type": "label",
+        "label_text_style": "bold",
+        "text": "List medicines that were expensive",
+        "text_color": "#000000",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "hv_medication_in_use_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "expensive_medication_list",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "expensive_medication_list",
+        "buttonText": "Add Medications that were expensive",
+        "dialogTitle": "Add Medications that were expensive",
+        "searchHint": "Search Medication",
+        "type": "multi_select_list",
+        "v_required": {
+          "value": "true",
+          "err": "This field has error"
+        },
+        "options": [
+          {
+            "key": "amoxicillin",
+            "text": "Amoxicillin 125mg, 250mg (Include with mg)",
+            "property": {
+              "presumed-id": "er",
+              "confirmed-id": "er"
+            }
+          },
+          {
+            "key": "ors",
+            "text": "ORS",
+            "property": {
+              "presumed-id": "er",
+              "confirmed-id": "er"
+            }
+          },
+          {
+            "key": "zinc_sulphate_10g",
+            "text": "Zinc Sulphate (10mg) (Include with mg)",
+            "property": {
+              "presumed-id": "er",
+              "confirmed-id": "er"
+            }
+          },
+          {
+            "key": "zinc_sulphate_20g",
+            "text": "Zinc Sulphate (20mg) (Include with mg)",
+            "property": {
+              "presumed-id": "er",
+              "confirmed-id": "er"
+            }
+          },
+          {
+            "key": "albendazole",
+            "text": "Albendazole 200mg, 400mg",
+            "property": {
+              "presumed-id": "er",
+              "confirmed-id": "er"
+            }
+          }
+        ],
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "hv_medication_in_use_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "spacer",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "spacer",
+        "type": "spacer",
+        "spacer_height": "40dp"
+      },
+      {
+        "key": "out_of_stock_medication_list_label",
+        "type": "label",
+        "label_text_style": "bold",
+        "text": "List medicines that were out of stock",
+        "text_color": "#000000",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "hv_medication_in_use_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "out_of_stock_medication_list",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "out_of_stock_medication_list",
+        "buttonText": "Add Medications that were out of stock",
+        "dialogTitle": "Add Medications that were out of stock",
+        "searchHint": "Search Medication",
+        "type": "multi_select_list",
+        "v_required": {
+          "value": "true",
+          "err": "This field has error"
+        },
+        "options": [
+          {
+            "key": "amoxicillin",
+            "text": "Amoxicillin 125mg, 250mg (Include with mg)",
+            "property": {
+              "presumed-id": "er",
+              "confirmed-id": "er"
+            }
+          },
+          {
+            "key": "ors",
+            "text": "ORS",
+            "property": {
+              "presumed-id": "er",
+              "confirmed-id": "er"
+            }
+          },
+          {
+            "key": "zinc_sulphate_10g",
+            "text": "Zinc Sulphate (10mg) (Include with mg)",
+            "property": {
+              "presumed-id": "er",
+              "confirmed-id": "er"
+            }
+          },
+          {
+            "key": "zinc_sulphate_20g",
+            "text": "Zinc Sulphate (20mg) (Include with mg)",
+            "property": {
+              "presumed-id": "er",
+              "confirmed-id": "er"
+            }
+          },
+          {
+            "key": "albendazole",
+            "text": "Albendazole 200mg, 400mg",
+            "property": {
+              "presumed-id": "er",
+              "confirmed-id": "er"
+            }
+          }
+        ],
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "hv_medication_in_use_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "spacer",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "spacer",
+        "type": "spacer",
+        "spacer_height": "40dp"
+      },
+      {
+        "key": "other_reason_medication_list_label",
+        "type": "label",
+        "label_text_style": "bold",
+        "text": "List medicines that were out for other reasons",
+        "text_color": "#000000",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "hv_medication_in_use_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "other_reason_medication_list",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "other_reason_medication_list",
+        "buttonText": "Add Medications that were out because of other reasons",
+        "dialogTitle": "Add Medications that were out because of other reasons",
+        "searchHint": "Search Medication",
+        "type": "multi_select_list",
+        "v_required": {
+          "value": "true",
+          "err": "This field has error"
+        },
+        "options": [
+          {
+            "key": "amoxicillin",
+            "text": "Amoxicillin 125mg, 250mg (Include with mg)",
+            "property": {
+              "presumed-id": "er",
+              "confirmed-id": "er"
+            }
+          },
+          {
+            "key": "ors",
+            "text": "ORS",
+            "property": {
+              "presumed-id": "er",
+              "confirmed-id": "er"
+            }
+          },
+          {
+            "key": "zinc_sulphate_10g",
+            "text": "Zinc Sulphate (10mg) (Include with mg)",
+            "property": {
+              "presumed-id": "er",
+              "confirmed-id": "er"
+            }
+          },
+          {
+            "key": "zinc_sulphate_20g",
+            "text": "Zinc Sulphate (20mg) (Include with mg)",
+            "property": {
+              "presumed-id": "er",
+              "confirmed-id": "er"
+            }
+          },
+          {
+            "key": "albendazole",
+            "text": "Albendazole 200mg, 400mg",
+            "property": {
+              "presumed-id": "er",
+              "confirmed-id": "er"
+            }
+          }
+        ],
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "hv_medication_in_use_relevance.yml"
+            }
+          }
+        }
+      }
+    ]
+  }
+}
