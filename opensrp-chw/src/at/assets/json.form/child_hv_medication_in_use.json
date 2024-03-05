@@ -56,7 +56,7 @@
         "openmrs_entity_id": "using_medication",
         "openmrs_data_type": "select one",
         "type": "spinner",
-        "hint": "Are you currently using any medication?",
+        "hint": "Is the child currently using any medication?",
         "v_required": {
           "value": "true",
           "err": "Please select one option"
@@ -224,12 +224,156 @@
         }
       },
       {
-        "key": "source_selection_medicine",
+        "key": "source_selection_reason_hf",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "source_selection_medicine",
         "type": "check_box",
-        "label": "Why did you choose to get the medicines from that location instead of another location?",
+        "label": "Why did you choose to get the medicines from Health Facility instead of other locations",
+        "label_text_style": "normal",
+        "text_color": "#C0C0C0",
+        "options": [
+          {
+            "key": "lower_cost",
+            "text": "Lower cost of medicines ",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "lower_cost"
+          },
+          {
+            "key": "close_to_residence",
+            "text": "Close to my residence",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "close_to_residence"
+          },
+          {
+            "key": "always_availability",
+            "text": "Always availability of medicines",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "always_availability"
+          },
+          {
+            "key": "privacy",
+            "text": "Privacy (e.g., I trust and know the seller) ",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "privacy"
+          },
+          {
+            "key": "credit_availability",
+            "text": "Availability of credits",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "credit_availability"
+          },
+          {
+            "key": "convenience_for_multiple_services",
+            "text": "Convenience for multiple services (i.e., diagnostics, other commodities) ",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "convenience_for_multiple_services"
+          },
+          {
+            "key": "referral",
+            "text": "There for a referral",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "referral"
+          }
+        ],
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "hv_medication_in_use_relevance.yml"
+            }
+          }
+        },
+        "v_required": {
+          "value": "true",
+          "err": "Please pick at least one"
+        }
+      },
+      {
+        "key": "source_selection_reason_addo",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "source_selection_medicine",
+        "type": "check_box",
+        "label": "Why did you choose to get the medicines from ADDO instead of other locations?",
+        "label_text_style": "normal",
+        "text_color": "#C0C0C0",
+        "options": [
+          {
+            "key": "lower_cost",
+            "text": "Lower cost of medicines ",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "lower_cost"
+          },
+          {
+            "key": "close_to_residence",
+            "text": "Close to my residence",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "close_to_residence"
+          },
+          {
+            "key": "always_availability",
+            "text": "Always availability of medicines",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "always_availability"
+          },
+          {
+            "key": "privacy",
+            "text": "Privacy (e.g., I trust and know the seller) ",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "privacy"
+          },
+          {
+            "key": "credit_availability",
+            "text": "Availability of credits",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "credit_availability"
+          },
+          {
+            "key": "convenience_for_multiple_services",
+            "text": "Convenience for multiple services (i.e., diagnostics, other commodities) ",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "convenience_for_multiple_services"
+          },
+          {
+            "key": "linkage",
+            "text": "There for a linkage",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "linkage"
+          }
+        ],
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "hv_medication_in_use_relevance.yml"
+            }
+          }
+        },
+        "v_required": {
+          "value": "true",
+          "err": "Please pick at least one"
+        }
+      },
+      {
+        "key": "source_selection_reason_pharmacy",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "source_selection_medicine",
+        "type": "check_box",
+        "label": "Why did you choose to get the medicines from Pharmacy instead of other locations?",
         "label_text_style": "normal",
         "text_color": "#C0C0C0",
         "options": [
@@ -281,6 +425,71 @@
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "referral"
+          }
+        ],
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "hv_medication_in_use_relevance.yml"
+            }
+          }
+        },
+        "v_required": {
+          "value": "true",
+          "err": "Please pick at least one"
+        }
+      },
+      {
+        "key": "source_selection_reason_commodities_shop",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "source_selection_medicine",
+        "type": "check_box",
+        "label": "Why did you choose to get the medicines from that location instead of another location?",
+        "label_text_style": "normal",
+        "text_color": "#C0C0C0",
+        "options": [
+          {
+            "key": "lower_cost",
+            "text": "Lower cost of medicines ",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "lower_cost"
+          },
+          {
+            "key": "close_to_residence",
+            "text": "Close to my residence",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "close_to_residence"
+          },
+          {
+            "key": "always_availability",
+            "text": "Always availability of medicines",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "always_availability"
+          },
+          {
+            "key": "privacy",
+            "text": "Privacy (e.g., I trust and know the seller) ",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "privacy"
+          },
+          {
+            "key": "credit_availability",
+            "text": "Availability of credits",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "credit_availability"
+          },
+          {
+            "key": "convenience_for_multiple_services",
+            "text": "Convenience for multiple services (i.e., diagnostics, other commodities) ",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "convenience_for_multiple_services"
           }
         ],
         "relevance": {

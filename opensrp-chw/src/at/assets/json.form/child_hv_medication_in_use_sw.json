@@ -47,7 +47,7 @@
     "encounter_location": ""
   },
   "step1": {
-    "title": "Dawa zinazotumiwa na Mtoto",
+    "title": "Matumizi ya Dawa",
     "fields": [
       {
         "key": "using_medication",
@@ -56,7 +56,7 @@
         "openmrs_entity_id": "using_medication",
         "openmrs_data_type": "select one",
         "type": "spinner",
-        "hint": "Je, unatumia dawa zozote?",
+        "hint": "Je, mtoto anatumia dawa zozote?",
         "v_required": {
           "value": "true",
           "err": "Please select one option"
@@ -86,7 +86,7 @@
         "key": "medication_currently_in_use_label",
         "type": "label",
         "label_text_style": "bold",
-        "text": "Orodhesha madawa yanayotumiwa sasa",
+        "text": "Orodhesha dawa anazotumia sasa",
         "text_color": "#000000",
         "relevance": {
           "step1:using_medication": {
@@ -105,7 +105,7 @@
         "searchHint": "Tafuta madawa",
         "v_required": {
           "value": "true",
-          "err": "Sehemu hii haiwezi kuachwa wazi"
+          "err": "Jaza eneo hili"
         },
         "options": [
           {
@@ -171,7 +171,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "source_medicine",
         "type": "check_box",
-        "label": "Where did you get the medicines?",
+        "label": "Alipata wapi dawa?",
         "label_text_style": "normal",
         "text_color": "#C0C0C0",
         "options": [
@@ -198,7 +198,7 @@
           },
           {
             "key": "given_by_someone",
-            "text": "Nimepewa na mtu",
+            "text": "Amepewa na mtu",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "given_by_someone"
@@ -220,7 +220,7 @@
         },
         "v_required": {
           "value": "true",
-          "err": "Please pick at least one"
+          "err": "Tafadhali chagua moja"
         }
       },
       {
@@ -235,7 +235,7 @@
         "options": [
           {
             "key": "lower_cost",
-            "text": "Bei rahisi ya madawa",
+            "text": "Bei rahisi za dawa",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "lower_cost"
@@ -249,14 +249,14 @@
           },
           {
             "key": "always_availability",
-            "text": "Madawa yanapatikana kila mara",
+            "text": "Upatikanaji wa madawa mara kwa mara",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "always_availability"
           },
           {
             "key": "privacy",
-            "text": "Faragha (mf., Ninamjua na kumwamini muuzaji) ",
+            "text": "Faragha (mf., Ninamjua na kumwamini muuzaji)",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "privacy"
@@ -270,7 +270,7 @@
           },
           {
             "key": "convenience_for_multiple_services",
-            "text": "Urahisi wa huduma nyingi zaidi (i.e., uchuguzi, bidhaa zingine) ",
+            "text": "Urahisi wa huduma nyingi zaidi (i.e., uchuguzi, bidhaa zingine)",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "convenience_for_multiple_services"
@@ -305,7 +305,7 @@
         "hint": "Uliweza kupata dawa zote mara ya mwisho ulipotembelea hapo (Kituoni au DLDM)?",
         "v_required": {
           "value": "true",
-          "err": "Tafadhali chagua moja"
+          "err": "Please select one option"
         },
         "values": [
           "Ndio",
@@ -333,7 +333,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "not_get_all_meds_reason",
         "type": "check_box",
-        "label": "Kama 'Hapana' kwanini hukuweza kupata dawa zote ulizohitaji?" ,
+        "label": "Kama 'Hapana' kwanini hukuweza kupata dawa zote ulizohitaji?",
         "label_text_style": "normal",
         "text_color": "#C0C0C0",
         "options": [
@@ -353,7 +353,7 @@
           },
           {
             "key": "other_reason",
-            "text": "Sababu zingine (taja)",
+            "text": "Sababu nyingine",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "other_reason"
@@ -361,7 +361,7 @@
         ],
         "v_required": {
           "value": "true",
-          "err": "Please pick at least one"
+          "err": "Tadadhali chagua moja"
         },
         "relevance": {
           "rules-engine": {
@@ -388,7 +388,7 @@
         },
         "v_required": {
           "value": "true",
-          "err": "Tafadhali jaza nafasi hii"
+          "err": "Tafadhali jaza sehemu hii"
         }
       },
       {
@@ -421,9 +421,10 @@
         "buttonText": "Chagua madawa yaliyokua ghali",
         "dialogTitle": "Chagua madawa yaliyokua ghali",
         "searchHint": "Tafuta madawa",
+        "type": "multi_select_list",
         "v_required": {
           "value": "true",
-          "err": "Sehemu hii haiwezi kuwa wazi"
+          "err": "Tafadhali jaza nafasi hii"
         },
         "options": [
           {
@@ -508,7 +509,7 @@
         "type": "multi_select_list",
         "v_required": {
           "value": "true",
-          "err": "Sehemu hii haiwezi kua wazi"
+          "err": "Tafadhali jaza nafasi hii"
         },
         "options": [
           {
@@ -593,7 +594,7 @@
         "type": "multi_select_list",
         "v_required": {
           "value": "true",
-          "err": "Sehemu hii inahitaji marekebisho"
+          "err": "Tafadhali jaza nafasi hii"
         },
         "options": [
           {
