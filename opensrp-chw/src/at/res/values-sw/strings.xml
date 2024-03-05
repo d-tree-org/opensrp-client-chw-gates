@@ -103,6 +103,6 @@
     <string name="callPhoneRequestTitle">Ruhusu Ukusanyaji wa Nambari ya Simu</string>
     <string name="callPhoneRequestMessage">CHW hukusanya nambari za simu za mtumiaji zitakazotumika kwa ufuatiliaji, tathmini na uchambuzi wa ziara zinazofanywa na Kazi ya Afya ya Jamii na kufanya malipo yao kwa kazi waliyoifanya.</string>
 
-    <string name="anc_home_visit_medication_in_use">Dawa anazotumia mama</string>
+    <string name="anc_home_visit_medication_in_use">Matumizi ya dawa</string>
 
 </resources>
