@@ -224,12 +224,12 @@
         }
       },
       {
-        "key": "source_selection_medicine",
+        "key": "source_selection_reason_hf",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "source_selection_medicine",
+        "openmrs_entity_id": "source_selection_reason_hf",
         "type": "check_box",
-        "label": "Kwanini ulichagua kuchukua dawa kutoka mahali ulipotaja hapo juu na sio pengine?",
+        "label": "Kwanini ulichagua kuchukua dawa kutoka kituo cha afya na sio pengine?",
         "label_text_style": "normal",
         "text_color": "#C0C0C0",
         "options": [
@@ -277,10 +277,219 @@
           },
           {
             "key": "referral",
-            "text": "Nilipewa rufaa/muunganisho hapo",
+            "text": "Nilipewa rufaa",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "referral"
+          }
+        ],
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "hv_medication_in_use_relevance.yml"
+            }
+          }
+        },
+        "v_required": {
+          "value": "true",
+          "err": "Tafadhali chagua moja"
+        }
+      },
+      {
+        "key": "source_selection_reason_addo",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "source_selection_reason_addo",
+        "type": "check_box",
+        "label": "Kwanini ulichagua kuchukua dawa kutoka DLDM na sio pengine?",
+        "label_text_style": "normal",
+        "text_color": "#C0C0C0",
+        "options": [
+          {
+            "key": "lower_cost",
+            "text": "Bei rahisi za dawa",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "lower_cost"
+          },
+          {
+            "key": "close_to_residence",
+            "text": "Karibu na nyumbani",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "close_to_residence"
+          },
+          {
+            "key": "always_availability",
+            "text": "Upatikanaji wa madawa mara kwa mara",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "always_availability"
+          },
+          {
+            "key": "privacy",
+            "text": "Faragha (mf., Ninamjua na kumwamini muuzaji)",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "privacy"
+          },
+          {
+            "key": "credit_availability",
+            "text": "Upatikanaji wa mkopo",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "credit_availability"
+          },
+          {
+            "key": "convenience_for_multiple_services",
+            "text": "Urahisi wa huduma nyingi zaidi (i.e., uchuguzi, bidhaa zingine)",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "convenience_for_multiple_services"
+          },
+          {
+            "key": "referral",
+            "text": "Nilipewa ungalisho",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "referral"
+          }
+        ],
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "hv_medication_in_use_relevance.yml"
+            }
+          }
+        },
+        "v_required": {
+          "value": "true",
+          "err": "Tafadhali chagua moja"
+        }
+      },
+      {
+        "key": "source_selection_reason_pharmacy",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "source_selection_reason_pharmacy",
+        "type": "check_box",
+        "label": "Kwanini ulichagua kuchukua dawa kutoka Pharmacy na sio pengine?",
+        "label_text_style": "normal",
+        "text_color": "#C0C0C0",
+        "options": [
+          {
+            "key": "lower_cost",
+            "text": "Bei rahisi za dawa",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "lower_cost"
+          },
+          {
+            "key": "close_to_residence",
+            "text": "Karibu na nyumbani",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "close_to_residence"
+          },
+          {
+            "key": "always_availability",
+            "text": "Upatikanaji wa madawa mara kwa mara",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "always_availability"
+          },
+          {
+            "key": "privacy",
+            "text": "Faragha (mf., Ninamjua na kumwamini muuzaji)",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "privacy"
+          },
+          {
+            "key": "credit_availability",
+            "text": "Upatikanaji wa mkopo",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "credit_availability"
+          },
+          {
+            "key": "convenience_for_multiple_services",
+            "text": "Urahisi wa huduma nyingi zaidi (i.e., uchuguzi, bidhaa zingine)",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "convenience_for_multiple_services"
+          },
+          {
+            "key": "referral",
+            "text": "Nilipewa ungalisho",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "referral"
+          }
+        ],
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "hv_medication_in_use_relevance.yml"
+            }
+          }
+        },
+        "v_required": {
+          "value": "true",
+          "err": "Tafadhali chagua moja"
+        }
+      },
+      {
+        "key": "source_selection_reason_commodities_shop",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "source_selection_reason_commodities_shop",
+        "type": "check_box",
+        "label": "Kwanini ulichagua kuchukua dawa kutoka duka la vitu vingine na sio pengine?",
+        "label_text_style": "normal",
+        "text_color": "#C0C0C0",
+        "options": [
+          {
+            "key": "lower_cost",
+            "text": "Bei rahisi za dawa",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "lower_cost"
+          },
+          {
+            "key": "close_to_residence",
+            "text": "Karibu na nyumbani",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "close_to_residence"
+          },
+          {
+            "key": "always_availability",
+            "text": "Upatikanaji wa madawa mara kwa mara",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "always_availability"
+          },
+          {
+            "key": "privacy",
+            "text": "Faragha (mf., Ninamjua na kumwamini muuzaji)",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "privacy"
+          },
+          {
+            "key": "credit_availability",
+            "text": "Upatikanaji wa mkopo",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "credit_availability"
+          },
+          {
+            "key": "convenience_for_multiple_services",
+            "text": "Urahisi wa huduma nyingi zaidi (i.e., uchuguzi, bidhaa zingine)",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "convenience_for_multiple_services"
           }
         ],
         "relevance": {
