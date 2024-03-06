@@ -181,8 +181,16 @@
             }
           },
           {
-            "key": "quinine_tab_and_injection",
-            "text": "Quinine tab & injection (first trimester)",
+            "key": "quinine_tab",
+            "text": "Quinine tab",
+            "property": {
+              "presumed-id": "er",
+              "confirmed-id": "er"
+            }
+          },
+          {
+            "key": "quinine_injection",
+            "text": "Quinine Injection (first trimester)",
             "property": {
               "presumed-id": "er",
               "confirmed-id": "er"
@@ -539,8 +547,16 @@
             }
           },
           {
-            "key": "quinine_tab_and_injection",
-            "text": "Quinine tab & injection (first trimester)",
+            "key": "quinine_tab",
+            "text": "Quinine tab",
+            "property": {
+              "presumed-id": "er",
+              "confirmed-id": "er"
+            }
+          },
+          {
+            "key": "quinine_injection",
+            "text": "Quinine Injection (first trimester)",
             "property": {
               "presumed-id": "er",
               "confirmed-id": "er"
@@ -664,8 +680,16 @@
             }
           },
           {
-            "key": "quinine_tab_and_injection",
-            "text": "Quinine tab & injection (first trimester)",
+            "key": "quinine_tab",
+            "text": "Quinine tab",
+            "property": {
+              "presumed-id": "er",
+              "confirmed-id": "er"
+            }
+          },
+          {
+            "key": "quinine_injection",
+            "text": "Quinine Injection (first trimester)",
             "property": {
               "presumed-id": "er",
               "confirmed-id": "er"
@@ -789,8 +813,16 @@
             }
           },
           {
-            "key": "quinine_tab_and_injection",
-            "text": "Quinine tab & injection (first trimester)",
+            "key": "quinine_tab",
+            "text": "Quinine tab",
+            "property": {
+              "presumed-id": "er",
+              "confirmed-id": "er"
+            }
+          },
+          {
+            "key": "quinine_injection",
+            "text": "Quinine Injection (first trimester)",
             "property": {
               "presumed-id": "er",
               "confirmed-id": "er"
