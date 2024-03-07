@@ -110,3 +110,31 @@ priority: 1
 condition: "step1_using_medication == 'yes' && step1_not_get_all_meds_reason.contains('other_reason')"
 actions:
   - "isRelevant = true"
+---
+name: step1_source_selection_reason_addo
+description: Relevance for source selection ADDO
+priority: 1
+condition: "step1_using_medication == 'yes' && step1_source_medicine.contains('addo')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_source_selection_reason_hf
+description: Relevance for source selection Health Facility
+priority: 1
+condition: "step1_using_medication == 'yes' && step1_source_medicine.contains('health_facility')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_source_selection_reason_pharmacy
+description: Relevance for source selection Pharmacy
+priority: 1
+condition: "step1_using_medication == 'yes' && step1_source_medicine.contains('pharmacy')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_source_selection_reason_commodities_shop
+description: Relevance for source selection Other Commodities Shop
+priority: 1
+condition: "step1_using_medication == 'yes' && step1_source_medicine.contains('other_commodities_shop')"
+actions:
+  - "isRelevant = true"
