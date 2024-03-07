@@ -201,7 +201,7 @@
         "type": "label",
         "text": "Take a picture of the consent form",
         "v_required": {
-          "value": true
+          "value": false
         },
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
@@ -237,7 +237,7 @@
           }
         },
         "v_required": {
-          "value": true,
+          "value": false,
           "err": "Please take a picture of the consent form"
         }
       }
