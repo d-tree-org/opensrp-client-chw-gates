@@ -119,6 +119,102 @@
           }
         }
       },
+      {
+        "key": "get_all_meds",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "get_all_meds",
+        "openmrs_data_type": "select one",
+        "type": "spinner",
+        "hint": "Umepata dawa zote ulizo hitaji?",
+        "v_required": {
+          "value": "true",
+          "err": "Please select one option"
+        },
+        "values": [
+          "Ndio",
+          "Hapana"
+        ],
+        "keys": [
+          "yes",
+          "no"
+        ],
+        "openmrs_choice_ids": {
+          "Yes": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+          "No": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "referral_followup_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "not_get_all_meds_reason",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "not_get_all_meds_reason",
+        "type": "check_box",
+        "label": "Kama 'Hapana' kwa nini hukuweza kupata dawa unayohitaji?",
+        "label_text_style": "normal",
+        "text_color": "#C0C0C0",
+        "options": [
+          {
+            "key": "too_expensive",
+            "text": "Gharama kubwa sana",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "too_expensive"
+          },
+          {
+            "key": "stock_out",
+            "text": "Zimeisha",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "stock_out"
+          },
+          {
+            "key": "other_reason",
+            "text": "Sababu nyingine (taja)",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "other_reason"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Please pick at least one"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "referral_followup_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "not_get_all_meds_reason_other",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "not_get_all_meds_reason_other",
+        "type": "edit_text",
+        "hint": "Elezea sababu nyingine kwanini mteja hakuweza kupata dawa",
+        "edit_type": "text",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "referral_followup_relevance.yml"
+            }
+          }
+        },
+        "v_required": {
+          "value": "true",
+          "err": "Please enter the person's name"
+        }
+      },
 	  {
         "key": "reminder_toaster",
         "openmrs_entity_parent": "",

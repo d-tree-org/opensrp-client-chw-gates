@@ -201,7 +201,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "not_get_all_meds_reason_other",
         "type": "edit_text",
-        "hint": "Outline other reason why client did not get all the medicines",
+        "hint": "Elezea sababu nyingine kwanini mteja hakuweza kupata dawa",
         "edit_type": "text",
         "relevance": {
           "rules-engine": {
